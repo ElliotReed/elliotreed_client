@@ -1,0 +1,102 @@
+:root {
+  --speed: 500ms;
+}
+
+.landing-container {
+  display: flex;
+  flex-wrap: wrap;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--black);
+}
+
+.landing-container h1 {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  font-weight: bold;
+  white-space: nowrap;
+  color: var(--fontColorLight);
+  transform: translateX(-50%);
+  text-shadow: var(--textShadowLight);
+}
+
+.button {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 4em;
+  width: 14em;
+  padding: 1.25em;
+  border: var(--fontColorLight) solid 0.25em;
+  color: var(--fontColorLight);
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+.left .button:hover {
+  background-color: var(--green-light);
+  border-color: var(--green);
+}
+
+.right .button:hover {
+  background-color: var(--brown-light);
+  border-color: var(--brown);
+}
+
+.split {
+  position: relative;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+}
+
+@media (min-width: 576px) {
+  .split {
+    width: 50%;
+    height: 100%;
+  }
+}
+
+.left {
+  left: 0;
+  background: url("../img/dev-background_1920.png") center center no-repeat;
+  background-size: cover;
+}
+
+.left::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: var(--overlay-dark);
+}
+
+.right {
+  right: 0;
+  background: url("../img/elliot-26.jpg") center center no-repeat;
+  background-size: cover;
+}
+
+.right::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: var(--overlay-dark);
+}
+
+.left,
+.right,
+.left::before,
+.right::before {
+  transition: var(--speed) all ease-in-out;
+}

@@ -1,0 +1,12 @@
+@import '../styles/index.module.scss';
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--margin);
+  background: var(--darkShades);
+
+  p {
+    color: var(--lightShades);
+  }
+}

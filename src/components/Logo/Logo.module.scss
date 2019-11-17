@@ -1,0 +1,61 @@
+.logo {
+  fill: var(--darkShades);
+  filter: url(#shadow);
+  --duration: 620ms;
+  --duration: 1s;
+}
+
+.active {
+  fill: lighten(#221a1d, 32%);
+  fill: var(--mainBrand);
+  transform-origin: center;
+  animation: scale-in-out var(--duration) ease-in-out forwards;
+  perspective: 500px;
+}
+
+@keyframes scale-in-out {
+  0% {
+    opacity: 0.25;
+    transform: scale3d(0, 0, 0) rotate3d(0.3, 0.3, 0.3, -90deg) translate3d(-62px, -62px, -500px);
+  }
+  62% {
+    transform: scale3d(1.162, 1.162, 1.162) rotate3d(1, 1, 1, 32deg) translate3d(38px, 38px, 100px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1) rotate3d(1, 1, 1, 0deg) translate3d(0px, 0px, 0px);
+  }
+}
+
+.active:hover {
+  animation: spin var(--duration) ease-in-out forwards;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.inactive {
+  animation: subdue var(--duration) ease-in-out forwards;
+  perspective: 500px;
+}
+
+@keyframes subdue {
+  0% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1) rotate3d(0.3, 0.3, 0.3, 90deg) translate3d(62px, 62px, 500px);
+  }
+  62% {
+    opacity: 0;
+    transform: scale3d(0.38, 0.38, 0.38) rotate3d(1, 1, 1, -32deg) translate3d(-38px, -38px, -100px);
+  }
+  100% {
+    opacity: 0.38;
+    transform: scale3d(1, 1, 1) rotate3d(1, 1, 1, 0deg) translate3d(0px, 0px, 0px);
+  }
+}

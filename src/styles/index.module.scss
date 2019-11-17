@@ -1,0 +1,139 @@
+@import 'reset.module.scss';
+
+/* #region Variables */
+:root {
+  --fontStack: 'Open Sans', sans-serif;
+  /* --fontStack: Arial, Helvetica, sans-serif; */
+  --fontColorLight: rgba(235, 235, 235);
+  --fontColorDark: rgb(35, 35, 35);
+  --overlayDark: rgba(35, 35, 35, .75);
+  --overlay-dark: rgba(35, 35, 35, .15);
+
+  /* colors */
+  --black: rgb(35, 35, 35);
+  --blue: rgb(91, 157, 231);
+  --brown: rgba(179, 99, 45, 0.75);
+  /* --brown-light:rgba(207, 161, 62, 0.75); */
+  --brown-light: rgba(249, 171, 123, .753);
+  --green: rgb(117, 148, 109);
+  --green-dark: rgb(84, 119, 75);
+  --green-light: rgb(194, 223, 187);
+  --red: #501e1e;
+  --white: rgb(235, 235, 235);
+
+  --lightShades: #E2DAC4;
+  --lightShadesRGB: 226, 218, 196;
+  --lightAccent: #949983;
+  --lightAccentRGB: 148, 153, 131;
+  --mainBrand: #455D4E;
+  --mainBrandRGB: 69, 93, 78;
+  --darkAccent: #7E7366;
+  --darkAccentRGB: 126, 115, 102;
+  --darkShades: #221A1D;
+  --darkShadesRGB: 34, 26, 29;
+  /* sizes */
+  --margin: 1rem;
+  --padding: 1rem;
+
+  /* box model */
+  --border-radius: 9px;
+  --box-shadow: 6.66px 6.66px 10px var(--darkAccent);
+  --textShadowDark: .25em .25em --darkAccent;
+  --textShadowLight: .1em .1em rgba(207, 207, 207, .33);
+
+  /* animations */
+  --softIn: softIn .33s ease-in;
+}
+
+/* #endregion Variables */
+html {
+  box-sizing: border-box;
+}
+
+/* set default base size for deveice and reading distance */
+/* mobile */
+html {
+  font-size: 16px;
+}
+
+/* tablet */
+@media only screen and (min-width: 768px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+/* desktop */
+@media only screen and (min-width: 1080px) {
+  html {
+    font-size: 22px;
+  }
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  // padding: 0;
+  font-family: var(--fontStack);
+  line-height: 1.618rem;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+h1 {
+  font-size: 2.075rem;
+}
+
+h2 {
+  font-size: 1.725rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1.1rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+p {
+  color: var(--fontColorDark);
+  margin: var(--margin);
+}
+
+a {
+  text-decoration: none;
+  color: var(--green);
+}
+
+ul {
+  padding-left: var(--padding);
+  list-style-type: none;
+}
+
+@keyframes softIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,39 @@
+.background-container {
+  z-index: -1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--black);
+  background-image: url(./dev-background_1920.png);
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(0.1rem);
+
+  &::before {
+    z-index: -900;
+    position: fixed;
+    content: "";
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--darkShadesRGB), 0.1);
+  }
+}
+
+.dev-background {
+  background-image: url(./dev-background_1920.png);
+}
+.music-background-epiphone {
+  background-image: url(./epiphone-emperor_1920.png);
+}
+.music-background-gibson {
+  background-image: url(./gibson-l4_1920.png);
+}
+.music-background-manouche {
+  background-image: url(./manouche-nuages_1920.png);
+}

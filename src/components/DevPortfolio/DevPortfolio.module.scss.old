@@ -1,0 +1,67 @@
+.portfolio-container {
+  grid-area: feature;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  grid-gap: var(--padding);
+  width: 100%;
+  max-height: 32em;
+}
+
+.item {
+  display: flex;
+  padding: var(--padding);
+  border: 1px solid var(--green);
+  border-radius: 5px;
+  background: linear-gradient(to bottom, var(--white), var(--green-light) 3%, var(--green) 33%);
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: var(--fontColorLight);
+}
+
+.item:hover {
+  background: linear-gradient(to bottom, var(--white), var(--green-light) 3%, var(--green) 100%);
+}
+
+.item:hover .verticle{
+  background: linear-gradient(to right, var(--white), var(--green-light) 3%, var(--green) 100%);
+}
+
+.verticle {
+  background: linear-gradient(to right, var(--white), var(--green-light) 3%, var(--green) 33%);
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  letter-spacing: -.25em;
+}
+
+.crystal {
+  grid-column: 1;
+  grid-row: 2 / 11;
+}
+
+.trivia {
+  grid-column: 4 / 11;
+  grid-row: 10;
+}
+
+.timer {
+  grid-column: 6 / 11;
+  grid-row: 2;
+}
+
+.gypsy {
+  grid-column: 1 / 7;
+  grid-row: 1;
+}
+
+.github-profile {
+  grid-column: 2 / 7;
+  grid-row: 3;
+}
+
+.github {
+  grid-column: 7;
+  grid-row: 3 / 8;
+}

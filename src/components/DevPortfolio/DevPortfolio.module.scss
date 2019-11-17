@@ -1,0 +1,55 @@
+.portfolio-container {
+  grid-area: feature;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  grid-gap: var(--padding);
+  width: 100%;
+}
+
+.portfolio-grid {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.card {
+  flex: 1 1 1em;
+  border: #777777 solid 1px;
+  box-shadow: var(--box-shadow);
+  min-width: 13em;
+  max-width: 15em;
+  height: 20em;
+  margin: var(--margin);
+  background-color: var(--lightShades);
+  transition: 0.3s;
+}
+@media all and (min-width: 600px) {
+  /* We tell both sidebars to share a row */
+  /* .card { flex: 2 auto; } */
+}
+
+.card:hover {
+  box-shadow:var(--box-shadow-hover);
+}
+
+.card a {
+  color: var(--accent-font-color);
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+}
+.card img {
+  width: 100%;
+  height: 66.6%;
+}
+
+.card-container {
+  padding: calc(var(--padding)/2);
+  margin: 0 0 0 0;
+}
+
+.card-container h4 {
+  margin-top: calc(var(--margin)/2);
+  margin-bottom: 0;
+}

@@ -1,21 +1,144 @@
 import React from "react"
 import { Link } from "gatsby"
+import classNames from "classnames"
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import Head from "../components/head"
+import indexStyles from "./index.module.scss"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+class LandingPage extends React.Component {
+  constructor(props) {
+    super(props)
+    this.splitScreen = React.createRef()
+    this.state = {
+      leftHoverProperty: {},
+      rightHoverProperty: {},
+    }
+  }
 
-export default IndexPage
+  mouseEnterHandler = event => {
+    let name = event.target.getAttribute("name")
+    let screenSize = this.splitScreen.current.offsetWidth
+    let elementDimension
+    let leftValue
+    let rightValue
+    let leftObject = {}
+    let rightObject = {}
+
+    if (screenSize <= 576) {
+      elementDimension = "height"
+    } else {
+      elementDimension = "width"
+    }
+
+    if (name === "left") {
+      leftValue = "66.6%"
+      rightValue = "33.4%"
+    } else {
+      rightValue = "66.6%"
+      leftValue = "33.4%"
+    }
+
+    leftObject[elementDimension] = leftValue
+    rightObject[elementDimension] = rightValue
+
+    this.setState({
+      leftHoverProperty: leftObject,
+      rightHoverProperty: rightObject,
+    })
+  }
+
+  pageResizeHandler = () => {
+    let screenSize = this.splitScreen.current.offsetWidth
+    let leftHoverProperty = this.state.leftHoverProperty
+    let rightHoverProperty = this.state.rightHoverProperty
+    const leftHOP = leftHoverProperty.hasOwnProperty("height")
+    const rightHOP = rightHoverProperty.hasOwnProperty("height")
+    let elementDimension
+    let leftValue
+    let rightValue
+    let leftObject = {}
+    let rightObject = {}
+
+    if (!leftHoverProperty.hasOwnProperty("width") && !leftHOP) {
+      return
+    }
+
+    if (screenSize <= 576 && !leftHOP && !rightHOP) {
+      elementDimension = "height"
+      leftValue = leftHoverProperty["width"]
+      rightValue = rightHoverProperty["width"]
+    } else if (screenSize <= 576 && leftHOP && rightHOP) {
+      elementDimension = "height"
+      leftValue = leftHoverProperty["height"]
+      rightValue = rightHoverProperty["height"]
+    }
+
+    if (screenSize > 576 && !leftHOP && !rightHOP) {
+      elementDimension = "width"
+      leftValue = leftHoverProperty["width"]
+      rightValue = rightHoverProperty["width"]
+    } else if (screenSize > 576 && leftHOP && rightHOP) {
+      elementDimension = "width"
+      leftValue = leftHoverProperty["height"]
+      rightValue = rightHoverProperty["height"]
+    }
+
+    leftObject[elementDimension] = leftValue
+    rightObject[elementDimension] = rightValue
+
+    this.setState({
+      leftHoverProperty: leftObject,
+      rightHoverProperty: rightObject,
+    })
+  }
+
+  componentDidMount() {
+    window.addEventListener("resize", this.pageResizeHandler)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.pageResizeHandler)
+    this.setState({
+      leftHoverProperty: {},
+      rightHoverProperty: {},
+    })
+  }
+
+  render() {
+    return (
+      <div className={indexStyles.landingContainer} ref={this.splitScreen}>
+        <Head title="Developer | Musician"/>
+        <div
+          name="left"
+          onMouseEnter={this.mouseEnterHandler}
+          className={classNames({
+            [indexStyles.split]: true,
+            [indexStyles.left]: true,
+          })}
+          style={this.state.leftHoverProperty}
+        >
+          <h1>The Developer</h1>
+          <Link to="/developer" className={indexStyles.button}>
+            Learn More!
+          </Link>
+        </div>
+        <div
+          name="right"
+          className={classNames({
+            [indexStyles.split]: true,
+            [indexStyles.right]: true,
+          })}
+          onMouseEnter={this.mouseEnterHandler}
+          style={this.state.rightHoverProperty}
+        >
+          <h1>The Musician</h1>
+          <Link to="/musician" className={indexStyles.button}>
+            Learn More!
+          </Link>
+        </div>
+      </div>
+    )
+  }
+}
+
+export default LandingPage
