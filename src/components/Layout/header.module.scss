@@ -19,7 +19,7 @@
   display: flex;
   align-items: center;
   color: var(--mainBrand);
-  animation: fadeslide .33s ease-in;
+  animation: fadeslide 0.33s ease-in;
 }
 
 @keyframes fadeslide {
@@ -27,7 +27,7 @@
     opacity: 0;
     transform: translate(-100%, 0);
   }
-  
+
   to {
     opacity: 1;
     transform: translate(0%, 0);
@@ -37,24 +37,69 @@
 .logo-wrapper {
   display: flex;
   align-items: center;
-
 }
 
 .title {
   // margin: 0;
-  margin-right: calc(var(--margin) /3);
+  margin-right: calc(var(--margin) / 3);
   font-size: 1.32rem;
   font-weight: bolder;
   color: var(--mainBrand);
   text-transform: uppercase;
 }
 
+// #region Qualifier
 .qualifier {
+  --duration: 1s;
+  --timing-function: ease-in;
+  --delay: 0s;
+  --iteration-count: 1;
+  --direction: forwards;
+  display: flex;
+}
+
+.qualifier-text {
   font-size: 1rem;
   // font-weight: 300;
   font-style: italic;
 }
 
+.current-facet {
+  opacity: 1;
+}
+
+.other-facet {
+
+}
+
+.show-facet {
+  animation: showQualifier var(--duration) var(--timing-function) var(--delay) var(--iteration-count) var(--direction);
+}
+
+.hide-facet {
+  animation: hideQualifier var(--duration) var(--timing-function) var(--delay) var(--iteration-count) var(--direction);
+}
+
+@keyframes showQualifier {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes hideQualifier {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+// #endregion
+
+// #region Nav
 .nav-list {
   display: flex;
 
@@ -62,11 +107,9 @@
     margin-right: var(--margin);
     color: var(--mainBrand);
     text-decoration: none;
-
   }
 
   a {
-
     &:hover {
       background: none;
       color: var(--darkAccent);
@@ -78,3 +121,4 @@
 .active-nav-item {
   color: var(--lightAccent);
 }
+// #endregion

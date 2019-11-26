@@ -1,9 +1,9 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "gatsby"
+import classnames from "classnames"
 
 import headerStyles from "./header.module.scss"
-// import logo from "../images/elliotreed-icon.svg"
-import Logo from './Logo'
+import Logo from "../Logo"
 
 const MusicianNav = () => {
   return (
@@ -72,20 +72,53 @@ const DeveloperNav = () => {
     </nav>
   )
 }
-const Header = props => {
-  const { type } = props
+const Header = ({ type }) => {
+  const currentFacet = type
+  const otherFacet = type === "developer" ? "musician" : "developer"
+  const [switchQualifier, setSwitchQualifier] = useState(false)
 
   return (
     <header className={headerStyles.header}>
       <div className={headerStyles.navBrand}>
         <Link to={`/`}>
           <div className={headerStyles.logoWrapper}>
-            <Logo width='2.5em' mode={type}/>
+            <Logo width="2.5em" mode={type} />
             <h1 className={headerStyles.title}>Elliot Reed</h1>
           </div>
         </Link>
-        <h6 className={headerStyles.qualifier}>{type}</h6>
         {/* TODO:  slide out other personality on hover, with direct link */}
+        <div
+          className={headerStyles.qualifier}
+          onMouseEnter={() => {
+            setSwitchQualifier(true)
+          }}
+          onMouseLeave={() => {
+            setSwitchQualifier(false)
+          }}
+        >
+          <h6
+            className={classnames(
+              headerStyles.qualifierText,
+              headerStyles.currentFacet,
+              switchQualifier ? headerStyles.hideFacet : headerStyles.showFacet
+            )}
+          >
+            {currentFacet}
+          </h6>
+          <Link to={`/${otherFacet}`}>
+            <h6
+              className={classnames(
+                headerStyles.qualifierText,
+                headerStyles.otherFacet,
+                switchQualifier
+                  ? headerStyles.showFacet
+                  : headerStyles.hideFacet
+              )}
+            >
+              {otherFacet}
+            </h6>
+          </Link>
+        </div>
       </div>
       {type === "developer" && (
         <DeveloperNav alink="Musician" qualifier="Developer" />

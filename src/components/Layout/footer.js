@@ -1,6 +1,6 @@
 import React from "react"
 
-import Copyright from '../components/UI/copyright'
+import Copyright from '../UI/copyright'
 import footerStyles from "./footer.module.scss"
 
 const Footer = () => {
