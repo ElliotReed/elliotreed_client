@@ -36,8 +36,9 @@
   --padding: 1rem;
 
   /* box model */
-  --border-radius: 9px;
-  --box-shadow: 6.66px 6.66px 10px var(--darkAccent);
+  --border: 1px solid var(--darkShades);
+  --borderRadius: .38em;
+  --boxShadow: 6.66px 6.66px 10px var(--darkShades);
   --textShadowDark: .25em .25em --darkAccent;
   --textShadowLight: .1em .1em rgba(207, 207, 207, .33);
 

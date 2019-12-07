@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-// import { Link } from 'react-router-dom';
 
 import devPortfolioStyles from "./DevPortfolio.module.scss"
 
@@ -15,13 +14,13 @@ class DevPortfolio extends Component {
             return (
               <li key={item.id}>
                 <div className={devPortfolioStyles.card}>
-                  <a href={item.link} target="_blank" rel="noopener noreferrer">
+                  {/* <a href={item.url} target="_blank" rel="noopener noreferrer"> */}
                     <img src={item.image} alt={item.project}/>
                     <div className={devPortfolioStyles.cardContainer}>
                       <h4>{item.project}</h4>
                       <p>{item.blurb}</p>
                     </div>
-                  </a>
+                  {/* </a> */}
                 </div>
               </li>
             )

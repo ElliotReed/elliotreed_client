@@ -1,8 +1,4 @@
-<a
-className="crystal item verticle"
-href="https://crystal.elliotreed.net">
-  Crystal Collector
-</a>
+
 <a className="trivia item"
 href="https://trivia.elliotreed.net">
 Totally Trivial Trivia

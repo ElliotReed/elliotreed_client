@@ -1,9 +1,14 @@
-import React, { useState } from "react"
+import React, { useState, useRef, useEffect, useContext } from "react"
 import { Link } from "gatsby"
 import classnames from "classnames"
+import gsap from "gsap"
 
-import headerStyles from "./header.module.scss"
+import {
+  GlobalDispatchContext,
+  GlobalStateContext,
+} from "../../context/GlobalContextProvider"
 import Logo from "../Logo"
+import headerStyles from "./header.module.scss"
 
 const MusicianNav = () => {
   return (
@@ -73,51 +78,78 @@ const DeveloperNav = () => {
   )
 }
 const Header = ({ type }) => {
+  const dispatch = useContext(GlobalDispatchContext)
+  const state = useContext(GlobalStateContext)
   const currentFacet = type
   const otherFacet = type === "developer" ? "musician" : "developer"
+  let aspectMenuDiv = useRef(null)
+  const [showAspectMenu, setShowAspectMenu] = useState()
+  const [hideAspectMenu, setHideAspectMenu] = useState()
   const [switchQualifier, setSwitchQualifier] = useState(false)
+  const [animateLogo, setAnimateLogo] = useState(true)
+
+  useEffect(() => {
+    const duration = 0.3
+    setShowAspectMenu(
+      gsap
+        .fromTo(
+          aspectMenuDiv,
+          { rotateX: 93 },
+          { duration: duration, rotateX: 0, ease: "bounce" }
+        )
+        .pause()
+    )
+    setHideAspectMenu(
+      gsap.to(aspectMenuDiv, { duration: duration, rotateX: -93 }).pause()
+    )
+  }, [switchQualifier])
 
   return (
     <header className={headerStyles.header}>
       <div className={headerStyles.navBrand}>
         <Link to={`/`}>
           <div className={headerStyles.logoWrapper}>
-            <Logo width="2.5em" mode={type} />
+            <Logo width="2.5em" mode={type} animateLogo={animateLogo} />
             <h1 className={headerStyles.title}>Elliot Reed</h1>
           </div>
         </Link>
         {/* TODO:  slide out other personality on hover, with direct link */}
         <div
-          className={headerStyles.qualifier}
-          onMouseEnter={() => {
-            setSwitchQualifier(true)
-          }}
+          className={headerStyles.aspect}
           onMouseLeave={() => {
+            hideAspectMenu.play()
             setSwitchQualifier(false)
           }}
         >
           <h6
             className={classnames(
               headerStyles.qualifierText,
-              headerStyles.currentFacet,
-              switchQualifier ? headerStyles.hideFacet : headerStyles.showFacet
+              headerStyles.pointer
             )}
+            onMouseEnter={() => {
+              showAspectMenu.play()
+              setSwitchQualifier(true)
+            }}
           >
             {currentFacet}
           </h6>
-          <Link to={`/${otherFacet}`}>
-            <h6
-              className={classnames(
-                headerStyles.qualifierText,
-                headerStyles.otherFacet,
-                switchQualifier
-                  ? headerStyles.showFacet
-                  : headerStyles.hideFacet
-              )}
-            >
-              {otherFacet}
-            </h6>
-          </Link>
+
+          <div
+            ref={element => {
+              aspectMenuDiv = element
+            }}
+            className={classnames(headerStyles.aspectMenu)}
+            onClick={() => {
+              setSwitchQualifier(false)
+              setAnimateLogo(false)
+            }}
+          >
+            <Link to={`/${otherFacet}`}>
+              <h6 className={classnames(headerStyles.qualifierText)}>
+                {otherFacet}
+              </h6>
+            </Link>
+          </div>
         </div>
       </div>
       {type === "developer" && (

@@ -1,12 +1,12 @@
 import React from "react"
 
-import Layout from "../components/layout"
-import Head from "../components/head"
-import developerStyles from "./developer.module.scss"
-import MaxWidthContainer from "../components/UI/maxWidthContainer"
-import Login from "../components/LoginForm"
-import ProfileImage from "../components/UI/ProfileImage"
-import ProfileInfo from "../components/UI/ProfileInfo"
+import Layout from "../../components/layout"
+import Head from "../../components/head"
+import developerStyles from "./index.module.scss"
+import MaxWidthContainer from "../../components/UI/maxWidthContainer"
+import Login from "../../components/LoginForm"
+import ProfileImage from "../../components/UI/ProfileImage"
+import ProfileInfo from "../../components/UI/ProfileInfo"
 
 class DeveloperPage extends React.Component {
   constructor(props) {

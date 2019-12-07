@@ -1,11 +1,11 @@
 import React, { Component } from "react"
 
-import Layout from "../components/layout"
-import Head from "../components/head"
+import Layout from "../../components/layout"
+import Head from "../../components/head"
 
-import MaxWidthContainer from "../components/UI/maxWidthContainer"
-import ProfileImage from "../components/UI/ProfileImage"
-import ProfileInfo from "../components/UI/ProfileInfo"
+import MaxWidthContainer from "../../components/UI/maxWidthContainer"
+import ProfileImage from "../../components/UI/ProfileImage"
+import ProfileInfo from "../../components/UI/ProfileInfo"
 
 class MusicianPage extends Component {
   constructor(props) {

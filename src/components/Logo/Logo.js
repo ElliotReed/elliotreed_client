@@ -1,46 +1,146 @@
-import React from "react"
+import React, { useState, useEffect, useRef, useContext } from "react"
+import gsap from "gsap"
+
+import { GlobalStateContext } from "../../context/GlobalContextProvider"
 import logoStyle from "./Logo.module.scss"
-import classnames from "classnames"
 
-const Logo = ({ width, mode }) => {
-	return (
-		<svg
-			className={logoStyle.logo}
-			width={width}
-			height={width}
-			xmlns="http://www.w3.org/2000/svg"
-			viewBox="0 0 342 476"
-		>
-			<defs>
-				<filter id="shadow" x="0" y="0">
-					<feDropShadow dx="3" dy="3" stdDeviation=".32" flood-opacity="0.1" />
-				</filter>
-			</defs>
-			<title></title>
-			<g className={mode === "developer" ? logoStyle.active : logoStyle.inactive}>
-				<path d="M131.56,443.56q10.16-16.11,10.16-37.05,0-13.54-4.53-40.37-4-23-4-39.86,0-26.83,14.26-51.36a95.81,95.81,0,0,1,40.37-37.81q-26.66-13-40.65-37.14a99.53,99.53,0,0,1-14-50.66q0-16.59,4-39.81,4.53-26.81,4.53-40.07Q141.72,48,131.56,32T100,8.94V0a66.79,66.79,0,0,1,30.09,13Q148,26.82,158.7,49.8a114.64,114.64,0,0,1,10.71,49,242.34,242.34,0,0,1-3.88,40.09q-4.62,26.57-4.62,38.81a59.31,59.31,0,0,0,11.36,35.63A47,47,0,0,0,203,232.64v10.47a46.87,46.87,0,0,0-30.73,19.41,59.05,59.05,0,0,0-11.36,35.24q0,12.51,4.62,39.07a241.25,241.25,0,0,1,3.88,39.83,116.72,116.72,0,0,1-10.07,48.27,96.66,96.66,0,0,1-28,36.77A71.09,71.09,0,0,1,100,476v-8.94Q121.42,459.65,131.56,443.56Z" />
-			</g>
-			<g className={mode === "musician" ? logoStyle.active : logoStyle.inactive}>
-				<ellipse cx="286.5" cy="176" rx="56" ry="45" />
-				<rect
-					x="231"
-					y="177"
-					width="9"
-					height="236"
-					transform="translate(471 590) rotate(180)"
-				/>
-				<ellipse cx="56.5" cy="126" rx="56" ry="45" />
+const Logo = ({ width, mode, animateLogo, ...props }) => {
+  const state = useContext(GlobalStateContext)
+  const activeFillColor = "#455D4E"
+  const inactiveFillColor = "#221A1D"
+  const activeOpacity = "1"
+  const inactiveOpacity = ".38"
+  const timescale = 1.38
+  const ease = "bounce"
+  let developerAspect = useRef(null)
+  let musicianAspect = useRef(null)
+  const [timeline] = useState(gsap.timeline())
 
-				<rect
-					y="126"
-					width="9"
-					height="236"
-					transform="translate(9 488) rotate(180)"
-				/>
-				<polygon points="232.09 413.5 116.04 388 0 362.5 3.46 347.5 6.92 332.5 122.96 358 239 383.5 235.54 398.5 232.09 413.5" />
-			</g>
-		</svg>
-	)
+  useEffect(() => {
+    if (state.mode === mode) {
+      if (mode === "developer") {
+        timeline.to(developerAspect, {
+          fill: activeFillColor,
+          opacity: activeOpacity,
+        }).timeScale(.25)
+      }
+
+      if (mode === "musician") {
+        timeline.to(musicianAspect, {
+          fill: activeFillColor,
+          opacity: activeOpacity,
+        }).timeScale(.25)
+      }
+    }
+
+    if (state.mode !== mode) {
+      if (mode === "developer") {
+        timeline
+          .set(musicianAspect, {
+            fill: activeFillColor,
+            opacity: activeOpacity,
+          })
+          .set(developerAspect, {
+            fill: inactiveFillColor,
+            opacity: inactiveOpacity,
+          })
+          .to(
+            musicianAspect,
+            {
+              x: "3.8em",
+              opacity: inactiveOpacity,
+              fill: inactiveFillColor,
+            },
+            "1st"
+          )
+          .to(
+            developerAspect,
+            {
+              x: "-3.8em",
+              opacity: activeOpacity,
+              fill: activeFillColor,
+            },
+            "1st"
+          )
+          .to(musicianAspect, { x: 0, ease: ease }, "last")
+          .to(developerAspect, { x: 0, ease: ease }, "last")
+          .timeScale(timescale)
+      }
+
+      if (mode === "musician") {
+        timeline
+          .set(developerAspect, {
+            fill: activeFillColor,
+            opacity: activeOpacity,
+          })
+          .set(musicianAspect, {
+            fill: inactiveFillColor,
+            opacity: inactiveOpacity,
+          })
+          .to(
+            developerAspect,
+            {
+              x: "3.8em",
+              opacity: inactiveOpacity,
+              fill: inactiveFillColor,
+            },
+            "1st"
+          )
+          .to(
+            musicianAspect,
+            {
+              x: "-3.8em",
+              opacity: activeOpacity,
+              fill: activeFillColor,
+            },
+            "1st"
+          )
+          .to(developerAspect, { x: 0, ease: ease }, "last")
+          .to(musicianAspect, { x: 0, ease: ease }, "last")
+          .timeScale(timescale)
+      }
+    }
+  }, [state.mode])
+
+  return (
+    <svg
+      className={logoStyle.logo}
+      width={width}
+      height={width}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 342 476"
+    >
+      <defs>
+        <filter id="shadow" x="0" y="0">
+          <feDropShadow dx="3" dy="3" stdDeviation=".32" floodOpacity="0.1" />
+        </filter>
+      </defs>
+      <title></title>
+      <g
+        ref={element => {
+          developerAspect = element
+        }}
+        className={logoStyle.developer}
+        // className={mode === "developer" ? logoStyle.active : logoStyle.inactive}
+      >
+        <path d="M131.56,443.56q10.16-16.11,10.16-37.05,0-13.54-4.53-40.37-4-23-4-39.86,0-26.83,14.26-51.36a95.81,95.81,0,0,1,40.37-37.81q-26.66-13-40.65-37.14a99.53,99.53,0,0,1-14-50.66q0-16.59,4-39.81,4.53-26.81,4.53-40.07Q141.72,48,131.56,32T100,8.94V0a66.79,66.79,0,0,1,30.09,13Q148,26.82,158.7,49.8a114.64,114.64,0,0,1,10.71,49,242.34,242.34,0,0,1-3.88,40.09q-4.62,26.57-4.62,38.81a59.31,59.31,0,0,0,11.36,35.63A47,47,0,0,0,203,232.64v10.47a46.87,46.87,0,0,0-30.73,19.41,59.05,59.05,0,0,0-11.36,35.24q0,12.51,4.62,39.07a241.25,241.25,0,0,1,3.88,39.83,116.72,116.72,0,0,1-10.07,48.27,96.66,96.66,0,0,1-28,36.77A71.09,71.09,0,0,1,100,476v-8.94Q121.42,459.65,131.56,443.56Z" />
+      </g>
+      <g
+        ref={element => {
+          musicianAspect = element
+        }}
+        className={logoStyle.musician}
+        // className={mode === "musician" ? logoStyle.active : logoStyle.inactive}
+      >
+        <ellipse cx="286.5" cy="176" rx="56" ry="45" />
+        <rect x="231" y="177" width="9" height="236" />
+        <ellipse cx="56.5" cy="126" rx="56" ry="45" />
+
+        <rect y="126" width="9" height="236" />
+        <polygon points="232.09 413.5 116.04 388 0 362.5 3.46 347.5 6.92 332.5 122.96 358 239 383.5 235.54 398.5 232.09 413.5" />
+      </g>
+    </svg>
+  )
 }
 
 export default Logo
