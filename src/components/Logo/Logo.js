@@ -4,13 +4,12 @@ import gsap from "gsap"
 import { GlobalStateContext } from "../../context/GlobalContextProvider"
 import logoStyle from "./Logo.module.scss"
 
-const Logo = ({ width, mode, animateLogo, ...props }) => {
+const Logo = ({ width, mode }) => {
   const state = useContext(GlobalStateContext)
   const activeFillColor = "#455D4E"
   const inactiveFillColor = "#221A1D"
   const activeOpacity = "1"
   const inactiveOpacity = ".38"
-  const timescale = 1.38
   const ease = "bounce"
   let developerAspect = useRef(null)
   let musicianAspect = useRef(null)
@@ -19,17 +18,21 @@ const Logo = ({ width, mode, animateLogo, ...props }) => {
   useEffect(() => {
     if (state.mode === mode) {
       if (mode === "developer") {
-        timeline.to(developerAspect, {
-          fill: activeFillColor,
-          opacity: activeOpacity,
-        }).timeScale(.25)
-      }
-
-      if (mode === "musician") {
-        timeline.to(musicianAspect, {
-          fill: activeFillColor,
-          opacity: activeOpacity,
-        }).timeScale(.25)
+        timeline
+          .to(developerAspect, {
+            duration: 2,
+            fill: activeFillColor,
+            opacity: activeOpacity,
+          })
+        }
+        
+        if (mode === "musician") {
+          timeline
+          .to(musicianAspect, {
+            duration: 2,
+            fill: activeFillColor,
+            opacity: activeOpacity,
+          })
       }
     }
 
@@ -64,7 +67,6 @@ const Logo = ({ width, mode, animateLogo, ...props }) => {
           )
           .to(musicianAspect, { x: 0, ease: ease }, "last")
           .to(developerAspect, { x: 0, ease: ease }, "last")
-          .timeScale(timescale)
       }
 
       if (mode === "musician") {
@@ -97,7 +99,6 @@ const Logo = ({ width, mode, animateLogo, ...props }) => {
           )
           .to(developerAspect, { x: 0, ease: ease }, "last")
           .to(musicianAspect, { x: 0, ease: ease }, "last")
-          .timeScale(timescale)
       }
     }
   }, [state.mode])
