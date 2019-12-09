@@ -1,38 +1,55 @@
 .portfolio-container {
-  ul {
-    padding: 0;
-  }
+  display: block;
+  margin: var(--margin);
 }
+
 .card {
   margin: calc(var(--margin) * 1.618) 0;
-  box-shadow: var(--boxShadow);
   border: var(--darkShades) solid 2px;
   background-color: var(--lightShades);
   transition: 0.3s;
+  padding: var(--padding);
 }
-
 
 .card:hover {
-  box-shadow:var(--box-shadow-hover);
+  transform: scale(1.032);
 }
 
-.card a {
-  color: var(--accent-font-color);
-  width: 100%;
-  text-align: center;
-  text-decoration: none;
-}
-.card img {
-  width: 100%;
-  height: 66.6%;
+.card__display {
+  display: block;
+
+  & img {
+    display: block;
+    width: 100%;
+    border: var(--border);
+    box-shadow: var(--boxShadow);
+  }
 }
 
-.card-container {
-  padding: calc(var(--padding)/2);
+.card__info {
+  padding: calc(var(--padding) / 2);
   margin: 0 0 0 0;
-}
 
-.card-container h4 {
-  margin-top: calc(var(--margin)/2);
-  margin-bottom: 0;
+  & a {
+    width: 100%;
+    text-align: center;
+    text-decoration: underline;
+    color: var(--mainBrand);
+  }
+
+  & h2 {
+    margin: var(--margin) 0;
+    margin-bottom: 0;
+    font-weight: bold;
+  }
+
+  & p {
+    margin: var(--margin);
+  }
+
+  & .blurb {
+    margin: calc(var(--margin) / 2) 0;
+    font-size: 0.62em;
+    font-style: oblique;
+  }
 }

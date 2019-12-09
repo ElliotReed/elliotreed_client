@@ -1,0 +1,17 @@
+.portfolio-header {
+  margin: var(--margin);
+  width: 100%;
+  border: var(--border);
+  background: var(--mainBrand);
+  padding: var(--padding);
+  color: var(--lightShades);
+
+  h1 {
+    text-shadow: 6px 6px rgba(var(--darkShadesRGB), 0.32);
+    margin-bottom: var(--margin);
+  }
+
+  p {
+    color: var(--lightShades);
+  }
+}

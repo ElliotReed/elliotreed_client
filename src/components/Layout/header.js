@@ -1,12 +1,8 @@
-import React, { useState, useRef, useEffect, useContext } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import { Link } from "gatsby"
 import classnames from "classnames"
 import gsap from "gsap"
 
-import {
-  GlobalDispatchContext,
-  GlobalStateContext,
-} from "../../context/GlobalContextProvider"
 import Logo from "../Logo"
 import headerStyles from "./header.module.scss"
 
@@ -78,15 +74,12 @@ const DeveloperNav = () => {
   )
 }
 const Header = ({ type }) => {
-  const dispatch = useContext(GlobalDispatchContext)
-  const state = useContext(GlobalStateContext)
   const currentFacet = type
   const otherFacet = type === "developer" ? "musician" : "developer"
   let aspectMenuDiv = useRef(null)
   const [showAspectMenu, setShowAspectMenu] = useState()
   const [hideAspectMenu, setHideAspectMenu] = useState()
   const [switchQualifier, setSwitchQualifier] = useState(false)
-  const [animateLogo, setAnimateLogo] = useState(true)
 
   useEffect(() => {
     const duration = 0.3
@@ -109,7 +102,7 @@ const Header = ({ type }) => {
       <div className={headerStyles.navBrand}>
         <Link to={`/`}>
           <div className={headerStyles.logoWrapper}>
-            <Logo width="2.5em" mode={type} animateLogo={animateLogo} />
+            <Logo width="2.5em" mode={type} />
             <h1 className={headerStyles.title}>Elliot Reed</h1>
           </div>
         </Link>
@@ -141,7 +134,6 @@ const Header = ({ type }) => {
             className={classnames(headerStyles.aspectMenu)}
             onClick={() => {
               setSwitchQualifier(false)
-              setAnimateLogo(false)
             }}
           >
             <Link to={`/${otherFacet}`}>

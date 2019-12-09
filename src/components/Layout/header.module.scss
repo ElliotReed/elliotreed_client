@@ -10,9 +10,10 @@
   width: 100%;
   margin: 0;
   padding: 0.5em;
-  background: var(--lightShades);
+  background-color: var(--white);
+  background-image: linear-gradient(rgba(var(--lightShadesRGB), 0.5), 10%, rgba(var(--lightShadesRGB), 1));
   color: var(--mainBrand);
-  text-shadow: var(--textShadowLight);
+  box-shadow: var(--boxShadow);
 }
 
 .nav-brand {
