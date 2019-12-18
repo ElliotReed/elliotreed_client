@@ -1,115 +1,56 @@
-import React, { useState, useEffect, useRef, useContext } from "react"
-import gsap from "gsap"
+import React, { useState, useEffect, useRef } from "react"
+import { gsap } from "gsap";
+import { MotionPathPlugin } from "gsap/MotionPathPlugin.js";
+import classnames from "classnames"
 
-import { GlobalStateContext } from "../../context/GlobalContextProvider"
+import { animations } from './LogoAnimations'
 import logoStyle from "./Logo.module.scss"
 
-const Logo = ({ width, mode }) => {
-  const state = useContext(GlobalStateContext)
-  const activeFillColor = "#455D4E"
-  const inactiveFillColor = "#221A1D"
-  const activeOpacity = "1"
-  const inactiveOpacity = ".38"
-  const ease = "bounce"
-  let developerAspect = useRef(null)
-  let musicianAspect = useRef(null)
+const Logo = ({ width, mode, animation = "" }) => {
+  gsap.registerPlugin(MotionPathPlugin)
   const [timeline] = useState(gsap.timeline())
 
+  let developerAspect = useRef(null)
+  let musicianAspect = useRef(null)
+  let logo = useRef(null)
+
+  let developerStyle = classnames(
+    logoStyle.developer,
+    mode === "developer" ? logoStyle.active : logoStyle.inactive
+  )
+  let musicianStyle = classnames(
+    logoStyle.musician,
+    mode === "musician" ? logoStyle.active : logoStyle.inactive
+  )
+
   useEffect(() => {
-    if (state.mode === mode) {
-      if (mode === "developer") {
-        timeline
-          .to(developerAspect, {
-            duration: 2,
-            fill: activeFillColor,
-            opacity: activeOpacity,
-          })
-        }
-        
-        if (mode === "musician") {
-          timeline
-          .to(musicianAspect, {
-            duration: 2,
-            fill: activeFillColor,
-            opacity: activeOpacity,
-          })
-      }
+    console.log("animation: ", animation)
+    switch (animation) {
+      case "DEVELOPER_PAGE_DISPLAY":
+        animations.developerPageDisplay(logo, developerAspect, musicianAspect, timeline)
+        break
+      case "SWITCH_TO_DEVELOPER":
+        animations.switchToDeveloper(developerAspect, musicianAspect, timeline)
+        break
+      case "SWITCH_TO_MUSICIAN":
+        animations.switchToMusician(developerAspect, musicianAspect, timeline)
+        break
+      // default:
+      //   null
     }
-
-    if (state.mode !== mode) {
-      if (mode === "developer") {
-        timeline
-          .set(musicianAspect, {
-            fill: activeFillColor,
-            opacity: activeOpacity,
-          })
-          .set(developerAspect, {
-            fill: inactiveFillColor,
-            opacity: inactiveOpacity,
-          })
-          .to(
-            musicianAspect,
-            {
-              x: "3.8em",
-              opacity: inactiveOpacity,
-              fill: inactiveFillColor,
-            },
-            "1st"
-          )
-          .to(
-            developerAspect,
-            {
-              x: "-3.8em",
-              opacity: activeOpacity,
-              fill: activeFillColor,
-            },
-            "1st"
-          )
-          .to(musicianAspect, { x: 0, ease: ease }, "last")
-          .to(developerAspect, { x: 0, ease: ease }, "last")
-      }
-
-      if (mode === "musician") {
-        timeline
-          .set(developerAspect, {
-            fill: activeFillColor,
-            opacity: activeOpacity,
-          })
-          .set(musicianAspect, {
-            fill: inactiveFillColor,
-            opacity: inactiveOpacity,
-          })
-          .to(
-            developerAspect,
-            {
-              x: "3.8em",
-              opacity: inactiveOpacity,
-              fill: inactiveFillColor,
-            },
-            "1st"
-          )
-          .to(
-            musicianAspect,
-            {
-              x: "-3.8em",
-              opacity: activeOpacity,
-              fill: activeFillColor,
-            },
-            "1st"
-          )
-          .to(developerAspect, { x: 0, ease: ease }, "last")
-          .to(musicianAspect, { x: 0, ease: ease }, "last")
-      }
-    }
-  }, [state.mode])
+  }, [animation])
 
   return (
     <svg
+      xmlns="http://www.w3.org/2000/svg"
       className={logoStyle.logo}
       width={width}
       height={width}
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 342 476"
+      viewBox="0 0 200 200"
+      preserveAspectRatio="none"
+      ref={element => {
+        logo = element
+      }}
     >
       <defs>
         <filter id="shadow" x="0" y="0">
@@ -118,27 +59,32 @@ const Logo = ({ width, mode }) => {
       </defs>
       <title></title>
       <g
+        transform="translate(68 0)"
         ref={element => {
           developerAspect = element
         }}
-        className={logoStyle.developer}
-        // className={mode === "developer" ? logoStyle.active : logoStyle.inactive}
+        className={developerStyle}
       >
-        <path d="M131.56,443.56q10.16-16.11,10.16-37.05,0-13.54-4.53-40.37-4-23-4-39.86,0-26.83,14.26-51.36a95.81,95.81,0,0,1,40.37-37.81q-26.66-13-40.65-37.14a99.53,99.53,0,0,1-14-50.66q0-16.59,4-39.81,4.53-26.81,4.53-40.07Q141.72,48,131.56,32T100,8.94V0a66.79,66.79,0,0,1,30.09,13Q148,26.82,158.7,49.8a114.64,114.64,0,0,1,10.71,49,242.34,242.34,0,0,1-3.88,40.09q-4.62,26.57-4.62,38.81a59.31,59.31,0,0,0,11.36,35.63A47,47,0,0,0,203,232.64v10.47a46.87,46.87,0,0,0-30.73,19.41,59.05,59.05,0,0,0-11.36,35.24q0,12.51,4.62,39.07a241.25,241.25,0,0,1,3.88,39.83,116.72,116.72,0,0,1-10.07,48.27,96.66,96.66,0,0,1-28,36.77A71.09,71.09,0,0,1,100,476v-8.94Q121.42,459.65,131.56,443.56Z" />
+        <path d="M0,3.74V0A36.89,36.89,0,0,1,15.23,5.88,41.78,41.78,0,0,1,28.81,21.27a43.25,43.25,0,0,1,4.88,20.2,86.41,86.41,0,0,1-1.88,16.67Q29.58,69.26,29.57,74.5a22.54,22.54,0,0,0,5.51,14.75A23.47,23.47,0,0,0,50,97.37v4.38a23.55,23.55,0,0,0-14.92,8.07,22.59,22.59,0,0,0-5.51,14.91q0,5.13,2.24,16.25a88,88,0,0,1,1.88,16.78,42.51,42.51,0,0,1-5.2,20.52,42.2,42.2,0,0,1-13.88,15.39A36.5,36.5,0,0,1,0,199.23v-3.75q10.4-3.09,15.32-9.78A25.67,25.67,0,0,0,20.25,170q0-5.57-2.15-16.79a85,85,0,0,1-2-16.68,37.42,37.42,0,0,1,6.81-21.23q6.81-10.1,19.71-15.56A44.63,44.63,0,0,1,23.07,84a37.69,37.69,0,0,1-6.94-21.47,86.09,86.09,0,0,1,2-16.66Q20.25,34.61,20.25,29a25.51,25.51,0,0,0-4.93-15.49Q10.4,6.74,0,3.74Z" />
       </g>
       <g
         ref={element => {
           musicianAspect = element
         }}
-        className={logoStyle.musician}
-        // className={mode === "musician" ? logoStyle.active : logoStyle.inactive}
+        className={musicianStyle}
       >
-        <ellipse cx="286.5" cy="176" rx="56" ry="45" />
-        <rect x="231" y="177" width="9" height="236" />
-        <ellipse cx="56.5" cy="126" rx="56" ry="45" />
+        <ellipse cx="50" cy="50" rx="22" ry="16" />
+        <rect x="28" y="50" width="8" height="100" />
+        <ellipse cx="150" cy="60" rx="22" ry="16" />
+        <rect x="128" y="60" width="8" height="100" />
 
-        <rect y="126" width="9" height="236" />
-        <polygon points="232.09 413.5 116.04 388 0 362.5 3.46 347.5 6.92 332.5 122.96 358 239 383.5 235.54 398.5 232.09 413.5" />
+        <polygon
+          points="
+          28 142,
+          136 158,
+          136 174,
+          28 158"
+        />
       </g>
     </svg>
   )

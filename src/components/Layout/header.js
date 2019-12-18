@@ -1,7 +1,9 @@
-import React, { useState, useRef, useEffect } from "react"
+import React, { useState, useRef, useEffect, useContext } from "react"
 import { Link } from "gatsby"
 import classnames from "classnames"
 import gsap from "gsap"
+
+import { GlobalStateContext } from "../../context/GlobalContextProvider"
 
 import Logo from "../Logo"
 import headerStyles from "./header.module.scss"
@@ -80,6 +82,29 @@ const Header = ({ type }) => {
   const [showAspectMenu, setShowAspectMenu] = useState()
   const [hideAspectMenu, setHideAspectMenu] = useState()
   const [switchQualifier, setSwitchQualifier] = useState(false)
+  const state = useContext(GlobalStateContext)
+
+  const logoAnimation = () => {
+    let animation;
+    if (type !== state.mode) {
+      if (type === "developer") {
+        animation = "SWITCH_TO_DEVELOPER"
+      }
+      if (type === "musician") {
+        animation = "SWITCH_TO_MUSICIAN"
+      }
+    }
+    if (type === state.mode) {
+      if (type === "developer") {
+        animation = "SET_TO_DEVELOPER"
+      }
+      if (type === "musician") {
+        animation = "SET_TO_MUSICIAN"
+      }
+    }
+
+    return animation;
+  }
 
   useEffect(() => {
     const duration = 0.3
@@ -102,7 +127,7 @@ const Header = ({ type }) => {
       <div className={headerStyles.navBrand}>
         <Link to={`/`}>
           <div className={headerStyles.logoWrapper}>
-            <Logo width="2.5em" mode={type} />
+            <Logo width="2.5em" mode={type} animation={logoAnimation()} />
             <h1 className={headerStyles.title}>Elliot Reed</h1>
           </div>
         </Link>

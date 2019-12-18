@@ -14,7 +14,7 @@ const Layout = props => {
   const dispatch = useContext(GlobalDispatchContext)
 
   if (props.type !== state.mode) {
-    console.log( props.type)
+    console.log(props.type)
     let action
     if (props.type === "developer") {
       action = "DEVELOPER_MODE"

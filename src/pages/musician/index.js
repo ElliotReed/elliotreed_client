@@ -6,6 +6,7 @@ import Head from "../../components/head"
 import MaxWidthContainer from "../../components/UI/maxWidthContainer"
 import ProfileImage from "../../components/UI/ProfileImage"
 import ProfileInfo from "../../components/UI/ProfileInfo"
+import musicianPageStyles from "./index.module.scss"
 
 class MusicianPage extends Component {
   constructor(props) {
@@ -21,15 +22,19 @@ class MusicianPage extends Component {
     return (
       <Layout type="musician">
         <Head title="Musician" />
-        <MaxWidthContainer>
-          <ProfileImage
-            image={this.state.profileImage}
-            imageText={this.state.imageText}
-          />
-        </MaxWidthContainer>
-        <MaxWidthContainer>
-          <ProfileInfo type={"musician"} />
-        </MaxWidthContainer>
+        <section className={musicianPageStyles.profile}>
+          <MaxWidthContainer>
+            <ProfileImage
+              image={this.state.profileImage}
+              imageText={this.state.imageText}
+            />
+          </MaxWidthContainer>
+        </section>
+        <section className={musicianPageStyles.profile}>
+          <MaxWidthContainer>
+            <ProfileInfo type={"musician"} />
+          </MaxWidthContainer>
+        </section>
       </Layout>
     )
   }

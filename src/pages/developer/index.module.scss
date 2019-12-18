@@ -1,6 +1,20 @@
 .background {
-  background-color: var(--darkShades);
+  border: 1em solid transparent;
   color: var(--lightShades);
-  padding: var(--padding);
   margin: var(--margin) 0;
+}
+
+.profile-wrapper {
+  margin: var(--margin);
+}
+
+.window-image {
+  // width: 100%;
+  // height: 400px;
+  margin: 0 auto;
+  background-color: transparent;
+}
+
+.info-wrapper {
+  margin: var(--margin);
 }

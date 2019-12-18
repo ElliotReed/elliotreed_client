@@ -9,18 +9,18 @@
   --overlayDark: rgba(35, 35, 35, 0.75);
   --overlay-dark: rgba(35, 35, 35, 0.15);
 
-  /* colors */
+  /* colors delete*/ 
   --black: rgb(35, 35, 35);
   --blue: rgb(91, 157, 231);
   --brown: rgba(179, 99, 45, 0.75);
-  /* --brown-light:rgba(207, 161, 62, 0.75); */
+  --brown-light:rgba(207, 161, 62, 0.75);
   --brown-light: rgba(249, 171, 123, 0.753);
   --green: rgb(117, 148, 109);
   --green-dark: rgb(84, 119, 75);
   --green-light: rgb(194, 223, 187);
   --red: #501e1e;
   --white: rgb(235, 235, 235);
-
+  
   --lightShades: #e2dac4;
   --lightShadesRGB: 226, 218, 196;
   --lightAccent: #949983;
@@ -31,6 +31,14 @@
   --darkAccentRGB: 126, 115, 102;
   --darkShades: #221a1d;
   --darkShadesRGB: 34, 26, 29;
+
+  /* colors */ 
+  --black: #22222;
+  --darkShades: #3a2c31;
+  --mainBrand: #505f56;
+  --lightShades: #e7e1d2;
+  --white: #fdfdfd;
+
   /* sizes */
   --margin: 1rem;
   --padding: 1rem;
@@ -38,7 +46,12 @@
   /* box model */
   --border: 1px solid var(--darkShades);
   --borderRadius: 0.38em;
-  --boxShadow: 6.66px 6.66px 10px var(--darkShades);
+  --boxShadow:
+    0px 1px 1px rgba(var(--darkShadesRGB), 0.12),
+    0px 2px 2px rgba(var(--darkShadesRGB), 0.12),
+    0px 4px 4px rgba(var(--darkShadesRGB), 0.12),
+    0px 8px 8px rgba(var(--darkShadesRGB), 0.12),
+    0px 16px 16px rgba(var(--darkShadesRGB), 0.12);
   --textShadowDark: 0.25em 0.25em --darkAccent;
   --textShadowLight: 0.1em 0.1em rgba(207, 207, 207, 0.33);
 
@@ -78,10 +91,8 @@ html {
 }
 
 body {
-  margin: 0;
   font-family: var(--fontStack);
   line-height: 1.618rem;
-  color: var(--darkShades);
 }
 
 html,
@@ -117,11 +128,6 @@ h6 {
 a {
   text-decoration: none;
   color: var(--mainBrand);
-}
-
-ul {
-  padding-left: var(--padding);
-  list-style-type: none;
 }
 
 @keyframes softIn {
