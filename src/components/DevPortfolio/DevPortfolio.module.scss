@@ -4,15 +4,14 @@
 }
 
 .card {
-  margin: calc(var(--margin) * 1.618) 0;
-  border: var(--darkShades) solid 2px;
-  background-color: var(--lightShades);
   transition: 0.3s;
+  margin: var(--margin) 0;
+  width: 100%;
+  border: var(--border);
+  border-radius: var(--borderRadius);
+  background: var(--lightShades);
   padding: var(--padding);
-}
-
-.card:hover {
-  transform: scale(1.032);
+  color: var(--darkShades);
 }
 
 .card__display {

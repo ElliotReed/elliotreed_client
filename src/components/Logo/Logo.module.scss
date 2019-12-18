@@ -1,13 +1,34 @@
 .logo {
   filter: url(#shadow);
+  fill: var(--mainBrand);
+  // backface-visibility: visible;
+  border: 0;
+  outline: none;
+  display: block;
+  transform-origin: center center;
 }
 
 .musician,
 .developer {
-  fill: var(--darkShades);
-  opacity: .38;
-  transform-origin: top center;
-  perspective: 500px;
+  transform-origin: bottom center;
+  perspective: 200px;
   transform-style: preserve-3d;
+  fill: var(--mainBrand);
+  opacity: 1;
 }
 
+.active {
+  fill: var(--mainBrand);
+  opacity: 1;
+}
+
+.inactive {
+  fill: var(--darkShades);
+  opacity: 0.38;
+}
+
+.light {
+  fill: var(--lightShades);
+  fill: var(--mainBrand);
+  opacity: 1;
+}

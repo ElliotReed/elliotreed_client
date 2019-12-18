@@ -2,14 +2,14 @@
   display: flex;
   align-items: center;
   max-height: 36em;
-  border: 10px solid var(--white);
-  border-radius: 5px;
-  background: var(--white);
+  border: var(--border);
+  border-radius: var(--borderRadius);
+  background: var(--lightShades);
   padding: var(--padding);
 
   img {
     width: 10rem;
-    border: 2px solid var(--black);
+    border: 2px solid var(--darkShades);
   }
 }
 
@@ -21,7 +21,7 @@
 
   p {
     margin: 0;
-    color: var(--lightShades);
+    color: var(--darkShades);
     font-weight: bold;
   }
 }
@@ -30,7 +30,7 @@
 @supports (clip-path: circle()) or (-webkit-clip-path: circle()) {
   .profile-image {
     border: none;
-    background: none;
+    // background: none;
 
     img {
       border: none;

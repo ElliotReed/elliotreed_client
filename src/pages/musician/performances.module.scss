@@ -1,13 +1,15 @@
-.about-me {
+.header {
+  margin: var(--margin);
+  width: 100%;
   border: var(--border);
   border-radius: var(--borderRadius);
   background: var(--lightShades);
   padding: var(--padding);
   color: var(--darkShades);
-}
 
-.about-me h3 {
-  margin: var(--margin) 0;
-  color: var(--mainBrand);
-  font-weight: bold;
+  & h1 {
+    margin: var(--margin) 0;
+    font-weight: bold;
+    color: var(--mainBrand);
+  }
 }

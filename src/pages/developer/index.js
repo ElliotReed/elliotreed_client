@@ -2,11 +2,13 @@ import React from "react"
 
 import Layout from "../../components/layout"
 import Head from "../../components/head"
-import developerStyles from "./index.module.scss"
-import MaxWidthContainer from "../../components/UI/maxWidthContainer"
 import Login from "../../components/LoginForm"
 import ProfileImage from "../../components/UI/ProfileImage"
 import ProfileInfo from "../../components/UI/ProfileInfo"
+import Logo from "../../components/Logo"
+
+import MaxWidthContainer from "../../components/UI/maxWidthContainer"
+import developerStyles from "./index.module.scss"
 
 class DeveloperPage extends React.Component {
   constructor(props) {
@@ -23,22 +25,26 @@ class DeveloperPage extends React.Component {
     return (
       <Layout type="developer">
         <Head title="Developer" />
-        <MaxWidthContainer>
-          <ProfileImage
-            image={this.state.profileImage}
-            imageText={this.state.imageText}
-          />
-        </MaxWidthContainer>
-        <section className={developerStyles.background}>
+        <section className={developerStyles.profileWrapper}>
           <MaxWidthContainer>
-            Et qui commodo ut commodo laboris. Laborum ipsum veniam cupidatat
-            sit occaecat occaecat incididunt labore est. Cupidatat et Lorem anim
-            eiusmod labore minim veniam anim cillum sunt deserunt in nulla.
+            <ProfileImage
+              image={this.state.profileImage}
+              imageText={this.state.imageText}
+            />
           </MaxWidthContainer>
         </section>
-        <MaxWidthContainer>
-          <ProfileInfo type={"developer"} />
-        </MaxWidthContainer>
+        <section className={developerStyles.background}>
+          <MaxWidthContainer>
+            <div className={developerStyles.windowImage}>
+              <Logo mode="developer" width={"200px"} animation="DEVELOPER_PAGE_DISPLAY"/>
+            </div>
+          </MaxWidthContainer>
+        </section>
+        <section className={developerStyles.infoWrapper}>
+          <MaxWidthContainer>
+            <ProfileInfo type={"developer"} width={"4rem"} />
+          </MaxWidthContainer>
+        </section>
         <Login />
       </Layout>
     )
