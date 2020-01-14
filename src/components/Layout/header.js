@@ -9,6 +9,12 @@ import Logo from "../Logo"
 import headerStyles from "./header.module.scss"
 
 const MusicianNav = () => {
+  const [displayShowList, setDisplayShowList] = useState(false)
+
+  const onMouseEnter = () => {
+    setDisplayShowList(!displayShowList)
+  }
+
   return (
     <nav>
       <ul className={headerStyles.navList}>
@@ -33,13 +39,24 @@ const MusicianNav = () => {
             Contact
           </Link>
         </li>
-        <li>
-          <Link
-            to="musician/charts"
-            activeClassName={headerStyles.activeNavItem}
-          >
-            Charts
-          </Link>
+        <li
+          className={headerStyles.showListLink}
+          onClick={onMouseEnter}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseEnter}
+        >
+          {displayShowList && (
+            <ul className={headerStyles.showList}>
+              <li onClick={onMouseEnter}>
+                <Link
+                  to="musician/abbeyroad"
+                  activeClassName={headerStyles.activeNavItem}
+                >
+                  Abbey Road
+                </Link>
+              </li>
+            </ul>
+          )}
         </li>
       </ul>
     </nav>
@@ -85,7 +102,7 @@ const Header = ({ type }) => {
   const state = useContext(GlobalStateContext)
 
   const logoAnimation = () => {
-    let animation;
+    let animation
     if (type !== state.mode) {
       if (type === "developer") {
         animation = "SWITCH_TO_DEVELOPER"
@@ -103,7 +120,7 @@ const Header = ({ type }) => {
       }
     }
 
-    return animation;
+    return animation
   }
 
   useEffect(() => {

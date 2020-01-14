@@ -18,7 +18,7 @@
     rgba(var(--lightShadesRGB), 0.75) 10%,
     rgba(var(--lightShadesRGB), 1) 62%,
     rgba(var(--lightShadesRGB), 0.75) 90%,
-    rgba(var(--lightShadesRGB), 1) 100%,
+    rgba(var(--lightShadesRGB), 1) 100%
   );
   color: var(--mainBrand);
   box-shadow: var(--boxShadow);
@@ -29,7 +29,6 @@
   align-items: center;
   color: var(--mainBrand);
 }
-
 
 .logo-wrapper {
   display: flex;
@@ -96,5 +95,36 @@
 
 .active-nav-item {
   color: var(--lightAccent);
+}
+
+.show-list-link {
+  position: relative;
+  width: 1em;
+  font-size: 1rem;
+
+  &::after {
+    content: "\2807";
+    position: absolute;
+    left: 25%;
+  }
+}
+
+.show-list {
+  position: absolute;
+  top: 1rem;
+  right: 0;
+  white-space: nowrap;
+  border-radius: var(--borderRadius);
+  background: var(--darkShades);
+  padding: var(--padding);
+  color: var(--lightShades);
+
+  & li {
+    display: inline-block;
+
+    &:hover a {
+      color: var(--lightShades);
+    }
+  }
 }
 // #endregion

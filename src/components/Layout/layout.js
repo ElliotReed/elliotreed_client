@@ -12,13 +12,20 @@ import layoutStyles from "./layout.module.scss"
 const Layout = props => {
   const state = useContext(GlobalStateContext)
   const dispatch = useContext(GlobalDispatchContext)
+  let backgroundType = props.type
+  let headerType = props.type
 
-  if (props.type !== state.mode) {
+  if (headerType === "abbeyroad") {
+    backgroundType = "abbeyroad"
+    headerType = "musician"
+  }
+
+  if (headerType !== state.mode) {
     console.log(props.type)
     let action
-    if (props.type === "developer") {
+    if (headerType === "developer") {
       action = "DEVELOPER_MODE"
-    } else if (props.type === "musician") {
+    } else if (headerType === "musician") {
       action = "MUSICIAN_MODE"
     }
     dispatch({ type: action })
@@ -26,8 +33,8 @@ const Layout = props => {
 
   return (
     <div className={layoutStyles.full}>
-      <Header type={props.type} />
-      <Background type={props.type} />
+      <Header type={headerType} />
+      <Background type={backgroundType} />
       <main className={layoutStyles.content}>{props.children}</main>
       <Footer />
     </div>

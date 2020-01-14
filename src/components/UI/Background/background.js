@@ -8,7 +8,10 @@ const musicImageClasses = [
   "musicBackgroundGibson",
   "musicBackgroundManouche",
 ]
+
 const devImageClasses = ["devBackground"]
+
+const abbeyroadImageClasses = ["abbeyroadBackground"]
 
 const pickBackground = type => {
   let sourceImages
@@ -16,6 +19,8 @@ const pickBackground = type => {
     sourceImages = musicImageClasses
   } else if (type === "developer") {
     sourceImages = devImageClasses
+  } else if (type === "abbeyroad") {
+    sourceImages = abbeyroadImageClasses
   }
   const index = sourceImages.length
   const randomImage = Math.floor(Math.random() * index)

@@ -1,8 +1,8 @@
 @import "reset.module.scss";
-
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
 /* #region Variables */
 :root {
-  --fontStack: "Open Sans", sans-serif;
+  --fontStack: 'Montserrat', sans-serif;
   /* --fontStack: Arial, Helvetica, sans-serif; */
   --fontColorLight: rgba(235, 235, 235);
   --fontColorDark: rgb(35, 35, 35);
@@ -34,9 +34,9 @@
 
   /* colors */ 
   --black: #22222;
-  --darkShades: #3a2c31;
+  --darkShades: hsl(339, 10%, 20%);
   --mainBrand: #505f56;
-  --lightShades: #e7e1d2;
+  --lightShades: hsl(43, 10%, 86%);
   --white: #fdfdfd;
 
   /* sizes */
@@ -103,6 +103,7 @@ body {
 
 h1 {
   font-size: 2.075rem;
+  line-height: 3.334rem;
 }
 
 h2 {
