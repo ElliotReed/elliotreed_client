@@ -1,11 +1,12 @@
 import React from 'react';
-import './ProfileInfo.css';
+import styles from './ProfileInfo.module.scss';
 
 const ProfileInfo = (props) => {
   const profileType = props.type;
   if (profileType === "developer") {
     return (
-      <section className="about-me">
+      <section className={styles.aboutMe}>
+      <h3>I'm a</h3>
         <p> Full-Stack Web Developer with a background in collaborative music and entertainment. Able to build a web application using full database backend. A quick study of new technologies, and able to work with diverse teams and independently to create projects. // adaptable, curious and passionate about learning and implementing these kinds of solutions //
         </p>
 
@@ -17,7 +18,8 @@ const ProfileInfo = (props) => {
     );
   } else if (profileType === "musician") {
       return (
-        <section className="about-me">
+        <section className={styles.aboutMe}>
+          <h3>Music</h3>
           <p>My primary instrument is guitar, I also sing. 
           </p>
           <p>My musical focus is anything that swings! (gypsy jazz, jazz, western swing). I also perform in the rock, pop, reggae, and country styles. 

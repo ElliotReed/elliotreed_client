@@ -1,6 +1,8 @@
+@import "../../styles/base.scss";
+
 .logo {
   filter: url(#shadow);
-  fill: var(--mainBrand);
+  fill: $mainBrand;
   // backface-visibility: visible;
   border: 0;
   outline: none;
@@ -13,22 +15,22 @@
   transform-origin: bottom center;
   perspective: 200px;
   transform-style: preserve-3d;
-  fill: var(--mainBrand);
+  fill: $mainBrand;
   opacity: 1;
 }
 
 .active {
-  fill: var(--mainBrand);
+  fill: $mainBrand;
   opacity: 1;
 }
 
 .inactive {
-  fill: var(--darkShades);
+  fill: $darkShades;
   opacity: 0.38;
 }
 
 .light {
-  fill: var(--lightShades);
-  fill: var(--mainBrand);
+  fill: $lightShades;
+  fill: $mainBrand;
   opacity: 1;
 }

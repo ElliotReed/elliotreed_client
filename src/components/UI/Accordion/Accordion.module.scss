@@ -1,0 +1,66 @@
+@import "../../../styles/base.scss";
+
+$time: 0.6s;
+
+.section {
+  display: flex;
+  flex-direction: column;
+}
+
+.accordion {
+  background: transparent;
+  color: $lightShades;
+  cursor: pointer;
+  padding: $padding;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: var(--borderRadius);
+  outline: none;
+  transition: background-color $time ease;
+}
+
+.accordion:hover,
+.active {
+  @include box-shadow;
+}
+
+.title {
+  font-size: 1rem;
+}
+
+.icon {
+  position: relative;
+  width: 1rem;
+  height: 1rem;
+  margin-left: auto;
+  text-align: center;
+  vertical-align: middle;
+  transition: transform $time ease;
+}
+
+.icon:before {
+  color: $lightShades;
+  z-index: 1;
+  content: "\232a";
+  line-height: 1rem;
+  font-size: 1rem;
+  position: absolute;
+  left: 0;
+  top: -0.15em;
+  right: 0;
+  bottom: 0;
+}
+
+.rotate {
+  transform: rotate(90deg);
+}
+
+.content {
+  overflow: hidden;
+  transition: max-height $time ease;
+}
+
+.text {
+  padding: $padding;
+}

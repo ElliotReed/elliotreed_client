@@ -4,10 +4,11 @@ import {
   GlobalDispatchContext,
   GlobalStateContext,
 } from "../../context/GlobalContextProvider"
+
 import Header from "./header"
 import Footer from "./footer"
 import Background from "../UI/Background"
-import layoutStyles from "./layout.module.scss"
+import styles from "./layout.module.scss"
 
 const Layout = props => {
   const state = useContext(GlobalStateContext)
@@ -21,7 +22,6 @@ const Layout = props => {
   }
 
   if (headerType !== state.mode) {
-    console.log(props.type)
     let action
     if (headerType === "developer") {
       action = "DEVELOPER_MODE"
@@ -32,10 +32,10 @@ const Layout = props => {
   }
 
   return (
-    <div className={layoutStyles.full}>
+    <div className={styles.full}>
       <Header type={headerType} />
       <Background type={backgroundType} />
-      <main className={layoutStyles.content}>{props.children}</main>
+      <main className={styles.content}>{props.children}</main>
       <Footer />
     </div>
   )

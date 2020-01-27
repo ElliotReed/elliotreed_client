@@ -1,7 +1,9 @@
+@import "../../styles/base.scss";
+
 .page-title-container {
   position: relative;
-  margin-top: calc(var(--margin) * 2);
-  // margin-bottom: var(--margin);
+  margin-top: calc($margin * 2);
+  // margin-bottom: $margin;
 
   & .page-title {
     position: ablsolute;
@@ -11,31 +13,32 @@
     width: 100%;
     font-weight: bold;
     text-align: center;
-    color: var(--lightShades);
+    color: $lightShades;
   }
 }
 
 .container {
   margin: 0 auto;
-  color: var(--lightShades);
+  color: $lightShades;
 }
 
 .set-wrapper {
-  margin: var(--margin);
-  background: var(--darkShades);
+  margin: $margin;
+  background: hsla(342, 10%, 20%, 0.98);
   padding: var(--padding);
-  box-shadow: 10px 10px 10px #222222;
+  box-shadow: var(--boxShadow);
+  border-radius: var(--borderRadius);
 }
 
 .set-title-wrapper {
   display: flex;
   justify-content: space-between;
   padding: var(--padding);
-  border-bottom: 1px solid var(--lightShades);
+  border-bottom: 1px solid $lightShades;
 }
 
 .song-list {
-  padding: var(--padding);
+  padding: var(--padding) 0;
 }
 
 .song-content {
@@ -43,32 +46,64 @@
 }
 
 .song {
-  margin: 0 0 1rem;
+  margin: 0 0 $margin;
+  box-shadow: var(--boxShadow), -5px -5px 15px #22222288;
+  border-radius: var(--borderRadius);
 }
 
 .song-title {
-  margin-bottom: var(--margin);
+  padding: var(--padding);
 }
 
 .part-list {
-  margin: 0 0 1em;
+  margin: 0 0 $margin;
   padding: var(--padding);
   font-size: 1.618rem;
+  background: lighten(hsl(339, 10%, 20%), 10);
+  border-radius: var(--borderRadius);
+  @include box-shadow;
 
   & li {
-    margin-bottom: var(--margin);
-    border-bottom: 1px solid var(--lightShades);;
+    margin-bottom: $margin;
+    border-bottom: 1px solid $lightShades;
+
     & span {
-    font-style: oblique;
-    font-size: 1rem;
+      font-size: 1.32rem;
+    }
+    & .part {
+      display: block;
+      font-style: oblique;
+      font-size: 1rem;
+    }
   }
+}
+
+.title-button-wrapper {
+  display: flex;
+
+  & button {
+    height: 1rem;
+    margin-left: $margin;
+    border: 1px solid $lightShades;
+    background: transparent;
+    padding: 0;
+    font-size: 2rem;
+    color: $lightShades;
+
+    & span {
+      transform: rotate(90deg);
+    }
   }
-  
 }
 
 .link-container {
   display: flex;
+  margin-bottom: $margin;
   padding: var(--padding);
+  background: lighten(hsl(339, 10%, 20%), 10);
+  background: $lightShades;
+  border-radius: var(--borderRadius);
+  @include box-shadow;
   &:hover {
     cursor: pointer;
   }
@@ -76,7 +111,7 @@
   & .link {
     text-decoration-line: underline;
     text-underline-position: under;
-    color: var(--mainBrand);
+    color: lighten(#505f56, 0);
 
     &:hover {
       cursor: pointer;
@@ -86,21 +121,24 @@
   & img {
     width: 3rem;
     height: 5rem;
-    margin-right: var(--margin);
+    margin-right: $margin;
   }
 }
 
 .videoList {
   display: flex;
   flex-wrap: wrap;
-  margin: var(--margin) 0;
+  margin-bottom: $margin;
   overflow: hidden;
+  background: lighten(hsl(339, 10%, 20%), 10);
+  border-radius: var(--borderRadius);
+  @include box-shadow;
 
   & li {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    margin: var(--margin);
+    margin: $margin;
     // max-width: 25rem;
     min-width: 13rem;
   }

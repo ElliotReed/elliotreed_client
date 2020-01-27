@@ -1,15 +1,17 @@
+@import "../../styles/base.scss";
+
 .header {
   margin: var(--margin);
   width: 100%;
-  border: var(--border);
+  @include box-shadow;
   border-radius: var(--borderRadius);
-  background: var(--lightShades);
+  @include gradient($lightShades);
   padding: var(--padding);
-  color: var(--darkShades);
+  color: $darkShades;
 
   & h1 {
     margin: var(--margin) 0;
     font-weight: bold;
-    color: var(--mainBrand);
+    color: $mainBrand;
   }
 }

@@ -1,4 +1,6 @@
-.portfolio-container {
+@import "../../styles/base.scss";
+
+.container {
   display: block;
   margin: var(--margin);
 }
@@ -7,11 +9,11 @@
   transition: 0.3s;
   margin: var(--margin) 0;
   width: 100%;
-  border: var(--border);
+  @include box-shadow;
   border-radius: var(--borderRadius);
-  background: var(--lightShades);
+  @include gradient($lightShades);
   padding: var(--padding);
-  color: var(--darkShades);
+  color: $darkShades;
 }
 
 .card__display {
@@ -20,8 +22,8 @@
   & img {
     display: block;
     width: 100%;
-    border: var(--border);
-    box-shadow: var(--boxShadow);
+    @include box-shadow;
+    border-radius: var(--borderRadius);
   }
 }
 
@@ -31,9 +33,15 @@
 
   & a {
     width: 100%;
+    // border-bottom: .162em solid $mainBrand;
     text-align: center;
-    text-decoration: underline;
-    color: var(--mainBrand);
+    text-decoration: none;
+    line-height: 2rem;
+    color: $mainBrand;
+    background-image: linear-gradient(to right, $mainBrand);
+    background-position: 0 1.18em;
+    background-repeat: repeat-x;
+    background-size: 8px 3px;
   }
 
   & h2 {
@@ -43,7 +51,7 @@
   }
 
   & p {
-    margin: var(--margin);
+    margin: var(--margin) 0;
   }
 
   & .blurb {

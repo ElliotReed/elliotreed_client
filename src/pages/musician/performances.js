@@ -4,13 +4,13 @@ import Layout from "../../components/layout"
 import Head from "../../components/head"
 
 import MaxWidthContainer from "../../components/UI/maxWidthContainer"
-import performancePageStyles from "./performances.module.scss"
+import styles from "./performances.module.scss"
 const PerformancePage = () => {
   return (
     <Layout type="musician">
       <Head title="Musician | Contact" />
       <MaxWidthContainer>
-        <section className={performancePageStyles.header}>
+        <section className={styles.header}>
           <h1>Performance Page</h1>
           <hr></hr>
           <p>

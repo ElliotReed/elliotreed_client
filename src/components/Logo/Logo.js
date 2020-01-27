@@ -24,7 +24,6 @@ const Logo = ({ width, mode, animation = "" }) => {
   )
 
   useEffect(() => {
-    console.log("animation: ", animation)
     switch (animation) {
       case "DEVELOPER_PAGE_DISPLAY":
         animations.developerPageDisplay(logo, developerAspect, musicianAspect, timeline)
@@ -35,10 +34,10 @@ const Logo = ({ width, mode, animation = "" }) => {
       case "SWITCH_TO_MUSICIAN":
         animations.switchToMusician(developerAspect, musicianAspect, timeline)
         break
-      // default:
-      //   null
+      default:
+        break
     }
-  }, [animation])
+  }, [animation, timeline])
 
   return (
     <svg

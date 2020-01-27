@@ -1,13 +1,15 @@
+@import "../../../styles/base.scss";
+
 .about-me {
   border: var(--border);
   border-radius: var(--borderRadius);
-  background: var(--lightShades);
+  @include gradient($lightShades);
   padding: var(--padding);
-  color: var(--darkShades);
+  color: $darkShades;
 }
 
 .about-me h3 {
   margin: var(--margin) 0;
-  color: var(--mainBrand);
+  color: $mainBrand;
   font-weight: bold;
 }

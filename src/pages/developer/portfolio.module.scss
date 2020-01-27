@@ -1,19 +1,20 @@
+@import "../../styles/base.scss";
+
 .portfolio-header {
-  margin: var(--margin);
   width: 100%;
-  border: var(--border);
+  margin: var(--margin);
+  @include box-shadow;
   border-radius: var(--borderRadius);
-  background: var(--lightShades);
-  padding: var(--padding);
-  color: var(--darkShades);
+  @include gradient($lightShades);
+  padding: $padding;
 
   h1 {
-    color: var(--mainBrand);
-    text-shadow: 3px 3px rgba(var(--darkShadesRGB), 0.1);
+    color: $mainBrand;
+    font-weight: bold;
     margin: var(--margin) 0;
   }
 
   p {
-    color: var(--darkShades);
+    color: $darkShades;
   }
 }

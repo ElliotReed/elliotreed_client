@@ -6,7 +6,7 @@ import gsap from "gsap"
 import { GlobalStateContext } from "../../context/GlobalContextProvider"
 
 import Logo from "../Logo"
-import headerStyles from "./header.module.scss"
+import styles from "./header.module.scss"
 
 const MusicianNav = () => {
   const [displayShowList, setDisplayShowList] = useState(false)
@@ -17,40 +17,38 @@ const MusicianNav = () => {
 
   return (
     <nav>
-      <ul className={headerStyles.navList}>
+      <ul className={styles.navList}>
         <li>
-          <Link to="/musician" activeClassName={headerStyles.activeNavItem}>
+          <Link to="/musician" activeClassName={styles.activeNavItem}>
             About
           </Link>
         </li>
         <li>
           <Link
             to="musician/performances"
-            activeClassName={headerStyles.activeNavItem}
+            activeClassName={styles.activeNavItem}
           >
             Performances
           </Link>
         </li>
         <li>
-          <Link
-            to="musician/contact"
-            activeClassName={headerStyles.activeNavItem}
-          >
+          <Link to="musician/contact" activeClassName={styles.activeNavItem}>
             Contact
           </Link>
         </li>
         <li
-          className={headerStyles.showListLink}
+          className={styles.showListLink}
           onClick={onMouseEnter}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseEnter}
         >
           {displayShowList && (
-            <ul className={headerStyles.showList}>
+            <ul className={styles.showList}>
+              <li>Show Notes</li>
               <li onClick={onMouseEnter}>
                 <Link
                   to="musician/abbeyroad"
-                  activeClassName={headerStyles.activeNavItem}
+                  activeClassName={styles.activeNavItem}
                 >
                   Abbey Road
                 </Link>
@@ -66,25 +64,19 @@ const MusicianNav = () => {
 const DeveloperNav = () => {
   return (
     <nav>
-      <ul className={headerStyles.navList}>
+      <ul className={styles.navList}>
         <li>
-          <Link to="/developer" activeClassName={headerStyles.activeNavItem}>
+          <Link to="/developer" activeClassName={styles.activeNavItem}>
             About
           </Link>
         </li>
         <li>
-          <Link
-            to="developer/portfolio"
-            activeClassName={headerStyles.activeNavItem}
-          >
+          <Link to="developer/portfolio" activeClassName={styles.activeNavItem}>
             Portfolio
           </Link>
         </li>
         <li>
-          <Link
-            to="developer/contact"
-            activeClassName={headerStyles.activeNavItem}
-          >
+          <Link to="developer/contact" activeClassName={styles.activeNavItem}>
             Contact
           </Link>
         </li>
@@ -140,27 +132,23 @@ const Header = ({ type }) => {
   }, [switchQualifier])
 
   return (
-    <header className={headerStyles.header}>
-      <div className={headerStyles.navBrand}>
+    <header className={styles.header}>
+      <div className={styles.navBrand}>
         <Link to={`/`}>
-          <div className={headerStyles.logoWrapper}>
+          <div className={styles.logoWrapper}>
             <Logo width="2.5em" mode={type} animation={logoAnimation()} />
-            <h1 className={headerStyles.title}>Elliot Reed</h1>
+            <h1 className={styles.title}>Elliot Reed</h1>
           </div>
         </Link>
-        {/* TODO:  slide out other personality on hover, with direct link */}
         <div
-          className={headerStyles.aspect}
+          className={styles.aspect}
           onMouseLeave={() => {
             hideAspectMenu.play()
             setSwitchQualifier(false)
           }}
         >
           <h6
-            className={classnames(
-              headerStyles.qualifierText,
-              headerStyles.pointer
-            )}
+            className={classnames(styles.qualifierText, styles.pointer)}
             onMouseEnter={() => {
               showAspectMenu.play()
               setSwitchQualifier(true)
@@ -173,15 +161,13 @@ const Header = ({ type }) => {
             ref={element => {
               aspectMenuDiv = element
             }}
-            className={classnames(headerStyles.aspectMenu)}
+            className={classnames(styles.aspectMenu)}
             onClick={() => {
               setSwitchQualifier(false)
             }}
           >
             <Link to={`/${otherFacet}`}>
-              <h6 className={classnames(headerStyles.qualifierText)}>
-                {otherFacet}
-              </h6>
+              <h6 className={classnames(styles.qualifierText)}>{otherFacet}</h6>
             </Link>
           </div>
         </div>

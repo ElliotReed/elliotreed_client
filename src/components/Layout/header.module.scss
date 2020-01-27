@@ -1,33 +1,33 @@
+@import "../../styles/base.scss";
+
 .header {
-  flex-shrink: 0; /* Prevent Chrome, Opera, and Safari from letting these items shrink to smaller than their content's default minimum size. */
   position: fixed;
-  z-index: 1;
   top: 0;
-  display: flex;
-  justify-content: space-between;
+  z-index: 1;
+  flex-basis: 100%;
+  flex-shrink: 0; /* Prevent Chrome, Opera, and Safari from letting these items shrink to smaller than their content's default minimum size. */
   flex-wrap: wrap;
   align-items: center;
-  flex-basis: 100%;
+  // margin: 0;
   width: 100%;
-  margin: 0;
-  padding: 0.5em;
-  background-color: var(--white);
-  background-image: linear-gradient(
-    to bottom,
-    rgba(var(--lightShadesRGB), 0.5) 0%,
-    rgba(var(--lightShadesRGB), 0.75) 10%,
-    rgba(var(--lightShadesRGB), 1) 62%,
-    rgba(var(--lightShadesRGB), 0.75) 90%,
-    rgba(var(--lightShadesRGB), 1) 100%
-  );
-  color: var(--mainBrand);
-  box-shadow: var(--boxShadow);
+  @include box-shadow;
+  @include gradient($lightShades);
+  padding: 0.5rem $padding;
+  color: $mainBrand;
+}
+
+@media only screen and (min-width: 660px) {
+  .header {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .nav-brand {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  color: var(--mainBrand);
+  width: 20rem;
+  color: $mainBrand;
 }
 
 .logo-wrapper {
@@ -37,15 +37,15 @@
 }
 
 .title {
-  // margin: 0;
-  margin-right: calc(var(--margin) / 3);
+  margin-right: calc(#{$margin} / 3);
   font-size: 1.32rem;
   font-weight: bolder;
-  color: var(--mainBrand);
+  color: $mainBrand;
+  text-shadow: 0 2px 2px rgba($mainBrand, 0.25);
   text-transform: uppercase;
 }
 
-// #region aspect
+// #region aspect //
 .aspect {
   position: relative;
   perspective: 400px;
@@ -53,11 +53,11 @@
 
 .aspect-menu {
   position: absolute;
-  left: calc(-1 * var(--padding));
-  border: var(--border);
+  left: calc(-1 * #{$padding});
+  @include box-shadow;
   border-radius: var(--borderRadius);
-  background: var(--lightShades);
-  padding: calc(var(--padding) * 0.32) var(--padding);
+  @include gradient($lightShades);
+  padding: calc(#{$padding} * 0.38) #{$padding};
   transform: rotateX(93deg);
   transform-origin: top;
   transform-style: preserve-3d;
@@ -71,30 +71,39 @@
 .qualifier-text {
   font-size: 1rem;
   font-style: italic;
+  color: $darkShades;
 }
 // #endregion
 
 // #region Nav
 .nav-list {
-  display: flex;
+  display: inline-flex;
+  justify-content: flex-end;
+  width: 100%;
+
 
   li {
-    margin-right: var(--margin);
-    color: var(--mainBrand);
+    margin-right: $margin;
+    color: $mainBrand;
     text-decoration: none;
+
+  &:last-child {
+    margin-right: 0;
   }
+  }
+
 
   a {
     &:hover {
       background: none;
-      color: var(--darkAccent);
+      color: $darkShades;
       cursor: pointer;
     }
   }
 }
 
 .active-nav-item {
-  color: var(--lightAccent);
+  color: rgba($mainBrand, 0.32);
 }
 
 .show-list-link {
@@ -111,20 +120,28 @@
 
 .show-list {
   position: absolute;
-  top: 1rem;
+  top: 1.618rem;
   right: 0;
   white-space: nowrap;
+  @include box-shadow;
   border-radius: var(--borderRadius);
-  background: var(--darkShades);
-  padding: var(--padding);
-  color: var(--lightShades);
+  @include gradient($lightShades);
+  padding: $padding;
+  color: $mainBrand;
 
   & li {
-    display: inline-block;
+    margin: 0;
 
     &:hover a {
-      color: var(--lightShades);
+      cursor: pointer;
+      color: darken($mainBrand, 62);
     }
+  }
+
+  & li:first-child {
+    margin-bottom: $margin;
+    border-bottom: .062rem solid $mainBrand;
+    color: $mainBrand;
   }
 }
 // #endregion
