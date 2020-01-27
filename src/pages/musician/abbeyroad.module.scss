@@ -2,7 +2,7 @@
 
 .page-title-container {
   position: relative;
-  margin-top: calc($margin * 2);
+  margin-top: calc(#{$margin} * 2);
   // margin-bottom: $margin;
 
   & .page-title {

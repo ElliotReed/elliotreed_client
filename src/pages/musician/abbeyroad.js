@@ -80,29 +80,24 @@ const YouTube = ({ videoId, title }) => {
   )
 }
 
-const VideoContent = ({song}) => {
- return (
-   <ul className={styles.videoList}>
-   {song.videos.length > 0 &&
-     song.videos.map(video => {
-      return (
-        <li key={video.id}>
-          <YouTube
-            videoId={video.id}
-            title={video.title}
-          />
-          <label>{video.title}</label>
-        </li>
-      )
-    })}
-  </ul>
+const VideoContent = ({ song }) => {
+  return (
+    <ul className={styles.videoList}>
+      {song.videos.length > 0 &&
+        song.videos.map(video => {
+          return (
+            <li key={video.id}>
+              <YouTube videoId={video.id} title={video.title} />
+              <label>{video.title}</label>
+            </li>
+          )
+        })}
+    </ul>
   )
 }
 
-const Video = ({song}) => {
-return (
-  <Accordion title="Videos:" content={<VideoContent song={song} />} />
-)
+const Video = ({ song }) => {
+  return <Accordion title="Videos:" content={<VideoContent song={song} />} />
 }
 
 const AbbeyRoadPage = () => {

@@ -81,17 +81,15 @@
   justify-content: flex-end;
   width: 100%;
 
-
   li {
     margin-right: $margin;
     color: $mainBrand;
     text-decoration: none;
 
-  &:last-child {
-    margin-right: 0;
+    &:last-child {
+      margin-right: 0;
+    }
   }
-  }
-
 
   a {
     &:hover {
@@ -140,7 +138,7 @@
 
   & li:first-child {
     margin-bottom: $margin;
-    border-bottom: .062rem solid $mainBrand;
+    border-bottom: 0.062rem solid $mainBrand;
     color: $mainBrand;
   }
 }
