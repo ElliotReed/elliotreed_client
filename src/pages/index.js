@@ -2,8 +2,9 @@ import React from "react"
 import { Link } from "gatsby"
 import classNames from "classnames"
 
-import Head from "../components/head"
 import indexStyles from "./index.module.scss"
+
+import Head from "../components/head"
 
 class LandingPage extends React.Component {
   constructor(props) {

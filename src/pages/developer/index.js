@@ -8,6 +8,7 @@ import ProfileInfo from "../../components/UI/ProfileInfo"
 import Logo from "../../components/Logo"
 
 import MaxWidthContainer from "../../components/UI/maxWidthContainer"
+
 import developerStyles from "./index.module.scss"
 
 class DeveloperPage extends React.Component {
