@@ -1,13 +1,12 @@
 import React from "react"
 
-import Layout from "../../components/layout"
 import Head from "../../components/head"
 
 import MaxWidthContainer from "../../components/UI/maxWidthContainer"
 import styles from "./performances.module.scss"
 const PerformancePage = () => {
   return (
-    <Layout type="musician">
+    <div>
       <Head title="Musician | Contact" />
       <MaxWidthContainer>
         <section className={styles.header}>
@@ -19,7 +18,7 @@ const PerformancePage = () => {
           </p>
         </section>
       </MaxWidthContainer>
-    </Layout>
+    </div>
   )
 }
 

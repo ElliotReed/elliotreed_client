@@ -1,14 +1,13 @@
 import React from "react"
 
-import Layout from "../../components/layout"
 import Head from "../../components/head"
 import MaxWidthContainer from "../../components/UI/maxWidthContainer"
 import DevPortfolio from "../../components/DevPortfolio"
 import portfolioStyles from "./portfolio.module.scss"
 
-const PortfolioPage = props => {
+const PortfolioPage = () => {
   return (
-    <Layout type="developer">
+    <div>
       <Head title="Developer | Portfolio" />
       <MaxWidthContainer>
         <div className={portfolioStyles.portfolioHeader}>
@@ -20,7 +19,7 @@ const PortfolioPage = props => {
       <MaxWidthContainer>
         <DevPortfolio />
       </MaxWidthContainer>
-    </Layout>
+    </div>
   )
 }
 

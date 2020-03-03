@@ -1,6 +1,6 @@
 @import "reset.module.scss";
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap");
-@import "../../styles/base.scss";
+@import "./base.scss";
 
 /* #region Variables */
 :root {
@@ -87,6 +87,7 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
+  user-select: none;
 }
 
 body {

@@ -1,12 +1,11 @@
 import React, { Component } from "react"
 
-import Layout from "../../components/layout"
 import Head from "../../components/head"
 
 import MaxWidthContainer from "../../components/UI/maxWidthContainer"
 import ProfileImage from "../../components/UI/ProfileImage"
 import ProfileInfo from "../../components/UI/ProfileInfo"
-import musicianPageStyles from "./index.module.scss"
+import styles from "./index.module.scss"
 
 class MusicianPage extends Component {
   constructor(props) {
@@ -20,9 +19,9 @@ class MusicianPage extends Component {
 
   render() {
     return (
-      <Layout type="musician">
-        <Head title="Musician" />
-        <section className={musicianPageStyles.profile}>
+      <div>
+        <section className={styles.profile}>
+          <Head title="Musician" />
           <MaxWidthContainer>
             <ProfileImage
               image={this.state.profileImage}
@@ -30,12 +29,12 @@ class MusicianPage extends Component {
             />
           </MaxWidthContainer>
         </section>
-        <section className={musicianPageStyles.profile}>
+        <section className={styles.profile}>
           <MaxWidthContainer>
             <ProfileInfo type={"musician"} />
           </MaxWidthContainer>
         </section>
-      </Layout>
+      </div>
     )
   }
 }

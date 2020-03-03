@@ -4,4 +4,26 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-// You can delete this file if you're not using it
+exports.onCreatePage = ({ page, actions }) => {
+  const { createRedirect } = actions
+
+  createRedirect({
+    fromPath: `/`,
+    toPath: `/portal`,
+    redirectInBrowser: true,
+    isPermanent: true,
+  })
+
+  const { createPage } = actions
+
+  if (page.path.match(/developer/)) {
+    page.context.layout = "developer"
+    createPage(page)
+  } else if (page.path.match(/musician/)) {
+    page.context.layout = "musician"
+    createPage(page)
+  } else if (page.path.match(/portal/)) {
+    page.context.layout = "portal"
+    createPage(page)
+  }
+}

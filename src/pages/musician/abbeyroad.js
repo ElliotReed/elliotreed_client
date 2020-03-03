@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 
-import Layout from "../../components/layout"
 import Head from "../../components/head"
 import MaxWidthContainer from "../../components/UI/maxWidthContainer"
 import Accordion from "../../components/UI/Accordion"
@@ -103,7 +102,7 @@ const Video = ({ song }) => {
 const AbbeyRoadPage = () => {
   const showParts = useState(false)
   return (
-    <Layout type="abbeyroad">
+    <>
       <Head title="Musician | Abbey Road" />
       <div className={styles.pageTitleContainer}>
         <h1 className={styles.pageTitle}>
@@ -140,7 +139,7 @@ const AbbeyRoadPage = () => {
           })}
         </section>
       </MaxWidthContainer>
-    </Layout>
+    </>
   )
 }
 
