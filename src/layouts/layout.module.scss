@@ -1,0 +1,26 @@
+@import "../styles/index.module.scss";
+
+.grid-container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  // overflow: hidden;
+  
+  & main {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    // min-height: 100vh;
+    // position: relative;
+    // padding-bottom: 3rem;
+  }
+}

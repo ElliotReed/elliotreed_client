@@ -3,16 +3,26 @@ import { Link } from "gatsby"
 import classnames from "classnames"
 import gsap from "gsap"
 
-import { GlobalStateContext } from "../../context/GlobalContextProvider"
-
-import Logo from "../Logo"
+import { GlobalStateContext } from "../context/GlobalContextProvider"
+import ContextConsumer from "../context/Context"
 import styles from "./header.module.scss"
+
+import Logo from "../components/Logo"
 
 const MusicianNav = () => {
   const [displayShowList, setDisplayShowList] = useState(false)
 
-  const onMouseEnter = () => {
-    setDisplayShowList(!displayShowList)
+  const showDropdownMenu = e => {
+    e.preventDefault()
+    if (!displayShowList) {
+      setDisplayShowList(true)
+      document.addEventListener("click", hideDropdownMenu)
+    }
+  }
+
+  const hideDropdownMenu = () => {
+    setDisplayShowList(false)
+    document.removeEventListener("click", hideDropdownMenu)
   }
 
   return (
@@ -36,25 +46,27 @@ const MusicianNav = () => {
             Contact
           </Link>
         </li>
-        <li
-          className={styles.showListLink}
-          onClick={onMouseEnter}
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseEnter}
-        >
-          {displayShowList && (
-            <ul className={styles.showList}>
-              <li>Show Notes</li>
-              <li onClick={onMouseEnter}>
-                <Link
-                  to="musician/abbeyroad"
-                  activeClassName={styles.activeNavItem}
-                >
-                  Abbey Road
-                </Link>
-              </li>
-            </ul>
-          )}
+        <li className={styles.showListLink}>
+          <button onClick={showDropdownMenu}>&#8942;</button>
+          <ul
+            className={
+              displayShowList
+                ? classnames(styles.showList, styles.rollDown)
+                : styles.showList
+            }
+          >
+            <li>
+              <h4>Show Notes</h4>
+            </li>
+            <li>
+              <Link
+                to="musician/abbeyroad"
+                activeClassName={styles.activeNavItem}
+              >
+                Abbey Road
+              </Link>
+            </li>
+          </ul>
         </li>
       </ul>
     </nav>
@@ -141,6 +153,7 @@ const Header = ({ type }) => {
           </div>
         </Link>
         <div
+          role="banner"
           className={styles.aspect}
           onMouseLeave={() => {
             hideAspectMenu.play()
@@ -172,6 +185,7 @@ const Header = ({ type }) => {
           </div>
         </div>
       </div>
+
       {type === "developer" && (
         <DeveloperNav alink="Musician" qualifier="Developer" />
       )}

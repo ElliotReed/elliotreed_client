@@ -5,6 +5,7 @@ import classNames from "classnames"
 import indexStyles from "./index.module.scss"
 
 import Head from "../components/head"
+import ContextConsumer from "../context/Context"
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -107,37 +108,50 @@ class LandingPage extends React.Component {
 
   render() {
     return (
-      <div className={indexStyles.landingContainer} ref={this.splitScreen}>
-        <Head title="Developer | Musician"/>
-        <div
-          name="left"
-          onMouseEnter={this.mouseEnterHandler}
-          className={classNames({
-            [indexStyles.split]: true,
-            [indexStyles.left]: true,
-          })}
-          style={this.state.leftHoverProperty}
-        >
-          <h1>The Developer</h1>
-          <Link to="/developer" className={indexStyles.button}>
-            Learn More!
-          </Link>
-        </div>
-        <div
-          name="right"
-          className={classNames({
-            [indexStyles.split]: true,
-            [indexStyles.right]: true,
-          })}
-          onMouseEnter={this.mouseEnterHandler}
-          style={this.state.rightHoverProperty}
-        >
-          <h1>The Musician</h1>
-          <Link to="/musician" className={indexStyles.button}>
-            Learn More!
-          </Link>
-        </div>
-      </div>
+      <ContextConsumer>
+        {({ data, set }) => {
+          return (
+            <div
+              className={indexStyles.landingContainer}
+              ref={this.splitScreen}
+            >
+              <Head title="Developer | Musician" />
+              <div
+                role="dialog"
+                name="left"
+                onMouseEnter={this.mouseEnterHandler}
+                className={classNames({
+                  [indexStyles.split]: true,
+                  [indexStyles.left]: true,
+                })}
+                style={this.state.leftHoverProperty}
+              >
+                <h1>The Developer</h1>
+                <Link to="/developer" className={indexStyles.button}>
+                  Learn More!
+                </Link>
+              </div>
+              <div
+                role="dialog"
+                name="right"
+                className={classNames({
+                  [indexStyles.split]: true,
+                  [indexStyles.right]: true,
+                })}
+                onMouseEnter={this.mouseEnterHandler}
+                style={this.state.rightHoverProperty}
+              >
+                <h1>The Musician</h1>
+                {/* <div onClick={set({ mode: "musician" })}> */}
+                  <Link to="/musician" className={indexStyles.button}>
+                    Learn More!
+                  </Link>
+              {/* </div> */}
+                </div>
+            </div>
+          )
+        }}
+      </ContextConsumer>
     )
   }
 }
