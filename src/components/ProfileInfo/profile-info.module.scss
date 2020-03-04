@@ -1,17 +1,15 @@
 @import "../../styles/base.scss";
 
-.header {
-  margin: $margin;
-  width: 100%;
+.aboutMe {
   border: $border;
   border-radius: $borderRadius;
-  background: $lightShades;
+  @include gradient($lightShades);
   padding: $padding;
   color: $darkShades;
 
-  & h1 {
+  & h3 {
     margin: $margin 0;
-    font-weight: bold;
     color: $mainBrand;
+    font-weight: bold;
   }
 }

@@ -9,6 +9,7 @@
   padding: $padding;
 
   p {
+    margin: 0;
     color: $lightShades;
     text-shadow: 2px 2px 0px darken($lightShades, 60);
     font-size: .618rem;

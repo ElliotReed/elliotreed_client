@@ -2,11 +2,12 @@
 
 .page-title-container {
   position: relative;
-  margin-top: calc(#{$margin} * 2);
+  margin-top: $margin * 2;
   // margin-bottom: $margin;
 
   & .page-title {
     position: ablsolute;
+    margin: 0;
     top: 50%;
     left: 50%;
     transform: translate(0%, -50%);
@@ -25,43 +26,49 @@
 .set-wrapper {
   margin: $margin;
   background: hsla(342, 10%, 20%, 0.98);
-  padding: var(--padding);
-  box-shadow: var(--boxShadow);
-  border-radius: var(--borderRadius);
+  padding: $padding;
+  @include boxShadow;
+  border-radius: $borderRadius;
 }
 
 .set-title-wrapper {
   display: flex;
   justify-content: space-between;
-  padding: var(--padding);
+  padding: $padding;
   border-bottom: 1px solid $lightShades;
 }
 
 .song-list {
-  padding: var(--padding) 0;
+  padding: $padding 0;
 }
 
 .song-content {
-  padding: var(--padding);
+  padding: $padding;
 }
 
 .song {
   margin: 0 0 $margin;
-  box-shadow: var(--boxShadow), -5px -5px 15px #22222288;
-  border-radius: var(--borderRadius);
+  @include boxShadow;
+  border-radius: $borderRadius;
 }
 
 .song-title {
-  padding: var(--padding);
+  padding: $padding;
+}
+
+.part-wrapper {
+  h6 {
+    margin: 0;
+  }
 }
 
 .part-list {
   margin: 0 0 $margin;
-  padding: var(--padding);
+  padding: $padding;
   font-size: 1.618rem;
   background: lighten(hsl(339, 10%, 20%), 10);
-  border-radius: var(--borderRadius);
-  @include box-shadow;
+  border-radius: $borderRadius;
+  @include boxShadow;
 
   & li {
     margin-bottom: $margin;
@@ -99,11 +106,11 @@
 .link-container {
   display: flex;
   margin-bottom: $margin;
-  padding: var(--padding);
+  padding: $padding;
   background: lighten(hsl(339, 10%, 20%), 10);
   background: $lightShades;
-  border-radius: var(--borderRadius);
-  @include box-shadow;
+  border-radius: $borderRadius;
+  @include boxShadow;
   &:hover {
     cursor: pointer;
   }
@@ -131,8 +138,8 @@
   margin-bottom: $margin;
   overflow: hidden;
   background: lighten(hsl(339, 10%, 20%), 10);
-  border-radius: var(--borderRadius);
-  @include box-shadow;
+  border-radius: $borderRadius;
+  @include boxShadow;
 
   & li {
     display: flex;
@@ -144,7 +151,7 @@
   }
 
   & label {
-    padding: calc(var(--padding) / 3) 0 var(--padding);
+    padding: ($padding / 3) 0 $padding;
   }
 }
 

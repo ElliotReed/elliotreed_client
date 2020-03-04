@@ -15,21 +15,21 @@ function reducer(state, action) {
         ...state,
         theme: state.theme === "light" ? "dark" : "light",
       }
-      break
+      // break
     }
     case "DEVELOPER_MODE": {
       return {
         ...state,
         mode: "developer",
       }
-      break
+      // break
     }
     case "MUSICIAN_MODE": {
       return {
         ...state,
         mode: "musician",
       }
-      break
+      // break
     }
 
     default:

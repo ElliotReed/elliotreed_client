@@ -4,25 +4,30 @@ import classnames from "classnames"
 import gsap from "gsap"
 
 import { GlobalStateContext } from "../context/GlobalContextProvider"
-import ContextConsumer from "../context/Context"
-import styles from "./header.module.scss"
-
 import Logo from "../components/Logo"
+
+import styles from "./header.module.scss"
 
 const MusicianNav = () => {
   const [displayShowList, setDisplayShowList] = useState(false)
+
+  useEffect(() => {
+    const hideDropdownMenu = () => {
+      setDisplayShowList(false)
+    }
+    if (displayShowList) {
+      window.addEventListener("click", hideDropdownMenu)
+    }
+    return () => {
+      window.removeEventListener("click", hideDropdownMenu)
+    }
+  }, [displayShowList])
 
   const showDropdownMenu = e => {
     e.preventDefault()
     if (!displayShowList) {
       setDisplayShowList(true)
-      document.addEventListener("click", hideDropdownMenu)
     }
-  }
-
-  const hideDropdownMenu = () => {
-    setDisplayShowList(false)
-    document.removeEventListener("click", hideDropdownMenu)
   }
 
   return (

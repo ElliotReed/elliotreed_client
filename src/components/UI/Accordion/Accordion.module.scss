@@ -22,7 +22,7 @@ $time: 0.6s;
 
 .accordion:hover,
 .active {
-  @include box-shadow;
+  @include boxShadow;
 }
 
 .title {

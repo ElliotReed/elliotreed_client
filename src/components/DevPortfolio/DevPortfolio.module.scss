@@ -2,17 +2,21 @@
 
 .container {
   display: block;
-  margin: var(--margin);
+  margin: $margin 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 1rem;
 }
 
 .card {
   transition: 0.3s;
-  margin: var(--margin) 0;
-  width: 100%;
-  @include box-shadow;
-  border-radius: var(--borderRadius);
+  @include boxShadow;
+  border-radius: $borderRadius;
   @include gradient($lightShades);
-  padding: var(--padding);
+  padding: $padding;
   color: $darkShades;
 }
 
@@ -22,13 +26,13 @@
   & img {
     display: block;
     width: 100%;
-    @include box-shadow;
-    border-radius: var(--borderRadius);
+    @include boxShadow;
+    border-radius: $borderRadius;
   }
 }
 
 .card__info {
-  padding: calc(var(--padding) / 2);
+  padding: ($padding * $large);
   margin: 0 0 0 0;
 
   & a {
@@ -45,17 +49,17 @@
   }
 
   & h2 {
-    margin: var(--margin) 0;
+    margin: $margin 0;
     margin-bottom: 0;
     font-weight: bold;
   }
 
   & p {
-    margin: var(--margin) 0;
+    margin: $margin 0;
   }
 
   & .blurb {
-    margin: calc(var(--margin) / 2) 0;
+    margin: ($margin * $large) 0;
     font-size: 0.62em;
     font-style: oblique;
   }

@@ -1,4 +1,5 @@
-import React, { useContext } from "react"
+import React from "react"
+
 import {ContextProviderComponent} from '../context/Context'
 
 const PortalLayout = props => {

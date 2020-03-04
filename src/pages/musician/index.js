@@ -1,42 +1,32 @@
-import React, { Component } from "react"
-
-import Head from "../../components/head"
+import React from "react"
+import styles from "./musician.module.scss"
 
 import MaxWidthContainer from "../../components/UI/maxWidthContainer"
-import ProfileImage from "../../components/UI/ProfileImage"
-import ProfileInfo from "../../components/UI/ProfileInfo"
-import styles from "./index.module.scss"
+import Head from "../../components/head"
+import ProfileImage from "../../components/ProfileImage"
+import ProfileInfo from "../../components/ProfileInfo"
 
-class MusicianPage extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      profileImage: "music-elliot-profile_567.jpg",
-      imageText:
-        "I am a musician living and working in the greater Denver Metro area.",
-    }
-  }
 
-  render() {
-    return (
-      <div>
-        <section className={styles.profile}>
-          <Head title="Musician" />
-          <MaxWidthContainer>
-            <ProfileImage
-              image={this.state.profileImage}
-              imageText={this.state.imageText}
-            />
-          </MaxWidthContainer>
-        </section>
-        <section className={styles.profile}>
-          <MaxWidthContainer>
-            <ProfileInfo type={"musician"} />
-          </MaxWidthContainer>
-        </section>
-      </div>
-    )
-  }
+const MusicianPage = () => {
+  const profileImage = "music-elliot-profile_567.jpg"
+  const imageText =
+    "I am a musician living and working in the greater Denver Metro area."
+
+  return (
+    <div>
+      <section className={styles.profile}>
+        <Head title="Musician" />
+        <MaxWidthContainer>
+          <ProfileImage image={profileImage} imageText={imageText} />
+        </MaxWidthContainer>
+      </section>
+      <section className={styles.profile}>
+        <MaxWidthContainer>
+          <ProfileInfo mode="musician" />
+        </MaxWidthContainer>
+      </section>
+    </div>
+  )
 }
 
 export default MusicianPage

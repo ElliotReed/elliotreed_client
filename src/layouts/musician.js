@@ -1,10 +1,13 @@
-import React, { useContext } from "react"
+import React from "react"
+
+import styles from "./layout.module.scss"
+
+
 import { ContextProviderComponent } from "../context/Context"
 
 import Header from "./header"
 import Footer from "./footer"
 import Background from "../components/UI/Background"
-import styles from "./layout.module.scss"
 
 const MusicianLayout = ({ children }) => {
   let backgroundType = "musician"

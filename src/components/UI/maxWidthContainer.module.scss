@@ -1,7 +1,6 @@
-.max-width-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: no-wrap;
-  max-width: 960px;
+@import '../../styles/base.scss';
+
+.maxWidthContainer {
   margin: 0 auto;
+  max-width: 960px;
 }

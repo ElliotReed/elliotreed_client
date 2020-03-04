@@ -1,0 +1,22 @@
+@import '../../styles/base.scss';
+
+.background {
+  border: 1em solid transparent;
+  color: $lightShades;
+  margin: $margin 0;
+}
+
+.profileWrapper {
+  margin: $margin;
+}
+
+.windowImage {
+  width: 10rem;
+  // height: 400px;
+  margin: 0 auto;
+  background-color: transparent;
+}
+
+.infoWrapper {
+  margin: $margin;
+}

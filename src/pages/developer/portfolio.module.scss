@@ -1,17 +1,17 @@
 @import "../../styles/base.scss";
 
-.portfolio-header {
+.portfolioHeader {
+  margin: $margin 0;
   width: 100%;
-  margin: var(--margin);
-  @include box-shadow;
-  border-radius: var(--borderRadius);
+  @include boxShadow;
+  border-radius: $borderRadius;
   @include gradient($lightShades);
   padding: $padding;
 
   h1 {
     color: $mainBrand;
     font-weight: bold;
-    margin: var(--margin) 0;
+    margin: $margin 0;
   }
 
   p {

@@ -5,15 +5,6 @@
  */
 
 exports.onCreatePage = ({ page, actions }) => {
-  const { createRedirect } = actions
-
-  createRedirect({
-    fromPath: `/`,
-    toPath: `/portal`,
-    redirectInBrowser: true,
-    isPermanent: true,
-  })
-
   const { createPage } = actions
 
   if (page.path.match(/developer/)) {
@@ -21,9 +12,6 @@ exports.onCreatePage = ({ page, actions }) => {
     createPage(page)
   } else if (page.path.match(/musician/)) {
     page.context.layout = "musician"
-    createPage(page)
-  } else if (page.path.match(/portal/)) {
-    page.context.layout = "portal"
     createPage(page)
   }
 }

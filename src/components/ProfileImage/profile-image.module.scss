@@ -1,0 +1,42 @@
+@import "../../styles/base.scss";
+
+.profile-image {
+  display: flex;
+  align-items: center;
+  max-height: 36em;
+  @include boxShadow;
+  border: $border;
+  border-radius: $borderRadius;
+  @include gradient($lightShades);
+  padding: $padding;
+
+  img {
+    width: 10rem;
+    border: 2px solid $darkShades;
+  }
+}
+
+@supports (clip-path: circle()) or (-webkit-clip-path: circle()) {
+  .profile-image {
+    border: none;
+    // background: none;
+
+    img {
+      border: none;
+      clip-path: circle();
+    }
+  }
+
+  .profileImageText {
+    display: block;
+    // min-height: 4em;
+    align-items: center;
+    padding: $padding;
+
+    p {
+      margin: 0;
+      color: $darkShades;
+      font-weight: bold;
+    }
+  }
+}

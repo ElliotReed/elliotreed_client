@@ -11,25 +11,27 @@ import styles from "./abbeyroad.module.scss"
 
 const Parts = ({ song }) => {
   return (
-    <div>
+    <div className={styles.partWrapper}
+    >
       <h6>
         <small>Parts:</small>
       </h6>
       <ul className={styles.partList}>
         {song.alex !== "" && (
-          <li>
-            <span>Alex:</span> <span className={styles.part}>{song.alex}</span>
+          <li key="1">
+            <span>Alex:</span>
+            <span className={styles.part}>{song.alex}</span>
           </li>
         )}
         {song.elliot !== "" && (
-          <li>
-            <span>Elliot:</span>{" "}
+          <li key="2">
+            <span>Elliot:</span>
             <span className={styles.part}>{song.elliot}</span>
           </li>
         )}
         {song.steve !== "" && (
-          <li>
-            <span>Steve:</span>{" "}
+          <li key="3">
+            <span>Steve:</span>
             <span className={styles.part}>{song.steve}</span>
           </li>
         )}
@@ -102,7 +104,7 @@ const Video = ({ song }) => {
 const AbbeyRoadPage = () => {
   const showParts = useState(false)
   return (
-    <>
+    <div>
       <Head title="Musician | Abbey Road" />
       <div className={styles.pageTitleContainer}>
         <h1 className={styles.pageTitle}>
@@ -113,33 +115,31 @@ const AbbeyRoadPage = () => {
         <section className={styles.container}>
           {show.map(set => {
             return (
-              <>
-                <div className={styles.setWrapper}>
-                  <div className={styles.setTitleWrapper}>
-                    <h2>Set {set.set}</h2>
-                    <h4>{set.title}</h4>
-                  </div>
-                  <ul className={styles.songList}>
-                    {set.songs.map(song => {
-                      return (
-                        <li className={styles.song} key={song.position}>
-                          <h3 className={styles.songTitle}>{song.title}</h3>
-                          <div className={styles.songContent}>
-                            {showParts && <Parts song={song} />}
-                            {song.link !== "" && <MusicLink song={song} />}
-                            {song.videos.length > 0 && <Video song={song} />}
-                          </div>
-                        </li>
-                      )
-                    })}
-                  </ul>
+              <div className={styles.setWrapper}>
+                <div className={styles.setTitleWrapper}>
+                  <h2>Set {set.set}</h2>
+                  <h4>{set.title}</h4>
                 </div>
-              </>
+                <ul className={styles.songList}>
+                  {set.songs.map(song => {
+                    return (
+                      <li className={styles.song} key={song.position}>
+                        <h3 className={styles.songTitle}>{song.title}</h3>
+                        <div className={styles.songContent}>
+                          {showParts && <Parts song={song} />}
+                          {song.link !== "" && <MusicLink song={song} />}
+                          {song.videos.length > 0 && <Video song={song} />}
+                        </div>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
             )
           })}
         </section>
       </MaxWidthContainer>
-    </>
+    </div>
   )
 }
 
