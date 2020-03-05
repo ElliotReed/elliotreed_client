@@ -32,11 +32,11 @@ class LandingPage extends React.Component {
     }
 
     if (name === "left") {
-      leftValue = "66.6%"
-      rightValue = "33.4%"
+      leftValue = "61.8%"
+      rightValue = "38.2%"
     } else {
-      rightValue = "66.6%"
-      leftValue = "33.4%"
+      rightValue = "61.8%"
+      leftValue = "38.2%"
     }
 
     leftObject[elementDimension] = leftValue
