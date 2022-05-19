@@ -5,7 +5,12 @@ export const portfolioData = [
     blurb: "A pendulum metronome",
     description:
       "Built with React. The tempo can be set by tapping, or moving the slider.",
-    image: "https://elliotreed.github.io/assets/images/metronome.jpg",
+    images: [
+      {
+        id: 1,
+        source: "https://elliotreed.github.io/assets/images/metronome-480w.jpg",
+      },
+    ],
     url: "https://metronome.elliotreed.net",
   },
   {

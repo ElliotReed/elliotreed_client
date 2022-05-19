@@ -4,7 +4,7 @@ import { MotionPathPlugin } from "gsap/MotionPathPlugin.js";
 import classnames from "classnames"
 
 import { animations } from './LogoAnimations'
-import logoStyle from "./Logo.module.scss"
+import * as logoStyle from "./Logo.module.scss"
 
 const Logo = ({ width, mode, animation = "" }) => {
   gsap.registerPlugin(MotionPathPlugin)

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react"
 import classnames from "classnames"
 
-import styles from "./Accordion.module.scss"
+import * as styles from "./Accordion.module.scss"
 
 export default function Accordion(props) {
   const [active, setActive] = useState(false)

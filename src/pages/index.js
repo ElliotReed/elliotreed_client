@@ -4,7 +4,7 @@ import classNames from "classnames"
 
 import Head from "../components/head"
 
-import styles from "./index.module.scss"
+import * as styles from "./index.module.scss"
 
 class LandingPage extends React.Component {
   constructor(props) {

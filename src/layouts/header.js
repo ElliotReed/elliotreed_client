@@ -6,28 +6,29 @@ import gsap from "gsap"
 import { GlobalStateContext } from "../context/GlobalContextProvider"
 import Logo from "../components/Logo"
 
-import styles from "./header.module.scss"
+import * as styles from "./header.module.scss"
 
 const MusicianNav = () => {
   const [displayShowList, setDisplayShowList] = useState(false)
 
+  const hideDropdownMenu = () => {
+    setDisplayShowList(false)
+  }
+
   useEffect(() => {
-    const hideDropdownMenu = () => {
-      setDisplayShowList(false)
-    }
     if (displayShowList) {
       window.addEventListener("click", hideDropdownMenu)
     }
+
     return () => {
       window.removeEventListener("click", hideDropdownMenu)
     }
   }, [displayShowList])
 
-  const showDropdownMenu = e => {
+  const showDropdownMenu = (e) => {
     e.preventDefault()
-    if (!displayShowList) {
-      setDisplayShowList(true)
-    }
+    e.stopPropagation()
+    setDisplayShowList(!displayShowList)
   }
 
   return (
@@ -40,32 +41,32 @@ const MusicianNav = () => {
         </li>
         <li>
           <Link
-            to="musician/performances"
+            to="/musician/performances"
             activeClassName={styles.activeNavItem}
           >
             Performances
           </Link>
         </li>
         <li>
-          <Link to="musician/contact" activeClassName={styles.activeNavItem}>
+          <Link to="/musician/contact" activeClassName={styles.activeNavItem}>
             Contact
           </Link>
         </li>
         <li className={styles.showListLink}>
-          <button onClick={showDropdownMenu}>&#8942;</button>
+          <button type="button" onClick={showDropdownMenu}>
+            &#8942;
+          </button>
           <ul
-            className={
-              displayShowList
-                ? classnames(styles.showList, styles.rollDown)
-                : styles.showList
-            }
+            className={classnames(styles.showList, {
+              [styles.rollDown]: displayShowList,
+            })}
           >
             <li>
-              <h4>Show Notes</h4>
+              <p>Show Notes</p>
             </li>
             <li>
               <Link
-                to="musician/abbeyroad"
+                to="/musician/abbeyroad"
                 activeClassName={styles.activeNavItem}
               >
                 Abbey Road
@@ -88,12 +89,15 @@ const DeveloperNav = () => {
           </Link>
         </li>
         <li>
-          <Link to="developer/portfolio" activeClassName={styles.activeNavItem}>
+          <Link
+            to="/developer/portfolio"
+            activeClassName={styles.activeNavItem}
+          >
             Portfolio
           </Link>
         </li>
         <li>
-          <Link to="developer/contact" activeClassName={styles.activeNavItem}>
+          <Link to="/developer/contact" activeClassName={styles.activeNavItem}>
             Contact
           </Link>
         </li>
@@ -153,8 +157,8 @@ const Header = ({ type }) => {
       <div className={styles.navBrand}>
         <Link to={`/`}>
           <div className={styles.logoWrapper}>
-            <Logo width="2.5em" mode={type} animation={logoAnimation()} />
-            <h1 className={styles.title}>Elliot Reed</h1>
+            <Logo width="2.5rem" mode={type} animation={logoAnimation()} />
+            <p className={styles.title}>Elliot Reed</p>
           </div>
         </Link>
         <div
@@ -165,7 +169,7 @@ const Header = ({ type }) => {
             setSwitchQualifier(false)
           }}
         >
-          <h6
+          <p
             className={classnames(styles.qualifierText, styles.pointer)}
             onMouseEnter={() => {
               showAspectMenu.play()
@@ -173,10 +177,10 @@ const Header = ({ type }) => {
             }}
           >
             {currentFacet}
-          </h6>
+          </p>
 
           <div
-            ref={element => {
+            ref={(element) => {
               aspectMenuDiv = element
             }}
             className={classnames(styles.aspectMenu)}
@@ -185,7 +189,7 @@ const Header = ({ type }) => {
             }}
           >
             <Link to={`/${otherFacet}`}>
-              <h6 className={classnames(styles.qualifierText)}>{otherFacet}</h6>
+              <p className={classnames(styles.qualifierText)}>{otherFacet}</p>
             </Link>
           </div>
         </div>

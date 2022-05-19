@@ -1,18 +1,17 @@
 import React, { useState } from "react"
+import { StaticImage } from "gatsby-plugin-image"
 
 import Head from "../../components/head"
 import MaxWidthContainer from "../../components/UI/maxWidthContainer"
 import Accordion from "../../components/UI/Accordion"
 
 import { show } from "../../data/abbeyroad"
-import scoreImage from "../../images/scores.jpg"
 
-import styles from "./abbeyroad.module.scss"
+import * as styles from "./abbeyroad.module.scss"
 
 const Parts = ({ song }) => {
   return (
-    <div className={styles.partWrapper}
-    >
+    <div className={styles.partWrapper}>
       <h6>
         <small>Parts:</small>
       </h6>
@@ -44,7 +43,7 @@ const MusicContent = ({ song }) => {
   return (
     <div className={styles.linkContainer}>
       <a title={`Follow link to open pdf`} href={song.link}>
-        <img src={scoreImage} alt="pdf link" />
+        <StaticImage src="../../images/scores.jpg" alt="pdf link" />
       </a>
       <a
         className={styles.link}
@@ -85,7 +84,7 @@ const VideoContent = ({ song }) => {
   return (
     <ul className={styles.videoList}>
       {song.videos.length > 0 &&
-        song.videos.map(video => {
+        song.videos.map((video) => {
           return (
             <li key={video.id}>
               <YouTube videoId={video.id} title={video.title} />
@@ -104,24 +103,23 @@ const Video = ({ song }) => {
 const AbbeyRoadPage = () => {
   const showParts = useState(false)
   return (
-    <div>
+    <>
       <Head title="Musician | Abbey Road" />
-      <div className={styles.pageTitleContainer}>
-        <h1 className={styles.pageTitle}>
-          Abbey Road / Beatles After The Beatles
-        </h1>
-      </div>
+      <h1 className={styles.pageTitle}>
+        Abbey Road / Beatles After The Beatles
+      </h1>
+
       <MaxWidthContainer>
         <section className={styles.container}>
-          {show.map(set => {
+          {show.map((set) => {
             return (
               <div className={styles.setWrapper}>
                 <div className={styles.setTitleWrapper}>
                   <h2>Set {set.set}</h2>
-                  <h4>{set.title}</h4>
+                  <h2>{set.title}</h2>
                 </div>
                 <ul className={styles.songList}>
-                  {set.songs.map(song => {
+                  {set.songs.map((song) => {
                     return (
                       <li className={styles.song} key={song.position}>
                         <h3 className={styles.songTitle}>{song.title}</h3>
@@ -139,7 +137,7 @@ const AbbeyRoadPage = () => {
           })}
         </section>
       </MaxWidthContainer>
-    </div>
+    </>
   )
 }
 

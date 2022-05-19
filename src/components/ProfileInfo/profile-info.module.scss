@@ -4,12 +4,24 @@
   border: $border;
   border-radius: $borderRadius;
   @include gradient($lightShades);
-  padding: $padding;
   color: $darkShades;
 
-  & h3 {
-    margin: $margin 0;
+  & .heading {
     color: $mainBrand;
-    font-weight: bold;
+    margin-left: $margin;
+  }
+
+  & p {
+    margin: $margin;
+  }
+}
+
+.skillList {
+  list-style: none;
+
+  & li:before {
+    content: "🎓";
+    margin-right: calc($margin / 3);
+    font-size: 0.76rem;
   }
 }

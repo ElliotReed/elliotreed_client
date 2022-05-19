@@ -1,0 +1,130 @@
+[
+  {
+    "blurb": "Band website",
+    "description": "Made with PHP and Foundation, sales through PayPal. PHPList for email marketing. Updated from a MySQL database.",
+    "images": [
+      {
+        "image": "images/gypsy-swing-revue.png",
+        "alt": "Gypsy Swing Revue website landing page"
+      }
+    ],
+    "production": true,
+    "project": "Gypsy Swing Revue",
+    "url": "https://www.gypsyswingrevue.com"
+  },
+  {
+    "blurb": "MS Access",
+    "description": "A custom built access application. Used for tracking events, booking status and sending email.",
+    "images": [
+      {
+        "image": "images/gig-manager.png",
+        "alt": "Gig manager event screen"
+      }
+    ],
+    "production": true,
+    "project": "Gig Manager",
+    "url": ""
+  },
+  {
+    "blurb": "A React metronome",
+    "description": "A metronome that allows custom time signatures. Accents,   rests and beat animation. You can also set tempo by tapping.",
+    "images": [
+      {
+        "image": "images/metronome.png",
+        "alt": "Metronome site with staff and notes"
+      },
+      {
+        "image": "images/metronome-tap.jpg",
+        "alt": "Metronome in tempo tap view"
+      },
+      {
+        "image": "images/metronome-beat.jpg",
+        "alt": "Metronome with number of beats"
+      }
+    ],
+    "production": true,
+    "project": "Metronome",
+    "url": "https://metronome.elliotreed.net"
+  },
+  {
+    "blurb": "A tool for project tasks",
+    "description": "A tool for managing project development tasks. Built with React and Sass, a node backend and my own jwt authentication code.",
+    "images": [
+      {
+        "image": "images/develop-manager.png",
+        "alt": "Gig manager event screen"
+      }
+    ],
+    "production": false,
+    "project": "developManager",
+    "url": "https://developmanager.elliotreed.net"
+  },
+  {
+    "blurb": "A math, memory game",
+    "description": "Built with HTML, CSS, and JavaScript. This game features random win/loss messages with emojis. Click sound performed by yours truly.",
+    "images": [
+      {
+        "image": "images/crystal-collector-lp.jpg",
+        "alt": "Crystal collector main page"
+      },
+      {
+        "image": "images/crystal-collector-win.jpg",
+        "alt": "Crystal collector win modal with emoji"
+      }
+    ],
+    "production": true,
+    "project": "The Crystal Collector",
+    "url": "https://elliotreed.github.io/CrystalCollector"
+  },
+  {
+    "blurb": "An app to help manage your life",
+    "description": "React and Sass. Features custom inputs and my own jwt authentication.",
+    "images": [
+      {
+        "image": "images/life-manager-aspect.jpg",
+        "alt": "Life manager aspect screen"
+      },
+      {
+        "image": "images/life-manager-asset-select.jpg",
+        "alt": "Life manager asset select screen"
+      },
+      {
+        "image": "images/life-manager-asset.jpg",
+        "alt": "Life manager asset screen"
+      }
+    ],
+    "production": false,
+    "project": "lifeManger",
+    "url": "https://lifemanager.elliotreed.net"
+  },
+  {
+    "blurb": "An 80's themed trivia game",
+    "description": "Made with HTML, CSS and JavaScript. Designed to look like an 80's console game. Questions are generated from an open API.",
+    "images": [
+      {
+        "image": "images/totally-trivial-trivia.png",
+        "alt": "image"
+      }
+    ],
+    "project": "Totally Trivial Trivia",
+    "production": true,
+    "url": "https://elliotreed.github.io/TriviaGame/"
+  },
+  {
+    "blurb": "A petting game",
+    "description": "JavaScript and CSS, using Howler.js. This game will purr if you pet it correctly, but if you stop it will cry. A visualizer reacts to the playing sound.",
+    "images": [
+      {
+        "image": "images/pet-me-800w.jpg",
+        "alt": "Pet me game start screen"
+      },
+      {
+        "image": "images/pet-me-play-800w.jpg",
+        "alt": "Pet me game play screen"
+      }
+    ],
+    "project": "Pet Me!",
+    "production": true,
+    "url": "https://elliotreed.github.io/petme"
+  }
+]

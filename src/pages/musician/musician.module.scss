@@ -1,5 +1,9 @@
 @import "../../styles/base.scss";
 
+.page {
+  max-width: 100%;
+}
+
 .profile {
   margin: $margin;
 }

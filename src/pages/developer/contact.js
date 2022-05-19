@@ -4,7 +4,8 @@ import Head from "../../components/head"
 import ContactForm from "../../components/ContactForm"
 
 import MaxWidthContainer from "../../components/UI/maxWidthContainer"
-// import styles from "./contact.module.scss"
+// import * as styles from "./contact.module.scss"
+
 const ContactPage = () => {
   return (
     <div>

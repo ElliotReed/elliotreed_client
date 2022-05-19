@@ -1,27 +1,26 @@
 @import "../styles/base.scss";
 
 .header {
-  z-index: 2;
+  display: flex;
+  // max-width: 100%;
+  justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
+  @include paddingBox;
   @include boxShadow;
   @include gradient($lightShades);
-  @include paddingBox;
   color: $mainBrand;
-}
-
-@media only screen and (min-width: 660px) {
-  .header {
-    display: flex;
-    justify-content: space-between;
-  }
+  z-index: 2;
 }
 
 .nav-brand {
-  display: inline-flex;
+  display: flex;
+  flex-wrap: nowrap;
   align-items: center;
-  width: 20rem;
   color: $mainBrand;
+  & a {
+    text-decoration: none;
+  }
 }
 
 .logo-wrapper {
@@ -31,7 +30,7 @@
 }
 
 .title {
-  margin: 0 $margin / 3 0 0;
+  margin: 0;
   font-size: 1.382rem;
   font-weight: bolder;
   color: $mainBrand;
@@ -41,12 +40,13 @@
 // #region aspect //
 .aspect {
   position: relative;
+  margin: 0 calc($margin / 3);
   perspective: 400px;
 }
 
 .aspect-menu {
   position: absolute;
-  left: -1 * $padding;
+  left: calc(-1 * $padding);
   @include boxShadow;
   border-radius: $borderRadius;
   @include gradient($lightShades);
@@ -72,9 +72,11 @@
 
 // #region Nav
 .nav-list {
-  display: inline-flex;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: flex-end;
   width: 100%;
+  padding: 0;
 
   li {
     margin-right: $margin;
@@ -87,6 +89,8 @@
   }
 
   a {
+    text-decoration: none;
+
     &:hover {
       background: none;
       color: $darkShades;
@@ -125,9 +129,11 @@
   color: $mainBrand;
   transition: height $duration ease-in-out;
   overflow: hidden;
+
   & li {
     padding: $padding;
     margin: 0;
+    border: 1px solid transparent;
 
     &:hover a {
       cursor: pointer;
@@ -139,7 +145,7 @@
     }
   }
 
-  & h4 {
+  & p {
     font-size: 0.75rem;
     font-weight: bold;
     margin: 0;

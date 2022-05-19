@@ -15,3 +15,14 @@ exports.onCreatePage = ({ page, actions }) => {
     createPage(page)
   }
 }
+
+exports.createPages = ({ actions: { createPage } }) => {
+  createPage({
+    path: "/context/",
+    component: require.resolve("./src/templates/with-context.js"),
+    context: {
+      title: "some context",
+      content: "no graphQL in this page",
+    },
+  })
+}

@@ -1,0 +1,83 @@
+@import "../../../styles/base.scss";
+
+.pageWrapper {
+  margin-top: $margin;
+}
+
+.paddingContainer {
+  padding: 0 $padding;
+}
+
+.portfolioHeader {
+  border-radius: $borderRadius;
+  @include gradient($lightShades);
+  padding: $padding;
+  @include boxShadow;
+
+  h1 {
+    color: $mainBrand;
+    margin: 0;
+  }
+
+  p {
+    color: $darkShades;
+    margin-bottom: 0;
+  }
+}
+
+.list {
+  padding: 0;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 1fr;
+  transition: 0.3s;
+  @include boxShadow;
+  border-radius: $borderRadius;
+  @include gradient($lightShades);
+  color: $darkShades;
+  margin: $margin;
+}
+
+.card__display {
+  display: inline-flex;
+  gap: 1rem;
+  max-width: 100%;
+  margin: $margin;
+  & img {
+    display: block;
+  }
+}
+
+.card__info {
+  margin: 0 $margin $margin;
+
+  & a {
+    color: $mainBrand;
+  }
+
+  & h2 {
+    margin: $margin 0;
+    margin-bottom: 0;
+  }
+
+  & p {
+    margin: $margin 0;
+  }
+
+  & .blurb {
+    margin: ($margin * $large) 0;
+    font-size: 0.76em;
+    font-style: italic;
+  }
+
+  & .productionFalse {
+    background: $darkShades;
+    color: $lightShades;
+    border-radius: $borderRadius;
+    padding: $paddingBox;
+    font-size: small;
+    font-style: oblique;
+  }
+}

@@ -1,7 +1,7 @@
 import React from "react"
 import classNames from "classnames"
 
-import backgroundStyles from "./background.module.scss"
+import * as backgroundStyles from "./background.module.scss"
 
 const musicImageClasses = [
   "musicBackgroundEpiphone",

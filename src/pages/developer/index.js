@@ -1,5 +1,5 @@
 import React from "react"
-import styles from "./developer.module.scss"
+import * as styles from "./developer.module.scss"
 
 import Head from "../../components/head"
 import Login from "../../components/LoginForm"
@@ -8,9 +8,10 @@ import MaxWidthContainer from "../../components/UI/maxWidthContainer"
 import ProfileImage from "../../components/ProfileImage"
 import ProfileInfo from "../../components/ProfileInfo"
 
+import { StaticImage } from "gatsby-plugin-image"
+import { graphql } from "gatsby"
 
-const DeveloperPage = () => {
-  const profileImage = "elliot_profile-dev-348.jpg"
+const DeveloperPage = ({ data }) => {
   const imageText =
     "I am a web developer living and working in the greater Denver Metro area."
 
@@ -19,7 +20,16 @@ const DeveloperPage = () => {
       <Head title="Developer" />
       <div className={styles.profileWrapper}>
         <MaxWidthContainer>
-          <ProfileImage image={profileImage} imageText={imageText} />
+          <ProfileImage imageText={imageText}>
+            <StaticImage
+              src="../../images/elliot_profile-dev-348.jpg"
+              alt="pic"
+              layout="constrained"
+              width={300}
+              placeholder="blurred"
+              formats={["auto", "webp", "avif"]}
+            />
+          </ProfileImage>
         </MaxWidthContainer>
       </div>
       <div className={styles.background}>

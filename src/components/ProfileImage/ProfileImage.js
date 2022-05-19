@@ -1,13 +1,11 @@
 import React from "react"
 
-import styles from "./profile-image.module.scss"
+import * as styles from "./profile-image.module.scss"
 
-const ProfileImage = props => {
+const ProfileImage = (props) => {
   return (
     <section className={styles.profileImage}>
-      <div className="before">
-        <img src={require("../../img/" + props.image)} alt="Elliot Reed" />
-      </div>
+      <div className="before">{props.children}</div>
       <div className={styles.profileImageText}>
         <p>{props.imageText}</p>
       </div>

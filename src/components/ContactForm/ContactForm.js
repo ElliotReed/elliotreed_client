@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import styles from "./ContactForm.module.scss"
+import * as styles from "./ContactForm.module.scss"
 
 const ContactForm = ({ type }) => {
   const [name, setName] = useState("")

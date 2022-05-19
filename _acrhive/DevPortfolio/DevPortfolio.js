@@ -1,20 +1,23 @@
 import React, { Component } from "react"
 
-import styles from "./DevPortfolio.module.scss"
+import * as styles from "./DevPortfolio.module.scss"
 
 import { portfolioData } from "./data"
+
+import { GatsbyImage } from "gatsby-plugin-image"
+import { graphql } from "gatsby"
 
 class DevPortfolio extends Component {
   render() {
     return (
       <div className={styles.container}>
         <ul className={styles.grid}>
-          {portfolioData.map(item => {
+          {portfolioData.map((item) => {
             return (
               <li key={item.id} title="Click to open." className={styles.card}>
                 <div className={styles.card__display}>
                   <a href={item.url} target="_blank" rel="noopener noreferrer">
-                    <img src={item.image} alt={item.project} />
+                    <GatsbyImage src={item.image} alt={item.project} />
                   </a>
                 </div>
                 <article className={styles.card__info}>

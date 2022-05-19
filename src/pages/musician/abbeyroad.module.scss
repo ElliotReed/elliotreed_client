@@ -1,21 +1,8 @@
 @import "../../styles/base.scss";
 
-.page-title-container {
-  position: relative;
-  margin-top: $margin * 2;
-  // margin-bottom: $margin;
-
-  & .page-title {
-    position: ablsolute;
-    margin: 0;
-    top: 50%;
-    left: 50%;
-    transform: translate(0%, -50%);
-    width: 100%;
-    font-weight: bold;
-    text-align: center;
-    color: $lightShades;
-  }
+.page-title {
+  text-align: center;
+  color: $lightShades;
 }
 
 .container {
@@ -119,6 +106,7 @@
     text-decoration-line: underline;
     text-underline-position: under;
     color: lighten(#505f56, 0);
+    margin-left: $margin;
 
     &:hover {
       cursor: pointer;
@@ -126,9 +114,7 @@
   }
 
   & img {
-    width: 3rem;
-    height: 5rem;
-    margin-right: $margin;
+    width: 4rem;
   }
 }
 
@@ -151,7 +137,7 @@
   }
 
   & label {
-    padding: ($padding / 3) 0 $padding;
+    padding: calc($padding / 3) 0 $padding;
   }
 }
 

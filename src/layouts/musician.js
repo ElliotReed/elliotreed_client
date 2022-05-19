@@ -1,6 +1,6 @@
 import React from "react"
 
-import styles from "./layout.module.scss"
+import * as styles from "./layout.module.scss"
 
 
 import { ContextProviderComponent } from "../context/Context"
