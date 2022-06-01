@@ -70,4 +70,4 @@ yarn-error.log
 
 # Junk
 junk
-_archive/
+.archive/
