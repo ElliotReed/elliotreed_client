@@ -10,7 +10,7 @@
     ],
     "production": true,
     "project": "Gypsy Swing Revue",
-    "url": "https://www.gypsyswingrevue.com"
+    "url": "https://gypsyswingrevue.com"
   },
   {
     "blurb": "MS Access",
@@ -98,6 +98,19 @@
     "url": "https://lifemanager.elliotreed.net"
   },
   {
+    "blurb": "A weather app",
+    "description": "Made with HTML, CSS and JavaScript. Data retrieved from the OpenWeather API. Uses canvas elements for barometer and wind.",
+    "images": [
+      {
+        "image": "images/weatherton-800w.jpg",
+        "alt": "image"
+      }
+    ],
+    "project": "Weatherton",
+    "production": true,
+    "url": "https://elliotreed.github.io/weather"
+  },
+  {
     "blurb": "An 80's themed trivia game",
     "description": "Made with HTML, CSS and JavaScript. Designed to look like an 80's console game. Questions are generated from an open API.",
     "images": [
@@ -108,7 +121,7 @@
     ],
     "project": "Totally Trivial Trivia",
     "production": true,
-    "url": "https://elliotreed.github.io/TriviaGame/"
+    "url": "https://elliotreed.github.io/TriviaGame"
   },
   {
     "blurb": "A petting game",

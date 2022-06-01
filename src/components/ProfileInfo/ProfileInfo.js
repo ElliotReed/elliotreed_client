@@ -18,7 +18,7 @@ const DeveloperProfile = () => {
         <li>HTML</li>
         <li>CSS, Media Queries, Bootstrap, Materialize, Foundation</li>
         <li>JavaScript, JQuery, PHP, Python</li>
-        <li>Express, React, React Native, Gatsby, Graphql, Vue, Angular</li>
+        <li>Django, Express, React, React Native, Gatsby, Graphql, Vue, Angular</li>
         <li>Postgresql, MySQL, MongoDB, Firebase, MS Access</li>
         <li>Node, AJAX, APIs, JSON, REST</li>
         <li>GIT, Github, command line, computer science fundamentals</li>
