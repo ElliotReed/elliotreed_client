@@ -51,7 +51,7 @@ export default function PortfolioPage({ data }) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {edge.node.url}
+                  {edge.node.project}
                 </a>
               </article>
             </li>

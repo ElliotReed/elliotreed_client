@@ -3,7 +3,7 @@ import PortalLayout from "./portal"
 import MusicianLayout from "./musician"
 import DeveloperLayout from "./developer"
 
-export default ({ children, pageContext }) => {
+export default function layouts({ children, pageContext }) {
   if (pageContext.layout === "developer") {
     return <DeveloperLayout>{children}</DeveloperLayout>
   }

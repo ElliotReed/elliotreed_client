@@ -1,6 +1,6 @@
 // import axios from "axios";
 
-export default {
+const api = {
   // Get schedule
   getSchedule: function() {
     // return axios.get("/api/schedule");
@@ -24,3 +24,5 @@ export default {
   // },
 
 };
+
+module.exports = {api}

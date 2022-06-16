@@ -9,7 +9,6 @@ import ProfileImage from "../../components/ProfileImage"
 import ProfileInfo from "../../components/ProfileInfo"
 
 import { StaticImage } from "gatsby-plugin-image"
-import { graphql } from "gatsby"
 
 const DeveloperPage = ({ data }) => {
   const imageText =
