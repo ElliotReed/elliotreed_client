@@ -16,7 +16,6 @@
 
   h1 {
     color: $mainBrand;
-    margin: 0;
   }
 
   p {
@@ -45,6 +44,7 @@
   gap: 1rem;
   max-width: 100%;
   margin: $margin;
+
   & img {
     display: block;
   }

@@ -6,8 +6,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
+  bottom: 0;
+  right: 0;
   background: $black;
 
   h1 {
@@ -65,7 +65,7 @@
 
 .left {
   left: 0;
-  background: url("../img/dev-background_1920.png") center center no-repeat;
+  background: url("../img/dev-background-1920w.jpg") center center no-repeat;
   background-size: cover;
 }
 

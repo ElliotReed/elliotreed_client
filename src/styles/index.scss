@@ -10,33 +10,13 @@
 /* #endregion Variables */
 html {
   box-sizing: border-box;
-}
-
-/* set default base size for deveice and reading distance */
-/* mobile */
-html {
-  font-size: 16px;
-}
-
-/* tablet */
-@media only screen and (min-width: 768px) {
-  html {
-    font-size: 18px;
-  }
-}
-
-/* desktop */
-@media only screen and (min-width: 1080px) {
-  html {
-    font-size: 22px;
-  }
+  font-size: calc(15px + 0.390625vw);
 }
 
 *,
 *:before,
 *:after {
   box-sizing: inherit;
-  user-select: none;
 }
 
 body {
@@ -50,29 +30,9 @@ body {
   width: 100%;
 }
 
-h1 {
-  font-size: 2.075rem;
-  line-height: 3.334rem;
-}
-
-h2 {
-  font-size: 1.725rem;
-}
-
-h3 {
-  font-size: 1.5rem;
-}
-
-h4 {
-  font-size: 1.25rem;
-}
-
-h5 {
-  font-size: 1.1rem;
-}
-
-h6 {
-  font-size: 1rem;
+*::selection {
+  background-color: $darkShades;
+  color: $lightShades;
 }
 
 a {

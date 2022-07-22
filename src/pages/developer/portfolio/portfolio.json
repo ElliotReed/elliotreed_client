@@ -1,5 +1,18 @@
 [
   {
+    "blurb": "Author website",
+    "description": "Made with Django, adds subscibers to client MailChimp account. Custom css, contacts through Django send_mail. Updated from a sqlite3 database.",
+    "images": [
+      {
+        "image": "images/chris-narozny.jpg",
+        "alt": "Chris Narozny website landing page"
+      }
+    ],
+    "production": true,
+    "project": "Author Chris Narozny",
+    "url": "https://chrisnarozny.com"
+  },
+  {
     "blurb": "Band website",
     "description": "Made with PHP and Foundation, sales through PayPal. PHPList for email marketing. Updated from a MySQL database.",
     "images": [
