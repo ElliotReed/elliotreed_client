@@ -1,0 +1,22 @@
+@use "../styles/abstracts";
+
+
+
+.NotFoundPage {
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  color: abstracts.$lightShades;
+  text-align: center;
+  background: abstracts.$mainBrand;
+
+  button {
+    @include abstracts.paddingBox;
+    font-weight: bold;
+    border-radius: abstracts.$border-radius;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

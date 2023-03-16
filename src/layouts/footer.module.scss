@@ -1,17 +1,18 @@
-@import "../styles/base.scss";
+@use "../styles/abstracts";
 
 .footer {
   width: 100%;
-  flex-shrink: 0; /* Prevent Chrome, Opera, and Safari from letting these items shrink to smaller than their content's default minimum size. */
+  flex-shrink: 0;
+  /* Prevent Chrome, Opera, and Safari from letting these items shrink to smaller than their content's default minimum size. */
   display: flex;
   justify-content: flex-end;
-  @include gradient($darkShades);
-  padding: $padding;
+  @include abstracts.gradient(abstracts.$darkShades);
+  padding: abstracts.$padding;
 
   p {
     margin: 0;
-    color: $lightShades;
-    text-shadow: 2px 2px 0px darken($lightShades, 60);
+    color: abstracts.$lightShades;
+    text-shadow: 2px 2px 0px darken(abstracts.$lightShades, 60);
     font-size: .618rem;
   }
 }

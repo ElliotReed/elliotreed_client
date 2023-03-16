@@ -1,15 +1,14 @@
-@import "../styles/base.scss";
+@use "../styles/abstracts";
 
 .header {
   display: flex;
-  // max-width: 100%;
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-  @include paddingBox;
-  @include boxShadow;
-  @include gradient($lightShades);
-  color: $mainBrand;
+  @include abstracts.paddingBox;
+  @include abstracts.boxShadow;
+  background-color: abstracts.color(lightShades, 500);
+  color: abstracts.$mainBrand;
   z-index: 2;
 }
 
@@ -17,7 +16,8 @@
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  color: $mainBrand;
+  color: abstracts.$mainBrand;
+
   & a {
     text-decoration: none;
   }
@@ -33,27 +33,28 @@
   margin: 0;
   font-size: 1.382rem;
   font-weight: bolder;
-  color: $mainBrand;
+  color: abstracts.$mainBrand;
   text-transform: uppercase;
 }
 
 // #region aspect //
 .aspect {
   position: relative;
-  margin: 0 calc($margin / 3);
+  margin: 0 calc(abstracts.$margin / 3);
   perspective: 400px;
 }
 
 .aspect-menu {
   position: absolute;
-  left: calc(-1 * $padding);
-  @include boxShadow;
-  border-radius: $borderRadius;
-  @include gradient($lightShades);
-  padding: ($padding * $small) $padding;
+  left: calc(-1 * abstracts.$padding);
+  @include abstracts.boxShadow;
+  border-radius: abstracts.$border-radius;
+  @include abstracts.gradient(abstracts.$lightShades);
+  padding: (abstracts.$padding * abstracts.$small) abstracts.$padding;
   transform: rotateX(93deg);
   transform-origin: top;
   transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
@@ -66,8 +67,9 @@
   margin: 0;
   font-size: 1rem;
   font-style: italic;
-  color: $darkShades;
+  color: abstracts.$darkShades;
 }
+
 // #endregion
 
 // #region Nav
@@ -79,8 +81,8 @@
   padding: 0;
 
   li {
-    margin-right: $margin;
-    color: $mainBrand;
+    margin-right: abstracts.$margin;
+    color: abstracts.$mainBrand;
     text-decoration: none;
 
     &:last-child {
@@ -93,14 +95,14 @@
 
     &:hover {
       background: none;
-      color: $darkShades;
+      color: abstracts.$darkShades;
       cursor: pointer;
     }
   }
 }
 
 .active-nav-item {
-  color: rgba($mainBrand, $small);
+  color: rgba(abstracts.$mainBrand, abstracts.$small);
 }
 
 .show-list-link {
@@ -123,21 +125,21 @@
   margin: 0;
   padding: 0;
   white-space: nowrap;
-  @include boxShadow;
-  border-radius: $borderRadius;
-  @include gradient($lightShades);
-  color: $mainBrand;
-  transition: height $duration ease-in-out;
+  @include abstracts.boxShadow;
+  border-radius: abstracts.$border-radius;
+  @include abstracts.gradient(abstracts.$lightShades);
+  color: abstracts.$mainBrand;
+  transition: height abstracts.$duration ease-in-out;
   overflow: hidden;
 
   & li {
-    padding: $padding;
+    padding: abstracts.$padding;
     margin: 0;
     border: 1px solid transparent;
 
     &:hover a {
       cursor: pointer;
-      color: darken($mainBrand, $largePercent);
+      color: darken(abstracts.$mainBrand, abstracts.$largePercent);
     }
 
     &:first-child {
@@ -149,12 +151,13 @@
     font-size: 0.75rem;
     font-weight: bold;
     margin: 0;
-    border-bottom: 0.0618rem solid $mainBrand;
-    color: lighten($mainBrand, $smallPercent);
+    border-bottom: 0.0618rem solid abstracts.$mainBrand;
+    color: lighten(abstracts.$mainBrand, abstracts.$smallPercent);
   }
 }
 
 .roll-down {
   height: 6rem;
 }
+
 // #endregion

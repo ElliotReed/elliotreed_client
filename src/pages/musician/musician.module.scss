@@ -1,9 +1,9 @@
-@import "../../styles/base.scss";
+@use "../../styles/abstracts";
 
 .page {
   max-width: 100%;
 }
 
 .profile {
-  margin: $margin;
+  margin: abstracts.$margin;
 }

@@ -1,5 +1,5 @@
-@import "../styles/index.scss";
-@import "../styles/base.scss";
+@use "../styles/abstracts";
+@use "../styles/main";
 
 .grid-container {
   display: grid;
@@ -20,17 +20,17 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    border-radius: $borderRadius;
-    background: $darkShades;
+    border-radius: abstracts.$border-radius;
+    background: abstracts.$darkShades;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: $mainBrand;
+    background: abstracts.$mainBrand;
   }
 
   &::-webkit-scrollbar-track {
-    box-shadow: inset 0px 1px 1px rgba($black, 0.32), inset 0px 2px 2px rgba($black, 0.32);
-    background: $lightShades;
+    box-shadow: inset 0px 1px 1px rgba(abstracts.$black, 0.32), inset 0px 2px 2px rgba(abstracts.$black, 0.32);
+    background: abstracts.$lightShades;
   }
 
   & main {

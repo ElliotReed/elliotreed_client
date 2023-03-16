@@ -1,13 +1,13 @@
-@import '../../styles/base.scss';
+@use "../../styles/abstracts";
 
 .background {
   border: 1em solid transparent;
-  color: $lightShades;
-  margin: $margin 0;
+  color: abstracts.$lightShades;
+  margin: abstracts.$margin 0;
 }
 
 .profileWrapper {
-  margin: $margin;
+  margin: abstracts.$margin;
 }
 
 .windowImage {
@@ -18,5 +18,5 @@
 }
 
 .infoWrapper {
-  margin: $margin;
+  margin: abstracts.$margin;
 }

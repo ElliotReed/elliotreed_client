@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef } from "react";
+import classnames from "classnames";
 import { gsap } from "gsap";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin.js";
-import classnames from "classnames"
 
-import { animations } from './LogoAnimations'
-import * as logoStyle from "./Logo.module.scss"
+import { animations } from "./LogoAnimations";
 
-const Logo = ({ width, mode, animation = "" }) => {
+import * as logoStyle from "./Logo.module.scss";
+
+export default function Logo({ width, mode, animation = "" }) {
   gsap.registerPlugin(MotionPathPlugin)
   const [timeline] = useState(gsap.timeline())
 
@@ -89,4 +90,4 @@ const Logo = ({ width, mode, animation = "" }) => {
   )
 }
 
-export default Logo
+

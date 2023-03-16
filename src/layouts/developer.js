@@ -1,10 +1,10 @@
 import React from "react"
 
-import * as styles from "./layout.module.scss"
-
+import Background from "../components/UI/Background"
 import Header from "./header"
 import Footer from "./footer"
-import Background from "../components/UI/Background"
+
+import * as styles from "./layout.module.scss"
 
 const DeveloperLayout = ({ children }) => {
   let backgroundType = "developer"

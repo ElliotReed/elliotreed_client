@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect, useContext } from "react"
 import { Link } from "gatsby"
+
 import classnames from "classnames"
 import gsap from "gsap"
 
-import { GlobalStateContext } from "../context/GlobalContextProvider"
 import Logo from "../components/Logo"
+import { GlobalStateContext } from "../context/GlobalContextProvider"
 
 import * as styles from "./header.module.scss"
 
@@ -162,8 +163,8 @@ const Header = ({ type }) => {
           </div>
         </Link>
         <div
-          role="banner"
           className={styles.aspect}
+          role="banner"
           onMouseLeave={() => {
             hideAspectMenu.play()
             setSwitchQualifier(false)
@@ -196,10 +197,10 @@ const Header = ({ type }) => {
       </div>
 
       {type === "developer" && (
-        <DeveloperNav alink="Musician" qualifier="Developer" />
+        <DeveloperNav />
       )}
       {type === "musician" && (
-        <MusicianNav alink="Developer" qualifier="Musician" />
+        <MusicianNav />
       )}
     </header>
   )

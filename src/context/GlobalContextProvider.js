@@ -36,7 +36,7 @@ function reducer(state, action) {
       throw new Error("Bad action type.")
   }
 }
-const GlobalContextProvider = ({ children }) => {
+export default function GlobalContextProvider({ children }) {
   const [state, dispatch] = React.useReducer(reducer, initialState)
   return (
     <GlobalStateContext.Provider value={state}>
@@ -47,4 +47,4 @@ const GlobalContextProvider = ({ children }) => {
   )
 }
 
-export default GlobalContextProvider
+

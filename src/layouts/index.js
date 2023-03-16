@@ -1,7 +1,8 @@
 import React from "react"
-import PortalLayout from "./portal"
-import MusicianLayout from "./musician"
+
 import DeveloperLayout from "./developer"
+import MusicianLayout from "./musician"
+import PortalLayout from "./portal"
 
 export default function layouts({ children, pageContext }) {
   if (pageContext.layout === "developer") {

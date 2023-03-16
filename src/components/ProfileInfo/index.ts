@@ -1,0 +1,1 @@
+export { DeveloperProfile, MusicianProfile } from "./ProfileInfo";

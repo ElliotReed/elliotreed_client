@@ -1,0 +1,77 @@
+@use "../abstracts";
+@use './typography';
+@use '../layouts';
+
+/* #region Variables */
+:root {
+  /* animations */
+  --softIn: softIn 0.33s ease-in;
+}
+
+/* #endregion Variables */
+
+html {
+  box-sizing: border-box;
+  font-size: calc(15px + 0.390625vw);
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: typography.$fontStack;
+  line-height: 1.618rem;
+  background-color: abstracts.$black;
+  color: abstracts.$lightShades;
+}
+
+html,
+body {
+  position: relative;
+  min-height: 100%;
+  width: 100%;
+  min-width: 320px;
+}
+
+a {
+  text-decoration: none;
+  color: abstracts.color(mainBrand, 200);
+}
+
+ul {
+  list-style-type: none;
+}
+
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+}
+
+*::selection {
+  background-color: abstracts.$darkShades;
+  color: abstracts.$lightShades;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+cite {
+  font-size: 0.618rem;
+}
+
+@keyframes softIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

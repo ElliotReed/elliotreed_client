@@ -1,17 +1,17 @@
-@import "../../styles/base.scss";
+@use "../../styles/abstracts";
 
 .header {
-  margin: $margin;
+  margin: abstracts.$margin;
   width: 100%;
-  border: $border;
-  border-radius: $borderRadius;
-  background: $lightShades;
-  padding: $padding;
-  color: $darkShades;
+  border: abstracts.$border;
+  border-radius: abstracts.$border-radius;
+  background: abstracts.$lightShades;
+  padding: abstracts.$padding;
+  color: abstracts.$darkShades;
 
   & h1 {
-    margin: $margin 0;
+    margin: abstracts.$margin 0;
     font-weight: bold;
-    color: $mainBrand;
+    color: abstracts.$mainBrand;
   }
 }

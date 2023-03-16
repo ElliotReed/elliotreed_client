@@ -1,50 +1,7 @@
-module.exports = {
-  siteMetadata: {
-    title: `Elliot Reed`,
-    description: `Personal website`,
-    author: `Elliot Reed`,
-  },
-  plugins: [
-    `gatsby-plugin-sass`,
-    `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `portfolio`,
-        path: `${__dirname}/src/pages/developer/portfolio`,
-      },
-    },
-    `gatsby-plugin-image`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    `gatsby-transformer-json`,
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `Elliot Reed Website`,
-        short_name: `Elliot`,
-        start_url: `/`,
-        background_color: `#221A1D`,
-        theme_color: `#221A1D`,
-        display: `minimal-ui`,
-        icon: `src/images/elliotreed-icon.svg`, // This path is relative to the root of the site.
-      },
-    },
-    `gatsby-plugin-layout`,
+// We register the TypeScript evaluator in gatsby-config so we don't need to do
+// it in any other .js file. It automatically reads TypeScript config from
+// tsconfig.json.
+require('ts-node').register();
 
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
-  ],
-  // proxy: {
-  //   prefix: "",
-  //   url: "http://localhost:3066",
-  // },
-}
+// Use a TypeScript version of gatsby-config.js.
+module.exports = require('./gatsby-config.ts');

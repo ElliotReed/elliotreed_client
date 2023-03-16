@@ -1,99 +1,110 @@
-@import "../styles/base";
+@use "../styles/abstracts";
 
-.landingContainer {
-  display: flex;
-  flex-wrap: wrap;
+.landing-page {
   position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background: $black;
+  display: flex;
+  flex-direction: column;
+  inset: 0;
+  background: abstracts.$black;
 
-  h1 {
+  @media (min-width: 640px) and (orientation: landscape) {
+    flex-direction: row;
+  }
+
+  @media (min-width: 900px) {
+    flex-direction: row;
+  }
+}
+
+.aspect-container {
+  $transition: abstracts.$duration all ease-in-out;
+  position: relative;
+  flex-basis: 50%;
+  background-attachment: local;
+  background-color: abstracts.$darkShades;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: $transition;
+
+  &:before {
+    position: absolute;
+    content: "";
+    inset: 0;
+    background: rgba(abstracts.$black, abstracts.$small);
+    transition: $transition;
+  }
+
+  &:hover {
+    flex-basis: 61.8%;
+  }
+
+  .aspect-heading {
     position: absolute;
     left: 50%;
     top: 10%;
-    font-weight: bold;
+    color: abstracts.$white;
     white-space: nowrap;
-    color: $white;
     transform: translateX(-50%);
   }
-}
 
-.button {
-  display: block;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  height: 4em;
-  width: 14em;
-  padding: 1.25em;
-  border: $white solid 0.25em;
-  color: $white;
-  text-align: center;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-decoration: none;
-  transform: translateX(-50%);
-  cursor: pointer;
-}
+  a {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: abstracts.$white;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: abstracts.$white solid 0.25em;
+    @include abstracts.paddingBox;
+    transform: translateX(-50%);
 
-.left .button:hover {
-  background-color: lighten($mainBrand, $smallPercent);
-  border-color: $mainBrand;
-}
-
-.right .button:hover {
-  background-color: lighten($darkShades, $smallPercent);
-  border-color: $darkShades;
-}
-
-.split {
-  position: relative;
-  width: 100%;
-  height: 50%;
-  overflow: hidden;
-}
-
-@media (min-width: 576px) {
-  .split {
-    width: 50%;
-    height: 100%;
   }
-}
 
-.left {
-  left: 0;
-  background: url("../img/dev-background-1920w.jpg") center center no-repeat;
-  background-size: cover;
-}
+  &.left a:hover {
+    background-color: lighten(abstracts.$mainBrand, abstracts.$smallPercent);
+    border-color: abstracts.$mainBrand;
+  }
 
-.left::before {
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 100%;
-  background: rgba($black, $small);
-}
+  &.right a:hover {
+    background-color: lighten(abstracts.$darkShades, abstracts.$smallPercent);
+    border-color: abstracts.$darkShades;
+  }
 
-.right {
-  right: 0;
-  background: url("../img/elliot-26.jpg") center center no-repeat;
-  background-size: cover;
-}
+  &.left {
+    background-image: url("../images/landing-developer-background_0.25x.jpg");
+    background-position: 0% center;
+  }
 
-.right::before {
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 100%;
-  background: rgba($black, $small);
-}
+  &.right {
+    background-image: url("../images/landing-musician-background_0.5x.jpg");
+  }
 
-.left,
-.right,
-.left::before,
-.right::before {
-  transition: $duration all ease-in-out;
+  @media (min-width: 500px) {
+    &.left {
+      background-image: url("../images/landing-developer-background_0.5x.jpg");
+    }
+  }
+
+  @media (min-width: 768px) {
+    &.left {
+      background-image: url("../images/landing-developer-background_0.75x.jpg");
+    }
+
+    &.right {
+      background-image: url("../images/landing-musician-background_0.75x.jpg");
+    }
+  }
+
+  @media (min-width: 1080px) {
+    &.left {
+      background-image: url("../images/landing-developer-background.jpg");
+    }
+
+    &.right {
+      background-image: url("../images/landing-musician-background.jpg");
+    }
+  }
 }

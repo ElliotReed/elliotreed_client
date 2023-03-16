@@ -1,46 +1,46 @@
-@import "../../styles/base.scss";
+@use "../../styles/abstracts";
 
 .page-title {
   text-align: center;
-  color: $lightShades;
+  color: abstracts.$lightShades;
 }
 
 .container {
   margin: 0 auto;
-  color: $lightShades;
+  color: abstracts.$lightShades;
 }
 
 .set-wrapper {
-  margin: $margin;
+  margin: abstracts.$margin;
   background: hsla(342, 10%, 20%, 0.98);
-  padding: $padding;
-  @include boxShadow;
-  border-radius: $borderRadius;
+  padding: abstracts.$padding;
+  @include abstracts.boxShadow;
+  border-radius: abstracts.$border-radius;
 }
 
 .set-title-wrapper {
   display: flex;
   justify-content: space-between;
-  padding: $padding;
-  border-bottom: 1px solid $lightShades;
+  padding: abstracts.$padding;
+  border-bottom: 1px solid abstracts.$lightShades;
 }
 
 .song-list {
-  padding: $padding 0;
+  padding: abstracts.$padding 0;
 }
 
 .song-content {
-  padding: $padding;
+  padding: abstracts.$padding;
 }
 
 .song {
-  margin: 0 0 $margin;
-  @include boxShadow;
-  border-radius: $borderRadius;
+  margin: 0 0 abstracts.$margin;
+  @include abstracts.boxShadow;
+  border-radius: abstracts.$border-radius;
 }
 
 .song-title {
-  padding: $padding;
+  padding: abstracts.$padding;
 }
 
 .part-wrapper {
@@ -50,20 +50,21 @@
 }
 
 .part-list {
-  margin: 0 0 $margin;
-  padding: $padding;
+  margin: 0 0 abstracts.$margin;
+  padding: abstracts.$padding;
   font-size: 1.618rem;
   background: lighten(hsl(339, 10%, 20%), 10);
-  border-radius: $borderRadius;
-  @include boxShadow;
+  border-radius: abstracts.$border-radius;
+  @include abstracts.boxShadow;
 
   & li {
-    margin-bottom: $margin;
-    border-bottom: 1px solid $lightShades;
+    margin-bottom: abstracts.$margin;
+    border-bottom: 1px solid abstracts.$lightShades;
 
     & span {
       font-size: 1.32rem;
     }
+
     & .part {
       display: block;
       font-style: oblique;
@@ -77,12 +78,12 @@
 
   & button {
     height: 1rem;
-    margin-left: $margin;
-    border: 1px solid $lightShades;
+    margin-left: abstracts.$margin;
+    border: 1px solid abstracts.$lightShades;
     background: transparent;
     padding: 0;
     font-size: 2rem;
-    color: $lightShades;
+    color: abstracts.$lightShades;
 
     & span {
       transform: rotate(90deg);
@@ -92,12 +93,13 @@
 
 .link-container {
   display: flex;
-  margin-bottom: $margin;
-  padding: $padding;
+  margin-bottom: abstracts.$margin;
+  padding: abstracts.$padding;
   background: lighten(hsl(339, 10%, 20%), 10);
-  background: $lightShades;
-  border-radius: $borderRadius;
-  @include boxShadow;
+  background: abstracts.$lightShades;
+  border-radius: abstracts.$border-radius;
+  @include abstracts.boxShadow;
+
   &:hover {
     cursor: pointer;
   }
@@ -106,7 +108,7 @@
     text-decoration-line: underline;
     text-underline-position: under;
     color: lighten(#505f56, 0);
-    margin-left: $margin;
+    margin-left: abstracts.$margin;
 
     &:hover {
       cursor: pointer;
@@ -121,23 +123,23 @@
 .videoList {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: $margin;
+  margin-bottom: abstracts.$margin;
   overflow: hidden;
   background: lighten(hsl(339, 10%, 20%), 10);
-  border-radius: $borderRadius;
-  @include boxShadow;
+  border-radius: abstracts.$border-radius;
+  @include abstracts.boxShadow;
 
   & li {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    margin: $margin;
+    margin: abstracts.$margin;
     // max-width: 25rem;
     min-width: 13rem;
   }
 
   & label {
-    padding: calc($padding / 3) 0 $padding;
+    padding: calc(abstracts.$padding / 3) 0 abstracts.$padding;
   }
 }
 

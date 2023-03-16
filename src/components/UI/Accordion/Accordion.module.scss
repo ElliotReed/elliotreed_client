@@ -1,4 +1,4 @@
-@import "../../../styles/base.scss";
+@use "../../../styles/abstracts";
 
 $time: 0.6s;
 
@@ -9,20 +9,20 @@ $time: 0.6s;
 
 .accordion {
   background: transparent;
-  color: $lightShades;
+  color: abstracts.$lightShades;
   cursor: pointer;
-  padding: $padding;
+  padding: abstracts.$padding;
   display: flex;
   align-items: center;
   border: none;
-  border-radius: var(--borderRadius);
+  border-radius: abstracts.$border-radius;
   outline: none;
   transition: background-color $time ease;
 }
 
 .accordion:hover,
 .active {
-  @include boxShadow;
+  @include abstracts.boxShadow;
 }
 
 .title {
@@ -40,7 +40,7 @@ $time: 0.6s;
 }
 
 .icon:before {
-  color: $lightShades;
+  color: abstracts.$lightShades;
   z-index: 1;
   content: "\232a";
   line-height: 1rem;
@@ -62,5 +62,5 @@ $time: 0.6s;
 }
 
 .text {
-  padding: $padding;
+  padding: abstracts.$padding;
 }
