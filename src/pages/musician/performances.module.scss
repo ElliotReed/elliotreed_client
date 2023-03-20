@@ -5,7 +5,7 @@
   max-width: 100%;
   @include abstracts.boxShadow;
   border-radius: abstracts.$border-radius;
-  @include abstracts.gradient(abstracts.$lightShades);
+  background: abstracts.$lightShades;
   padding: abstracts.$padding;
   color: abstracts.$darkShades;
 

@@ -17,7 +17,7 @@
 }
 
 .aspect-container {
-  $transition: abstracts.$duration all ease-in-out;
+  $transition: abstracts.$duration-md all ease-in-out;
   position: relative;
   flex-basis: 50%;
   background-attachment: local;
