@@ -1,7 +1,7 @@
 import React from "react"
 
 import Background from "../components/UI/Background"
-import Header from "./header"
+import Header from "./Header"
 import Footer from "./footer"
 
 import * as styles from "./layout.module.scss"
@@ -11,15 +11,13 @@ const DeveloperLayout = ({ children }) => {
   let headerType = "developer"
 
   return (
-    <div className={styles.gridContainer}>
+    <div className={styles.content}>
       <Header type={headerType} />
-      <div className={styles.content}>
-        <Background type={backgroundType} />
-        <main>
-          {children}
-          <Footer />
-        </main>
-      </div>
+      <Background type={backgroundType} />
+      <main className={styles.main}>
+        {children}
+      </main>
+      <Footer />
     </div>
   )
 }

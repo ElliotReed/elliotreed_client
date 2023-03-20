@@ -3,7 +3,7 @@ import React from "react"
 import Background from "../components/UI/Background"
 import { ContextProviderComponent } from "../context/Context"
 
-import Header from "./header"
+import Header from "./Header"
 import Footer from "./footer"
 
 import * as styles from "./layout.module.scss"
@@ -14,15 +14,13 @@ const MusicianLayout = ({ children }) => {
 
   return (
     <ContextProviderComponent>
-      <div className={styles.gridContainer}>
+      <div className={styles.content}>
         <Header type={headerType} />
-        <div className={styles.content}>
-          <Background type={backgroundType} />
-          <main>
-            {children}
-            <Footer />
-          </main>
-        </div>
+        <Background type={backgroundType} />
+        <main className={styles.main}>
+          {children}
+        </main>
+        <Footer />
       </div>
     </ContextProviderComponent>
   )

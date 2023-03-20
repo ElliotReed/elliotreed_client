@@ -2,9 +2,9 @@
 @use 'scale-functions' as factors;
 
 // colors
-$scrollbar-thumb-background: colors.color(mainBrand, 600);
-$scrollbar-thumb-background-hover: colors.color(mainBrand, 400);
-$scrollbar-track-background: colors.color(black, 400);
+$scrollbar-thumb-background: colors.color(darkShades, 500);
+$scrollbar-thumb-background-hover: colors.color(darkShades, 400);
+$scrollbar-track-background: colors.color(lightShades, 500);
 
 /* sizes */
 $margin: 1rem;
@@ -36,16 +36,16 @@ $space-lg: factors.em-scale(600);
 
 
 // speed
-$duration: 0.38s;
 $duration-sm: 160ms;
 $duration-md: 320ms;
+$duration-lg: 640ms;
 
 $ease: ease-in-out;
 
 /* box model */
 // $border: 1px solid transparentize(colors.color(brown, 900), functions.scale(500));
 $border: 1px solid colors.color(darkShades, 500);
-$border-radius: factors.em-scale(200);
+$border-radius: factors.em-scale(100);
 
 $max-width: 70ch;
 

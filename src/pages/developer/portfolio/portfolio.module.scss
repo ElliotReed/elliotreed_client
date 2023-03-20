@@ -10,7 +10,7 @@
 
 .portfolioHeader {
   border-radius: abstracts.$border-radius;
-  @include abstracts.gradient(abstracts.$lightShades);
+  background: abstracts.$lightShades;
   padding: abstracts.$padding;
   @include abstracts.boxShadow;
 
@@ -35,7 +35,7 @@
   margin: abstracts.$margin;
   @include abstracts.boxShadow;
   border-radius: abstracts.$border-radius;
-  @include abstracts.gradient(abstracts.$lightShades);
+  background: abstracts.$lightShades;
   transition: 0.3s;
 }
 

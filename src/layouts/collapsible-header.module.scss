@@ -1,0 +1,67 @@
+@use "../styles/abstracts";
+
+.collapsible-header {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 1;
+}
+
+.collapse {
+  animation: collapse abstracts.$duration-lg ease forwards;
+}
+
+/* Open nav bar on scroll up */
+.expand {
+  animation: expand abstracts.$duration-md ease forwards;
+}
+
+@keyframes collapse {
+  from {
+    opacity: 1;
+    top: 0;
+  }
+
+  to {
+    opacity: 0;
+    top: -100%;
+  }
+}
+
+@keyframes collapse {
+  from {
+    opacity: 1;
+    top: 0;
+  }
+
+  to {
+    opacity: 0;
+    top: -100%;
+  }
+}
+
+
+
+@-webkit-keyframes expand {
+  from {
+    opacity: 0;
+    top: -100%;
+  }
+
+  to {
+    opacity: 1;
+    top: 0;
+  }
+}
+
+@keyframes expand {
+  from {
+    opacity: 0;
+    top: -100%;
+  }
+
+  to {
+    opacity: 1;
+    top: 0;
+  }
+}
