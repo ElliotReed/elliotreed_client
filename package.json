@@ -9,28 +9,28 @@
   "author": "Elliot Reed>",
   "dependencies": {
     "classnames": "^2.3.2",
-    "gatsby": "^5.7.0",
-    "gatsby-plugin-image": "^3.7.0",
-    "gatsby-plugin-layout": "^4.7.0",
-    "gatsby-plugin-manifest": "^5.7.0",
-    "gatsby-plugin-offline": "^6.7.0",
-    "gatsby-plugin-sass": "^6.7.0",
-    "gatsby-plugin-sharp": "^5.7.0",
-    "gatsby-plugin-typescript": "^5.7.0",
-    "gatsby-source-filesystem": "^5.7.0",
-    "gatsby-transformer-json": "^5.7.0",
-    "gatsby-transformer-sharp": "^5.7.0",
+    "gatsby": "^5.11.0",
+    "gatsby-plugin-image": "^3.11.0",
+    "gatsby-plugin-layout": "^4.11.0",
+    "gatsby-plugin-manifest": "^5.11.0",
+    "gatsby-plugin-offline": "^6.11.0",
+    "gatsby-plugin-sass": "^6.11.0",
+    "gatsby-plugin-sharp": "^5.11.0",
+    "gatsby-plugin-typescript": "^5.11.0",
+    "gatsby-source-filesystem": "^5.11.0",
+    "gatsby-transformer-json": "^5.11.0",
+    "gatsby-transformer-sharp": "^5.11.0",
     "gatsby-transformer-typescript-css-modules": "^1.0.14",
-    "gsap": "^3.11.4",
+    "gsap": "^3.12.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.58.3"
+    "sass": "^1.64.2"
   },
   "devDependencies": {
-    "@types/node": "^18.15.0",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
-    "typescript": "^4.9.5"
+    "@types/node": "^20.4.7",
+    "@types/react": "^18.2.18",
+    "@types/react-dom": "^18.2.7",
+    "typescript": "^5.1.6"
   },
   "keywords": [
     "Elliot Reed development musician"
