@@ -2,6 +2,9 @@ import React, { useState } from "react"
 
 import * as styles from "./ContactForm.module.scss"
 
+const CONTACT_ROUTE_URL = "https://api.elliotreed.net/sendMessage";
+// const CONTACT_ROUTE_URL = "http://localhost:3066/sendMessage";
+
 const ContactForm = ({ type }) => {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
@@ -12,7 +15,7 @@ const ContactForm = ({ type }) => {
   async function handleSubmit(e) {
     setSubmitted(true)
     e.preventDefault()
-    const response = await sendEmail("https://api.elliotreed.net//sendMessage", {
+    const response = await sendEmail(CONTACT_ROUTE_URL, {
       name: name,
       email: email,
       message: message,
@@ -21,6 +24,10 @@ const ContactForm = ({ type }) => {
 
     if (response.mail === "success") {
       setSuccess(true)
+    }
+
+    if (response.error) {
+      console.log(response.error);
     }
   }
 
