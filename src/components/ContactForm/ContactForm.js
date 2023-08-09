@@ -2,95 +2,163 @@ import React, { useState } from "react"
 
 import * as styles from "./ContactForm.module.scss"
 
-const CONTACT_ROUTE_URL = "https://api.elliotreed.net/sendMessage";
-// const CONTACT_ROUTE_URL = "http://localhost:3066/sendMessage";
+// const CONTACT_ROUTE_URL = "https://api.elliotreed.net/sendMessage";
+const CONTACT_ROUTE_URL = "http://localhost:3066/sendMessage";
 
-const ContactForm = ({ type }) => {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [message, setMessage] = useState("")
-  const [submitted, setSubmitted] = useState(false)
-  const [success, setSuccess] = useState(false)
+async function sendEmail(url = "", data = {}) {
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+    body: JSON.stringify(data),
+  })
+  return await response.json()
+}
+
+export default function ContactForm({ type }) {
+  const [errorMessage, setErrorMessage] = useState("");
+  const [message, setMessage] = useState({
+    name: "",
+    email: "",
+    message: "",
+    type: type,
+  });
+
+  const [messageState, setMessageState] = useState({
+    new: true,
+    submitting: false,
+    success: false,
+    error: false,
+  });
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setMessage({ ...message, [name]: value });
+  };
 
   async function handleSubmit(e) {
-    setSubmitted(true)
-    e.preventDefault()
-    const response = await sendEmail(CONTACT_ROUTE_URL, {
-      name: name,
-      email: email,
-      message: message,
-      type: type,
-    })
+    e.preventDefault();
+    setMessageState(prev => ({ ...prev, "submitting": true, "new": false }));
+    const response = await sendEmail(CONTACT_ROUTE_URL, message);
 
-    if (response.mail === "success") {
-      setSuccess(true)
+    if (!response.error) {
+      setMessageState(prev => ({ ...prev, "submitting": false, "success": true }));
+      return
     }
 
-    if (response.error) {
-      console.log(response.error);
-    }
-  }
-
-  async function sendEmail(url = "", data = {}) {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-      },
-      body: JSON.stringify(data),
-    })
-    return await response.json()
+    setMessageState(prev => ({ ...prev, "submitting": false, "error": true }));
+    setErrorMessage(response.error.message);
+    console.log(response.error);
   }
 
   return (
-    <section className={styles.header}>
+    <form className={styles.header} onSubmit={handleSubmit}>
       <h1>Contact</h1>
+
       <hr></hr>
-      {submitted && !success && <div>Sending...</div>}
-      {submitted && success && <div>Your message has been sent!</div>}
-      {!submitted && !success && (
+
+      {messageState.submitting && <Sending />}
+
+      {messageState.success && (
+        <Success>
+          <RenewFormButton setMessage={setMessage} setMessageState={setMessageState} />
+        </Success>
+      )}
+
+      {messageState.error && (
+        <ErrorMessage errorMessage={errorMessage}>
+          <RenewFormButton setMessage={setMessage} setMessageState={setMessageState} />
+        </ErrorMessage>
+      )}
+
+      {messageState.new && (
         <>
           <p>Send me a message!</p>
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="name">Name</label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                value={name}
-                onChange={e => setName(e.target.value)}
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="message">Message</label>
-              <textarea
-                type="text"
-                name="message"
-                id="message"
-                value={message}
-                onChange={e => setMessage(e.target.value)}
-                required
-              />
-            </div>
-            <input type="submit" value="Send Message" />
-          </form>
+          <div>
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={message.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={message.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="message">Message</label>
+            <textarea
+              type="text"
+              name="message"
+              id="message"
+              onChange={handleChange}
+              value={message.message}
+              required
+            />
+          </div>
+          <input type="submit" value="Send Message" />
         </>
       )}
-    </section>
+    </form>
   )
 }
 
-export default ContactForm
+function ErrorMessage({ errorMessage, children }) {
+  return (
+    <div>
+      <p>There was an error sending your message!</p>
+
+      <p>{errorMessage}</p>
+
+      {children}
+    </div>
+  );
+};
+
+function Success({ children }) {
+  return (
+    <div>
+      <p>Your message has been sent!</p>
+      {children}
+    </div>
+  );
+};
+
+function RenewFormButton({ setMessage, setMessageState }) {
+  return (
+    <button type="button" onClick={() => {
+      setMessageState(prev => (
+        {
+          ...prev,
+          new: true,
+          success: false,
+          error: false,
+        }
+      ))
+      setMessage(prev => (
+        {
+          ...prev,
+          message: '',
+        }
+      ))
+    }
+    }>Send another message</button>);
+}
+
+function Sending() {
+  return (
+    <div>Sending...</div>
+  );
+}
