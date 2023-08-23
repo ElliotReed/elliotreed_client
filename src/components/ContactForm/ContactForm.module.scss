@@ -1,25 +1,29 @@
-@use "../../styles/abstracts";
+@use "../../styles/abstracts" as *;
 
 .header {
-  margin: abstracts.$margin;
+  margin-top: $margin;
   max-width: 100%;
-  @include abstracts.boxShadow;
-  border-radius: abstracts.$border-radius;
-  @include abstracts.gradient(abstracts.$lightShades);
-  padding: abstracts.$padding;
-  color: abstracts.$darkShades;
+  @include shadow(1);
+  border-radius: $border-radius;
+  @include gradient($lightShades);
+  padding: $padding;
+  color: $darkShades;
 
   & h1 {
-    margin: abstracts.$margin 0;
+    margin: $margin 0;
     font-weight: bold;
-    color: abstracts.$mainBrand;
+    color: $mainBrand;
   }
 }
 
 form {
+  &>*+* {
+    margin-top: $spacer-md;
+  }
+
   & label {
     display: block;
-    padding: abstracts.$padding 0 0 0;
+    padding: $padding 0 0 0;
 
     &::after {
       content: ":";
@@ -28,40 +32,24 @@ form {
 
   & input,
   textarea {
-    color: abstracts.$darkShades;
+    color: $darkShades;
     font-size: 1rem;
     width: 100%;
     height: 1em;
-    border-radius: abstracts.$border-radius;
-    background-color: lighten(abstracts.$lightShades, 10);
-    padding: abstracts.$padding;
+    border-radius: $border-radius;
+    background-color: lighten($lightShades, 10);
+    padding: $padding;
     outline: none;
-    box-shadow: 1px 1px 2px abstracts.$darkShades inset;
+    box-shadow: 1px 1px 2px $darkShades inset;
 
     &:focus,
     :active {
       // border: 1px solid;
-      box-shadow: 0 0 3px rgba(abstracts.$darkShades, 0.5), 1px 1px 2px abstracts.$darkShades inset;
+      box-shadow: 0 0 3px rgba($darkShades, 0.5), 1px 1px 2px $darkShades inset;
+
     }
 
-    &[type="submit"] {
-      height: 3em;
-      margin-top: abstracts.$margin;
-      @include abstracts.gradient(abstracts.$mainBrand);
-      color: abstracts.$lightShades;
-      text-shadow: 2px 2px 0px darken(abstracts.$lightShades, 60);
-      box-shadow: 4px 4px 2px lighten(abstracts.$mainBrand, 20) inset, 4px 4px 2px darken(abstracts.$mainBrand, 20);
 
-      &:hover,
-      :focus {
-        @include abstracts.gradient(darken(abstracts.$mainBrand, 3));
-        cursor: pointer;
-      }
-
-      &:active {
-        box-shadow: 3px 3px 2px lighten(abstracts.$mainBrand, 20) inset, 3px 3px 2px darken(abstracts.$mainBrand, 20);
-      }
-    }
   }
 
   & textarea {
@@ -74,8 +62,8 @@ form {
 
   0%,
   100% {
-    color: abstracts.$darkShades;
-    background: lighten(abstracts.$lightShades, 10);
+    color: $darkShades;
+    background: lighten($lightShades, 10);
   }
 }
 
@@ -84,4 +72,21 @@ input:-webkit-autofill {
   /* Safari support - any positive time runs instantly */
   animation-name: autofill;
   animation-fill-mode: both;
+}
+
+.sending {
+  display: flex;
+  align-items: center;
+
+  p {
+    flex: 0;
+  }
+
+  div {
+    flex: 1;
+
+    svg {
+      color: $mainBrand;
+    }
+  }
 }

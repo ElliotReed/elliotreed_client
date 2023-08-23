@@ -1,0 +1,27 @@
+@use '../../../styles/abstracts/' as *;
+
+.button {
+  @include button;
+}
+
+.button1 {
+  position: relative;
+  flex-grow: 1;
+  padding-block: $spacer-sm;
+  padding-inline: $spacer-md;
+  @include gradient($mainBrand);
+  color: $lightShades;
+  text-shadow: 2px 2px 0px darken($lightShades, 60);
+  @include shadow(1);
+
+  &:hover,
+  :focus {
+    @include gradient(darken($mainBrand, 3));
+    cursor: pointer;
+    @include shadow(2);
+  }
+
+  &:active {
+    @include shadow(0);
+  }
+}
