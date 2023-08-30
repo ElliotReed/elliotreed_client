@@ -21,7 +21,7 @@
 
 @mixin button($bg-color: colors.$mainBrand, $text-color: colors.$white) {
   @include border($color: colors.$mainBrand);
-  margin: variables.$margin;
+  // margin: variables.$margin;
   @include paddingBox;
   color: $text-color;
   // font-weight: 600;

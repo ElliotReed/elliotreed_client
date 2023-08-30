@@ -2,6 +2,12 @@
 
 .button {
   @include button;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  gap: $space-sm;
+  align-items: center;
+  // position: relative;
 }
 
 .button1 {

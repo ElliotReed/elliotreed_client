@@ -22,7 +22,7 @@ $fs-xsm-rem: factors.rem-scale(400);
 $fs-sm-rem: factors.rem-scale(400);
 $fs-md-rem: factors.rem-scale(500);
 $fs-lg-rem: 1.29rem;
-$fs-xlg-erm: factors.rem-scale(700);
+$fs-xlg-rem: factors.rem-scale(700);
 
 /* font weights */
 // $fw-sm: 400;
@@ -34,6 +34,10 @@ $space-sm: factors.em-scale(400);
 $space-md: factors.em-scale(500);
 $space-lg: factors.em-scale(600);
 
+$spacer-xs: .47em;
+$spacer-sm: .76em;
+$spacer-md: 1em;
+$spacer-lg: calc($spacer-md * 1.618);
 
 // speed
 $duration-sm: 160ms;
@@ -49,10 +53,7 @@ $border-radius: factors.em-scale(100);
 
 $max-width: 70ch;
 
-$spacer-xs: .47em;
-$spacer-sm: .76em;
-$spacer-md: 1em;
-$spacer-lg: calc($spacer-md * 1.618);
+
 
 $btn-spacing-sm-btn: factors.px-to-rem(36px); // 36-48
 $btn-spacing-md-btn: factors.px-to-rem(24px); // 24-36

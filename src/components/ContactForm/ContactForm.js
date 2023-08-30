@@ -23,7 +23,8 @@ async function sendEmail(url = "", data = {}) {
 }
 
 export default function ContactForm({ type }) {
-  const [errorMessage, setErrorMessage] = useState("");
+  const [directiveText, setDirectiveText] = useState("Send me a message!");
+  const [sendButtonText, setSendButtonText] = useState('Send Message')
   const [message, setMessage] = useState({
     name: "",
     email: "",
@@ -46,183 +47,139 @@ export default function ContactForm({ type }) {
   async function handleSubmit(e) {
     e.preventDefault();
     setFormState(prev => ({ ...prev, "submitting": true, "new": false }));
+    setSendButtonText("Sending...")
 
     try {
       const response = await sendEmail(CONTACT_ROUTE_URL, message);
-
+      console.log(response);
       if (!response.error) {
-        console.log(response);
+        console.log(response.status);
         setFormState(prev => ({ ...prev, "submitting": false, "success": true }));
+        setDirectiveText(response.message)
+        setSendButtonText("Send Another Message")
+        handleReset()
         return
       }
 
-      if (response.error) {
-        setFormState(prev => ({ ...prev, "submitting": false, "error": true }));
-        setErrorMessage("There was an error sending your message!");
-        console.log(response.error);
-      }
-    } catch (error) {
       setFormState(prev => ({ ...prev, "submitting": false, "error": true }));
-      setErrorMessage("There was a server error!");
+      console.log(response.error);
+      throw new Error("There was an error sending your message!")
     }
+    catch (error) {
+      setFormState(prev => ({ ...prev, "submitting": false, "error": true }));
+      setDirectiveText(error.message || "There was a server error!");
+      setSendButtonText("Try Again");
+    }
+  }
+
+  const handleReset = () => {
+    setFormState(prev => (
+      {
+        ...prev,
+        new: true,
+        success: false,
+        error: false,
+      }
+    ))
+    setMessage(prev => (
+      {
+        ...prev,
+        message: '',
+      }
+    ))
   }
 
   return (
     <form className={styles.header} onSubmit={handleSubmit}>
       <h1>Contact</h1>
 
-      <hr></hr>
+      <hr />
 
-      {formState.submitting && <Sending />}
-
-      {formState.success && (
-        <Success>
-          <RenewFormButton setMessage={setMessage} setMessageState={setFormState} />
-        </Success>
-      )}
-
-      {formState.error && (
-        <ErrorMessage errorMessage={errorMessage}>
-          <RenewFormButton setMessage={setMessage} setMessageState={setFormState} />
-        </ErrorMessage>
-      )}
+      <p>
+        {directiveText}
+      </p>
 
       <div>
-        <p>
-          <span>
-            <FontAwesomeIcon icon={faEnvelope} />
-          </span>Send me a message!
-        </p>
-        <div>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            value={message.name}
-            onChange={handleChange}
-            disabled={formState.submitting}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            disabled={formState.submitting}
-            required
-            onChange={handleChange}
-            value={message.email}
-          />
-        </div>
-        <div>
-          <label htmlFor="message">Message</label>
-          <textarea
-            type="text"
-            name="message"
-            id="message"
-            onChange={handleChange}
-            value={message.message}
-            disabled={!formState.submitting}
-            required
-          />
-        </div>
-        <ButtonGroup>
-          <Button type="submit">
-            {!formState.submitting ? <Sending /> : "Send Message"}
-          </Button>
+        <label htmlFor="name">Name</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          value={message.name}
+          onChange={handleChange}
+          disabled={formState.submitting}
 
-        </ButtonGroup>
+        />
       </div>
+      <div>
+        <label htmlFor="email">Email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          disabled={formState.submitting}
+          required
+          onChange={handleChange}
+          value={message.email}
+        />
+      </div>
+      <div>
+        <label htmlFor="message">Message</label>
+        <textarea
+          type="text"
+          name="message"
+          id="message"
+          onChange={handleChange}
+          value={message.message}
+          disabled={formState.submitting}
+          required
+        />
+      </div>
+      <ButtonGroup>
+        <Button type="submit">
+          <Sending shouldAnimate={formState.submitting} />
+          {sendButtonText}
+        </Button>
+      </ButtonGroup>
     </form>
   )
 }
 
-function ErrorMessage({ errorMessage, children }) {
-  return (
-    <div>
-      <p>There was an error sending your message!</p>
-
-      <p>{errorMessage}</p>
-
-      {children}
-    </div>
-  );
-};
-
-function Success({ children }) {
-  return (
-    <div>
-      <p>Your message has been sent!</p>
-      {children}
-    </div>
-  );
-};
-
-function RenewFormButton({ setMessage, setMessageState }) {
-  return (
-    <button type="button" onClick={() => {
-      setMessageState(prev => (
-        {
-          ...prev,
-          new: true,
-          success: false,
-          error: false,
-        }
-      ))
-      setMessage(prev => (
-        {
-          ...prev,
-          message: '',
-        }
-      ))
-    }
-    }>Send another message</button>);
-}
-
-function Sending() {
+function Sending({ shouldAnimate = false }) {
   const mail = useRef();
   const container = useRef();
 
   useLayoutEffect(() => {
-    const xDuration = 1.5;
-    const tl = gsap.timeline({
-      repeat: -1,
-    })
-    let ctx = gsap.context(() => {
-      tl.to(mail.current, {
-        x: () => container.current.clientWidth - (mail.current.clientWidth) * 2,
-        duration: xDuration,
-        yoyo: true,
-        repeat: 1,
-        ease: 'power2.inOut',
-      });
-      tl.to(mail.current, {
-        rotation: 360,
-        duration: xDuration / 2,
-        ease: 'none',
-        repeat: 3,
-      }, "<");
-      tl.to(mail.current, {
-        scale: 2,
-        duration: xDuration / 2,
-        yoyo: true,
-        repeat: 3,
-        ease: 'none',
-      }, "<")
-    })
+    if (shouldAnimate) {
+      const xDuration = 1.5;
+      const tl = gsap.timeline({
+        repeat: -1,
+      })
+      let ctx = gsap.context(() => {
+        tl.to(mail.current, {
+          rotation: 360,
+          duration: xDuration / 2,
+          ease: 'none',
+          repeat: 3,
+        }, "<");
+        tl.to(mail.current, {
+          scale: 1.29,
+          duration: xDuration / 2,
+          yoyo: true,
+          repeat: 3,
+          ease: 'none',
+        }, "<")
+      })
 
-    return () => {
-      ctx.revert()
+      return () => {
+        ctx.revert()
+      }
     }
   },
-    [mail])
+    [shouldAnimate])
   return (
-    <div className={styles.sending}>
-      <p>Sending...</p>
-      <div ref={container}><FontAwesomeIcon ref={mail} icon={faEnvelope} /></div>
+    <div ref={container} className={styles.sending}>
+      <FontAwesomeIcon ref={mail} icon={faEnvelope} />
     </div>
   );
 }
