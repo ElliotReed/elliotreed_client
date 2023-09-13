@@ -6,10 +6,15 @@ import { gsap } from "gsap/gsap-core"
 import ButtonGroup from "../UI/ButtonGroup/ButtonGroup";
 import Button from "../UI/Button";
 
-import * as styles from "./ContactForm.module.scss"
+import * as styles from "./contact-form.module.scss"
 
-// const CONTACT_ROUTE_URL = "https://api.elliotreed.net/sendMessage";
-const CONTACT_ROUTE_URL = "http://localhost:3066/v1/send/contact";
+const CONTACT_ROUTE_URL = process.env.CONTACT_ROUTE_URL;
+
+const buttonText = {
+  sendAnother: "Send Another Message",
+  sendAgain: "Try Again",
+  sending: "Sending..."
+}
 
 async function sendEmail(url = "", data = {}) {
   const response = await fetch(url, {
@@ -19,7 +24,7 @@ async function sendEmail(url = "", data = {}) {
     },
     body: JSON.stringify(data),
   })
-  return await response.json()
+  return await response.json();
 }
 
 export default function ContactForm({ type }) {
@@ -33,7 +38,7 @@ export default function ContactForm({ type }) {
   });
 
   const [formState, setFormState] = useState({
-    new: true,
+    dirty: true,
     submitting: false,
     success: false,
     error: false,
@@ -46,29 +51,28 @@ export default function ContactForm({ type }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setFormState(prev => ({ ...prev, "submitting": true, "new": false }));
-    setSendButtonText("Sending...")
+    setFormState(prev => ({ ...prev, "submitting": true, "dirty": false }));
+    setSendButtonText(buttonText.sending)
 
     try {
       const response = await sendEmail(CONTACT_ROUTE_URL, message);
-      console.log(response);
-      if (!response.error) {
-        console.log(response.status);
+      if (response.status === 'success') {
         setFormState(prev => ({ ...prev, "submitting": false, "success": true }));
-        setDirectiveText(response.message)
-        setSendButtonText("Send Another Message")
-        handleReset()
+        setDirectiveText(response.data.message);
+        setSendButtonText(buttonText.sendAnother);
+        handleReset();
         return
       }
 
       setFormState(prev => ({ ...prev, "submitting": false, "error": true }));
-      console.log(response.error);
+      console.error(response.error);
       throw new Error("There was an error sending your message!")
     }
     catch (error) {
       setFormState(prev => ({ ...prev, "submitting": false, "error": true }));
-      setDirectiveText(error.message || "There was a server error!");
-      setSendButtonText("Try Again");
+      console.error(error.message);
+      setDirectiveText("There was a server error!");
+      setSendButtonText(buttonText.sendAgain);
     }
   }
 
@@ -80,61 +84,64 @@ export default function ContactForm({ type }) {
         success: false,
         error: false,
       }
-    ))
+    ));
     setMessage(prev => (
       {
         ...prev,
         message: '',
       }
-    ))
+    ));
   }
 
   return (
-    <form className={styles.header} onSubmit={handleSubmit}>
+    <form className={styles.contactForm} onSubmit={handleSubmit}>
       <h1>Contact</h1>
 
       <hr />
 
-      <p>
+      <p className={formState.error ? styles.error : null}>
         {directiveText}
       </p>
 
       <div>
         <label htmlFor="name">Name</label>
         <input
-          type="text"
-          name="name"
+          disabled={formState.submitting}
           id="name"
+          name="name"
+          required
+          type="text"
           value={message.name}
           onChange={handleChange}
-          disabled={formState.submitting}
-
         />
       </div>
+
       <div>
         <label htmlFor="email">Email</label>
         <input
+          disabled={formState.submitting}
           id="email"
           name="email"
-          type="email"
-          disabled={formState.submitting}
           required
-          onChange={handleChange}
+          type="email"
           value={message.email}
+          onChange={handleChange}
         />
       </div>
+
       <div>
         <label htmlFor="message">Message</label>
         <textarea
-          type="text"
-          name="message"
-          id="message"
-          onChange={handleChange}
-          value={message.message}
           disabled={formState.submitting}
+          id="message"
+          name="message"
           required
+          type="text"
+          value={message.message}
+          onChange={handleChange}
         />
       </div>
+
       <ButtonGroup>
         <Button type="submit">
           <Sending shouldAnimate={formState.submitting} />

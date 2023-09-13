@@ -26,10 +26,10 @@ export const SEO: React.FC<React.PropsWithChildren<SEOProps>> = ({
   } = useSiteMetadata()
 
   const seo = {
-    author: author || defaultAuthor,
-    description: description || defaultDescription,
-    title: title || defaultTitle,
-    url: `${siteUrl}${pathname || defaultSiteUrl}`,
+    author: author ?? defaultAuthor,
+    description: description ?? defaultDescription,
+    title: title ?? defaultTitle,
+    url: `${siteUrl}${pathname ?? defaultSiteUrl}`,
     // image: `${siteUrl}${image}`,
     // twitterUsername,
   }

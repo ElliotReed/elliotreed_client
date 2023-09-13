@@ -1,23 +1,18 @@
 @use "../../styles/abstracts" as *;
 
-.header {
+.contact-form {
+  margin-inline: $space-md;
   margin-block: $margin;
-  @include shadow(1);
-  border-radius: $border-radius;
-  @include gradient($lightShades);
   padding-inline: $padding;
   color: $darkShades;
-
-  & h1 {
-    font-weight: bold;
-    color: $mainBrand;
-  }
-}
-
-form {
+  @include gradient($lightShades);
   border: 1px solid transparent;
-  max-width: 49ch;
-  margin-inline: auto;
+  border-radius: $border-radius;
+
+  .error {
+    color: get-color(state, error);
+    font-weight: $fw-lg;
+  }
 
   &>*+* {
     margin-top: $space-sm;
@@ -27,9 +22,15 @@ form {
     margin-bottom: $space-sm;
   }
 
+  & h1 {
+    font-weight: $fw-lg;
+    color: $mainBrand;
+  }
+
+
   & label {
     display: block;
-    padding: $padding 0 0 0;
+    // padding: $padding 0 0 0;
 
     &::after {
       content: ":";

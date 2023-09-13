@@ -2,9 +2,9 @@
 @use 'scale-functions' as factors;
 
 // colors
-$scrollbar-thumb-background: colors.color(darkShades, 500);
-$scrollbar-thumb-background-hover: colors.color(darkShades, 400);
-$scrollbar-track-background: colors.color(lightShades, 500);
+$scrollbar-thumb-background: colors.get-color(darkShades, 500);
+$scrollbar-thumb-background-hover: colors.get-color(darkShades, 400);
+$scrollbar-track-background: colors.get-color(lightShades, 500);
 
 /* sizes */
 $margin: 1rem;
@@ -25,8 +25,8 @@ $fs-lg-rem: 1.29rem;
 $fs-xlg-rem: factors.rem-scale(700);
 
 /* font weights */
-// $fw-sm: 400;
-$fw-md: 400;
+$fw-sm: 400;
+$fw-md: 500;
 $fw-lg: 700;
 
 $space-xsm: factors.em-scale(300);
@@ -48,7 +48,7 @@ $ease: ease-in-out;
 
 /* box model */
 // $border: 1px solid transparentize(colors.color(brown, 900), functions.scale(500));
-$border: 1px solid colors.color(darkShades, 500);
+$border: 1px solid colors.get-color(darkShades, 500);
 $border-radius: factors.em-scale(100);
 
 $max-width: 70ch;

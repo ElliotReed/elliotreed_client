@@ -1,33 +1,52 @@
 @use '../../../styles/abstracts/' as *;
 
 .button {
-  @include button;
+  // position: relative;
   flex-grow: 1;
-  display: flex;
   justify-content: center;
+  display: flex;
   gap: $space-sm;
   align-items: center;
-  // position: relative;
-}
 
-.button1 {
-  position: relative;
-  flex-grow: 1;
-  padding-block: $spacer-sm;
-  padding-inline: $spacer-md;
-  @include gradient($mainBrand);
-  color: $lightShades;
-  text-shadow: 2px 2px 0px darken($lightShades, 60);
+  @include paddingBox;
+  color: get-color(lightShades, 500);
+  // text-shadow: 2px 2px 0px darken($lightShades, 60);
+  font-weight: 500;
+
+  background-color: get-color(mainBrand, 500);
+  @include border($color: get-color(mainBrand, 600));
+  outline: none;
+  transition: all 0.15s;
   @include shadow(1);
 
   &:hover,
-  :focus {
-    @include gradient(darken($mainBrand, 3));
-    cursor: pointer;
+  &:focus {
+    background: get-color(mainBrand, 600);
     @include shadow(2);
+    transform: translateY(-1px);
+    cursor: pointer;
+  }
+
+  &:disabled {
+    text-decoration: line-through;
+    background-color: get-color(lightShades, 900);
+    cursor: not-allowed;
+    @include shadow(0);
+  }
+
+  &:focus {
+    outline: 1px solid get-color(mainBrand, 500);
+    outline-offset: 2px;
   }
 
   &:active {
     @include shadow(0);
+    transform: translateY(2px);
   }
+
+  &.vertical {
+    flex-direction: column;
+  }
+
+
 }

@@ -3,5 +3,9 @@
 // tsconfig.json.
 require('ts-node').register();
 
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 // Use a TypeScript version of gatsby-config.js.
 module.exports = require('./gatsby-config.ts');

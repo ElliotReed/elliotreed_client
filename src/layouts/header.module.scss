@@ -9,7 +9,7 @@
   @include abstracts.paddingBox;
   @include abstracts.boxShadow;
   color: abstracts.$mainBrand;
-  background-color: abstracts.color(lightShades, 500);
+  background-color: abstracts.get-color(lightShades, 500);
 }
 
 .nav-brand {
@@ -33,7 +33,7 @@
   margin: 0;
   color: abstracts.$mainBrand;
   font-size: 1.382rem;
-  font-weight: bolder;
+  font-weight: bold;
   text-transform: uppercase;
 }
 

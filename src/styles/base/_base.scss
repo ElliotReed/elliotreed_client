@@ -14,6 +14,7 @@ html {
   font-family: typography.$fontStack;
   box-sizing: border-box;
   font-size: calc(15px + 0.390625vw);
+  line-height: 1.618;
 }
 
 *,
@@ -41,7 +42,7 @@ body {
 
 a {
   text-decoration: none;
-  color: abstracts.color(mainBrand, 200);
+  color: abstracts.get-color(mainBrand, 200);
 }
 
 ul {

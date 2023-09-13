@@ -12,7 +12,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "classnames": "^2.3.2",
-    "gatsby": "^5.12.3",
+    "gatsby": "^5.12.4",
     "gatsby-plugin-image": "^3.12.0",
     "gatsby-plugin-layout": "^4.12.0",
     "gatsby-plugin-manifest": "^5.12.0",
@@ -30,7 +30,7 @@
     "sass": "^1.66.1"
   },
   "devDependencies": {
-    "@types/node": "^20.5.7",
+    "@types/node": "^20.6.0",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "typescript": "^5.2.2"
@@ -43,8 +43,8 @@
     "build": "gatsby build",
     "clean": "gatsby clean",
     "develop": "gatsby develop",
-    "dev": "npm run develop",
-    "start": "npm run develop",
+    "dev": "gatsby develop",
+    "start": "gatsby develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \""
   },
