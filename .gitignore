@@ -52,7 +52,7 @@ typings/
 *.tgz
 
 # dotenv environment variables file
-.env
+.env*
 
 # gatsby files
 .cache/
@@ -71,3 +71,4 @@ yarn-error.log
 # Junk
 junk
 .archive/
+images-possible/

@@ -1,3 +1,14 @@
-@import url("https: //fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
+// @import url("https: //fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
+
+// @font-face {
+//   font-family: 'Montserrat';
+//   src: local('Montserrat') url(/fonts/Montserrat-Bold.ttf) format('truetype');
+// }
 /* fonts */
-$fontStack: "Montserrat", sans-serif;
+$fontStack: 'Montserrat';
+
+@font-face {
+  font-family: $fontStack;
+  src: url("../fonts/Montserrat-VariableFont_wght.ttf") format('truetype');
+  font-style: normal;
+}

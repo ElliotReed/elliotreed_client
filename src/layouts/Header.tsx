@@ -73,6 +73,11 @@ const MusicianNav = () => {
           </Link>
         </li>
         <li>
+          <Link to="/musician/lessons" activeClassName={styles.activeNavItem}>
+            Lessons
+          </Link>
+        </li>
+        <li>
           <Link to="/musician/contact" activeClassName={styles.activeNavItem}>
             Contact
           </Link>
