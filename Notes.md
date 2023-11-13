@@ -1,5 +1,7 @@
 # Notes
 
+[View source code](https://github.com/elliotreed/elliotreed_client)
+
 ## Deployment
 
     npm run clean
