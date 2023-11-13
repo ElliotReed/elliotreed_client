@@ -1,0 +1,24 @@
+@use "../../styles/abstracts" as *;
+@use "../../styles/abstracts/color/color_map";
+
+.ColorGrid {
+
+  li {
+    @include paddingBox;
+    color: get-color(white, 100);
+    font-size: em-scale(400);
+
+    &+li {
+      margin-top: em-scale(300);
+    }
+  }
+}
+
+
+@each $color, $keys in color_map.$color-map {
+  @each $key, $value in $keys {
+    .#{$color}#{$key} {
+      background: $value;
+    }
+  }
+}

@@ -4,7 +4,7 @@ import { StaticImage } from "gatsby-plugin-image"
 
 import { ProfileHeader } from "../../components/ProfileHeader"
 import { MusicianProfile } from "../../components/ProfileInfo"
-import { SEO } from "../../components/seo"
+import { SEO } from "../../components/SEO/Seo"
 import MaxWidthContainer from "../../components/UI/maxWidthContainer"
 
 import * as styles from "./musician.module.scss"

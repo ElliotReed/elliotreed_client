@@ -1,0 +1,47 @@
+@use "../../styles/abstracts";
+
+
+// This sets heading elements to the scale,
+//   and creates utility classes
+//   "heading-1, heading-2"
+
+
+// @use '../../styles/base';
+@use 'sass:list';
+
+$size-difference: 100;
+
+$font-size: 800;
+$font-weight: 650;
+$line-height-size: 100; // 1.35 1.7 ~1.5
+$margin-size: 400;
+
+$letter-spacing-list: (
+  -.06em,
+  -.04em,
+  -.02em,
+  0,
+  .12em,
+  .18em
+);
+
+@for $i from 1 through 6 {
+
+  h#{$i}.heading,
+  .heading-#{$i} {
+    // color: abstracts.color(gm-medium, 500);
+    // font-family: base.$fontStackSans;
+    font-size: abstracts.em-scale($font-size);
+    font-weight: $font-weight;
+    line-height: (1 + abstracts.scale($line-height-size));
+    letter-spacing: list.nth($letter-spacing-list, $i);
+
+    margin-block-start: abstracts.em-scale($margin-size);
+    margin-block-end: abstracts.em-scale($margin-size);
+  }
+
+  $font-size: $font-size - $size-difference;
+  $font-weight: $font-weight + calc($size-difference / 2);
+  $line-height-size: $line-height-size + $size-difference;
+  $margin-size: $margin-size + $size-difference;
+}

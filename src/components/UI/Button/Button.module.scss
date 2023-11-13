@@ -10,7 +10,7 @@
 
   @include paddingBox;
   color: get-color(lightShades, 500);
-  // text-shadow: 2px 2px 0px darken($lightShades, 60);
+  // text-shadow: 2px 2px 0px darken(get-color(lightShades), 60);
   font-weight: 500;
 
   background-color: get-color(mainBrand, 500);

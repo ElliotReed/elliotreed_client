@@ -2,7 +2,7 @@ import React from "react"
 import { HeadFC } from 'gatsby'
 
 import ContactForm from "../../components/ContactForm"
-import { SEO } from "../../components/seo"
+import { SEO } from "../../components/SEO/Seo"
 import MaxWidthContainer from "../../components/UI/maxWidthContainer"
 
 export default function ContactPage() {

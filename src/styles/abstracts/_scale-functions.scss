@@ -11,10 +11,10 @@ $scale: (
   600: 1.38,
   700: 1.62,
   800: 2,
-  900: 2.62,
+  900: 2.38,
 );
 
-@function get-scale($keys...) {
+@function scale($keys...) {
   $value: $scale;
 
   @each $key in $keys {

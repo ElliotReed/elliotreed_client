@@ -3,7 +3,7 @@ import { Link, HeadFC } from "gatsby";
 
 import classnames from "classnames";
 
-import { SEO } from "../components/seo";
+import { SEO } from "../components/SEO/Seo";
 
 import * as styles from "./index.module.scss";
 

@@ -1,0 +1,32 @@
+@use "../../styles/abstracts" as *;
+
+.designLayout {
+  background: #fff;
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 3em;
+    border: 1px solid #000;
+
+    .designLink {
+      display: inline-block;
+    }
+  }
+
+  nav ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+    li {
+      font-weight: 500;
+
+      a {
+        padding-block: 0.5em;
+        padding-inline: 1.5em;
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+@use "../../../styles/abstracts";
+
+.header {
+  margin: abstracts.$margin;
+  max-width: 100%;
+  @include abstracts.boxShadow;
+  border-radius: abstracts.$border-radius;
+  background: abstracts.get-color(lightShades);
+  padding: abstracts.$padding;
+  color: abstracts.get-color(darkShades);
+
+  & h1 {
+    margin: abstracts.$margin 0;
+    font-weight: bold;
+    color: abstracts.get-color(mainBrand);
+  }
+}
