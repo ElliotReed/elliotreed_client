@@ -5,7 +5,7 @@ import { StaticImage } from "gatsby-plugin-image"
 import Logo from "../../components/Logo"
 import { ProfileHeader } from "../../components/ProfileHeader"
 import { DeveloperProfile } from "../../components/ProfileInfo"
-import { SEO } from "../../components/seo"
+import { SEO } from "../../components/SEO/Seo"
 import MaxWidthContainer from "../../components/UI/maxWidthContainer"
 
 import * as styles from "./developer.module.scss"

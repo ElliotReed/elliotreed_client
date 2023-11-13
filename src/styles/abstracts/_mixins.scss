@@ -1,5 +1,5 @@
 @use './variables';
-@use './colors';
+@use './color';
 @use './scale-functions' as factors;
 
 // mixins
@@ -11,12 +11,13 @@
 }
 
 @mixin borderTest() {
-  border: 1px solid colors.$errorColor;
+  border: 1px solid color.$errorColor;
 }
 
-@mixin boxShadow($color: colors.$black) {
-  box-shadow: 0px 1px 1px rgba($color, 0.32), 0px 2px 2px rgba($color, 0.32), 0px 4px 4px rgba($color, 0.32),
-    0px 8px 8px rgba($color, 0.32), 0px 16px 16px rgba($color, 0.32);
+@mixin boxShadow($color: color.get-color(black, 900)) {
+  $alpha: 0.29;
+  box-shadow: 0px 1px 1px rgba($color, $alpha), 0px 2px 2px rgba($color, $alpha), 0px 4px 4px rgba($color, $alpha),
+    0px 8px 8px rgba($color, $alpha), 0px 16px 16px rgba($color, $alpha);
 }
 
 @mixin gradient($color) {
@@ -135,7 +136,7 @@ $largeScreen: 1400px;
 
 // region box-shadow ==========
 $blur-factor: 3;
-$box-shadow-inset: inset 0 0 factors.px-to-rem(3px) transparentize(colors.get-color(black, 900), .76);
+$box-shadow-inset: inset 0 0 factors.px-to-rem(3px) transparentize(color.get-color(black, 900), .76);
 
 /**
  * Computes a top-shadow

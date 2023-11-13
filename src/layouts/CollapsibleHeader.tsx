@@ -12,7 +12,7 @@ function getCollapseClass(shouldCollapse: boolean | null) {
   return styles.expand;
 }
 
-export default function CollapsibleHeader({ children }: { children: React.ReactNode }) {
+export default function CollapsibleHeader({ children }: Readonly<{ children: React.ReactNode }>) {
   const [headerHeight, setHeaderHeight] = React.useState(0);
   const [scrollState, setScrollState] = React.useState(0);
   const [shouldCollapse, setShouldCollapse] = React.useState<boolean | null>(null)
@@ -77,15 +77,15 @@ export default function CollapsibleHeader({ children }: { children: React.ReactN
 
   return (
     <>
-      <div className={classnames(
-        styles.collapsibleHeader, collapseClass
-      )}
+      <div
+        className={classnames(
+          styles.collapsibleHeader, collapseClass
+        )}
         ref={headerRef}
       >
-        <>
-          {children}
-        </>
+        {children}
       </div>
+
       <div ref={spacerRef}></div>
     </>
   )

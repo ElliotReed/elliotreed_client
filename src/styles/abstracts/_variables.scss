@@ -1,10 +1,10 @@
-@use "colors";
+@use "color";
 @use 'scale-functions' as factors;
 
-// colors
-$scrollbar-thumb-background: colors.get-color(darkShades, 500);
-$scrollbar-thumb-background-hover: colors.get-color(darkShades, 400);
-$scrollbar-track-background: colors.get-color(lightShades, 500);
+// color
+$scrollbar-thumb-background: color.get-color(darkShades, 500);
+$scrollbar-thumb-background-hover: color.get-color(darkShades, 400);
+$scrollbar-track-background: color.get-color(lightShades, 500);
 
 /* sizes */
 $margin: 1rem;
@@ -47,8 +47,8 @@ $duration-lg: 640ms;
 $ease: ease-in-out;
 
 /* box model */
-// $border: 1px solid transparentize(colors.color(brown, 900), functions.scale(500));
-$border: 1px solid colors.get-color(darkShades, 500);
+// $border: 1px solid transparentize(color.color(brown, 900), functions.scale(500));
+$border: 1px solid color.get-color(darkShades, 500);
 $border-radius: factors.em-scale(100);
 
 $max-width: 70ch;

@@ -6,13 +6,13 @@
   /* Prevent Chrome, Opera, and Safari from letting these items shrink to smaller than their content's default minimum size. */
   display: flex;
   justify-content: flex-end;
-  @include abstracts.gradient(abstracts.$darkShades);
+  @include abstracts.gradient(abstracts.get-color(darkShades));
   padding: abstracts.$padding;
 
   p {
     margin: 0;
-    color: abstracts.$lightShades;
-    text-shadow: 2px 2px 0px darken(abstracts.$lightShades, 60);
+    color: abstracts.get-color(lightShades);
+    text-shadow: 2px 2px 0px darken(abstracts.get-color(lightShades), 60);
     font-size: .618rem;
   }
 }

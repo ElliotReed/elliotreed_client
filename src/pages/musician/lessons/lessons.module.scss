@@ -1,0 +1,37 @@
+@use "../../../styles/abstracts/" as *;
+
+.main {
+  margin: $margin;
+  border-radius: $border-radius;
+  background: get-color(lightShades);
+  padding: $padding;
+  color: get-color(darkShades);
+
+  .subHeading {
+    display: block;
+    font-size: 0.5em;
+  }
+
+  .listDefault {
+    list-style: initial;
+  }
+
+  .areaContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacer-md;
+    justify-content: center;
+
+    p {
+      flex: 1 1 30ch
+    }
+
+    .map {
+      border: 4px solid get-color(darkShades);
+      border-radius: $border-radius;
+      flex: 0 0 300px;
+    }
+  }
+
+
+}

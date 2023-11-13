@@ -2,7 +2,7 @@ import React from "react";
 import { graphql, HeadFC, PageProps } from "gatsby";
 import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
 
-import { SEO } from "../../../components/seo";
+import { SEO } from "../../../components/SEO/Seo";
 import MaxWidthContainer from "../../../components/UI/maxWidthContainer";
 
 import * as styles from "./portfolio.module.scss";

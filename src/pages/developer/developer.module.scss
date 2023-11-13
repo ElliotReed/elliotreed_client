@@ -2,7 +2,7 @@
 
 .background {
   border: 1em solid transparent;
-  color: abstracts.$lightShades;
+  color: abstracts.get-color(lightShades);
   margin: abstracts.$margin 0;
 }
 

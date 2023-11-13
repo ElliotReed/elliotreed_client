@@ -6,9 +6,9 @@
   display: grid;
   place-content: center;
   height: 100vh;
-  color: abstracts.$lightShades;
+  color: abstracts.get-color(lightShades);
   text-align: center;
-  background: abstracts.$mainBrand;
+  background: abstracts.get-color(mainBrand);
 
   button {
     @include abstracts.paddingBox;

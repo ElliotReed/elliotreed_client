@@ -136,7 +136,7 @@ const DeveloperNav = () => {
   )
 }
 
-function Aspect({ type }: { type: string }) {
+function Aspect({ type }: Readonly<{ type: string }>) {
   const aspectMenuDiv = React.useRef<HTMLDivElement | null>(null)
   const currentFacet = type
   const otherFacet = type === "developer" ? "musician" : "developer"

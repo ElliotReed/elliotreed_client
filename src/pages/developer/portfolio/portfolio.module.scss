@@ -10,16 +10,16 @@
 
 .portfolioHeader {
   border-radius: abstracts.$border-radius;
-  background: abstracts.$lightShades;
+  background: abstracts.get-color(lightShades);
   padding: abstracts.$padding;
   @include abstracts.boxShadow;
 
   h1 {
-    color: abstracts.$mainBrand;
+    color: abstracts.get-color(mainBrand);
   }
 
   p {
-    color: abstracts.$darkShades;
+    color: abstracts.get-color(darkShades);
     margin-bottom: 0;
   }
 }
@@ -31,11 +31,11 @@
 .card {
   display: grid;
   grid-template-columns: 1fr;
-  color: abstracts.$darkShades;
+  color: abstracts.get-color(darkShades);
   margin: abstracts.$margin;
   @include abstracts.boxShadow;
   border-radius: abstracts.$border-radius;
-  background: abstracts.$lightShades;
+  background: abstracts.get-color(lightShades);
   transition: 0.3s;
 }
 
@@ -54,7 +54,7 @@
   margin: 0 abstracts.$margin abstracts.$margin;
 
   & a {
-    color: abstracts.$mainBrand;
+    color: abstracts.get-color(mainBrand);
   }
 
   & h2 {
@@ -75,9 +75,9 @@
   & .productionFalse {
     font-size: small;
     font-style: oblique;
-    color: abstracts.$lightShades;
+    color: abstracts.get-color(lightShades);
     border-radius: abstracts.$border-radius;
-    background: abstracts.$darkShades;
+    background: abstracts.get-color(darkShades);
     @include abstracts.paddingBox;
   }
 }

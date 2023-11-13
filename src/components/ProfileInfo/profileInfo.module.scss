@@ -1,13 +1,13 @@
 @use "../../styles/abstracts";
 
 .aboutMe {
-  color: abstracts.$darkShades;
+  color: abstracts.get-color(darkShades);
   border: abstracts.$border;
   border-radius: abstracts.$border-radius;
-  background-color: abstracts.$lightShades;
+  background-color: abstracts.get-color(lightShades);
 
   & .heading {
-    color: abstracts.$mainBrand;
+    color: abstracts.get-color(mainBrand);
     margin-left: abstracts.$margin;
   }
 
