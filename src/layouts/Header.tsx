@@ -137,10 +137,10 @@ const DeveloperNav = () => {
 }
 
 function Aspect({ type }: Readonly<{ type: string }>) {
-  const aspectMenuDiv = React.useRef<HTMLDivElement | null>(null)
-  const currentFacet = type
-  const otherFacet = type === "developer" ? "musician" : "developer"
-  const duration = 0.3
+  const aspectMenuDiv = React.useRef<HTMLDivElement | null>(null);
+  const currentFacet = type;
+  const otherFacet = type === "developer" ? "musician" : "developer";
+  const duration = 0.3;
 
   const handleMouseEnter = () => {
     gsap
@@ -149,31 +149,34 @@ function Aspect({ type }: Readonly<{ type: string }>) {
         { rotateX: 93 },
         { duration: duration, rotateX: 0, ease: "bounce" }
       )
-  }
+  };
 
   const handleMouseLeave = () => {
     gsap.to(aspectMenuDiv.current, { duration: duration, rotateX: -93 })
-  }
+  };
 
   return (
     <div
       className={styles.aspect}
-      role="banner"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <p className={classnames(styles.qualifierText, styles.pointer)}>
+      <Link
+        to={`/${currentFacet}`}
+        className={styles.qualifierText}
+        onFocus={handleMouseEnter}
+      >
         {currentFacet}
-      </p>
+      </Link>
 
       <div
         ref={(element) => {
           aspectMenuDiv.current = element
         }}
         className={classnames(styles.aspectMenu)}
-
       >
         <Link
+          onBlur={handleMouseLeave}
           className={classnames(styles.qualifierText)}
           to={`/${otherFacet}`}
         >
@@ -181,7 +184,7 @@ function Aspect({ type }: Readonly<{ type: string }>) {
         </Link>
       </div>
     </div>
-  )
+  );
 }
 
 const Header = ({ type }: { type: string }) => {

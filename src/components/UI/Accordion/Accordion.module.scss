@@ -11,7 +11,7 @@ $time: 0.6s;
   background: transparent;
   color: abstracts.get-color(lightShades);
   cursor: pointer;
-  padding: abstracts.$padding;
+  padding: abstracts.$space-md;
   display: flex;
   align-items: center;
   border: none;
@@ -62,5 +62,5 @@ $time: 0.6s;
 }
 
 .text {
-  padding: abstracts.$padding;
+  padding: abstracts.$space-md;
 }

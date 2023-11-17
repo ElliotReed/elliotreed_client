@@ -44,7 +44,7 @@ export default function ContactForm({ type }) {
     error: false,
   });
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setMessage({ ...message, [name]: value });
   };
@@ -136,7 +136,6 @@ export default function ContactForm({ type }) {
           id="message"
           name="message"
           required
-          type="text"
           value={message.message}
           onChange={handleChange}
         />

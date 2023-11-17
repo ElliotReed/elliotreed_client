@@ -2,8 +2,8 @@ import React from "react"
 import { HeadFC } from 'gatsby'
 
 import ContactForm from "../../components/ContactForm"
-import { SEO } from "../../components/SEO/Seo"
-import MaxWidthContainer from "../../components/UI/maxWidthContainer"
+import { Seo } from "../../components/SEO"
+import MaxWidthContainer from "../../components/MaxWidthContainer/MaxWidthContainer"
 
 export default function ContactPage() {
   return (
@@ -16,5 +16,5 @@ export default function ContactPage() {
 }
 
 export const Head: HeadFC<string> = () => (
-  <SEO title="Developer | Contact" />
+  <Seo title="Developer | Contact" />
 )

@@ -2,9 +2,9 @@ import React, { useState } from "react"
 import { HeadFC } from 'gatsby'
 import { StaticImage } from "gatsby-plugin-image"
 
-import { SEO } from "../../../components/SEO/Seo"
+import { Seo } from "../../../components/SEO"
 import Accordion from "../../../components/UI/Accordion"
-import MaxWidthContainer from "../../../components/UI/maxWidthContainer"
+import MaxWidthContainer from "../../../components/MaxWidthContainer/MaxWidthContainer"
 
 import { show } from "../../../data/abbeyroad"
 
@@ -57,25 +57,16 @@ const Parts = ({ song }: { song: SongProps }) => {
 
 const MusicContent = ({ song }: { song: SongProps }) => {
   return (
-    <div className={styles.linkContainer}>
-      <a title={`Follow link to open pdf`} href={song.link}>
-        <StaticImage src="../../images/scores.jpg" alt="pdf link" />
-      </a>
-      <a
-        className={styles.link}
-        title={`Follow link to open pdf`}
-        href={song.link}
-      >
-        <h6>{song.title}</h6>
-      </a>
-    </div>
+    <a className={styles.chartLink} title={`Follow link to open pdf`} href={song.link}>
+      <StaticImage src="../../../images/scores.jpg" alt="pdf link" />
+      <span>{song.title}</span>
+    </a>
   )
 }
+
 const MusicLink = ({ song }: { song: SongProps }) => {
   return (
-    <>
-      <Accordion title="Music:" content={<MusicContent song={song} />} />
-    </>
+    <Accordion title="Music:" content={<MusicContent song={song} />} />
   )
 }
 
@@ -120,10 +111,10 @@ const Video = ({ song }: { song: SongProps }) => {
   return <Accordion title="Videos:" content={<VideoContent song={song} />} />
 }
 
-const AbbeyRoadPage = () => {
-  const showParts = useState(false)
+export default function AbbeyRoadPage() {
+  const showParts = useState(false);
   return (
-    <>
+    <main>
       <h1 className={styles.pageTitle}>
         Abbey Road / Beatles After The Beatles
       </h1>
@@ -133,10 +124,9 @@ const AbbeyRoadPage = () => {
           {show.map((set) => {
             return (
               <div className={styles.setWrapper} key={set.set}>
-                <div className={styles.setTitleWrapper}>
-                  <h2>Set {set.set}</h2>
-                  <h2>{set.title}</h2>
-                </div>
+                <h2 className={styles.setTitle}>
+                  Set {set.set} <span>{set.title}</span>
+                </h2>
                 <ul className={styles.songList}>
                   {set.songs.map((song) => {
                     if (!song) {
@@ -160,12 +150,12 @@ const AbbeyRoadPage = () => {
           })}
         </section>
       </MaxWidthContainer>
-    </>
+    </main>
   )
 }
 
-export default AbbeyRoadPage
+
 
 export const Head: HeadFC<string> = () => (
-  <SEO title="Musician | Abbey Road" />
+  <Seo title="Musician | Abbey Road" />
 )

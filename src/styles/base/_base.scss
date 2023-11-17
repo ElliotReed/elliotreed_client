@@ -39,15 +39,6 @@ body {
   @include abstracts.scrollbar;
 }
 
-
-a {
-  color: abstracts.get-color(mainBrand, 200);
-}
-
-ul {
-  list-style-type: none;
-}
-
 input,
 select,
 textarea,

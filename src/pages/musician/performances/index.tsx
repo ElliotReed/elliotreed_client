@@ -1,28 +1,26 @@
 import React from "react"
 import { HeadFC } from "gatsby"
 
-import { SEO } from "../../../components/SEO/Seo"
-import MaxWidthContainer from "../../../components/UI/maxWidthContainer"
+import { Seo } from "../../../components/SEO"
+import MaxWidthContainer from "../../../components/MaxWidthContainer/MaxWidthContainer"
 
 import * as styles from "./performances.module.scss"
 
 export default function PerformancePage() {
   return (
-    <div>
+    <main>
       <MaxWidthContainer>
         <section className={styles.header}>
           <h1>Performance Page</h1>
-          <hr></hr>
           <p>
-            A performance page is in the works, until then you can shake your
-            fist at the sky.
+            No performances scheduled currently.
           </p>
         </section>
       </MaxWidthContainer>
-    </div>
+    </main>
   )
 }
 
 export const Head: HeadFC<string> = () => (
-  <SEO title="Musician | Performances" />
+  <Seo title="Musician | Performances" />
 )

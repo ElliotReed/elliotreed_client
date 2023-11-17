@@ -1,25 +1,26 @@
-@use "../styles/abstracts";
+@use "../styles/abstracts" as *;
 
 .header {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
   align-items: center;
-  @include abstracts.paddingBox;
-  color: abstracts.get-color(mainBrand);
-  background-color: abstracts.get-color(lightShades, 500);
-  @include abstracts.boxShadow;
-  z-index: 2;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  color: get-color(mainBrand);
+  background-color: $body-background-color;
+  @include padding-box();
+  @include shadow(1);
+  z-index: 10;
 }
 
 .nav-brand {
   display: flex;
-  flex-wrap: nowrap;
   align-items: center;
-  color: abstracts.get-color(mainBrand);
+  flex-wrap: nowrap;
+  gap: $space-sm;
 
   & a {
     text-decoration: none;
+    color: inherit;
   }
 }
 
@@ -31,7 +32,7 @@
 
 .title {
   margin: 0;
-  color: abstracts.get-color(mainBrand);
+  color: inherit;
   font-size: 1.382rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -39,40 +40,37 @@
 
 // #region aspect //
 .aspect {
-  perspective: 400px;
   position: relative;
-  z-index: 1;
-  margin: 0 calc(abstracts.$margin / 3);
-}
+  perspective: 400px;
+  background-color: get-color(lightShades, 300);
+  border-radius: $border-radius;
 
-.aspect-menu {
-  position: absolute;
-  left: calc(-1 * abstracts.$padding);
-  @include abstracts.boxShadow;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  background: abstracts.get-color(lightShades);
-  border-radius: abstracts.$border-radius;
-  transform: rotateX(93deg);
-  transform-origin: top;
-  transform-style: preserve-3d;
+  .aspect-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    min-width: 100%;
+    text-align: center;
+    backface-visibility: hidden;
+    background: $body-background-color;
+    border-radius: $border-radius;
+    @include shadow(2);
+    transform: rotateX(93deg) translateX(-50%);
+    transform-origin: top;
+    transform-style: preserve-3d;
+  }
+
+  .qualifier-text {
+    color: $body-text;
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: normal;
+  }
 
   a {
     display: inline-block;
-    @include abstracts.paddingBox;
+    @include padding-box(sm);
   }
-}
-
-.pointer {
-  cursor: pointer;
-}
-
-.qualifier-text {
-  margin: 0;
-  color: abstracts.get-color(darkShades);
-  font-size: 1rem;
-  font-style: italic;
-  font-weight: normal;
 }
 
 // #endregion
@@ -82,32 +80,33 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
+  margin: 0;
   padding: 0;
-  width: 100%;
+  list-style: none;
 
   li {
-    margin-right: abstracts.$margin;
-    color: abstracts.get-color(mainBrand);
+    color: get-color(mainBrand);
     text-decoration: none;
-
-    &:last-child {
-      margin-right: 0;
-    }
   }
 
   a {
+    padding-inline: $space-xsm;
     text-decoration: none;
+    font-weight: $fw-md;
 
     &:hover {
-      color: abstracts.get-color(darkShades);
+      color: get-color(darkShades);
       background: none;
-      cursor: pointer;
+    }
+
+    &:visited {
+      color: inherit;
     }
   }
 }
 
 .active-nav-item {
-  color: rgba(abstracts.get-color(mainBrand), abstracts.$small);
+  border-bottom: 2px solid get-color(mainBrand);
 }
 
 .show-list-link {
@@ -127,23 +126,23 @@
   top: 1.618rem;
   right: 0;
   height: 0;
-  @include abstracts.boxShadow;
+  @include boxShadow;
   margin: 0;
   padding: 0;
-  color: abstracts.get-color(mainBrand);
+  color: get-color(mainBrand);
   white-space: nowrap;
-  background: abstracts.get-color(lightShades);
-  border-radius: abstracts.$border-radius;
+  background: get-color(lightShades);
+  border-radius: $border-radius;
   overflow: hidden;
-  transition: height abstracts.$duration-md ease-in-out;
+  transition: height $duration-md ease-in-out;
 
   & li {
-    padding: abstracts.$padding;
+    padding: $space-md;
     margin: 0;
     border: 1px solid transparent;
 
     &:hover a {
-      color: darken(abstracts.get-color(mainBrand), abstracts.$largePercent);
+      color: darken(get-color(mainBrand), $largePercent);
       cursor: pointer;
     }
 
@@ -154,10 +153,10 @@
 
   & p {
     margin: 0;
-    color: lighten(abstracts.get-color(mainBrand), abstracts.$smallPercent);
+    color: lighten(get-color(mainBrand), $smallPercent);
     font-size: 0.75rem;
     font-weight: bold;
-    border-bottom: 0.0618rem solid abstracts.get-color(mainBrand);
+    border-bottom: 0.0618rem solid get-color(mainBrand);
   }
 }
 

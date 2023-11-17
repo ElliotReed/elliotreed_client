@@ -3,13 +3,13 @@ import { Link, HeadFC } from "gatsby";
 
 import classnames from "classnames";
 
-import { SEO } from "../components/SEO/Seo";
+import { Seo } from "../components/SEO";
 
 import * as styles from "./index.module.scss";
 
 export default function LandingPage() {
   return (
-    <div className={styles.landingPage}>
+    <main className={styles.landingPage}>
       <div className={classnames(styles.left, styles.aspectContainer)}>
         <h1 className={styles.aspectHeading}>The Developer</h1>
         <Link to="/developer">
@@ -23,10 +23,10 @@ export default function LandingPage() {
           Learn More!
         </Link>
       </div>
-    </div>
+    </main>
   )
 }
 
 export const Head: HeadFC<string> = () => (
-  <SEO title="Elliot Reed Developer | Musician" />
+  <Seo title="Elliot Reed Developer | Musician" />
 )

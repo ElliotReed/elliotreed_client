@@ -9,7 +9,7 @@ interface SEOProps {
   title?: string
 }
 
-export const SEO: React.FC<React.PropsWithChildren<SEOProps>> = ({
+export const Seo: React.FC<React.PropsWithChildren<SEOProps>> = ({
   author,
   description,
   pathname,
@@ -53,4 +53,4 @@ export const SEO: React.FC<React.PropsWithChildren<SEOProps>> = ({
   )
 }
 
-export default SEO;
+export default Seo;

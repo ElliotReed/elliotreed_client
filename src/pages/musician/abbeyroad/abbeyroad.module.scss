@@ -1,46 +1,46 @@
-@use "../../../styles/abstracts";
+@use "../../../styles/abstracts" as *;
 
 .page-title {
+  color: get-color(mainBrand);
   text-align: center;
-  color: abstracts.get-color(lightShades);
 }
 
 .container {
   margin: 0 auto;
-  color: abstracts.get-color(lightShades);
+  color: get-color(lightShades);
 }
 
 .set-wrapper {
-  margin: abstracts.$margin;
-  background: hsla(342, 10%, 20%, 0.98);
-  padding: abstracts.$padding;
-  @include abstracts.boxShadow;
-  border-radius: abstracts.$border-radius;
+  margin: $space-md;
+  padding: $space-md;
+  background: get-color(darkShades);
+  border-radius: $border-radius;
+  @include shadow(1);
 }
 
-.set-title-wrapper {
+.set-title {
   display: flex;
   justify-content: space-between;
-  padding: abstracts.$padding;
-  border-bottom: 1px solid abstracts.get-color(lightShades);
+  padding: $space-md;
+  border-bottom: 1px solid get-color(lightShades);
 }
 
 .song-list {
-  padding: abstracts.$padding 0;
+  padding: 0;
+  list-style: none;
 }
 
 .song-content {
-  padding: abstracts.$padding;
+  padding: $space-md;
 }
 
 .song {
-  margin: 0 0 abstracts.$margin;
-  @include abstracts.boxShadow;
-  border-radius: abstracts.$border-radius;
+  border-radius: $border-radius;
+  @include shadow(1);
 }
 
 .song-title {
-  padding: abstracts.$padding;
+  padding: $space-md;
 }
 
 .part-wrapper {
@@ -50,16 +50,17 @@
 }
 
 .part-list {
-  margin: 0 0 abstracts.$margin;
-  padding: abstracts.$padding;
+  list-style: none;
+  margin: 0 0 $space-md;
+  padding: $space-md;
   font-size: 1.618rem;
-  background: lighten(hsl(339, 10%, 20%), 10);
-  border-radius: abstracts.$border-radius;
-  @include abstracts.boxShadow;
+  background: get-color(darkShades, 400);
+  border-radius: $border-radius;
+  @include shadow(1);
 
   & li {
-    margin-bottom: abstracts.$margin;
-    border-bottom: 1px solid abstracts.get-color(lightShades);
+    margin-bottom: $space-md;
+    border-bottom: 1px solid get-color(lightShades);
 
     & span {
       font-size: 1.32rem;
@@ -78,12 +79,12 @@
 
   & button {
     height: 1rem;
-    margin-left: abstracts.$margin;
-    border: 1px solid abstracts.get-color(lightShades);
+    margin-left: $space-md;
+    border: 1px solid get-color(lightShades);
     background: transparent;
     padding: 0;
     font-size: 2rem;
-    color: abstracts.get-color(lightShades);
+    color: get-color(lightShades);
 
     & span {
       transform: rotate(90deg);
@@ -91,31 +92,23 @@
   }
 }
 
-.link-container {
+.chart-link {
   display: flex;
-  margin-bottom: abstracts.$margin;
-  padding: abstracts.$padding;
-  background: lighten(hsl(339, 10%, 20%), 10);
-  background: abstracts.get-color(lightShades);
-  border-radius: abstracts.$border-radius;
-  @include abstracts.boxShadow;
+  gap: $space-md;
+  margin-bottom: $space-md;
+  align-items: center;
+  padding: $space-md;
+  background: get-color(lightShades);
+  border-bottom-left-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  @include shadow(1);
+  color: get-color(mainBrand, 400);
 
-  &:hover {
-    cursor: pointer;
+  &:visited {
+    color: get-color(mainBrand, 300);
   }
 
-  & .link {
-    text-decoration-line: underline;
-    text-underline-position: under;
-    color: lighten(#505f56, 0);
-    margin-left: abstracts.$margin;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  & img {
+  img {
     width: 4rem;
   }
 }
@@ -123,23 +116,23 @@
 .videoList {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: abstracts.$margin;
+  margin-bottom: $space-md;
   overflow: hidden;
-  background: lighten(hsl(339, 10%, 20%), 10);
-  border-radius: abstracts.$border-radius;
-  @include abstracts.boxShadow;
+  background: get-color(darkShades, 400);
+  border-radius: $border-radius;
+  @include shadow(1);
 
   & li {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    margin: abstracts.$margin;
+    margin: $space-md;
     // max-width: 25rem;
     min-width: 13rem;
   }
 
   & label {
-    padding: calc(abstracts.$padding / 3) 0 abstracts.$padding;
+    padding: calc($space-md / 3) 0 $space-md;
   }
 }
 

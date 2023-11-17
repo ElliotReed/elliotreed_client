@@ -2,10 +2,9 @@
 
 .contact-form {
   margin-inline: $space-md;
-  margin-block: $margin;
-  padding-inline: $padding;
+  margin-block: $space-md;
+  padding-inline: $space-md;
   color: get-color(darkShades);
-  @include gradient(get-color(lightShades));
   border: 1px solid transparent;
   border-radius: $border-radius;
 
@@ -30,7 +29,6 @@
 
   & label {
     display: block;
-    // padding: $padding 0 0 0;
 
     &::after {
       content: ":";
@@ -41,12 +39,12 @@
   textarea {
     color: get-color(darkShades);
     width: 100%;
-    height: 1em;
+    height: $space-md;
     border-radius: $border-radius;
-    background-color: lighten(get-color(lightShades), 10);
-    padding: $padding;
+    background-color: get-color(lightShades, 100);
+    padding: $space-md;
     outline: none;
-    box-shadow: 1px 1px 2px get-color(darkShades) inset;
+    box-shadow: 1px 1px 2px rgba(get-color(darkShades), 0.2) inset;
 
     &:focus,
     :active {

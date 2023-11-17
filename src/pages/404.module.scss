@@ -11,7 +11,7 @@
   background: abstracts.get-color(mainBrand);
 
   button {
-    @include abstracts.paddingBox;
+    @include abstracts.padding-box();
     font-weight: bold;
     border-radius: abstracts.$border-radius;
 

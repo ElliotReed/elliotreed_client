@@ -1,10 +1,10 @@
 @use "../../../styles/abstracts/" as *;
 
 .main {
-  margin: $margin;
+  margin: $space-md;
   border-radius: $border-radius;
   background: get-color(lightShades);
-  padding: $padding;
+  padding: $space-md;
   color: get-color(darkShades);
 
   .subHeading {
@@ -19,7 +19,7 @@
   .areaContainer {
     display: flex;
     flex-wrap: wrap;
-    gap: $spacer-md;
+    gap: $space-md;
     justify-content: center;
 
     p {

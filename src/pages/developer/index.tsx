@@ -5,8 +5,8 @@ import { StaticImage } from "gatsby-plugin-image"
 import Logo from "../../components/Logo"
 import { ProfileHeader } from "../../components/ProfileHeader"
 import { DeveloperProfile } from "../../components/ProfileInfo"
-import { SEO } from "../../components/SEO/Seo"
-import MaxWidthContainer from "../../components/UI/maxWidthContainer"
+import { Seo } from "../../components/SEO"
+import MaxWidthContainer from "../../components/MaxWidthContainer/MaxWidthContainer"
 
 import * as styles from "./developer.module.scss"
 
@@ -15,7 +15,7 @@ export default function DeveloperPage() {
     "I am a web developer living and working in the greater Denver Metro area."
 
   return (
-    <div>
+    <main>
       <div className={styles.profileWrapper}>
         <MaxWidthContainer>
           <ProfileHeader text={text}>
@@ -30,26 +30,22 @@ export default function DeveloperPage() {
           </ProfileHeader>
         </MaxWidthContainer>
       </div>
-      <div className={styles.background}>
-        <div className={styles.windowImage}>
-          <MaxWidthContainer>
-            <Logo
-              mode="developer"
-              width="200px"
-              animation="DEVELOPER_PAGE_DISPLAY"
-            />
-          </MaxWidthContainer>
-        </div>
+      <div className={styles.windowImage}>
+        <Logo
+          mode="developer"
+          width="200px"
+          animation="DEVELOPER_PAGE_DISPLAY"
+        />
       </div>
       <div className={styles.infoWrapper}>
         <MaxWidthContainer>
           <DeveloperProfile />
         </MaxWidthContainer>
       </div>
-    </div>
+    </main>
   )
 }
 
 export const Head: HeadFC<string> = () => (
-  <SEO title="Elliot Reed | Developer" />
+  <Seo title="Elliot Reed | Developer" />
 )

@@ -1,18 +1,14 @@
 @use "../../styles/abstracts";
 
 .aboutMe {
-  color: abstracts.get-color(darkShades);
-  border: abstracts.$border;
-  border-radius: abstracts.$border-radius;
-  background-color: abstracts.get-color(lightShades);
 
   & .heading {
     color: abstracts.get-color(mainBrand);
-    margin-left: abstracts.$margin;
+    margin-left: abstracts.$space-md;
   }
 
   & p {
-    margin: abstracts.$margin;
+    margin: abstracts.$space-md;
   }
 }
 
@@ -22,6 +18,6 @@
   & li:before {
     content: "🎓";
     font-size: 0.76rem;
-    margin-right: calc(abstracts.$margin / 3);
+    margin-right: calc(abstracts.$space-md / 3);
   }
 }

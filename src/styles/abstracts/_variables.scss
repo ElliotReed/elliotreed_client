@@ -1,43 +1,40 @@
-@use "color";
-@use 'scale-functions' as factors;
+@use "color" as *;
+@use 'scale-functions' as *;
+
+$body-background-color: get-color(lightShades);
+$body-text: get-color(darkShades);
 
 // color
-$scrollbar-thumb-background: color.get-color(darkShades, 500);
-$scrollbar-thumb-background-hover: color.get-color(darkShades, 400);
-$scrollbar-track-background: color.get-color(lightShades, 500);
+$scrollbar-thumb-background: get-color(darkShades, 500);
+$scrollbar-thumb-background-hover: get-color(darkShades, 400);
+$scrollbar-track-background: get-color(lightShades, 500);
 
 /* sizes */
-$margin: 1rem;
-$padding: 1em;
-$maxWidth: factors.px-to-rem(960px);
+$maxWidth: px-to-rem(960px);
 $paddingBox: 0.62rem 1rem; // switch to mixin
 
-$fs-xsm-em: factors.em-scale(400);
-$fs-sm-em: factors.em-scale(400);
-$fs-md-em: factors.em-scale(500);
+$fs-xsm-em: em-scale(400);
+$fs-sm-em: em-scale(400);
+$fs-md-em: em-scale(500);
 $fs-lg-em: 1.29em;
-$fs-xlg-em: factors.em-scale(700);
+$fs-xlg-em: em-scale(700);
 
-$fs-xsm-rem: factors.rem-scale(400);
-$fs-sm-rem: factors.rem-scale(400);
-$fs-md-rem: factors.rem-scale(500);
+$fs-xsm-rem: rem-scale(400);
+$fs-sm-rem: rem-scale(400);
+$fs-md-rem: rem-scale(500);
 $fs-lg-rem: 1.29rem;
-$fs-xlg-rem: factors.rem-scale(700);
+$fs-xlg-rem: rem-scale(700);
 
 /* font weights */
+$fw-xs: 300;
 $fw-sm: 400;
 $fw-md: 500;
 $fw-lg: 700;
 
-$space-xsm: factors.em-scale(300);
-$space-sm: factors.em-scale(400);
-$space-md: factors.em-scale(500);
-$space-lg: factors.em-scale(600);
-
-$spacer-xs: .47em;
-$spacer-sm: .76em;
-$spacer-md: 1em;
-$spacer-lg: calc($spacer-md * 1.618);
+$space-xsm: em-scale(300);
+$space-sm: em-scale(400);
+$space-md: em-scale(500);
+$space-lg: em-scale(600);
 
 // speed
 $duration-sm: 160ms;
@@ -47,17 +44,17 @@ $duration-lg: 640ms;
 $ease: ease-in-out;
 
 /* box model */
-// $border: 1px solid transparentize(color.color(brown, 900), functions.scale(500));
-$border: 1px solid color.get-color(darkShades, 500);
-$border-radius: factors.em-scale(100);
+// $border: 1px solid transparentize(color(brown, 900), functions.scale(500));
+$border: 1px solid get-color(darkShades, 500);
+$border-radius: em-scale(200);
 
 $max-width: 70ch;
 
 
 
-$btn-spacing-sm-btn: factors.px-to-rem(36px); // 36-48
-$btn-spacing-md-btn: factors.px-to-rem(24px); // 24-36
-$btn-spacing-lg-btn: factors.px-to-rem(12px); // 12-24
+$btn-spacing-sm-btn: px-to-rem(36px); // 36-48
+$btn-spacing-md-btn: px-to-rem(24px); // 24-36
+$btn-spacing-lg-btn: px-to-rem(12px); // 12-24
 
 //factors
 $goldenRatio: 1.618;

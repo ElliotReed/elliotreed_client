@@ -2,7 +2,7 @@ import React from "react"
 
 import DesignLayout from "../../layouts/DesignLayout"
 
-import MaxWidthContainer from "../../components/UI/maxWidthContainer";
+import MaxWidthContainer from "../../components/MaxWidthContainer/MaxWidthContainer";
 
 import * as styles from "./colors.module.scss"
 

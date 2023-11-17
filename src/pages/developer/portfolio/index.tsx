@@ -2,8 +2,8 @@ import React from "react";
 import { graphql, HeadFC, PageProps } from "gatsby";
 import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
 
-import { SEO } from "../../../components/SEO/Seo";
-import MaxWidthContainer from "../../../components/UI/maxWidthContainer";
+import { Seo } from "../../../components/SEO";
+import MaxWidthContainer from "../../../components/MaxWidthContainer/MaxWidthContainer";
 
 import * as styles from "./portfolio.module.scss";
 
@@ -43,10 +43,10 @@ interface QueryResult {
   }
 }
 
-export default function PortfolioPage({ data }: PageProps<QueryResult>) {
+export default function PortfolioPage({ data }: Readonly<PageProps<QueryResult>>) {
 
   return (
-    <div className={styles.pageWrapper}>
+    <main className={styles.pageWrapper}>
       <MaxWidthContainer>
         <PaddingContainer>
           <HeaderContent />
@@ -91,7 +91,7 @@ export default function PortfolioPage({ data }: PageProps<QueryResult>) {
           ))}
         </ul>
       </MaxWidthContainer>
-    </div>
+    </main>
   )
 }
 
@@ -125,5 +125,5 @@ export const query = graphql`
 `
 
 export const Head: HeadFC<string> = () => (
-  <SEO title="Developer | Portfolio" />
+  <Seo title="Developer | Portfolio" />
 )

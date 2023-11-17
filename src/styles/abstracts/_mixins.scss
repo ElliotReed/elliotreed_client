@@ -29,8 +29,22 @@
       scale-color($color, $lightness: -10%) 100%);
 }
 
-@mixin paddingBox {
-  padding: variables.$space-sm variables.$space-md;
+@mixin padding-box($size: md) {
+  $padding-box-sm: .47em .76em;
+  $padding-box-md: .76em 1em;
+  $padding-box-lg: 1em 1.47em;
+
+  @if $size ==sm {
+    padding: $padding-box-sm;
+  }
+
+  @if $size ==md {
+    padding: $padding-box-md;
+  }
+
+  @if $size ==lg {
+    padding: $padding-box-lg;
+  }
 }
 
 /*

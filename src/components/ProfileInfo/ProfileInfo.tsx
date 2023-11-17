@@ -38,11 +38,9 @@ export function MusicianProfile() {
         swing). I also perform in the rock, pop, reggae, and country styles.
       </p>
       <p>
-        My primary project is &nbsp;
-        <a href="https://www.gypsyswingrevue.com" target="blank">
+        My primary project is <a href="https://www.gypsyswingrevue.com" target="blank">
           Gypsy Swing Revue
-        </a>
-        , a gypsy jazz band in the style of the Hot Club of France.
+        </a>, a gypsy jazz band in the style of the Hot Club of France.
       </p>
       <p> I compose, arrange and teach music.</p>
     </section>

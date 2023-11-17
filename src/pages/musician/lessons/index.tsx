@@ -5,12 +5,12 @@ import { StaticImage } from "gatsby-plugin-image"
 import { Map } from 'pigeon-maps'
 import { osm } from 'pigeon-maps/providers'
 
-import { SEO } from "../../../components/SEO/Seo"
+import { Seo } from "../../../components/SEO"
 
 import ContactForm from "../../../components/ContactForm"
 import Heading from "../../../components/Heading/Heading"
 import { List } from "../../../components/List"
-import MaxWidthContainer from "../../../components/UI/maxWidthContainer"
+import MaxWidthContainer from "../../../components/MaxWidthContainer/MaxWidthContainer"
 import Paragraph from "../../../components/UI/Paragraph/Paragraph"
 
 
@@ -99,5 +99,5 @@ export default function LessonPage() {
 }
 
 export const Head: HeadFC<string> = () => (
-  <SEO title="Lessons | Elliot Reed | Musician" />
+  <Seo title="Lessons | Elliot Reed | Musician" />
 )

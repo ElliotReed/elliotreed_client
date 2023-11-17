@@ -1,25 +1,20 @@
-@use "../../../styles/abstracts";
-
-.pageWrapper {
-  margin-top: abstracts.$margin;
-}
+@use "../../../styles/abstracts" as *;
 
 .paddingContainer {
-  padding: 0 abstracts.$padding;
+  padding: 0 $space-md;
 }
 
 .portfolioHeader {
-  border-radius: abstracts.$border-radius;
-  background: abstracts.get-color(lightShades);
-  padding: abstracts.$padding;
-  @include abstracts.boxShadow;
+  border-radius: $border-radius;
+  background: get-color(lightShades);
+  padding: $space-md;
 
   h1 {
-    color: abstracts.get-color(mainBrand);
+    color: get-color(mainBrand);
   }
 
   p {
-    color: abstracts.get-color(darkShades);
+    color: get-color(darkShades);
     margin-bottom: 0;
   }
 }
@@ -31,11 +26,11 @@
 .card {
   display: grid;
   grid-template-columns: 1fr;
-  color: abstracts.get-color(darkShades);
-  margin: abstracts.$margin;
-  @include abstracts.boxShadow;
-  border-radius: abstracts.$border-radius;
-  background: abstracts.get-color(lightShades);
+  color: get-color(darkShades);
+  margin: $space-md;
+  @include shadow(2);
+  border-radius: $border-radius;
+  background: get-color(lightShades);
   transition: 0.3s;
 }
 
@@ -43,7 +38,7 @@
   display: inline-flex;
   gap: 1rem;
   max-width: 100%;
-  margin: abstracts.$margin;
+  margin: $space-md;
 
   & img {
     display: block;
@@ -51,33 +46,33 @@
 }
 
 .card__info {
-  margin: 0 abstracts.$margin abstracts.$margin;
+  margin: 0 $space-md $space-md;
 
   & a {
-    color: abstracts.get-color(mainBrand);
+    color: get-color(mainBrand);
   }
 
   & h2 {
-    margin: abstracts.$margin 0;
+    margin: $space-md 0;
     margin-bottom: 0;
   }
 
   & p {
-    margin: abstracts.$margin 0;
+    margin: $space-md 0;
   }
 
   & .blurb {
     font-size: 0.76em;
     font-style: italic;
-    margin: (abstracts.$margin * abstracts.$large) 0;
+    margin: $space-lg 0;
   }
 
   & .productionFalse {
     font-size: small;
     font-style: oblique;
-    color: abstracts.get-color(lightShades);
-    border-radius: abstracts.$border-radius;
-    background: abstracts.get-color(darkShades);
-    @include abstracts.paddingBox;
+    color: get-color(lightShades);
+    border-radius: $border-radius;
+    background: get-color(darkShades);
+    @include padding-box();
   }
 }

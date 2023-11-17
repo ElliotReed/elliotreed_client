@@ -1,11 +1,13 @@
-@use "../styles/abstracts";
+@use "../styles/abstracts" as *;
+
+// add respondTo mixin
 
 .landing-page {
   position: fixed;
+  inset: 0;
   display: flex;
   flex-direction: column;
-  inset: 0;
-  background: abstracts.get-color(black);
+  background: $body-background-color;
 
   @media (min-width: 640px) and (orientation: landscape) {
     flex-direction: row;
@@ -17,11 +19,10 @@
 }
 
 .aspect-container {
-  $transition: abstracts.$duration-md all ease-in-out;
+  $transition: $duration-md all ease-in-out;
   position: relative;
   flex-basis: 50%;
   background-attachment: local;
-  background-color: abstracts.get-color(black);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -31,7 +32,7 @@
     position: absolute;
     content: "";
     inset: 0;
-    background: rgba(abstracts.get-color(black), abstracts.$small);
+    background: rgba(get-color(black), $small);
     transition: $transition;
   }
 
@@ -43,7 +44,7 @@
     position: absolute;
     left: 50%;
     top: 10%;
-    color: abstracts.get-color(white);
+    color: get-color(white);
     white-space: nowrap;
     transform: translateX(-50%);
   }
@@ -52,25 +53,25 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    color: abstracts.get-color(white);
+    color: get-color(white);
     font-weight: bold;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
-    border: abstracts.get-color(white) solid 0.25em;
-    @include abstracts.paddingBox;
+    border: get-color(white) solid em-scale(100);
+    @include padding-box();
     transform: translateX(-50%);
 
   }
 
   &.left a:hover {
-    background-color: lighten(abstracts.get-color(mainBrand), abstracts.$smallPercent);
-    border-color: abstracts.get-color(mainBrand);
+    background-color: get-color(mainBrand, 400);
+    border-color: get-color(mainBrand);
   }
 
   &.right a:hover {
-    background-color: lighten(abstracts.get-color(darkShades), abstracts.$smallPercent);
-    border-color: abstracts.get-color(darkShades);
+    background-color: get-color(darkShades, 400);
+    border-color: get-color(darkShades);
   }
 
   &.left {

@@ -4,8 +4,8 @@ import { StaticImage } from "gatsby-plugin-image"
 
 import { ProfileHeader } from "../../components/ProfileHeader"
 import { MusicianProfile } from "../../components/ProfileInfo"
-import { SEO } from "../../components/SEO/Seo"
-import MaxWidthContainer from "../../components/UI/maxWidthContainer"
+import { Seo } from "../../components/SEO"
+import MaxWidthContainer from "../../components/MaxWidthContainer/MaxWidthContainer"
 
 import * as styles from "./musician.module.scss"
 
@@ -14,7 +14,7 @@ const MusicianPage = () => {
     "I am a musician living and working in the greater Denver Metro area."
 
   return (
-    <div className={styles.page}>
+    <main className={styles.page}>
       <section className={styles.profile}>
         <MaxWidthContainer>
           <ProfileHeader text={text} >
@@ -34,12 +34,12 @@ const MusicianPage = () => {
           <MusicianProfile />
         </MaxWidthContainer>
       </section>
-    </div>
+    </main>
   )
 }
 
 export default MusicianPage
 
 export const Head: HeadFC<string> = () => (
-  <SEO title="Elliot Reed | Musician" />
+  <Seo title="Elliot Reed | Musician" />
 )
