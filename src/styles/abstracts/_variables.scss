@@ -1,13 +1,13 @@
 @use "color" as *;
 @use 'scale-functions' as *;
 
-$body-background-color: get-color(lightShades);
-$body-text: get-color(darkShades);
+$body-background-color: get-color("lightShades");
+$body-text: get-color("darkShades");
 
 // color
-$scrollbar-thumb-background: get-color(darkShades, 500);
-$scrollbar-thumb-background-hover: get-color(darkShades, 400);
-$scrollbar-track-background: get-color(lightShades, 500);
+$scrollbar-thumb-background: get-color("darkShades", 500);
+$scrollbar-thumb-background-hover: get-color("darkShades", 400);
+$scrollbar-track-background: get-color("lightShades", 500);
 
 /* sizes */
 $maxWidth: px-to-rem(960px);
@@ -16,13 +16,13 @@ $paddingBox: 0.62rem 1rem; // switch to mixin
 $fs-xsm-em: em-scale(400);
 $fs-sm-em: em-scale(400);
 $fs-md-em: em-scale(500);
-$fs-lg-em: 1.29em;
+$fs-lg-em: em-scale(600);
 $fs-xlg-em: em-scale(700);
 
 $fs-xsm-rem: rem-scale(400);
 $fs-sm-rem: rem-scale(400);
 $fs-md-rem: rem-scale(500);
-$fs-lg-rem: 1.29rem;
+$fs-lg-rem: rem-scale(600);
 $fs-xlg-rem: rem-scale(700);
 
 /* font weights */
@@ -45,11 +45,12 @@ $ease: ease-in-out;
 
 /* box model */
 // $border: 1px solid transparentize(color(brown, 900), functions.scale(500));
-$border: 1px solid get-color(darkShades, 500);
-$border-radius: em-scale(200);
+$border: 1px solid get-color("darkShades", 500);
+$border-radius: em-scale(100);
 
-$max-width: 70ch;
+$max-width: px-to-rem(960px);
 
+$line-height: 1.618;
 
 
 $btn-spacing-sm-btn: px-to-rem(36px); // 36-48

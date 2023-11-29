@@ -1,4 +1,4 @@
-@use "../abstracts";
+@use "../abstracts" as *;
 @use './typography';
 @use '../layouts';
 
@@ -12,43 +12,54 @@
 
 html {
   box-sizing: border-box;
-  font-size: calc(15px + 0.390625vw);
-  line-height: 1.618;
+  font-family: typography.$fontStack;
+  line-height: $line-height;
 }
 
+// added in normalize
 *,
 *:before,
 *:after {
   box-sizing: inherit;
 }
 
-html,
 body {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
   min-height: 100vh;
-  min-width: 320px;
-  font-family: typography.$fontStack;
+  min-height: 100svh;
+  color: get-color("darkShades");
+  font-size: calc(15px + 0.390625vw);
+  background-color: get-color("lightShades");
+  @include scrollbar;
 }
 
-body {
-  position: relative;
-  background-color: abstracts.get-color(lightShades);
-  color: abstracts.get-color(darkShades);
-  @include abstracts.scrollbar;
-}
 
+button,
 input,
+optgroup,
 select,
-textarea,
-button {
-  font-family: inherit;
+textarea {
+  line-height: $line-height;
+}
+
+a:focus,
+button:focus,
+input:focus,
+optgroup:focus,
+select:focus,
+textarea:focus {
+  outline-color: get-color("mainBrand", 200);
+  outline-style: solid;
+  outline-width: 1px;
+  // outline-offset: 3px;
 }
 
 *::selection {
-  background-color: abstracts.get-color(darkShades);
-  color: abstracts.get-color(lightShades);
+  background-color: get-color("darkShades");
+  color: get-color("lightShades");
 }
 
 img {

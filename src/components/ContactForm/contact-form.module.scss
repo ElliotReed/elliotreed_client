@@ -4,12 +4,12 @@
   margin-inline: $space-md;
   margin-block: $space-md;
   padding-inline: $space-md;
-  color: get-color(darkShades);
+  color: get-color("darkShades");
   border: 1px solid transparent;
   border-radius: $border-radius;
 
   .error {
-    color: get-color(error, 500);
+    color: get-color("error", 500);
     font-weight: $fw-lg;
   }
 
@@ -23,7 +23,7 @@
 
   & h1 {
     font-weight: $fw-lg;
-    color: get-color(mainBrand);
+    color: get-color("mainBrand");
   }
 
 
@@ -37,26 +37,16 @@
 
   & input,
   textarea {
-    color: get-color(darkShades);
     width: 100%;
-    height: $space-md;
-    border-radius: $border-radius;
-    background-color: get-color(lightShades, 100);
-    padding: $space-md;
-    outline: none;
-    box-shadow: 1px 1px 2px rgba(get-color(darkShades), 0.2) inset;
+    @include padding-box('sm');
+    color: get-color("darkShades");
+    background-color: get-color("lightShades", 100);
+    @include border($color: get-color("mainBrand", 100));
 
-    &:focus,
-    :active {
-      // border: 1px solid;
-      box-shadow: 0 0 3px rgba(get-color(darkShades), 0.5), 1px 1px 2px get-color(darkShades) inset;
-
+    & textarea {
+      height: 10rem;
+      resize: vertical;
     }
-  }
-
-  & textarea {
-    height: 10rem;
-    resize: vertical;
   }
 }
 
@@ -67,7 +57,7 @@
   margin-block: $space-xsm;
 
   svg {
-    color: get-color(lightShades);
+    color: get-color("lightShades");
     @include shadow(2);
   }
 }

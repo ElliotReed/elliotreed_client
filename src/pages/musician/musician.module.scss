@@ -1,9 +1,11 @@
-@use "../../styles/abstracts";
+@use "../../styles/abstracts" as *;
 
-.page {
-  max-width: 100%;
+.wrapper {
+  max-height: 50vh;
+  // margin-bottom: -25%;
+
 }
 
-.profile {
-  margin: abstracts.$space-md;
+.hero-image {
+  filter: grayscale(50%);
 }

@@ -2,7 +2,7 @@
 
 .logo {
   filter: url(#shadow);
-  fill: abstracts.get-color(mainBrand);
+  fill: abstracts.get-color("mainBrand");
   // backface-visibility: visible;
   border: 0;
   outline: none;
@@ -15,22 +15,22 @@
   transform-origin: bottom center;
   perspective: 200px;
   transform-style: preserve-3d;
-  fill: abstracts.get-color(mainBrand);
+  fill: abstracts.get-color("mainBrand");
   opacity: 1;
 }
 
 .active {
-  fill: abstracts.get-color(mainBrand);
+  fill: abstracts.get-color("mainBrand");
   opacity: 1;
 }
 
 .inactive {
-  fill: abstracts.get-color(darkShades);
+  fill: abstracts.get-color("darkShades");
   opacity: 0.38;
 }
 
 .light {
-  fill: abstracts.get-color(lightShades);
-  fill: abstracts.get-color(mainBrand);
+  fill: abstracts.get-color("lightShades");
+  fill: abstracts.get-color("mainBrand");
   opacity: 1;
 }

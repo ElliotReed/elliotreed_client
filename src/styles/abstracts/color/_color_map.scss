@@ -9,14 +9,18 @@ $mainBrand: #2e3832;
 $darkShades: #382e31;
 $lightShades: #e4ddcd;
 
+$transparencies: (
+  "light": #fff,
+  "dark": #000,
+);
 
 $er-colors: (
-  black: #222222,
-  white: invert($black),
-  neutral: mix($black, $white, 25%),
-  mainBrand: #2e3832,
-  darkShades: #382e31,
-  lightShades: #e4ddcd,
+  "black": #222222,
+  "white": invert($black),
+  "neutral": mix($black, $white, 25%),
+  "mainBrand": #2e3832,
+  "darkShades": #382e31,
+  "lightShades": #e4ddcd,
 );
 
 $errorColor: #662222;
@@ -24,10 +28,10 @@ $warningColor: #e2e263;
 $successColor: #556655;
 
 $state-colors: (
-  error: #884455,
-  info: #e9f1f9,
-  success: #448855,
-  warning: #888800,
+  "error": #884455,
+  "info": #e9f1f9,
+  "success": #448855,
+  "warning": #888800,
 );
 
 $color-map: (
@@ -39,6 +43,14 @@ $value in $er-colors {
   $map: (
   );
 $map: map-merge($map, ($key: utility.create_color_map($value)));
+$color-map: map-merge($color-map, $map);
+}
+
+@each $key,
+$value in $transparencies {
+  $map: (
+  );
+$map: map-merge($map, ($key: utility.create_base_color_map($value)));
 $color-map: map-merge($color-map, $map);
 }
 

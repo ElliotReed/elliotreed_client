@@ -60,29 +60,42 @@ const MusicianNav = () => {
     <nav>
       <ul className={styles.navList}>
         <li>
-          <Link to="/musician" activeClassName={styles.activeNavItem}>
+          <Link
+            to="/musician/about"
+            activeClassName={styles.navList__linkActive}
+            className={styles.navList__link}
+          >
             About
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link
             to="/musician/performances"
-            activeClassName={styles.activeNavItem}
+            activeClassName={styles.navList__linkActive}
+            className={styles.navList__link}
           >
             Performances
           </Link>
-        </li>
+        </li> */}
         <li>
-          <Link to="/musician/lessons" activeClassName={styles.activeNavItem}>
+          <Link
+            to="/musician/lessons"
+            activeClassName={styles.navList__linkActive}
+            className={styles.navList__link}
+          >
             Lessons
           </Link>
         </li>
         <li>
-          <Link to="/musician/contact" activeClassName={styles.activeNavItem}>
+          <Link
+            to="/musician/contact"
+            activeClassName={styles.navList__linkActive}
+            className={styles.navList__link}
+          >
             Contact
           </Link>
         </li>
-        <li className={styles.showListLink}>
+        {/* <li className={styles.showListLink}>
           <button type="button" onClick={showDropdownMenu}>
             &#8942;
           </button>
@@ -97,13 +110,14 @@ const MusicianNav = () => {
             <li>
               <Link
                 to="/musician/abbeyroad"
-                activeClassName={styles.activeNavItem}
+                activeClassName={styles.navList__linkActive}
+                className={styles.navList__link}
               >
                 Abbey Road
               </Link>
             </li>
           </ul>
-        </li>
+        </li> */}
       </ul>
     </nav>
   )
@@ -114,20 +128,29 @@ const DeveloperNav = () => {
     <nav>
       <ul className={styles.navList}>
         <li>
-          <Link to="/developer" activeClassName={styles.activeNavItem}>
+          <Link
+            to="/developer/about"
+            activeClassName={styles.navList__linkActive}
+            className={styles.navList__link}
+          >
             About
           </Link>
         </li>
         <li>
           <Link
             to="/developer/portfolio"
-            activeClassName={styles.activeNavItem}
+            activeClassName={styles.navList__linkActive}
+            className={styles.navList__link}
           >
             Portfolio
           </Link>
         </li>
         <li>
-          <Link to="/developer/contact" activeClassName={styles.activeNavItem}>
+          <Link
+            to="/developer/contact"
+            activeClassName={styles.navList__linkActive}
+            className={styles.navList__link}
+          >
             Contact
           </Link>
         </li>

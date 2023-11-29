@@ -7,7 +7,7 @@ import MaxWidthContainer from "../../../components/MaxWidthContainer/MaxWidthCon
 
 import * as styles from "./portfolio.module.scss";
 
-function PaddingContainer({ children }: React.PropsWithChildren) {
+function PaddingContainer({ children }: Readonly<React.PropsWithChildren>) {
   return <div className={styles.paddingContainer}>{children}</div>
 }
 
@@ -46,7 +46,7 @@ interface QueryResult {
 export default function PortfolioPage({ data }: Readonly<PageProps<QueryResult>>) {
 
   return (
-    <main className={styles.pageWrapper}>
+    <main className={styles.portfolioPage}>
       <MaxWidthContainer>
         <PaddingContainer>
           <HeaderContent />

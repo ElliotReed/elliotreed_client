@@ -8,13 +8,17 @@ import * as styles from "./colors.module.scss"
 
 export default function ColorsPage() {
   const colors = [
-    'mainBrand',
-    'darkShades',
-    'lightShades',
-    'error',
-    'info',
-    'success',
-    'warning',
+    "light",
+    "dark",
+    "mainBrand",
+    "darkShades",
+    "lightShades",
+    "error",
+    "info",
+    "success",
+    "warning",
+    "white",
+    "black",
   ];
 
   return (
@@ -22,13 +26,14 @@ export default function ColorsPage() {
       <MaxWidthContainer>
         <h1>Colors</h1>
 
-        {colors.map((color, i) => (
-          // <li key={i}>{color}</li>
-          <React.Fragment key={color}>
-            <ColorGrid color={color} />
-
-          </React.Fragment>
-        ))}
+        <div className={styles.colorContainer}>
+          {colors.map((color, i) => (
+            // <li key={i}>{color}</li>
+            <React.Fragment key={color}>
+              <ColorGrid color={color} />
+            </React.Fragment>
+          ))}
+        </div>
       </MaxWidthContainer>
     </DesignLayout>
   );

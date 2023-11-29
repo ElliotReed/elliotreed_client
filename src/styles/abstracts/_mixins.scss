@@ -11,10 +11,10 @@
 }
 
 @mixin borderTest() {
-  border: 1px solid color.$errorColor;
+  border: 1px solid color.$error Color;
 }
 
-@mixin boxShadow($color: color.get-color(black, 900)) {
+@mixin boxShadow($color: color.get-color("black", 900)) {
   $alpha: 0.29;
   box-shadow: 0px 1px 1px rgba($color, $alpha), 0px 2px 2px rgba($color, $alpha), 0px 4px 4px rgba($color, $alpha),
     0px 8px 8px rgba($color, $alpha), 0px 16px 16px rgba($color, $alpha);
@@ -30,9 +30,9 @@
 }
 
 @mixin padding-box($size: md) {
-  $padding-box-sm: .47em .76em;
-  $padding-box-md: .76em 1em;
-  $padding-box-lg: 1em 1.47em;
+  $padding-box-sm: factors.em-scale(300) factors.em-scale(400);
+  $padding-box-md: factors.em-scale(400) factors.em-scale(500);
+  $padding-box-lg: factors.em-scale(500) factors.em-scale(600);
 
   @if $size ==sm {
     padding: $padding-box-sm;
@@ -83,48 +83,71 @@
   }
 }
 
-// Breakpoints for each query
-$smartphone: 480px;
-$tablet: 767px;
-$tabletPortrait: 767px;
-$tabletLandscape: 1024px;
-$desktop: 1174px;
-$largeScreen: 1400px;
+@mixin respondTo($media, $min-or-max: "min") {
+  /* Example usage div {
+    // regular styles here
+    @include respondTo(desktop) {
+      &:hover {
+        background: blue;
+      } // only add the hover effect on desktop browsers
+    }
+  }
+  This can be done
+  @media (min-width: $tabletPortrait) and (max-width: $tabletLandscape) {
+  */
 
-@mixin respondTo($media) {
-  @if $media ==smartphone {
-    @media (min-width: $smartphone) {
+  // Breakpoints for each query
+  $smartphone: factors.px-to-rem(767px);
+  $tablet: factors.px-to-rem(768px);
+  $tabletLandscape: factors.px-to-rem(767px);
+  $laptop: factors.px-to-rem(900px);
+  $desktop: factors.px-to-rem(1080px);
+  $largeDesktop: factors.px-to-rem(1440px);
+  $largeScreen: factors.px-to-rem(1800px);
+
+  @if $media =="smartphone" {
+    @media (#{$min-or-max}-width: $smartphone) {
       @content;
     }
   }
 
-  @else if $media ==tablet {
-    @media (min-width: $tabletPortrait) and (max-width: $tabletLandscape) {
+  @else if $media =="tablet" {
+    @media (#{$min-or-max}-width: $tablet) {
+      @content;
+
+    }
+  }
+
+  @else if $media =="tabletLandscape" {
+    @media (#{$min-or-max}-width: $tabletLandscape) {
       @content;
     }
   }
 
-  @else if $media ==smallScreen {
-    @media (max-width: $desktop) {
+  @else if $media =="laptop" {
+    @media (#{$min-or-max}-width: $laptop) {
       @content;
     }
   }
 
-  @else if $media ==desktop {
-    @media (min-width: $desktop) {
+  @else if $media =="desktop" {
+    @media (#{$min-or-max}-width: $desktop) {
+      @content;
+    }
+  }
+
+  @else if $media =="largeDesktop" {
+    @media (#{$min-or-max}-width: $largeDesktop) {
+      @content;
+    }
+  }
+
+  @else if $media =="largeScreen" {
+    @media (#{$min-or-max}-width: $largeScreen) {
       @content;
     }
   }
 }
-
-// Example usage div {
-//   // regular styles here
-//   @include respondTo(desktop) {
-//     &:hover {
-//       background: blue;
-//     } // only add the hover effect on desktop browsers
-//   }
-// }
 
 @mixin scrollbar {
   &::-webkit-scrollbar {
@@ -150,7 +173,7 @@ $largeScreen: 1400px;
 
 // region box-shadow ==========
 $blur-factor: 3;
-$box-shadow-inset: inset 0 0 factors.px-to-rem(3px) transparentize(color.get-color(black, 900), .76);
+$box-shadow-inset: inset 0 0 factors.px-to-rem(3px) transparentize(color.get-color("black", 900), .76);
 
 /**
  * Computes a top-shadow

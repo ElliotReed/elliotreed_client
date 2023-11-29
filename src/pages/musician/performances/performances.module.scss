@@ -4,13 +4,13 @@
   margin: abstracts.$space-md;
   max-width: 100%;
   border-radius: abstracts.$border-radius;
-  background: abstracts.get-color(lightShades);
+  background: abstracts.get-color("lightShades");
   padding: abstracts.$space-md;
-  color: abstracts.get-color(darkShades);
+  color: abstracts.get-color("darkShades");
 
   & h1 {
     margin: abstracts.$space-md 0;
     font-weight: bold;
-    color: abstracts.get-color(mainBrand);
+    color: abstracts.get-color("mainBrand");
   }
 }

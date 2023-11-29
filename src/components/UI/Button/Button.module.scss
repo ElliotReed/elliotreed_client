@@ -9,19 +9,19 @@
   align-items: center;
 
   @include padding-box();
-  color: get-color(lightShades, 500);
-  // text-shadow: 2px 2px 0px darken(get-color(lightShades), 60);
+  color: get-color("lightShades", 500);
+  // text-shadow: 2px 2px 0px darken(get-color("lightShades"), 60);
   font-weight: 500;
 
-  background-color: get-color(mainBrand, 500);
-  @include border($color: get-color(mainBrand, 600));
+  background-color: get-color("mainBrand", 500);
+  @include border($color: get-color("mainBrand", 600));
   outline: none;
   transition: all 0.15s;
   @include shadow(1);
 
   &:hover,
   &:focus {
-    background: get-color(mainBrand, 600);
+    background: get-color("mainBrand", 600);
     @include shadow(2);
     transform: translateY(-1px);
     cursor: pointer;
@@ -29,13 +29,13 @@
 
   &:disabled {
     text-decoration: line-through;
-    background-color: get-color(lightShades, 900);
+    background-color: get-color("lightShades", 900);
     cursor: not-allowed;
     @include shadow(0);
   }
 
   &:focus {
-    outline: 1px solid get-color(mainBrand, 500);
+    outline: 1px solid get-color("mainBrand", 500);
     outline-offset: 2px;
   }
 

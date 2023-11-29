@@ -1,11 +1,12 @@
 @use "../../../styles/abstracts/" as *;
 
-.main {
-  margin: $space-md;
-  border-radius: $border-radius;
-  background: get-color(lightShades);
-  padding: $space-md;
-  color: get-color(darkShades);
+.lesson-page {
+  background: get-color("lightShades");
+  color: get-color("darkShades");
+
+  img {
+    border-radius: $border-radius;
+  }
 
   .subHeading {
     display: block;
@@ -16,22 +17,36 @@
     list-style: initial;
   }
 
-  .areaContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: $space-md;
-    justify-content: center;
+  .twoColumnGrid {
+    display: grid;
+    gap: 1em;
 
-    p {
-      flex: 1 1 30ch
+    &.left {
+      @include respondTo("tablet") {
+        grid-template-columns: 1fr 1.618fr;
+      }
     }
 
-    .map {
-      border: 4px solid get-color(darkShades);
-      border-radius: $border-radius;
-      flex: 0 0 300px;
+    &.right {
+      @include respondTo("tablet") {
+        grid-template-columns: 1.618fr 1fr;
+      }
+    }
+
+    &>* {
+      margin-top: 0;
     }
   }
 
 
+  .map {
+    pointer-events: none;
+    border: 4px solid get-color("darkShades");
+    border-radius: $border-radius;
+  }
+}
+
+.genre-list {
+  background: get-color("darkShades");
+  color: get-color("lightShades");
 }

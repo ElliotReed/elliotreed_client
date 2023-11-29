@@ -5,7 +5,7 @@
   align-items: center;
   flex-wrap: wrap;
   justify-content: space-between;
-  color: get-color(mainBrand);
+  color: get-color("mainBrand");
   background-color: $body-background-color;
   @include padding-box();
   @include shadow(1);
@@ -42,7 +42,7 @@
 .aspect {
   position: relative;
   perspective: 400px;
-  background-color: get-color(lightShades, 300);
+  background-color: get-color("lightShades", 300);
   border-radius: $border-radius;
 
   .aspect-menu {
@@ -84,29 +84,25 @@
   padding: 0;
   list-style: none;
 
-  li {
-    color: get-color(mainBrand);
-    text-decoration: none;
-  }
-
-  a {
+  &__link {
     padding-inline: $space-xsm;
-    text-decoration: none;
+    color: get-color("mainBrand");
     font-weight: $fw-md;
+    text-decoration: none;
 
     &:hover {
-      color: get-color(darkShades);
+      color: get-color("darkShades");
       background: none;
     }
 
     &:visited {
       color: inherit;
     }
-  }
-}
 
-.active-nav-item {
-  border-bottom: 2px solid get-color(mainBrand);
+    &-active {
+      border-bottom: 2px solid get-color("mainBrand");
+    }
+  }
 }
 
 .show-list-link {
@@ -129,9 +125,9 @@
   @include boxShadow;
   margin: 0;
   padding: 0;
-  color: get-color(mainBrand);
+  color: get-color("mainBrand");
   white-space: nowrap;
-  background: get-color(lightShades);
+  background: get-color("lightShades");
   border-radius: $border-radius;
   overflow: hidden;
   transition: height $duration-md ease-in-out;
@@ -142,7 +138,7 @@
     border: 1px solid transparent;
 
     &:hover a {
-      color: darken(get-color(mainBrand), $largePercent);
+      color: darken(get-color("mainBrand"), $largePercent);
       cursor: pointer;
     }
 
@@ -153,10 +149,10 @@
 
   & p {
     margin: 0;
-    color: lighten(get-color(mainBrand), $smallPercent);
+    color: lighten(get-color("mainBrand"), $smallPercent);
     font-size: 0.75rem;
     font-weight: bold;
-    border-bottom: 0.0618rem solid get-color(mainBrand);
+    border-bottom: 0.0618rem solid get-color("mainBrand");
   }
 }
 

@@ -1,14 +1,12 @@
 @use "../styles/abstracts";
 
-
-
 .NotFoundPage {
   display: grid;
   place-content: center;
   height: 100vh;
-  color: abstracts.get-color(lightShades);
+  color: abstracts.get-color("lightShades");
   text-align: center;
-  background: abstracts.get-color(mainBrand);
+  background: abstracts.get-color("mainBrand");
 
   button {
     @include abstracts.padding-box();

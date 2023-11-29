@@ -71,4 +71,6 @@ yarn-error.log
 # Junk
 junk
 .archive/
+.archive_img/
+/
 images-possible/

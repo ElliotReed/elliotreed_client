@@ -4,33 +4,36 @@
   padding: 0 $space-md;
 }
 
-.portfolioHeader {
-  border-radius: $border-radius;
-  background: get-color(lightShades);
-  padding: $space-md;
+.portfolio-page {
+  .portfolioHeader {
+    border-radius: $border-radius;
+    background: get-color("lightShades");
+    padding: $space-md;
 
-  h1 {
-    color: get-color(mainBrand);
+    h1 {
+      color: get-color("mainBrand");
+    }
+
+    p {
+      color: get-color("darkShades");
+      margin-bottom: 0;
+    }
   }
 
-  p {
-    color: get-color(darkShades);
-    margin-bottom: 0;
+  .list {
+    padding: 0;
   }
-}
 
-.list {
-  padding: 0;
 }
 
 .card {
   display: grid;
   grid-template-columns: 1fr;
-  color: get-color(darkShades);
+  color: get-color("darkShades");
   margin: $space-md;
   @include shadow(2);
   border-radius: $border-radius;
-  background: get-color(lightShades);
+  background: get-color("lightShades");
   transition: 0.3s;
 }
 
@@ -49,7 +52,7 @@
   margin: 0 $space-md $space-md;
 
   & a {
-    color: get-color(mainBrand);
+    color: get-color("mainBrand");
   }
 
   & h2 {
@@ -70,9 +73,9 @@
   & .productionFalse {
     font-size: small;
     font-style: oblique;
-    color: get-color(lightShades);
+    color: get-color("lightShades");
     border-radius: $border-radius;
-    background: get-color(darkShades);
+    background: get-color("darkShades");
     @include padding-box();
   }
 }
