@@ -37,7 +37,7 @@
     padding-inline-end: $space-xsm;
 
     @include respondTo("tablet", $min-or-max: "max") {
-      line-height: $line-height;
+      line-height: initial;
       padding-inline: $space-xsm;
       font-size: em-scale(500);
       grid-column: 1 / 3;

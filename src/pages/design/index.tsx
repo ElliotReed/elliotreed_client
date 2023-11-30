@@ -2,7 +2,7 @@ import React from "react";
 
 import Heading from "../../components/Heading/Heading";
 
-import DesignLayout from "../../layouts/DesignLayout/DesignLayout";
+import DesignLayout from "../../layouts/DesignLayout";
 
 export default function SettingsPage() {
   return (

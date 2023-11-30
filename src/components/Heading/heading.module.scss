@@ -1,5 +1,6 @@
 @use "../../styles/abstracts" as *;
 // @use '../../styles/base/typography';
+@use "../../styles/config";
 @use 'sass:list';
 // This sets heading elements to the scale,
 //   and creates utility classes
@@ -28,7 +29,7 @@ $letter-spacing-list: (
     // font-family: typography.$fontStack;
     font-size: em-scale($font-size);
     // font-weight: $font-weight;
-    line-height: ($line-height * scale($line-height-size));
+    line-height: (config.$line-height * scale($line-height-size));
     letter-spacing: list.nth($letter-spacing-list, $i);
 
     margin-block-start: rem-scale($margin-size);

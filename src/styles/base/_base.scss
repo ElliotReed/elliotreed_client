@@ -1,6 +1,7 @@
 @use "../abstracts" as *;
 @use './typography';
 @use '../layouts';
+@use "../config";
 
 /* #region Variables */
 :root {
@@ -13,7 +14,7 @@
 html {
   box-sizing: border-box;
   font-family: typography.$fontStack;
-  line-height: $line-height;
+  line-height: config.$line-height;
 }
 
 // added in normalize
@@ -42,7 +43,7 @@ input,
 optgroup,
 select,
 textarea {
-  line-height: $line-height;
+  line-height: config.$line-height;
 }
 
 a:focus,

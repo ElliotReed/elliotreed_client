@@ -3,7 +3,7 @@ import React from "react";
 import MaxWidthContainer from "../../components/MaxWidthContainer";
 import Heading from "../../components/Heading/Heading";
 
-import DesignLayout from "../../layouts/DesignLayout/DesignLayout";
+import DesignLayout from "../../layouts/DesignLayout";
 
 import * as styles from "./typography.module.scss";
 
