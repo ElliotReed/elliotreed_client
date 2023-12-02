@@ -7,13 +7,14 @@
 :root {
   /* animations */
   --softIn: softIn 0.33s ease-in;
+  @include typography.fonts();
 }
 
 /* #endregion Variables */
 
 html {
   box-sizing: border-box;
-  font-family: typography.$fontStack;
+  font-family: config.$body-font-family;
   line-height: config.$line-height;
 }
 

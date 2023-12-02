@@ -4,11 +4,11 @@
 //   font-family: 'Montserrat';
 //   src: local('Montserrat') url(/fonts/Montserrat-Bold.ttf) format('truetype');
 // }
-/* fonts */
-$fontStack: 'Montserrat';
 
-@font-face {
-  font-family: $fontStack;
-  src: url("../fonts/Montserrat-VariableFont_wght.ttf") format('truetype');
-  font-style: normal;
+@mixin fonts() {
+  @font-face {
+    font-family: 'Montserrat';
+    src: url("../fonts/Montserrat-VariableFont_wght.ttf") format('truetype');
+    font-style: normal;
+  }
 }
