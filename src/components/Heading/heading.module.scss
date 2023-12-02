@@ -1,21 +1,24 @@
 @use "../../styles/abstracts" as *;
-// @use '../../styles/base/typography';
+@use '../../styles/base/typography';
 @use "../../styles/config";
 @use 'sass:list';
 @use "sass:math";
-// This sets heading elements to the scale,
-//   and creates utility classes
-//   "heading-1, heading-2"
+
+/* ========================================
+Sets heading elements to the scale,
+  and creates utility classes
+  "heading-1, heading-2, etc"
+=========================================== */
 
 $font-size: 800;
 $font-weight: 550;
-
 
 // line height -1 for maximum reduction
 // divided by three for the 3 heading levels
 // divided by two to reduce reduction
 $line-height-factor: math.div(math.div((config.$line-height - 1), 3), 2);
 
+// values corespond to keys (100, 200, ..., 900)
 $margin-size: 400;
 $size-difference: 100;
 
@@ -41,15 +44,14 @@ $line-height-list: (
 
   h#{$i},
   .heading-#{$i} {
+    margin-block-start: rem-scale($margin-size);
+    margin-block-end: rem-scale($margin-size);
     color: get-color("mainBrand");
-    // font-family: typography.$fontStack;
+    font-family: typography.$fontStack;
     font-size: em-scale($font-size);
     font-weight: $font-weight;
     line-height: map-get($line-height-list, $i);
     letter-spacing: map-get($letter-spacing-list, $i);
-
-    margin-block-start: rem-scale($margin-size);
-    margin-block-end: rem-scale($margin-size);
   }
 
   $font-size: $font-size - $size-difference;
@@ -57,6 +59,7 @@ $line-height-list: (
   $margin-size: $margin-size + $size-difference;
 }
 
+// color
 .clr-default {
   color: get-color("mainBrand");
 }
@@ -69,6 +72,7 @@ $line-height-list: (
   color: get-color("darkShades");
 }
 
+// alignment
 .start {
   text-align: start;
 }
