@@ -22,13 +22,13 @@
     gap: 1em;
 
     &.left {
-      @include respondTo("tablet") {
+      @include respond-to("md") {
         grid-template-columns: 1fr 1.618fr;
       }
     }
 
     &.right {
-      @include respondTo("tablet") {
+      @include respond-to("md") {
         grid-template-columns: 1.618fr 1fr;
       }
     }

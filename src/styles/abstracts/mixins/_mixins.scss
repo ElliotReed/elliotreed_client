@@ -1,6 +1,6 @@
-@use './variables';
-@use './color';
-@use './scale-functions' as factors;
+@use '../variables';
+@use '../color';
+@use '../scale-functions' as factors;
 
 // mixins
 @mixin border($color: transparent, $width: 1px, $style: solid) {
@@ -27,24 +27,6 @@
       $color 62%,
       scale-color($color, $lightness: -15%) 90%,
       scale-color($color, $lightness: -10%) 100%);
-}
-
-@mixin padding-box($size: md) {
-  $padding-box-sm: factors.em-scale(300) factors.em-scale(400);
-  $padding-box-md: factors.em-scale(400) factors.em-scale(500);
-  $padding-box-lg: factors.em-scale(500) factors.em-scale(600);
-
-  @if $size ==sm {
-    padding: $padding-box-sm;
-  }
-
-  @if $size ==md {
-    padding: $padding-box-md;
-  }
-
-  @if $size ==lg {
-    padding: $padding-box-lg;
-  }
 }
 
 /*
@@ -80,72 +62,6 @@
     border-top: 1/2 * $size solid transparent;
     border-bottom: 1/2 * $size solid transparent;
     border-left: $size solid $color;
-  }
-}
-
-@mixin respondTo($media, $min-or-max: "min") {
-  /* Example usage div {
-    // regular styles here
-    @include respondTo(desktop) {
-      &:hover {
-        background: blue;
-      } // only add the hover effect on desktop browsers
-    }
-  }
-  This can be done
-  @media (min-width: $tabletPortrait) and (max-width: $tabletLandscape) {
-  */
-
-  // Breakpoints for each query
-  $smartphone: factors.px-to-rem(767px);
-  $tablet: factors.px-to-rem(768px);
-  $tabletLandscape: factors.px-to-rem(767px);
-  $laptop: factors.px-to-rem(900px);
-  $desktop: factors.px-to-rem(1080px);
-  $largeDesktop: factors.px-to-rem(1440px);
-  $largeScreen: factors.px-to-rem(1800px);
-
-  @if $media =="smartphone" {
-    @media (#{$min-or-max}-width: $smartphone) {
-      @content;
-    }
-  }
-
-  @else if $media =="tablet" {
-    @media (#{$min-or-max}-width: $tablet) {
-      @content;
-
-    }
-  }
-
-  @else if $media =="tabletLandscape" {
-    @media (#{$min-or-max}-width: $tabletLandscape) {
-      @content;
-    }
-  }
-
-  @else if $media =="laptop" {
-    @media (#{$min-or-max}-width: $laptop) {
-      @content;
-    }
-  }
-
-  @else if $media =="desktop" {
-    @media (#{$min-or-max}-width: $desktop) {
-      @content;
-    }
-  }
-
-  @else if $media =="largeDesktop" {
-    @media (#{$min-or-max}-width: $largeDesktop) {
-      @content;
-    }
-  }
-
-  @else if $media =="largeScreen" {
-    @media (#{$min-or-max}-width: $largeScreen) {
-      @content;
-    }
   }
 }
 

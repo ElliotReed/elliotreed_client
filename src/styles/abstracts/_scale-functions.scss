@@ -51,7 +51,7 @@ $scale: (
     $value: map-get($value, $key);
   }
 
-  @return #{$value} * 100%;
+  @return $value * 100%;
 }
 
 /// Remove the unit of a length
@@ -68,4 +68,9 @@ $scale: (
 @function px-to-rem($pixels) {
   $value: strip-unit($pixels);
   @return math.div($value, 16)+rem;
+}
+
+@function px-to-em($pixels) {
+  $value: strip-unit($pixels);
+  @return math.div($value, 16)+em;
 }

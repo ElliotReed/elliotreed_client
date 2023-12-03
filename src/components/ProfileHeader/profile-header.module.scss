@@ -7,15 +7,15 @@
   aspect-ratio: 16 / 9;
 
 
-  @include respondTo("desktop") {
+  @include respond-to("lg") {
     aspect-ratio: 16/7;
   }
 
-  @include respondTo("largeDesktop") {
+  @include respond-to("xl") {
     aspect-ratio: 16/6;
   }
 
-  @include respondTo("largeScreen") {
+  @include respond-to("xxl") {
     aspect-ratio: 16/5;
   }
 
@@ -36,7 +36,7 @@
     padding-inline-start: $space-lg;
     padding-inline-end: $space-xsm;
 
-    @include respondTo("tablet", $min-or-max: "max") {
+    @include respond-to("md", $min-or-max: "max") {
       line-height: initial;
       padding-inline: $space-xsm;
       font-size: em-scale(500);
@@ -45,7 +45,7 @@
       text-align: end;
     }
 
-    @include respondTo("largeScreen") {
+    @include respond-to("xl") {
       --gradient-direction: bottom left;
       bottom: unset;
       padding-block-start: $space-xsm;

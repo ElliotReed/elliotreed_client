@@ -5,33 +5,22 @@ import classnames from "classnames";
 
 import { Seo } from "../components/SEO";
 
-import * as styles from "./index-page.module.scss";
+import * as styles from "./portal.module.scss";
 
-export default function LandingPage() {
+export default function PortalPage() {
   return (
-    <main className={styles.landingPage}>
+    <main className={styles.portalPage}>
       <div className={classnames(styles.left, styles.aspectContainer)}>
-        <AspectLink to="/developer" text="The Developer" />
+        <Link to="/developer" className={styles.aspectLink}>The Developer</Link>
       </div>
 
       <div className={classnames(styles.right, styles.aspectContainer)}>
-        <AspectLink to="/musician" text="The Musician" />
+        <Link to="/musician" className={styles.aspectLink}>
+          The Musician
+        </Link>
       </div>
     </main>
   )
-}
-
-interface AspectLinkProps {
-  to: string,
-  text: string,
-}
-
-function AspectLink({ to, text }: Readonly<AspectLinkProps>) {
-  return (
-    <Link to={to} className={styles.aspectLink}>
-      <h1 className={styles.aspectHeading}>{text}</h1>
-    </Link>
-  );
 }
 
 export const Head: HeadFC<string> = () => (

@@ -1,61 +1,37 @@
 @use "../styles/abstracts" as *;
 
-// add respondTo mixin
-
-.landing-page {
+.portal-page {
   position: fixed;
   inset: 0;
   display: flex;
   flex-direction: column;
   background: $body-background-color;
 
-  @media (min-width: 640px) and (orientation: landscape) {
-    flex-direction: row;
-  }
-
-  @media (min-width: 900px) {
+  @include respond-to("sm") {
     flex-direction: row;
   }
 }
 
 .aspect-container {
-  $transition: $duration-md all ease-in-out;
+  $-transition: $duration-md all ease-in-out;
   position: relative;
   flex-basis: 50%;
   background-attachment: local;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  transition: $transition;
+  transition: $-transition;
 
   &:before {
     position: absolute;
     content: "";
     inset: 0;
     background: rgba(get-color("black"), $small);
-    transition: $transition;
+    transition: $-transition;
   }
 
   &:hover {
     flex-basis: 61.8%; //golden ratio
-  }
-
-  .aspect-link {
-    position: absolute;
-    bottom: 61.8%; //golden ratio
-    left: 50%;
-    display: block;
-    text-decoration: none;
-    text-transform: uppercase;
-    @include padding-box("lg");
-    @include border($color: get-color("lightShades"), $style: ridge);
-    @include shadow(3);
-    transform: translate(-50%, 50%);
-
-    .aspect-heading {
-      margin: 0; //overrides heading margin
-      color: get-color("lightShades");
-    }
   }
 
   &.left {
@@ -63,7 +39,7 @@
     background-position: 0% center;
 
     a:hover {
-      background-color: get-color("mainBrand");
+      background-color: transparentize(get-color("mainBrand"), .1);
     }
   }
 
@@ -71,12 +47,13 @@
     // smaller src size
     background-image: url("../images/landing-musician-background_0.5x.jpg");
 
-    a:hover {
-      background-color: get-color("darkShades");
+    a:hover,
+    a:focus {
+      background-color: transparentize(get-color("darkShades"), .1);
     }
   }
 
-  @media (min-width: 500px) {
+  @include respond-to("sm") {
     &.left {
       background-image: url("../images/landing-developer-background_0.5x.jpg");
     }
@@ -86,7 +63,7 @@
     }
   }
 
-  @media (min-width: 768px) {
+  @include respond-to("md") {
     &.left {
       background-image: url("../images/landing-developer-background_0.75x.jpg");
     }
@@ -96,7 +73,7 @@
     }
   }
 
-  @media (min-width: 1080px) {
+  @include respond-to("lg") {
     &.left {
       background-image: url("../images/landing-developer-background.jpg");
     }
@@ -104,5 +81,40 @@
     &.right {
       background-image: url("../images/landing-musician-background.jpg");
     }
+  }
+}
+
+.aspect-link {
+  position: absolute;
+  bottom: 61.8%; //golden ratio
+  left: 50%;
+  display: block;
+  @include padding-box("sm");
+  color: get-color("lightShades");
+  font-size: rem-scale(600);
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  @include border($color: get-color("lightShades"), $style: ridge);
+  transform: translate(-50%, 50%);
+  word-break: break-all;
+
+  @include respond-to("sm") {
+    @include padding-box("sm");
+    font-size: rem-scale(700);
+    font-weight: 800;
+    word-break: normal;
+  }
+
+  @include respond-to("md") {
+    @include padding-box("md");
+    font-size: rem-scale(800);
+    font-weight: 900;
+  }
+
+  @include respond-to("lg") {
+    @include padding-box("lg");
+    font-size: rem-scale(900);
+    font-weight: 900;
   }
 }
