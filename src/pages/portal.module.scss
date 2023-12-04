@@ -97,13 +97,11 @@
   text-transform: uppercase;
   @include border($color: get-color("lightShades"), $style: ridge);
   transform: translate(-50%, 50%);
-  word-break: break-all;
 
   @include respond-to("sm") {
     @include padding-box("sm");
     font-size: rem-scale(700);
     font-weight: 800;
-    word-break: normal;
   }
 
   @include respond-to("md") {

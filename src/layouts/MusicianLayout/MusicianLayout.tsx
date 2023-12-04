@@ -1,11 +1,12 @@
 import React from "react"
 
-import { ContextProviderComponent } from "../context/Context"
+import { ContextProviderComponent } from "../../context/Context"
 
-import Header from "./Header"
-import Footer from "./footer.tsx"
+import { MusicianNavbar } from "../Navbars"
+import Header from "../SiteHeader"
+import Footer from "../SiteFooter/SiteFooter"
 
-import * as styles from "./layout.module.scss"
+import * as styles from "../layout.module.scss"
 
 const MusicianLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   let headerType = "musician";
@@ -13,7 +14,9 @@ const MusicianLayout = ({ children }: Readonly<{ children: React.ReactNode }>) =
   return (
     <ContextProviderComponent>
       <div className={styles.container}>
-        <Header type={headerType} />
+        <Header type={headerType}>
+          <MusicianNavbar />
+        </Header>
         <div className={styles.content}>
           {children}
         </div>

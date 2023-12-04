@@ -12,10 +12,16 @@ function getCollapseClass(shouldCollapse: boolean | null) {
   return styles.expand;
 }
 
-export default function CollapsibleHeader({ children }: Readonly<{ children: React.ReactNode }>) {
+interface CollapsibleHeaderProps {
+  className?: object,
+  children: React.ReactNode,
+}
+
+export default function CollapsibleHeader({
+  className, children }: Readonly<CollapsibleHeaderProps>) {
   const [headerHeight, setHeaderHeight] = React.useState(0);
   const [scrollState, setScrollState] = React.useState(0);
-  const [shouldCollapse, setShouldCollapse] = React.useState<boolean | null>(null)
+  const [isCollapsed, setisCollapsed] = React.useState<boolean | null>(null)
   const [collapseClass, setCollapseClass] = React.useState<object | null>(null)
   let headerRef = React.useRef<HTMLDivElement>(null);
   let spacerRef = React.useRef<HTMLDivElement>(null);
@@ -25,11 +31,11 @@ export default function CollapsibleHeader({ children }: Readonly<{ children: Rea
   }
 
   function downAction() {
-    setShouldCollapse(true)
+    setisCollapsed(true)
   }
 
   function upAction() {
-    setShouldCollapse(false)
+    setisCollapsed(false)
   }
 
   function getScrollTop() {
@@ -37,8 +43,8 @@ export default function CollapsibleHeader({ children }: Readonly<{ children: Rea
   };
 
   React.useEffect(() => {
-    setCollapseClass(getCollapseClass(shouldCollapse))
-  }, [shouldCollapse])
+    setCollapseClass(getCollapseClass(isCollapsed))
+  }, [isCollapsed])
 
   React.useEffect(() => {
     const scrollDetect = (
@@ -77,14 +83,14 @@ export default function CollapsibleHeader({ children }: Readonly<{ children: Rea
 
   return (
     <>
-      <div
+      <header
         className={classnames(
-          styles.collapsibleHeader, collapseClass
+          styles.collapsibleHeader, collapseClass, className,
         )}
         ref={headerRef}
       >
         {children}
-      </div>
+      </header>
 
       <div ref={spacerRef}></div>
     </>

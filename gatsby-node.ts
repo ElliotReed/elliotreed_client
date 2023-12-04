@@ -11,21 +11,13 @@ export const onCreatePage: GatsbyNode['onCreatePage'] = ({ page, actions }) => {
   if (!page.context) return;
 
   if (page.path.match(/developer/)) {
-    page.context.layout = "developer"
-    createPage(page)
+    page.context.layout = "developer";
+    createPage(page);
+  } else if (page.path.match(/design/)) {
+    page.context.layout = "design";
+    createPage(page);
   } else if (page.path.match(/musician/)) {
-    page.context.layout = "musician"
-    createPage(page)
+    page.context.layout = "musician";
+    createPage(page);
   }
 }
-
-// export const createPages: GatsbyNode['createPages'] = ({ actions: { createPage } }) => {
-//   createPage({
-//     path: "/context/",
-//     component: require.resolve("./src/templates/with-context.js"),
-//     context: {
-//       title: "some context",
-//       content: "no graphQL in this page",
-//     },
-//   })
-// }

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ContextProviderComponent } from '../context/Context'
+import { ContextProviderComponent } from '../../context/Context'
 
 interface PortalLayoutProps {
   children: React.ReactNode,

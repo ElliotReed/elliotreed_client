@@ -1,8 +1,8 @@
 import React from "react"
 
-import Copyright from "../components/Copyright/Copyright"
+import Copyright from "../../components/Copyright/Copyright"
 
-import * as styles from "./footer.module.scss"
+import * as styles from "./site-footer.module.scss"
 
 const Footer = () => {
   return (
