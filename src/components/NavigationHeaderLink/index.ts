@@ -1,1 +1,1 @@
-export { default } from "./NavigattionHeaderLink";
+export { default } from "./NavigationHeaderLink";
