@@ -1,5 +1,5 @@
 @use "../../styles/abstracts" as *;
-@use "../../styles/abstracts/color/color_map";
+@use "../../styles/abstracts/color/color-map";
 
 .color-container {
   background: #fff;
@@ -16,7 +16,7 @@
 }
 
 
-@each $color, $keys in color_map.$color-map {
+@each $color, $keys in color-map.$color-map {
   @each $key, $value in $keys {
     .#{$color}#{$key} {
       background: $value;

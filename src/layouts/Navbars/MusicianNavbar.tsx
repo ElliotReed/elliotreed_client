@@ -2,6 +2,8 @@ import React from "react";
 
 import { Link } from "gatsby";
 
+import NavigationHeaderLink from "../../components/NavigationHeaderLink";
+
 import * as styles from "./navbars.module.scss";
 
 export default function MusicianNavbar() {
@@ -31,40 +33,28 @@ export default function MusicianNavbar() {
     <nav>
       <ul className={styles.navList}>
         <li>
-          <Link
-            to="/musician/about"
-            activeClassName={styles.navList__linkActive}
-            className={styles.navList__link}
-          >
+          <NavigationHeaderLink to="/musician/about">
             About
-          </Link>
+          </NavigationHeaderLink>
         </li>
         {/* <li>
-          <Link
+          <NavigationHeaderLink
             to="/musician/performances"
             activeClassName={styles.navList__linkActive}
             className={styles.navList__link}
           >
             Performances
-          </Link>
+          </NavigationHeaderLink>
         </li> */}
         <li>
-          <Link
-            to="/musician/lessons"
-            activeClassName={styles.navList__linkActive}
-            className={styles.navList__link}
-          >
+          <NavigationHeaderLink to="/musician/lessons">
             Lessons
-          </Link>
+          </NavigationHeaderLink>
         </li>
         <li>
-          <Link
-            to="/musician/contact"
-            activeClassName={styles.navList__linkActive}
-            className={styles.navList__link}
-          >
+          <NavigationHeaderLink to="/musician/contact">
             Contact
-          </Link>
+          </NavigationHeaderLink>
         </li>
         {/* <li className={styles.showListLink}>
           <button type="button" onClick={showDropdownMenu}>
@@ -79,13 +69,13 @@ export default function MusicianNavbar() {
               <p>Show Notes</p>
             </li>
             <li>
-              <Link
+              <NavigationHeaderLink
                 to="/musician/abbeyroad"
                 activeClassName={styles.navList__linkActive}
                 className={styles.navList__link}
               >
                 Abbey Road
-              </Link>
+              </NavigationHeaderLink>
             </li>
           </ul>
         </li> */}

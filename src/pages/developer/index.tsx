@@ -12,13 +12,7 @@ export default function DeveloperPage() {
     <>
       <ProfileHeader type="developer" />
       <main>
-        <Link
-          to="/design/"
-          activeClassName={styles.navList__linkActive}
-          className={styles.navList__link}
-        >
-          Design System
-        </Link>
+
       </main>
     </>
   );

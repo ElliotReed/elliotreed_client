@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Link } from "gatsby";
+import NavigationHeaderLink from "../../components/NavigationHeaderLink/NavigationHeaderLink";
 
 import * as styles from "./navbars.module.scss";
 
@@ -9,22 +10,14 @@ export default function DesignNavbar() {
     <nav>
       <ul className={styles.navList}>
         <li>
-          <Link
-            to="/design/colors"
-            activeClassName={styles.navList__linkActive}
-            className={styles.navList__link}
-          >
+          <NavigationHeaderLink to="/design/colors">
             Colors
-          </Link>
+          </NavigationHeaderLink>
         </li>
         <li>
-          <Link
-            to="/design/typography"
-            activeClassName={styles.navList__linkActive}
-            className={styles.navList__link}
-          >
+          <NavigationHeaderLink to="/design/typography">
             Typography
-          </Link>
+          </NavigationHeaderLink>
         </li>
       </ul>
     </nav>

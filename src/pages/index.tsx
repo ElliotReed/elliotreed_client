@@ -9,7 +9,7 @@ import * as styles from "./portal.module.scss";
 
 export default function PortalPage() {
   return (
-    <main className={styles.portalPage}>
+    <nav className={styles.portalPage}>
       <div className={classnames(styles.left, styles.aspectContainer)}>
         <Link to="/developer" className={styles.aspectLink}>The Developer</Link>
       </div>
@@ -19,7 +19,7 @@ export default function PortalPage() {
           The Musician
         </Link>
       </div>
-    </main>
+    </nav>
   )
 }
 

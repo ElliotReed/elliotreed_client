@@ -19,6 +19,7 @@ export default function ColorsPage() {
     "warning",
     "white",
     "black",
+    "neutral",
   ];
 
   return (

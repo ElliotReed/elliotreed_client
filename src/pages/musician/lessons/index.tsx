@@ -116,7 +116,7 @@ export default function LessonPage() {
         <ul>
           <li>1/2 hour lesson <span>$30</span></li>
           <li>1 hour lesson <span>$55</span>
-            <p>Can be spilt between 2 students</p>
+            <p>Can be split between 2 students</p>
           </li>
         </ul>
 

@@ -52,7 +52,7 @@ function Aspect({ type }: Readonly<{ type: string }>) {
   };
 
   return (
-    <div
+    <nav
       className={styles.aspect}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -79,7 +79,7 @@ function Aspect({ type }: Readonly<{ type: string }>) {
           {otherFacet}
         </Link>
       </div>
-    </div>
+    </nav>
   );
 }
 
@@ -99,7 +99,7 @@ export default function SiteHeader({ type, children }: Readonly<SiteHeaderProps>
   return (
     <CollapsibleHeader className={styles.header}>
       <div className={styles.navBrand}>
-        <Link to={`/`}>
+        <Link to="/">
           <div className={styles.logoWrapper}>
             <Logo width="2.5rem" mode={type} animation={logoAnimation(type, state.mode)} />
             <p className={styles.title}>Elliot Reed</p>

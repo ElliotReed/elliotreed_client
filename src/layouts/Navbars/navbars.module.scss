@@ -8,26 +8,6 @@
   margin: 0;
   padding: 0;
   list-style: none;
-
-  &__link {
-    padding-inline: $space-xsm;
-    color: get-color("mainBrand");
-    font-weight: $fw-md;
-    text-decoration: none;
-
-    &:hover {
-      color: get-color("darkShades");
-      background: none;
-    }
-
-    &:visited {
-      color: inherit;
-    }
-
-    &-active {
-      border-bottom: 2px solid get-color("mainBrand");
-    }
-  }
 }
 
 .show-list-link {

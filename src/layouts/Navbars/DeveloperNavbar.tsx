@@ -2,6 +2,8 @@ import React from "react";
 
 import { Link } from "gatsby";
 
+import NavigationHeaderLink from "../../components/NavigationHeaderLink";
+
 import * as styles from "./navbars.module.scss";
 
 export default function DeveloperNavbar() {
@@ -9,31 +11,19 @@ export default function DeveloperNavbar() {
     <nav>
       <ul className={styles.navList}>
         <li>
-          <Link
-            to="/developer/about"
-            activeClassName={styles.navList__linkActive}
-            className={styles.navList__link}
-          >
+          <NavigationHeaderLink to="/developer/about">
             About
-          </Link>
+          </NavigationHeaderLink>
         </li>
         <li>
-          <Link
-            to="/developer/portfolio"
-            activeClassName={styles.navList__linkActive}
-            className={styles.navList__link}
-          >
+          <NavigationHeaderLink to="/developer/portfolio">
             Portfolio
-          </Link>
+          </NavigationHeaderLink>
         </li>
         <li>
-          <Link
-            to="/developer/contact"
-            activeClassName={styles.navList__linkActive}
-            className={styles.navList__link}
-          >
+          <NavigationHeaderLink to="/developer/contact">
             Contact
-          </Link>
+          </NavigationHeaderLink>
         </li>
       </ul>
     </nav>

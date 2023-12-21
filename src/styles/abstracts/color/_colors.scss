@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "color_functions" as utility;
-@use "color_map" as cm;
+@use "color-functions" as utility;
+@use "color-map";
 
 
 // ***** Output *****
@@ -8,7 +8,7 @@
 
 // "get-color", not "color" to avoid clashes
 @function get-color($keys...) {
-  $value: cm.$color-map;
+  $value: color-map.$color-map;
 
   // Loops through each supplied key, recursively setting $value to the next key for nested values.
   @each $key in $keys {
