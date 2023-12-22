@@ -1,5 +1,5 @@
 import * as React from "react";
-import { graphql, HeadFC, Node, PageProps } from "gatsby";
+import { graphql, HeadFC, Link, Node, PageProps } from "gatsby";
 
 import MaxWidthContainer from "../../../components/MaxWidthContainer";
 import Paragraph from "../../../components/UI/Paragraph/Paragraph";
@@ -19,11 +19,13 @@ export default function BlogPage({ data }: Readonly<PageProps<BlogData>>) {
         <Paragraph>My posts</Paragraph>
 
         {data.allMdx.nodes.map((node) => (
-          <article key={node.id}>
-            <Heading level={2}>{node.frontmatter.title}</Heading>
-            <Paragraph>Posted: {node.frontmatter.date}</Paragraph>
-            <Paragraph>{node.excerpt}</Paragraph>
-          </article>
+          <Link key={node.id} to={node.frontmatter.slug}>
+            <article >
+              <Heading level={2}>{node.frontmatter.title}</Heading>
+              <Paragraph>Posted: {node.frontmatter.date}</Paragraph>
+              <Paragraph>{node.excerpt}</Paragraph>
+            </article>
+          </Link>
         ))}
       </MaxWidthContainer>
     </main>
@@ -37,6 +39,7 @@ query  {
       frontmatter {
         date(formatString: "MMMM D, YYYY")
         title
+        slug
       }
       id
       excerpt
