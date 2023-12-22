@@ -21,35 +21,43 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `posts`,
+        path: `${__dirname}/posts`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         name: `portfolio`,
         path: `${__dirname}/src/pages/developer/portfolio`,
       },
     },
-    `gatsby-transformer-json`,
-    `gatsby-transformer-sharp`,
+    "gatsby-transformer-json",
+    "gatsby-transformer-sharp",
     "gatsby-transformer-typescript-css-modules",
-    'gatsby-plugin-typescript',
+    "gatsby-plugin-mdx",
+    "gatsby-plugin-typescript",
 
 
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
   ],
   // proxy: {
   //   prefix: "",
   //   url: "http://localhost:3066",
   // },
   siteMetadata: {
-    author: `Elliot Reed`,
-    description: `Personal website`,
-    siteUrl: `https://www.elliotreed.net`,
-    title: `Elliot Reed`,
+    author: "Elliot Reed",
+    description: "Personal website",
+    siteUrl: "https://www.elliotreed.net",
+    title: "Elliot Reed",
   },
 }

@@ -1,6 +1,10 @@
 @use "../../styles/abstracts" as *;
 
 
-.infoWrapper {
-  margin: $space-md;
+.developer-content {
+  display: flex;
+  justify-content: center;
+  gap: $space-md;
+
+  margin-top: $space-lg;
 }

@@ -11,6 +11,11 @@ export default function DeveloperNavbar() {
     <nav>
       <ul className={styles.navList}>
         <li>
+          <NavigationHeaderLink to="/developer/blog">
+            Blog
+          </NavigationHeaderLink>
+        </li>
+        <li>
           <NavigationHeaderLink to="/developer/about">
             About
           </NavigationHeaderLink>
