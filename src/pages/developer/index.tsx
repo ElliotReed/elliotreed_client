@@ -2,11 +2,12 @@ import React from "react";
 import { HeadFC, Link } from 'gatsby';
 import { StaticImage } from "gatsby-plugin-image";
 
+import MaxWidthContainer from "../../components/MaxWidthContainer";
+import Paragraph from "../../components/UI/Paragraph/Paragraph";
 import ProfileHeader from "../../components/ProfileHeader";
 import { Seo } from "../../components/SEO";
 
 import * as styles from "./developer.module.scss";
-import MaxWidthContainer from "../../components/MaxWidthContainer";
 
 export default function DeveloperPage() {
   return (
@@ -14,13 +15,10 @@ export default function DeveloperPage() {
       <ProfileHeader type="developer" />
       <MaxWidthContainer>
         <main className={styles.developerContent}>
-          <Card
-            title="Hire me to build a website."
-            to="/developer/clients/"
-          >
+          <LinkCard to="/developer/clients/">
             <StaticImage
               className={styles.image}
-              src="../../images/dev-client-card.jpg"
+              src="./dev-client-card.jpg"
               alt="pic"
               layout="constrained"
               width={300}
@@ -28,15 +26,14 @@ export default function DeveloperPage() {
               placeholder="blurred"
               formats={["auto", "webp", "avif"]}
             />
-          </Card>
-          <Card
-            title="Hire me for your team."
-            to="/developer/hire/"
-            imageSrc="../../images/dev-team-card.jpg"
-          >
+            <CardTitle>
+              Hire me to build a website.
+            </CardTitle>
+          </LinkCard>
+          <LinkCard to="/developer/organization/">
             <StaticImage
               className={styles.image}
-              src="../../images/dev-team-card.jpg"
+              src="./dev-team-card.jpg"
               alt="pic"
               layout="constrained"
               width={300}
@@ -44,7 +41,8 @@ export default function DeveloperPage() {
               placeholder="blurred"
               formats={["auto", "webp", "avif"]}
             />
-          </Card>
+            <CardTitle>Hire me for your team.</CardTitle>
+          </LinkCard>
         </main>
       </MaxWidthContainer>
     </>
@@ -53,22 +51,22 @@ export default function DeveloperPage() {
 
 interface CardProps {
   children: React.ReactNode,
-  title: string,
   to: string,
-  imageSrc: string,
 }
 
-function Card({ children, title, to, imageSrc }: Readonly<CardProps>) {
+function LinkCard({ children, to }: Readonly<CardProps>) {
   return (
-    <div>
-      <Link
-        to={to}
-      >
+    <Link to={to} className={styles.linkCard}>
+      {children}
+    </Link>
+  );
+}
 
-        {children}
-        <p>{title}</p>
-      </Link>
-    </div>
+function CardTitle({ children }: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <Paragraph>
+      {children}
+    </Paragraph>
   );
 }
 

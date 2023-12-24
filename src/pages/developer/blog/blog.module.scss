@@ -1,0 +1,44 @@
+@use "../../../styles/abstracts" as *;
+
+.blog {
+  &__list {
+    list-style-type: none;
+  }
+
+  &__link {
+    @include padding-box("sm");
+    border-radius: $border-radius;
+    text-decoration: none;
+    color: get-color("lightShades", 300);
+    background-color: get-color("darkShades", 400);
+    display: inline-block;
+
+    &:visited {
+      // color: get-color("lightShades", 300);
+    }
+  }
+
+  article {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: $space-lg;
+    margin-bottom: $space-md;
+    @include padding-box;
+    border-radius: $border-radius;
+    @include shadow(1);
+
+    img {
+      border-radius: $border-radius;
+    }
+
+    p:first-of-type {
+      display: inline-block;
+      margin-top: -$space-xl;
+      @include padding-box("xs");
+      color: get-color("lightShades", 300);
+      background-color: get-color("mainBrand", 200);
+      border: 1px solid transparent;
+      border-radius: $border-radius;
+    }
+  }
+}
