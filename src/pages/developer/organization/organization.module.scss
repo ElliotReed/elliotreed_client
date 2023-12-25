@@ -1,0 +1,20 @@
+@use "../../../styles/abstracts" as *;
+
+.organization {
+  color: inherit;
+
+  ul {
+    list-style: none;
+
+    li {
+      margin-bottom: $space-md;
+      @include border;
+      @include padding-box;
+      background: get-color("lightShades", 400);
+
+      img {
+        @include border;
+      }
+    }
+  }
+}

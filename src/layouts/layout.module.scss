@@ -1,9 +1,8 @@
-@use "../styles/abstracts";
 @use "../styles/index";
-
 
 .content {
   display: block; // using style for naming purposes
+  overflow: hidden;
 }
 
 .container {

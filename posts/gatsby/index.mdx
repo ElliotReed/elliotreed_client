@@ -10,3 +10,29 @@ hero_image_credit_link: "https://unsplash.com/photos/black-and-silver-laptop-com
 
 ## Working with gatsby.
 
+This is how to make a page query in Gatsby.
+
+```js
+query ($id: String) {
+  mdx(id: {eq: $id}) {
+    frontmatter {
+      title
+      date(formatString: "MMMM D, YYYY")
+      hero_image_alt
+      hero_image_credit_link
+      hero_image_credit_text
+      hero_image {
+        childImageSharp {
+          gatsbyImageData
+        }
+      }
+    }
+  }
+}
+```
+
+```javascript
+function test(val1, val2) {
+  return val1 + val2;
+}
+```

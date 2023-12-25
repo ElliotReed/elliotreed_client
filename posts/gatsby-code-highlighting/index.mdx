@@ -1,0 +1,78 @@
+---
+title: "Gatsby Code Highlighting"
+date: "2023-12-25"
+updated_date: "2023-12-25"
+slug: "gatsby-code-highlighting"
+hero_image: "./jess-bailey-l3N9Q27zULw-unsplash.jpg"
+hero_image_alt: "Colored pencil lined up on top of white surface"
+hero_image_credit_text: "Jess Bailey"
+hero_image_credit_link: "https://unsplash.com/@jessbaileydesigns"
+isActive: true
+featured: false
+---
+
+import ExternalLink from "../../src/components/ExternalLink";
+
+## gatsby-remark-prismjs
+
+Installation:
+
+```console
+npm install gatsby-remark-prismjs
+```
+
+<br/>
+
+Add to gatsby-config under remark plugins:
+
+```js
+gatsbyRemarkPlugins: [
+  {
+    resolve: `gatsby-remark-prismjs`,
+    options: {
+      classPrefix: "language-",
+      inlineCodeMarker: null,
+      aliases: {},
+      showLineNumbers: false,
+      languageExtensions: [
+        {
+          language: "superscript",
+          extend: "javascript",
+          definition: {
+            superscript_types: /(SuperType)/,
+          },
+          insertBefore: {
+            function: {
+              superscript_keywords: /(superif|superelse)/,
+            },
+          },
+        },
+      ],
+      prompt: {
+        user: "root",
+        host: "localhost",
+        global: false,
+      },
+      escapeEntities: {},
+    },
+  },
+],
+```
+<br/>
+
+Add the theme to the gatsby-browser file:
+
+```js
+require("prismjs/themes/prism-tomorrow.css");
+```
+
+Theme options are available on the <ExternalLink to="https://prismjs.com/">prismjs website</ExternalLink>.
+
+
+If you need to overwrite the styles with your own, create a stylesheet (in this case "/src/styles/global.scss");
+
+Add this to the gatsby-browser file:
+
+```js
+require("./src/styles/global.scss");
+```

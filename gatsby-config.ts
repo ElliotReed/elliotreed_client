@@ -15,7 +15,54 @@ module.exports = {
         icon: "src/images/elliotreed-icon.svg", // This path is relative to the root of the site.
       },
     },
-    "gatsby-plugin-mdx",
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        gatsbyRemarkPlugins: [
+          // "gatsby-remark-autolink-headers",
+          // "gatsby-remark-copy-linked-files",
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 900,
+              quality: 90,
+              withWebp: true,
+            }
+          },
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              classPrefix: "language-",
+              inlineCodeMarker: null,
+              aliases: {},
+              showLineNumbers: false,
+              noInlineHighlight: false,
+              languageExtensions: [
+                {
+                  language: "superscript",
+                  extend: "javascript",
+                  definition: {
+                    superscript_types: /(SuperType)/,
+                  },
+                  insertBefore: {
+                    function: {
+                      superscript_keywords: /(superif|superelse)/,
+                    },
+                  },
+                },
+              ],
+              prompt: {
+                user: "root",
+                host: "localhost",
+                global: false,
+              },
+
+              escapeEntities: {},
+            },
+          },
+        ]
+      },
+    },
     "gatsby-plugin-mdx-source-name",
     // 'gatsby-plugin-postcss',
     "gatsby-plugin-sass",
@@ -37,6 +84,13 @@ module.exports = {
       },
     },
     "gatsby-plugin-typescript",
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `pages`,
+        path: `${__dirname}/src/pages`,
+      },
+    },
     {
       resolve: "gatsby-source-filesystem",
       options: {

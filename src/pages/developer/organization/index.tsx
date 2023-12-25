@@ -1,10 +1,13 @@
-import React from "react";
+import * as React from "react";
 import { HeadFC, Link, PageProps, graphql } from 'gatsby';
 
 import { GatsbyImage, IGatsbyImageData, getImage } from "gatsby-plugin-image";
 
 import Heading from "../../../components/Heading/Heading";
+import MaxWidthContainer from "../../../components/MaxWidthContainer";
 import { Seo } from "../../../components/SEO/Seo";
+
+import * as styles from "./organization.module.scss";
 
 interface HireMeData {
   allMdx: {
@@ -27,31 +30,33 @@ interface HireMeData {
 
 export default function HireMePage({ data }: Readonly<PageProps<HireMeData>>) {
   return (
-    <main>
-      <h1>Hire Me </h1>
+    <MaxWidthContainer>
+      <main className={styles.organization}>
+        <h1>Hire Me </h1>
 
-      <Link
-        to="/design/"
-      >
-        Design System
-      </Link>
+        <Link
+          to="/design/"
+        >
+          Design System
+        </Link>
 
-      <ul>
-        {data.allMdx.nodes.map((node) => (
-          <li key={node.id}>
-            <GatsbyImage
-              image={node.frontmatter.hero_image && getImage(node.frontmatter.hero_image)}
-              alt={node.frontmatter.hero_image_alt}
-            />
-            <Heading level={2}>{node.frontmatter.title}</Heading>
-            <Link
-              to={`portfolio/${node.frontmatter.slug}`}
-            >Read More
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </main>
+        <ul>
+          {data.allMdx.nodes.map((node) => (
+            <li key={node.id}>
+              <GatsbyImage
+                image={node.frontmatter.hero_image && getImage(node.frontmatter.hero_image)}
+                alt={node.frontmatter.hero_image_alt}
+              />
+              <Heading level={2}>{node.frontmatter.title}</Heading>
+              <Link
+                to={`portfolio/${node.frontmatter.slug}`}
+              >Read More
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </main>
+    </MaxWidthContainer>
   );
 }
 

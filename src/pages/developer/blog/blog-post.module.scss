@@ -1,0 +1,11 @@
+@use "../../../styles/abstracts" as *;
+
+.blog-post {
+  padding-block: $space-md;
+  overflow: hidden;
+
+  &__hero {
+    aspect-ratio: 16/9;
+    border-radius: $border-radius;
+  }
+}

@@ -8,6 +8,8 @@ import Heading from "../../../components/Heading/Heading";
 import MaxWidthContainer from "../../../components/MaxWidthContainer";
 import ExternalLink from "../../../components/ExternalLink";
 
+import * as styles from "./blog-post.module.scss";
+import PhotoCredit from "../../../components/PhotoCredit";
 interface BlogPostData {
   mdx: {
     frontmatter: {
@@ -21,32 +23,35 @@ interface BlogPostData {
           gatsbyImageData: IGatsbyImageData
         }
       }
+      updated_date: string
     }
   }
 }
 
-export default function BlogPost({ data, children }: Readonly<PageProps<BlogPostData>>) {
-  const image = getImage(data.mdx.frontmatter.hero_image);
+export default function BlogPost({ data: { mdx: { frontmatter } }, children }: Readonly<PageProps<BlogPostData>>) {
+  const image = getImage(frontmatter.hero_image);
 
   return (
-    <main>
+    <main className={styles.blogPost}>
       <MaxWidthContainer>
-        {image && (<GatsbyImage
-          image={image}
-          alt={data.mdx.frontmatter.hero_image_alt}
-        />)}
-        <Paragraph>
-          <small>
-            Photo Credit: <ExternalLink to={data.mdx.frontmatter.hero_image_credit_link}>
-              {data.mdx.frontmatter.hero_image_credit_text}
-            </ExternalLink>
-          </small>
-        </Paragraph>
-
+        {image && (
+          <GatsbyImage
+            alt={frontmatter.hero_image_alt}
+            imgClassName={styles.blogPost__hero}
+            image={image}
+          />
+        )}
+        <PhotoCredit
+          link={frontmatter.hero_image_credit_link}
+          text={frontmatter.hero_image_credit_text}
+        />
         <Heading level={1}>
-          {data.mdx.frontmatter.title}
+          {frontmatter.title}
         </Heading>
-        <Paragraph>Posted: {data.mdx.frontmatter.date}</Paragraph>
+        <span><small>Posted: {frontmatter.date}</small></span>
+        {frontmatter.updated_date && (
+          <span>, <small>Updated: {frontmatter.updated_date}</small></span>
+        )}
         {children}
       </MaxWidthContainer>
     </main>
@@ -67,6 +72,7 @@ export const query = graphql`
             gatsbyImageData(layout: FULL_WIDTH)
           }
         }
+        updated_date(formatString: "MMMM D, YYYY")
       }
     }
   }

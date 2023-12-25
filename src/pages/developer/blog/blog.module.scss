@@ -3,39 +3,49 @@
 .blog {
   &__list {
     list-style-type: none;
+    padding: 0;
+
+    li {
+      margin-bottom: $space-md;
+    }
   }
 
   &__link {
     @include padding-box("sm");
-    border-radius: $border-radius;
-    text-decoration: none;
     color: get-color("lightShades", 300);
+    text-decoration: none;
     background-color: get-color("darkShades", 400);
-    display: inline-block;
-
-    &:visited {
-      // color: get-color("lightShades", 300);
-    }
+    border-radius: $border-radius;
   }
 
   article {
-    display: grid;
-    grid-template-columns: auto 1fr;
     gap: $space-lg;
-    margin-bottom: $space-md;
-    @include padding-box;
+    padding: $space-md;
     border-radius: $border-radius;
     @include shadow(1);
+    overflow: hidden;
 
-    img {
-      border-radius: $border-radius;
+    @include respond-to("sm") {
+      display: grid;
+      grid-template-columns: 1fr calc($goldenRatio * 1fr);
     }
 
-    p:first-of-type {
-      display: inline-block;
+    .blog__image-link {
+      .blog__image {
+        display: block;
+        max-width: 100%;
+        width: 100%;
+        aspect-ratio: 16/9;
+        border-radius: $border-radius;
+      }
+    }
+
+    .blog__date {
+      display: inline;
       margin-top: -$space-xl;
       @include padding-box("xs");
       color: get-color("lightShades", 300);
+      white-space: nowrap;
       background-color: get-color("mainBrand", 200);
       border: 1px solid transparent;
       border-radius: $border-radius;
