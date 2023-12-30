@@ -88,10 +88,10 @@ interface SiteHeaderProps {
   children: React.ReactNode,
 }
 
-/* 
+/*
   state.mode is used to determine
   if the site context(musician | developer) has changed
-  to run header animation only on new context 
+  to run header animation only on new context
 */
 export default function SiteHeader({ type, children }: Readonly<SiteHeaderProps>) {
   const state = React.useContext(GlobalStateContext);
@@ -102,7 +102,7 @@ export default function SiteHeader({ type, children }: Readonly<SiteHeaderProps>
         <Link to="/">
           <div className={styles.logoWrapper}>
             <Logo width="2.5rem" mode={type} animation={logoAnimation(type, state.mode)} />
-            <p className={styles.title}>Elliot Reed</p>
+            <span className={styles.title}>Elliot Reed</span>
           </div>
         </Link>
 

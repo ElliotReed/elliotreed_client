@@ -8,6 +8,10 @@
   margin: 0;
   padding: 0;
   list-style: none;
+
+  @include respond-to("xs") {
+    flex-wrap: nowrap;
+  }
 }
 
 .show-list-link {
@@ -27,7 +31,7 @@
   top: 1.618rem;
   right: 0;
   height: 0;
-  @include boxShadow;
+  @include shadow(1);
   margin: 0;
   padding: 0;
   color: get-color("mainBrand");

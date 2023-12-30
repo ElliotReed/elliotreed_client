@@ -1,6 +1,6 @@
 import React, { useState, useRef, useLayoutEffect } from "react"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons"
 import { gsap } from "gsap/gsap-core"
 
 import ButtonGroup from "../UI/ButtonGroup/ButtonGroup";

@@ -1,129 +1,95 @@
-import React from "react";
-import { graphql, HeadFC, PageProps } from "gatsby";
-import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
+import * as React from "react";
+import { HeadFC, PageProps, graphql } from 'gatsby';
 
-import { Seo } from "../../../components/SEO";
-import MaxWidthContainer from "../../../components/MaxWidthContainer/MaxWidthContainer";
+import { IGatsbyImageData } from "gatsby-plugin-image";
+
+import Heading from "../../../components/Heading/Heading";
+import MaxWidthContainer from "../../../components/MaxWidthContainer";
+import Paragraph from "../../../components/UI/Paragraph/Paragraph";
+import PortfolioList from "../../../components/PortfolioList";
+import PortfolioListItem from "../../../components/PortfolioListItem";
+import { Seo } from "../../../components/SEO/Seo";
 
 import * as styles from "./portfolio.module.scss";
 
-function PaddingContainer({ children }: Readonly<React.PropsWithChildren>) {
-  return <div className={styles.paddingContainer}>{children}</div>
-}
-
-function HeaderContent() {
-  return (
-    <div className={styles.portfolioHeader}>
-      <h1>Portfolio</h1>
-      <hr></hr>
-      <p>A selection of projects I have built.</p>
-    </div>
-  )
-}
-
-interface Image {
-  image: IGatsbyImageData
-  alt: string
-}
-
-interface ItemNode {
-  node: {
-    blurb: string
-    description: string
-    production: boolean
-    project: string;
-    url: string;
-    images: Image[]
+interface PortfolioData {
+  allMdx: {
+    nodes: {
+      filter(arg0: (node: any) => boolean): []
+      map(arg0: (node: any) => React.JSX.Element): undefined;
+      frontmatter: {
+        blurb: string
+        featured: boolean
+        hero_image: {
+          childImageSharp: {
+            gatsbyImageData: IGatsbyImageData
+          }
+        }
+        hero_image_alt: string
+        slug: string
+        title: string
+      }
+      excerpt: string
+      id: string
+    }
   }
 }
 
-interface QueryResult {
-  allPortfolioJson: {
-    edges: ItemNode[]
-  }
-}
-
-export default function PortfolioPage({ data }: Readonly<PageProps<QueryResult>>) {
-
+export default function PortfolioPage({ data: { allMdx: { nodes } } }: Readonly<PageProps<PortfolioData>>) {
   return (
-    <main className={styles.portfolioPage}>
-      <MaxWidthContainer>
-        <PaddingContainer>
-          <HeaderContent />
-        </PaddingContainer>
-      </MaxWidthContainer>
-      <MaxWidthContainer>
-        <ul className={styles.list}>
-          {data.allPortfolioJson.edges.map((edge) => (
-            <li key={edge.node.project} className={styles.card}>
-              <div className={styles.card__display}>
-                {edge.node.images.map((projectImage) => {
-                  const imageData = getImage(projectImage.image)
-                  if (!imageData) {
-                    return
-                  }
-                  return (
-                    <GatsbyImage
-                      key={projectImage.alt}
-                      image={imageData}
-                      alt={projectImage.alt}
-                    />
-                  )
-                })
-                }
-              </div>
-              <article className={styles.card__info}>
-                <h2>{edge.node.project}</h2>
-                <h3 className={styles.blurb}>{edge.node.blurb}</h3>
-                <p>{edge.node.description}</p>
-                {!edge.node.production && (
-                  <p className={styles.productionFalse}>Not production ready</p>
-                )}
-                <a
-                  href={edge.node.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {edge.node.project}
-                </a>
-              </article>
-            </li>
+    <MaxWidthContainer>
+      <main className={styles.organization}>
+        <Heading level={1}>Portfolio</Heading>
+
+        <Paragraph>
+          A selection of projects I have built.
+        </Paragraph>
+
+        <Heading level={2}>Featured</Heading>
+        <PortfolioList>
+          {nodes.filter((node) => node.frontmatter.featured === true).map((node) => (
+            <PortfolioListItem key={node.id} node={node} prefixed={false} />
           ))}
-        </ul>
-      </MaxWidthContainer>
-    </main>
-  )
+        </PortfolioList>
+
+        <Heading level={2}>Projects</Heading>
+        <PortfolioList>
+          {nodes.filter((node) => node.frontmatter.featured === false).map((node) => (
+            <PortfolioListItem key={node.id} node={node} prefixed={false} />
+          ))}
+        </PortfolioList>
+      </main>
+    </MaxWidthContainer>
+  );
 }
 
 export const query = graphql`
-  {
-    allPortfolioJson {
-      edges {
-        node {
-          blurb
-          description
-          images {
-            alt
-            image {
-              childImageSharp {
-                gatsbyImageData(
-                  placeholder: BLURRED
-                  formats: [AUTO, WEBP, AVIF]
-                  transformOptions: { fit: CONTAIN }
-                  quality: 90
-                )
-              }
-            }
+query {
+  allMdx(
+    filter: {frontmatter: {isActive: {eq: true}}, fields: {source: {eq: "portfolio"}}}
+    sort: {frontmatter: {title: ASC}}
+  ) {
+    nodes {
+      frontmatter {
+        blurb
+        featured
+        hero_image {
+          childImageSharp {
+            gatsbyImageData(layout: FULL_WIDTH)
           }
-          production
-          project
-          url
         }
+        hero_image_alt
+        slug
+        title
       }
+      excerpt(pruneLength: 100)
+      id
     }
   }
-`
+}
+`;
+
 
 export const Head: HeadFC<string> = () => (
-  <Seo title="Developer | Portfolio" />
+  <Seo title="Hire Elliot Reed | Developer" />
 )

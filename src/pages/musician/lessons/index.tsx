@@ -1,18 +1,18 @@
-import React from "react"
-import { HeadFC } from 'gatsby'
-import { StaticImage } from "gatsby-plugin-image"
+import React from "react";
+import { HeadFC } from "gatsby";
 
-import { Map } from 'pigeon-maps'
-import { osm } from 'pigeon-maps/providers'
-
+import { StaticImage } from "gatsby-plugin-image";
 import cx from "classnames";
-import { Seo } from "../../../components/SEO"
+import { Map } from "pigeon-maps";
+import { osm } from "pigeon-maps/providers";
 
-import ContactForm from "../../../components/ContactForm"
-import Heading from "../../../components/Heading/Heading"
-import MaxWidthContainer from "../../../components/MaxWidthContainer/MaxWidthContainer"
-import Paragraph from "../../../components/UI/Paragraph/Paragraph"
 
+import ContactForm from "../../../components/ContactForm";
+import ExternalLink from "../../../components/ExternalLink";
+import Heading from "../../../components/Heading/Heading";
+import MaxWidthContainer from "../../../components/MaxWidthContainer/MaxWidthContainer";
+import Paragraph from "../../../components/UI/Paragraph/Paragraph";
+import { Seo } from "../../../components/SEO";
 
 import * as styles from "./lessons.module.scss";
 
@@ -21,7 +21,7 @@ interface TwoColumnGridProps {
   children: React.ReactNode,
 }
 
-function TwoColumnGrid({ smallSide, children }: TwoColumnGridProps) {
+function TwoColumnGrid({ smallSide, children }: Readonly<TwoColumnGridProps>) {
   let style = styles.left;
   if (smallSide === "right") {
     style = styles.right;
@@ -42,11 +42,15 @@ export default function LessonPage() {
           <span className={styles.subHeading}>Littleton, CO</span>
         </Heading>
 
+        <ExternalLink to="https://open.spotify.com/artist/3ZJrLqiSpAZueYPclk65Cl?si=SvjEqUhZRNylCPcb1q8HAQ">
+          Gypsy Swing Revue on Spotify
+        </ExternalLink>
+
         <TwoColumnGrid smallSide="left">
 
           <StaticImage
             className={styles.image}
-            src="../../../images-possible/ellie-daddy-lesson.jpg"
+            src="./ellie-daddy-lesson.jpg"
             alt="pic"
             layout="constrained"
             aspectRatio={4 / 3}

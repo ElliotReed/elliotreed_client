@@ -1,0 +1,16 @@
+@use "../../styles/abstracts" as *;
+
+.band-link {
+  display: inline-flex;
+  gap: $space-md;
+  @include padding-box("sm");
+  align-items: center;
+  color: initial;
+  @include border($color: get-color("mainBrand", 100));
+
+  img {
+    display: block;
+    max-width: 100%;
+    border-radius: $border-radius;
+  }
+}

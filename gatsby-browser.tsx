@@ -5,10 +5,12 @@
  */
 
 // You can delete this file if you're not using it
-// const React = require("react")
-const React = require("react")
+const React = require("react");
 const GlobalContextProvider = require("./src/context/GlobalContextProvider")
-  .default
+  .default;
+
+require("prismjs/themes/prism-tomorrow.css");
+require("./src/styles/global.scss");
 
 exports.wrapRootElement = ({ element }) => {
   return <GlobalContextProvider>{element}</GlobalContextProvider>
