@@ -33,9 +33,13 @@
 .title {
   margin: 0;
   color: inherit;
-  font-size: 1.382rem;
+  font-size: $fs-sm-em;
   font-weight: bold;
   text-transform: uppercase;
+
+  @include respond-to("xs") {
+    font-size: $fs-md-em;
+  }
 }
 
 // #region aspect //
@@ -62,14 +66,14 @@
 
   .qualifier-text {
     color: $body-text;
-    font-size: 1rem;
+    font-size: $fs-sm-em;
     font-style: italic;
     font-weight: normal;
   }
 
   a {
     display: inline-block;
-    @include padding-box(sm);
+    @include padding-box("xs");
   }
 }
 

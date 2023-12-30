@@ -3,24 +3,24 @@ import React from "react"
 import { ContextProviderComponent } from "../../context/Context";
 
 import { DesignNavbar } from "../Navbars";
-import SiteHeader from "../SiteHeader";
 import SiteFooter from "../SiteFooter";
+import SiteHeader from "../SiteHeader";
 
 import * as styles from "../layout.module.scss"
 
 export default function DesignLayout({ children }: Readonly<React.PropsWithChildren>) {
-  let headerType = "developer";
+  let type = "developer";
 
   return (
     <ContextProviderComponent>
       <div className={styles.container}>
-        <SiteHeader type={headerType}>
+        <SiteHeader type={type}>
           <DesignNavbar />
         </SiteHeader>
         <div className={styles.content}>
           {children}
         </div>
-        <SiteFooter />
+        <SiteFooter type={type} />
       </div>
     </ContextProviderComponent>
   );

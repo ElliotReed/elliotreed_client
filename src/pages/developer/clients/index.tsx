@@ -1,55 +1,57 @@
 import React from "react";
-import { HeadFC, Link, PageProps, graphql } from "gatsby";
+import { GatsbyNode, HeadFC, PageProps, graphql } from "gatsby";
+import { IGatsbyImageData } from "gatsby-plugin-image";
 
-import { Seo } from "../../../components/SEO";
-import { GatsbyImage, IGatsbyImageData, getImage } from "gatsby-plugin-image";
 import Heading from "../../../components/Heading/Heading";
+import MaxWidthContainer from "../../../components/MaxWidthContainer";
+import PortfolioList from "../../../components/PortfolioList";
+import PortfolioListItem from "../../../components/PortfolioListItem";
+import { Seo } from "../../../components/SEO";
 
 import * as styles from "./clients.module.scss";
-import MaxWidthContainer from "../../../components/MaxWidthContainer";
 interface ClientData {
   allMdx: {
     nodes: {
-      map(arg0: (node: any) => React.JSX.Element): React.ReactNode;
-      fields: {
-        source: string
-      }
+      filter(arg0: (node: any) => boolean): [];
+      map(arg0: (node: unknown) => React.JSX.Element): React.ReactNode;
       frontmatter: {
-        slug: string
-        title: string
-        tags: string[]
+        blurb: string
+        featured: boolean
         hero_image: {
           childImageSharp: {
             gatsbyImageData: IGatsbyImageData
           }
         }
         hero_image_alt: string
+        slug: string
+        tags: string[]
+        title: string
       }
+      excerpt: string
       id: string
     }
   }
 }
-
-export default function ClientPage({ data }: Readonly<PageProps<ClientData>>) {
+export default function ClientPage({ data: { allMdx: { nodes } } }: Readonly<PageProps<ClientData>>) {
   return (
-    <MaxWidthContainer>
-
-      <main className={styles.clients}>
-        <h1>I build websites </h1>
-        <ul>
-          {data.allMdx.nodes.map((node) => (
-            <li key={node.id}>
-              <GatsbyImage
-                image={node.frontmatter.hero_image && getImage(node.frontmatter.hero_image)}
-                alt={node.frontmatter.hero_image_alt}
-              />
-              <Heading level={2}>{node.frontmatter.title}</Heading>
-              <Link to={`portfolio/${node.frontmatter.slug}`}>Read More</Link>
-            </li>
+    <main className={styles.clients}>
+      <MaxWidthContainer>
+        <Heading level={1}>I build websites </Heading>
+        <Heading level={2}>Featured</Heading>
+        <PortfolioList>
+          {nodes.filter((node) => node.frontmatter.featured === true).map((node) => (
+            <PortfolioListItem key={node.id} node={node} prefixed={true} />
           ))}
-        </ul>
-      </main>
-    </MaxWidthContainer>
+        </PortfolioList>
+
+        <Heading level={2}>Projects</Heading>
+        <PortfolioList>
+          {nodes.filter((node) => node.frontmatter.featured === false).map((node) => (
+            <PortfolioListItem key={node.id} node={node} prefixed={true} />
+          ))}
+        </PortfolioList>
+      </MaxWidthContainer>
+    </main>
   );
 
 }
@@ -64,22 +66,26 @@ query {
         isActive: {eq: true}
       }
     }
+    sort: {
+      frontmatter: {
+        title: ASC
+      }
+    }
   ) {
     nodes {
-      fields {
-        source
-      }
       frontmatter {
-        slug
-        title
-        tags
+        blurb
+        featured
         hero_image {
           childImageSharp {
-            gatsbyImageData(width: 300)
+            gatsbyImageData(layout: FULL_WIDTH)
           }
         }
         hero_image_alt
+        slug
+        title
       }
+      excerpt(pruneLength: 100)
       id
     }
   }

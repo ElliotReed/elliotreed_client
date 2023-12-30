@@ -8,6 +8,7 @@ import ProfileHeader from "../../components/ProfileHeader";
 import { Seo } from "../../components/SEO";
 
 import * as styles from "./developer.module.scss";
+import Heading from "../../components/Heading/Heading";
 
 export default function DeveloperPage() {
   return (
@@ -15,33 +16,41 @@ export default function DeveloperPage() {
       <ProfileHeader type="developer" />
       <MaxWidthContainer>
         <main className={styles.developerContent}>
-          <LinkCard to="/developer/clients/">
-            <StaticImage
-              className={styles.image}
-              src="./dev-client-card.jpg"
-              alt="pic"
-              layout="constrained"
-              width={300}
-              aspectRatio={7 / 5}
-              placeholder="blurred"
-              formats={["auto", "webp", "avif"]}
-            />
+          <LinkCard
+            to="/developer/clients/"
+            image={
+              <StaticImage
+                className={styles.image}
+                src="./dev-client-card.jpg"
+                alt="pic"
+                layout="fullWidth"
+                aspectRatio={16 / 9}
+                placeholder="blurred"
+                formats={["auto", "webp", "avif"]}
+              />}
+          >
             <CardTitle>
               Hire me to build a website.
             </CardTitle>
+
+            <Paragraph>Click for information about websites I have built.</Paragraph>
           </LinkCard>
-          <LinkCard to="/developer/organization/">
-            <StaticImage
-              className={styles.image}
-              src="./dev-team-card.jpg"
-              alt="pic"
-              layout="constrained"
-              width={300}
-              aspectRatio={7 / 5}
-              placeholder="blurred"
-              formats={["auto", "webp", "avif"]}
-            />
+
+          <LinkCard
+            to="/developer/organization/"
+            image={
+              <StaticImage
+                className={styles.image}
+                src="./dev-team-card.jpg"
+                alt="pic"
+                layout="fullWidth"
+                aspectRatio={16 / 9}
+                placeholder="blurred"
+                formats={["auto", "webp", "avif"]}
+              />}
+          >
             <CardTitle>Hire me for your team.</CardTitle>
+            <Paragraph>Click for information about apps I have built.</Paragraph>
           </LinkCard>
         </main>
       </MaxWidthContainer>
@@ -50,23 +59,27 @@ export default function DeveloperPage() {
 }
 
 interface CardProps {
-  children: React.ReactNode,
-  to: string,
+  children: React.ReactNode
+  to: string
+  image: React.ReactNode
 }
 
-function LinkCard({ children, to }: Readonly<CardProps>) {
+function LinkCard({ children, to, image }: Readonly<CardProps>) {
   return (
     <Link to={to} className={styles.linkCard}>
-      {children}
+      {image}
+      <div className={styles.linkCard__content}>
+        {children}
+      </div>
     </Link>
   );
 }
 
 function CardTitle({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <Paragraph>
+    <Heading level={2} size={4}>
       {children}
-    </Paragraph>
+    </Heading>
   );
 }
 

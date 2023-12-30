@@ -3,13 +3,13 @@ import { HeadFC, PageProps, graphql } from "gatsby";
 
 import { GatsbyImage, IGatsbyImageData, getImage } from "gatsby-plugin-image";
 
-import ExternalLink from "../../../../components/ExternalLink";
 import Heading from "../../../../components/Heading/Heading";
 import MaxWidthContainer from "../../../../components/MaxWidthContainer";
 import Paragraph from "../../../../components/UI/Paragraph/Paragraph";
 import Seo from "../../../../components/SEO/Seo";
 
 import * as styles from "./bands.module.scss";
+import PhotoCredit from "../../../../components/PhotoCredit";
 
 interface BandData {
   mdx: {
@@ -28,30 +28,28 @@ interface BandData {
   }
 }
 
-export default function Band({ data, children }: Readonly<PageProps<BandData>>) {
-  const image = getImage(data.mdx.frontmatter.hero_image);
+export default function Band({ data: { mdx: { frontmatter } }, children }: Readonly<PageProps<BandData>>) {
+  const image = getImage(frontmatter.hero_image);
 
   return (
     <main className={styles.bands}>
       <MaxWidthContainer>
         {image && (
           <GatsbyImage
+            className={styles.bands__hero}
             image={image}
-            alt={data.mdx.frontmatter.hero_image_alt}
+            alt={frontmatter.hero_image_alt}
           />
         )}
-        <Paragraph>
-          <small>
-            Photo Credit: <ExternalLink to={data.mdx.frontmatter.hero_image_credit_link}>
-              {data.mdx.frontmatter.hero_image_credit_text}
-            </ExternalLink>
-          </small>
-        </Paragraph>
+
+        <PhotoCredit link={frontmatter.hero_image_credit_link} text={frontmatter.hero_image_credit_text} />
 
         <Heading level={1}>
-          {data.mdx.frontmatter.title}
+          {frontmatter.title}
         </Heading>
-        <Paragraph>Active: {data.mdx.frontmatter.active_dates}</Paragraph>
+
+        <Paragraph>Active: {frontmatter.active_dates}</Paragraph>
+
         {children}
       </MaxWidthContainer>
     </main >
@@ -62,7 +60,6 @@ export const query = graphql`
   query ($id: String) {
     mdx(id: {eq: $id}) {
       frontmatter {
-        title
         active_dates
         hero_image_alt
         hero_image_credit_link
@@ -70,7 +67,9 @@ export const query = graphql`
         hero_image {
           childImageSharp {
             gatsbyImageData(layout: FULL_WIDTH)
-        }}
+          }
+        }
+        title
       }
     }
   }

@@ -1,21 +1,19 @@
 import * as React from "react";
-import { HeadFC, PageProps, graphql } from "gatsby";
+import { HeadFC, HeadProps, PageProps, graphql } from "gatsby";
 
 import { GatsbyImage, IGatsbyImageData, getImage } from "gatsby-plugin-image";
 
-import ExternalLink from "../../../../components/ExternalLink";
 import Heading from "../../../../components/Heading/Heading";
 import MaxWidthContainer from "../../../../components/MaxWidthContainer";
-import Paragraph from "../../../../components/UI/Paragraph/Paragraph";
+import PhotoCredit from "../../../../components/PhotoCredit";
 import Seo from "../../../../components/SEO/Seo";
 
-import * as styles from "./clients-portfolio.modules.scss";
+import * as styles from "../../portfolio-detail.module.scss";
 
 interface ClientPortfolioData {
   mdx: {
     frontmatter: {
       title: string
-      date: string
       hero_image_alt: string
       hero_image_credit_link: string
       hero_image_credit_text: string
@@ -28,30 +26,26 @@ interface ClientPortfolioData {
   }
 }
 
-export default function ClientPortfolioPiece({ data, children }: Readonly<PageProps<ClientPortfolioData>>) {
-  const image = getImage(data.mdx.frontmatter.hero_image);
+export default function ClientPortfolioDetail({ data: { mdx: { frontmatter } }, children }: Readonly<PageProps<ClientPortfolioData>>) {
+  const image = getImage(frontmatter.hero_image);
 
   return (
-    <main className={styles.organizationPortfolio}>
+    <main className={styles.portfolioDetail}>
       <MaxWidthContainer>
         {image && (
           <GatsbyImage
             image={image}
-            alt={data.mdx.frontmatter.hero_image_alt}
+            alt={frontmatter.hero_image_alt}
           />)
         }
-        <Paragraph>
-          <small>
-            Photo Credit: <ExternalLink to={data.mdx.frontmatter.hero_image_credit_link}>
-              {data.mdx.frontmatter.hero_image_credit_text}
-            </ExternalLink>
-          </small>
-        </Paragraph>
+        <PhotoCredit
+          link={frontmatter.hero_image_credit_link}
+          text={frontmatter.hero_image_credit_text}
+        />
 
         <Heading level={1}>
-          {data.mdx.frontmatter.title}
+          {frontmatter.title}
         </Heading>
-        <Paragraph>Posted: {data.mdx.frontmatter.date}</Paragraph>
         {children}
       </MaxWidthContainer>
     </main >
@@ -63,7 +57,6 @@ export const query = graphql`
     mdx(id: {eq: $id}) {
       frontmatter {
         title
-        date(formatString: "MMMM D, YYYY")
         hero_image_alt
         hero_image_credit_link
         hero_image_credit_text
@@ -78,6 +71,6 @@ export const query = graphql`
 `;
 
 
-export const Head: HeadFC = ({ data }: Readonly<PageProps<ClientPortfolioData>>) => (
-  <Seo title={`${data.mdx.frontmatter.title} | Elliot Reed | Developer`} />
+export const Head: HeadFC = (props: HeadProps<ClientPortfolioData>) => (
+  <Seo title={`${props.data.mdx.frontmatter.title} | Elliot Reed | Developer`} />
 )

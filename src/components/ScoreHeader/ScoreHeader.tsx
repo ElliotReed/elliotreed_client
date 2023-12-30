@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { StaticImage } from "gatsby-plugin-image";
+
 import * as styles from "./score-header.module.scss";
 
 export default function ScoreHeader() {

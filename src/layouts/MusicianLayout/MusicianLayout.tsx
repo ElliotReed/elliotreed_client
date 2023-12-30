@@ -10,19 +10,19 @@ import ScoreHeader from "../../components/ScoreHeader";
 import * as styles from "../layout.module.scss";
 
 const MusicianLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
-  let headerType = "musician";
+  let type = "musician";
 
   return (
     <ContextProviderComponent>
       <div className={styles.container}>
-        <Header type={headerType}>
+        <Header type={type}>
           <MusicianNavbar />
         </Header>
         <div className={styles.content}>
           <ScoreHeader />
           {children}
-          S</div>
-        <Footer />
+        </div>
+        <Footer type={type} />
       </div>
     </ContextProviderComponent>
   );

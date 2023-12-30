@@ -2,8 +2,29 @@
 @use '../color';
 @use '../scale-functions' as factors;
 @use "./shadow" as shadow;
+@use "./respond-to" as mq;
 
 // mixins
+@mixin anchor {
+  color: color.get-color("mainBrand", 400);
+  font-weight: variables.$fw-lg;
+
+  @include mq.respond-to("lg") {
+    text-decoration: none;
+  }
+
+  &:focus,
+  &:hover {
+    color: color.get-color("mainBrand", 600);
+    text-decoration: underline;
+  }
+
+  &:visited {
+    font-weight: variables.$fw-md;
+    color: color.get-color("mainBrand", 300);
+  }
+}
+
 @mixin border($color: transparent, $width: 1px, $style: solid) {
   border-width: $width;
   border-color: $color;

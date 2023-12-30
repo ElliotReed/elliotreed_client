@@ -101,29 +101,22 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: "posts",
-        path: `${__dirname}/posts`,
+        name: "articles",
+        path: `${__dirname}/_articles`,
       },
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "bands",
-        path: `${__dirname}/bands`,
+        path: `${__dirname}/_bands`,
       },
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "portfolio",
-        path: `${__dirname}/portfolio`,
-      },
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "portfolio-pieces",
-        path: `${__dirname}/src/pages/developer/portfolio`,
+        path: `${__dirname}/_portfolio`,
       },
     },
     "gatsby-transformer-json",

@@ -1,60 +1,70 @@
 import * as React from "react";
 import { HeadFC, Link, PageProps, graphql } from 'gatsby';
 
-import { GatsbyImage, IGatsbyImageData, getImage } from "gatsby-plugin-image";
+import { IGatsbyImageData } from "gatsby-plugin-image";
 
 import Heading from "../../../components/Heading/Heading";
 import MaxWidthContainer from "../../../components/MaxWidthContainer";
+import PortfolioList from "../../../components/PortfolioList";
+import PortfolioListItem from "../../../components/PortfolioListItem";
 import { Seo } from "../../../components/SEO/Seo";
 
 import * as styles from "./organization.module.scss";
+import Paragraph from "../../../components/UI/Paragraph/Paragraph";
 
 interface HireMeData {
   allMdx: {
     nodes: {
-      map(arg0: (node: any) => React.JSX.Element): React.ReactNode;
+      filter(arg0: (node: any) => boolean): [];
+      map(arg0: (node: unknown) => React.JSX.Element): React.ReactNode;
       frontmatter: {
-        slug: string
-        title: string
+        blurb: string
+        featured: boolean
         hero_image: {
           childImageSharp: {
             gatsbyImageData: IGatsbyImageData
           }
         }
         hero_image_alt: string
+        slug: string
+        tags: string[]
+        title: string
       }
+      excerpt: string
       id: string
     }
   }
 }
 
-export default function HireMePage({ data }: Readonly<PageProps<HireMeData>>) {
+export default function HireMePage({ data: { allMdx: { nodes } } }: Readonly<PageProps<HireMeData>>) {
   return (
     <MaxWidthContainer>
       <main className={styles.organization}>
-        <h1>Hire Me </h1>
+        <Heading level={1}>Hire Me For Your Organization</Heading>
 
-        <Link
-          to="/design/"
-        >
-          Design System
-        </Link>
+        <Paragraph>
+          Information about the {" "}
+          <Link
+            to="/design/"
+            className={styles.organizationLink__design}
+          >
+            Design System
+          </Link>
+        </Paragraph>
 
-        <ul>
-          {data.allMdx.nodes.map((node) => (
-            <li key={node.id}>
-              <GatsbyImage
-                image={node.frontmatter.hero_image && getImage(node.frontmatter.hero_image)}
-                alt={node.frontmatter.hero_image_alt}
-              />
-              <Heading level={2}>{node.frontmatter.title}</Heading>
-              <Link
-                to={`portfolio/${node.frontmatter.slug}`}
-              >Read More
-              </Link>
-            </li>
+        <Heading level={2}>Featured Apps</Heading>
+        <PortfolioList>
+          {nodes.filter((node) => node.frontmatter.featured === true).map((node) => (
+            <PortfolioListItem key={node.id} node={node} prefixed={true} />
           ))}
-        </ul>
+        </PortfolioList>
+
+        <Heading level={2}>Projects</Heading>
+        <PortfolioList>
+          {nodes.filter((node) => node.frontmatter.featured === false).map((node) => (
+            <PortfolioListItem key={node.id} node={node} prefixed={true} />
+          ))}
+        </PortfolioList>
       </main>
     </MaxWidthContainer>
   );
@@ -64,27 +74,32 @@ export const query = graphql`
 query {
   allMdx(
     filter: {
-      fields: {source: {eq: "portfolio"}}, 
+      fields: {source: {eq: "portfolio"}},
       frontmatter: {
-        tags: {in: "organization"},
+        tags: {in: "organization"}
         isActive: {eq: true}
-        }
       }
+    }
+    sort: {
+      frontmatter: {
+        title: ASC
+      }
+    }
   ) {
     nodes {
-      fields {
-        source
-      }
       frontmatter {
-        slug
-        title
+        blurb
+        featured
         hero_image {
           childImageSharp {
-            gatsbyImageData(width: 300)
+            gatsbyImageData(layout: FULL_WIDTH)
           }
         }
         hero_image_alt
+        slug
+        title
       }
+      excerpt(pruneLength: 100)
       id
     }
   }

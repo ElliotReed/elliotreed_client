@@ -9,10 +9,11 @@
   "author": "Elliot Reed>",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-brands-svg-icons": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@mdx-js/react": "^3.0.0",
-    "classnames": "^2.3.2",
+    "@mdx-js/react": "2.0.0",
+    "classnames": "^2.5.0",
     "gatsby": "^5.13.1",
     "gatsby-plugin-image": "^3.13.0",
     "gatsby-plugin-layout": "^4.13.0",
@@ -37,7 +38,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.10.5",
-    "@types/react": "^18.2.45",
+    "@types/react": "^18.2.46",
     "@types/react-dom": "^18.2.18",
     "typescript": "^5.3.3"
   },

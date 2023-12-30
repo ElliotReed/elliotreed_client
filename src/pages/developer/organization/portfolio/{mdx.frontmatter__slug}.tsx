@@ -3,19 +3,17 @@ import { HeadFC, PageProps, graphql } from "gatsby";
 
 import { GatsbyImage, IGatsbyImageData, getImage } from "gatsby-plugin-image";
 
-import ExternalLink from "../../../../components/ExternalLink";
 import Heading from "../../../../components/Heading/Heading";
 import MaxWidthContainer from "../../../../components/MaxWidthContainer";
-import Paragraph from "../../../../components/UI/Paragraph/Paragraph";
+import PhotoCredit from "../../../../components/PhotoCredit";
 import Seo from "../../../../components/SEO/Seo";
 
-import * as styles from "./organization-portfolio.modules.scss";
+import * as styles from "../../portfolio-detail.module.scss";
 
 interface OrganizationData {
   mdx: {
     frontmatter: {
-      title: string
-      date: string
+      blurb: string
       hero_image_alt: string
       hero_image_credit_link: string
       hero_image_credit_text: string
@@ -24,33 +22,31 @@ interface OrganizationData {
           gatsbyImageData: IGatsbyImageData
         }
       }
+      title: string
     }
   }
 }
 
-export default function OrganizationPortfolio({ data, children }: Readonly<PageProps<OrganizationData>>) {
-  const image = getImage(data.mdx.frontmatter.hero_image);
+export default function OrganizationPortfolio({ data: { mdx: { frontmatter } }, children }: Readonly<PageProps<OrganizationData>>) {
+  const image = getImage(frontmatter.hero_image);
 
   return (
-    <main className={styles.organizationPortfolio}>
+    <main className={styles.portfolioDetail}>
       <MaxWidthContainer>
         {image && (<GatsbyImage
           image={image}
-          alt={data.mdx.frontmatter.hero_image_alt}
+          alt={frontmatter.hero_image_alt}
         />)
         }
-        <Paragraph>
-          <small>
-            Photo Credit: <ExternalLink to={data.mdx.frontmatter.hero_image_credit_link}>
-              {data.mdx.frontmatter.hero_image_credit_text}
-            </ExternalLink>
-          </small>
-        </Paragraph>
+        <PhotoCredit
+          link={frontmatter.hero_image_credit_link}
+          text={frontmatter.hero_image_credit_text}
+        />
 
         <Heading level={1}>
-          {data.mdx.frontmatter.title}
+          {frontmatter.title}
         </Heading>
-        <Paragraph>Posted: {data.mdx.frontmatter.date}</Paragraph>
+
         {children}
       </MaxWidthContainer>
     </main >
@@ -61,16 +57,16 @@ export const query = graphql`
   query ($id: String) {
     mdx(id: {eq: $id}) {
       frontmatter {
-        title
-        date(formatString: "MMMM D, YYYY")
+        blurb
         hero_image_alt
-        hero_image_credit_link
-        hero_image_credit_text
         hero_image {
           childImageSharp {
             gatsbyImageData(layout: FULL_WIDTH)
           }
         }
+        hero_image_credit_link
+        hero_image_credit_text
+        title
       }
     }
   }
