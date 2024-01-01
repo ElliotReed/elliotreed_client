@@ -384,19 +384,11 @@ type File = Node & {
   readonly childImageSharp: Maybe<ImageSharp>;
   /** Returns the first child node of type Mdx or null if there are no children of given type on this node */
   readonly childMdx: Maybe<Mdx>;
-  /** Returns the first child node of type PortfolioJson or null if there are no children of given type on this node */
-  readonly childPortfolioJson: Maybe<PortfolioJson>;
-  /** Returns the first child node of type UnusedPortfolioJson or null if there are no children of given type on this node */
-  readonly childUnusedPortfolioJson: Maybe<UnusedPortfolioJson>;
   readonly children: ReadonlyArray<Node>;
   /** Returns all children nodes filtered by type ImageSharp */
   readonly childrenImageSharp: Maybe<ReadonlyArray<Maybe<ImageSharp>>>;
   /** Returns all children nodes filtered by type Mdx */
   readonly childrenMdx: Maybe<ReadonlyArray<Maybe<Mdx>>>;
-  /** Returns all children nodes filtered by type PortfolioJson */
-  readonly childrenPortfolioJson: Maybe<ReadonlyArray<Maybe<PortfolioJson>>>;
-  /** Returns all children nodes filtered by type UnusedPortfolioJson */
-  readonly childrenUnusedPortfolioJson: Maybe<ReadonlyArray<Maybe<UnusedPortfolioJson>>>;
   readonly ctime: Scalars['Date'];
   readonly ctimeMs: Scalars['Float'];
   readonly dev: Scalars['Int'];
@@ -541,13 +533,9 @@ type FileFieldSelector = {
   readonly changeTime: InputMaybe<FieldSelectorEnum>;
   readonly childImageSharp: InputMaybe<ImageSharpFieldSelector>;
   readonly childMdx: InputMaybe<MdxFieldSelector>;
-  readonly childPortfolioJson: InputMaybe<PortfolioJsonFieldSelector>;
-  readonly childUnusedPortfolioJson: InputMaybe<UnusedPortfolioJsonFieldSelector>;
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly childrenImageSharp: InputMaybe<ImageSharpFieldSelector>;
   readonly childrenMdx: InputMaybe<MdxFieldSelector>;
-  readonly childrenPortfolioJson: InputMaybe<PortfolioJsonFieldSelector>;
-  readonly childrenUnusedPortfolioJson: InputMaybe<UnusedPortfolioJsonFieldSelector>;
   readonly ctime: InputMaybe<FieldSelectorEnum>;
   readonly ctimeMs: InputMaybe<FieldSelectorEnum>;
   readonly dev: InputMaybe<FieldSelectorEnum>;
@@ -590,13 +578,9 @@ type FileFilterInput = {
   readonly changeTime: InputMaybe<DateQueryOperatorInput>;
   readonly childImageSharp: InputMaybe<ImageSharpFilterInput>;
   readonly childMdx: InputMaybe<MdxFilterInput>;
-  readonly childPortfolioJson: InputMaybe<PortfolioJsonFilterInput>;
-  readonly childUnusedPortfolioJson: InputMaybe<UnusedPortfolioJsonFilterInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly childrenImageSharp: InputMaybe<ImageSharpFilterListInput>;
   readonly childrenMdx: InputMaybe<MdxFilterListInput>;
-  readonly childrenPortfolioJson: InputMaybe<PortfolioJsonFilterListInput>;
-  readonly childrenUnusedPortfolioJson: InputMaybe<UnusedPortfolioJsonFilterListInput>;
   readonly ctime: InputMaybe<DateQueryOperatorInput>;
   readonly ctimeMs: InputMaybe<FloatQueryOperatorInput>;
   readonly dev: InputMaybe<IntQueryOperatorInput>;
@@ -680,13 +664,9 @@ type FileSortInput = {
   readonly changeTime: InputMaybe<SortOrderEnum>;
   readonly childImageSharp: InputMaybe<ImageSharpSortInput>;
   readonly childMdx: InputMaybe<MdxSortInput>;
-  readonly childPortfolioJson: InputMaybe<PortfolioJsonSortInput>;
-  readonly childUnusedPortfolioJson: InputMaybe<UnusedPortfolioJsonSortInput>;
   readonly children: InputMaybe<NodeSortInput>;
   readonly childrenImageSharp: InputMaybe<ImageSharpSortInput>;
   readonly childrenMdx: InputMaybe<MdxSortInput>;
-  readonly childrenPortfolioJson: InputMaybe<PortfolioJsonSortInput>;
-  readonly childrenUnusedPortfolioJson: InputMaybe<UnusedPortfolioJsonSortInput>;
   readonly ctime: InputMaybe<SortOrderEnum>;
   readonly ctimeMs: InputMaybe<SortOrderEnum>;
   readonly dev: InputMaybe<SortOrderEnum>;
@@ -1388,47 +1368,21 @@ type MdxFilterListInput = {
 
 type MdxFrontmatter = {
   readonly active_dates: Maybe<Scalars['String']>;
-  readonly blurb: Maybe<Scalars['String']>;
-  readonly date: Maybe<Scalars['Date']>;
-  readonly date_updated: Maybe<Scalars['Date']>;
-  readonly featured: Maybe<Scalars['Boolean']>;
   readonly hero_image: Maybe<File>;
   readonly hero_image_alt: Maybe<Scalars['String']>;
   readonly hero_image_credit_link: Maybe<Scalars['String']>;
   readonly hero_image_credit_text: Maybe<Scalars['String']>;
-  readonly isActive: Maybe<Scalars['Boolean']>;
   readonly slug: Maybe<Scalars['String']>;
   readonly tags: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
   readonly title: Maybe<Scalars['String']>;
 };
 
-
-type MdxFrontmatter_dateArgs = {
-  difference: InputMaybe<Scalars['String']>;
-  formatString: InputMaybe<Scalars['String']>;
-  fromNow: InputMaybe<Scalars['Boolean']>;
-  locale: InputMaybe<Scalars['String']>;
-};
-
-
-type MdxFrontmatter_date_updatedArgs = {
-  difference: InputMaybe<Scalars['String']>;
-  formatString: InputMaybe<Scalars['String']>;
-  fromNow: InputMaybe<Scalars['Boolean']>;
-  locale: InputMaybe<Scalars['String']>;
-};
-
 type MdxFrontmatterFieldSelector = {
   readonly active_dates: InputMaybe<FieldSelectorEnum>;
-  readonly blurb: InputMaybe<FieldSelectorEnum>;
-  readonly date: InputMaybe<FieldSelectorEnum>;
-  readonly date_updated: InputMaybe<FieldSelectorEnum>;
-  readonly featured: InputMaybe<FieldSelectorEnum>;
   readonly hero_image: InputMaybe<FileFieldSelector>;
   readonly hero_image_alt: InputMaybe<FieldSelectorEnum>;
   readonly hero_image_credit_link: InputMaybe<FieldSelectorEnum>;
   readonly hero_image_credit_text: InputMaybe<FieldSelectorEnum>;
-  readonly isActive: InputMaybe<FieldSelectorEnum>;
   readonly slug: InputMaybe<FieldSelectorEnum>;
   readonly tags: InputMaybe<FieldSelectorEnum>;
   readonly title: InputMaybe<FieldSelectorEnum>;
@@ -1436,15 +1390,10 @@ type MdxFrontmatterFieldSelector = {
 
 type MdxFrontmatterFilterInput = {
   readonly active_dates: InputMaybe<StringQueryOperatorInput>;
-  readonly blurb: InputMaybe<StringQueryOperatorInput>;
-  readonly date: InputMaybe<DateQueryOperatorInput>;
-  readonly date_updated: InputMaybe<DateQueryOperatorInput>;
-  readonly featured: InputMaybe<BooleanQueryOperatorInput>;
   readonly hero_image: InputMaybe<FileFilterInput>;
   readonly hero_image_alt: InputMaybe<StringQueryOperatorInput>;
   readonly hero_image_credit_link: InputMaybe<StringQueryOperatorInput>;
   readonly hero_image_credit_text: InputMaybe<StringQueryOperatorInput>;
-  readonly isActive: InputMaybe<BooleanQueryOperatorInput>;
   readonly slug: InputMaybe<StringQueryOperatorInput>;
   readonly tags: InputMaybe<StringQueryOperatorInput>;
   readonly title: InputMaybe<StringQueryOperatorInput>;
@@ -1452,15 +1401,10 @@ type MdxFrontmatterFilterInput = {
 
 type MdxFrontmatterSortInput = {
   readonly active_dates: InputMaybe<SortOrderEnum>;
-  readonly blurb: InputMaybe<SortOrderEnum>;
-  readonly date: InputMaybe<SortOrderEnum>;
-  readonly date_updated: InputMaybe<SortOrderEnum>;
-  readonly featured: InputMaybe<SortOrderEnum>;
   readonly hero_image: InputMaybe<FileSortInput>;
   readonly hero_image_alt: InputMaybe<SortOrderEnum>;
   readonly hero_image_credit_link: InputMaybe<SortOrderEnum>;
   readonly hero_image_credit_text: InputMaybe<SortOrderEnum>;
-  readonly isActive: InputMaybe<SortOrderEnum>;
   readonly slug: InputMaybe<SortOrderEnum>;
   readonly tags: InputMaybe<SortOrderEnum>;
   readonly title: InputMaybe<SortOrderEnum>;
@@ -1568,172 +1512,6 @@ type PageInfo = {
   readonly totalCount: Scalars['Int'];
 };
 
-type PortfolioJson = Node & {
-  readonly blurb: Maybe<Scalars['String']>;
-  readonly children: ReadonlyArray<Node>;
-  readonly description: Maybe<Scalars['String']>;
-  readonly id: Scalars['ID'];
-  readonly images: Maybe<ReadonlyArray<Maybe<PortfolioJsonImages>>>;
-  readonly internal: Internal;
-  readonly parent: Maybe<Node>;
-  readonly production: Maybe<Scalars['Boolean']>;
-  readonly project: Maybe<Scalars['String']>;
-  readonly url: Maybe<Scalars['String']>;
-};
-
-type PortfolioJsonConnection = {
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly edges: ReadonlyArray<PortfolioJsonEdge>;
-  readonly group: ReadonlyArray<PortfolioJsonGroupConnection>;
-  readonly max: Maybe<Scalars['Float']>;
-  readonly min: Maybe<Scalars['Float']>;
-  readonly nodes: ReadonlyArray<PortfolioJson>;
-  readonly pageInfo: PageInfo;
-  readonly sum: Maybe<Scalars['Float']>;
-  readonly totalCount: Scalars['Int'];
-};
-
-
-type PortfolioJsonConnection_distinctArgs = {
-  field: PortfolioJsonFieldSelector;
-};
-
-
-type PortfolioJsonConnection_groupArgs = {
-  field: PortfolioJsonFieldSelector;
-  limit: InputMaybe<Scalars['Int']>;
-  skip: InputMaybe<Scalars['Int']>;
-};
-
-
-type PortfolioJsonConnection_maxArgs = {
-  field: PortfolioJsonFieldSelector;
-};
-
-
-type PortfolioJsonConnection_minArgs = {
-  field: PortfolioJsonFieldSelector;
-};
-
-
-type PortfolioJsonConnection_sumArgs = {
-  field: PortfolioJsonFieldSelector;
-};
-
-type PortfolioJsonEdge = {
-  readonly next: Maybe<PortfolioJson>;
-  readonly node: PortfolioJson;
-  readonly previous: Maybe<PortfolioJson>;
-};
-
-type PortfolioJsonFieldSelector = {
-  readonly blurb: InputMaybe<FieldSelectorEnum>;
-  readonly children: InputMaybe<NodeFieldSelector>;
-  readonly description: InputMaybe<FieldSelectorEnum>;
-  readonly id: InputMaybe<FieldSelectorEnum>;
-  readonly images: InputMaybe<PortfolioJsonImagesFieldSelector>;
-  readonly internal: InputMaybe<InternalFieldSelector>;
-  readonly parent: InputMaybe<NodeFieldSelector>;
-  readonly production: InputMaybe<FieldSelectorEnum>;
-  readonly project: InputMaybe<FieldSelectorEnum>;
-  readonly url: InputMaybe<FieldSelectorEnum>;
-};
-
-type PortfolioJsonFilterInput = {
-  readonly blurb: InputMaybe<StringQueryOperatorInput>;
-  readonly children: InputMaybe<NodeFilterListInput>;
-  readonly description: InputMaybe<StringQueryOperatorInput>;
-  readonly id: InputMaybe<StringQueryOperatorInput>;
-  readonly images: InputMaybe<PortfolioJsonImagesFilterListInput>;
-  readonly internal: InputMaybe<InternalFilterInput>;
-  readonly parent: InputMaybe<NodeFilterInput>;
-  readonly production: InputMaybe<BooleanQueryOperatorInput>;
-  readonly project: InputMaybe<StringQueryOperatorInput>;
-  readonly url: InputMaybe<StringQueryOperatorInput>;
-};
-
-type PortfolioJsonFilterListInput = {
-  readonly elemMatch: InputMaybe<PortfolioJsonFilterInput>;
-};
-
-type PortfolioJsonGroupConnection = {
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly edges: ReadonlyArray<PortfolioJsonEdge>;
-  readonly field: Scalars['String'];
-  readonly fieldValue: Maybe<Scalars['String']>;
-  readonly group: ReadonlyArray<PortfolioJsonGroupConnection>;
-  readonly max: Maybe<Scalars['Float']>;
-  readonly min: Maybe<Scalars['Float']>;
-  readonly nodes: ReadonlyArray<PortfolioJson>;
-  readonly pageInfo: PageInfo;
-  readonly sum: Maybe<Scalars['Float']>;
-  readonly totalCount: Scalars['Int'];
-};
-
-
-type PortfolioJsonGroupConnection_distinctArgs = {
-  field: PortfolioJsonFieldSelector;
-};
-
-
-type PortfolioJsonGroupConnection_groupArgs = {
-  field: PortfolioJsonFieldSelector;
-  limit: InputMaybe<Scalars['Int']>;
-  skip: InputMaybe<Scalars['Int']>;
-};
-
-
-type PortfolioJsonGroupConnection_maxArgs = {
-  field: PortfolioJsonFieldSelector;
-};
-
-
-type PortfolioJsonGroupConnection_minArgs = {
-  field: PortfolioJsonFieldSelector;
-};
-
-
-type PortfolioJsonGroupConnection_sumArgs = {
-  field: PortfolioJsonFieldSelector;
-};
-
-type PortfolioJsonImages = {
-  readonly alt: Maybe<Scalars['String']>;
-  readonly image: Maybe<File>;
-};
-
-type PortfolioJsonImagesFieldSelector = {
-  readonly alt: InputMaybe<FieldSelectorEnum>;
-  readonly image: InputMaybe<FileFieldSelector>;
-};
-
-type PortfolioJsonImagesFilterInput = {
-  readonly alt: InputMaybe<StringQueryOperatorInput>;
-  readonly image: InputMaybe<FileFilterInput>;
-};
-
-type PortfolioJsonImagesFilterListInput = {
-  readonly elemMatch: InputMaybe<PortfolioJsonImagesFilterInput>;
-};
-
-type PortfolioJsonImagesSortInput = {
-  readonly alt: InputMaybe<SortOrderEnum>;
-  readonly image: InputMaybe<FileSortInput>;
-};
-
-type PortfolioJsonSortInput = {
-  readonly blurb: InputMaybe<SortOrderEnum>;
-  readonly children: InputMaybe<NodeSortInput>;
-  readonly description: InputMaybe<SortOrderEnum>;
-  readonly id: InputMaybe<SortOrderEnum>;
-  readonly images: InputMaybe<PortfolioJsonImagesSortInput>;
-  readonly internal: InputMaybe<InternalSortInput>;
-  readonly parent: InputMaybe<NodeSortInput>;
-  readonly production: InputMaybe<SortOrderEnum>;
-  readonly project: InputMaybe<SortOrderEnum>;
-  readonly url: InputMaybe<SortOrderEnum>;
-};
-
 type Potrace = {
   readonly alphaMax: InputMaybe<Scalars['Float']>;
   readonly background: InputMaybe<Scalars['String']>;
@@ -1759,24 +1537,20 @@ type Query = {
   readonly allFile: FileConnection;
   readonly allImageSharp: ImageSharpConnection;
   readonly allMdx: MdxConnection;
-  readonly allPortfolioJson: PortfolioJsonConnection;
   readonly allSite: SiteConnection;
   readonly allSiteBuildMetadata: SiteBuildMetadataConnection;
   readonly allSiteFunction: SiteFunctionConnection;
   readonly allSitePage: SitePageConnection;
   readonly allSitePlugin: SitePluginConnection;
-  readonly allUnusedPortfolioJson: UnusedPortfolioJsonConnection;
   readonly directory: Maybe<Directory>;
   readonly file: Maybe<File>;
   readonly imageSharp: Maybe<ImageSharp>;
   readonly mdx: Maybe<Mdx>;
-  readonly portfolioJson: Maybe<PortfolioJson>;
   readonly site: Maybe<Site>;
   readonly siteBuildMetadata: Maybe<SiteBuildMetadata>;
   readonly siteFunction: Maybe<SiteFunction>;
   readonly sitePage: Maybe<SitePage>;
   readonly sitePlugin: Maybe<SitePlugin>;
-  readonly unusedPortfolioJson: Maybe<UnusedPortfolioJson>;
 };
 
 
@@ -1809,14 +1583,6 @@ type Query_allMdxArgs = {
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
   sort: InputMaybe<ReadonlyArray<InputMaybe<MdxSortInput>>>;
-};
-
-
-type Query_allPortfolioJsonArgs = {
-  filter: InputMaybe<PortfolioJsonFilterInput>;
-  limit: InputMaybe<Scalars['Int']>;
-  skip: InputMaybe<Scalars['Int']>;
-  sort: InputMaybe<ReadonlyArray<InputMaybe<PortfolioJsonSortInput>>>;
 };
 
 
@@ -1857,14 +1623,6 @@ type Query_allSitePluginArgs = {
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
   sort: InputMaybe<ReadonlyArray<InputMaybe<SitePluginSortInput>>>;
-};
-
-
-type Query_allUnusedPortfolioJsonArgs = {
-  filter: InputMaybe<UnusedPortfolioJsonFilterInput>;
-  limit: InputMaybe<Scalars['Int']>;
-  skip: InputMaybe<Scalars['Int']>;
-  sort: InputMaybe<ReadonlyArray<InputMaybe<UnusedPortfolioJsonSortInput>>>;
 };
 
 
@@ -1921,13 +1679,9 @@ type Query_fileArgs = {
   changeTime: InputMaybe<DateQueryOperatorInput>;
   childImageSharp: InputMaybe<ImageSharpFilterInput>;
   childMdx: InputMaybe<MdxFilterInput>;
-  childPortfolioJson: InputMaybe<PortfolioJsonFilterInput>;
-  childUnusedPortfolioJson: InputMaybe<UnusedPortfolioJsonFilterInput>;
   children: InputMaybe<NodeFilterListInput>;
   childrenImageSharp: InputMaybe<ImageSharpFilterListInput>;
   childrenMdx: InputMaybe<MdxFilterListInput>;
-  childrenPortfolioJson: InputMaybe<PortfolioJsonFilterListInput>;
-  childrenUnusedPortfolioJson: InputMaybe<UnusedPortfolioJsonFilterListInput>;
   ctime: InputMaybe<DateQueryOperatorInput>;
   ctimeMs: InputMaybe<FloatQueryOperatorInput>;
   dev: InputMaybe<IntQueryOperatorInput>;
@@ -1981,20 +1735,6 @@ type Query_mdxArgs = {
   internal: InputMaybe<InternalFilterInput>;
   parent: InputMaybe<NodeFilterInput>;
   tableOfContents: InputMaybe<JSONQueryOperatorInput>;
-};
-
-
-type Query_portfolioJsonArgs = {
-  blurb: InputMaybe<StringQueryOperatorInput>;
-  children: InputMaybe<NodeFilterListInput>;
-  description: InputMaybe<StringQueryOperatorInput>;
-  id: InputMaybe<StringQueryOperatorInput>;
-  images: InputMaybe<PortfolioJsonImagesFilterListInput>;
-  internal: InputMaybe<InternalFilterInput>;
-  parent: InputMaybe<NodeFilterInput>;
-  production: InputMaybe<BooleanQueryOperatorInput>;
-  project: InputMaybe<StringQueryOperatorInput>;
-  url: InputMaybe<StringQueryOperatorInput>;
 };
 
 
@@ -2068,20 +1808,6 @@ type Query_sitePluginArgs = {
   resolve: InputMaybe<StringQueryOperatorInput>;
   ssrAPIs: InputMaybe<StringQueryOperatorInput>;
   version: InputMaybe<StringQueryOperatorInput>;
-};
-
-
-type Query_unusedPortfolioJsonArgs = {
-  blurb: InputMaybe<StringQueryOperatorInput>;
-  children: InputMaybe<NodeFilterListInput>;
-  description: InputMaybe<StringQueryOperatorInput>;
-  id: InputMaybe<StringQueryOperatorInput>;
-  images: InputMaybe<UnusedPortfolioJsonImagesFilterListInput>;
-  internal: InputMaybe<InternalFilterInput>;
-  parent: InputMaybe<NodeFilterInput>;
-  production: InputMaybe<BooleanQueryOperatorInput>;
-  project: InputMaybe<StringQueryOperatorInput>;
-  url: InputMaybe<StringQueryOperatorInput>;
 };
 
 type Site = Node & {
@@ -2874,172 +2600,6 @@ type TransformOptions = {
   readonly grayscale: InputMaybe<Scalars['Boolean']>;
   readonly rotate: InputMaybe<Scalars['Int']>;
   readonly trim: InputMaybe<Scalars['Float']>;
-};
-
-type UnusedPortfolioJson = Node & {
-  readonly blurb: Maybe<Scalars['String']>;
-  readonly children: ReadonlyArray<Node>;
-  readonly description: Maybe<Scalars['String']>;
-  readonly id: Scalars['ID'];
-  readonly images: Maybe<ReadonlyArray<Maybe<UnusedPortfolioJsonImages>>>;
-  readonly internal: Internal;
-  readonly parent: Maybe<Node>;
-  readonly production: Maybe<Scalars['Boolean']>;
-  readonly project: Maybe<Scalars['String']>;
-  readonly url: Maybe<Scalars['String']>;
-};
-
-type UnusedPortfolioJsonConnection = {
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly edges: ReadonlyArray<UnusedPortfolioJsonEdge>;
-  readonly group: ReadonlyArray<UnusedPortfolioJsonGroupConnection>;
-  readonly max: Maybe<Scalars['Float']>;
-  readonly min: Maybe<Scalars['Float']>;
-  readonly nodes: ReadonlyArray<UnusedPortfolioJson>;
-  readonly pageInfo: PageInfo;
-  readonly sum: Maybe<Scalars['Float']>;
-  readonly totalCount: Scalars['Int'];
-};
-
-
-type UnusedPortfolioJsonConnection_distinctArgs = {
-  field: UnusedPortfolioJsonFieldSelector;
-};
-
-
-type UnusedPortfolioJsonConnection_groupArgs = {
-  field: UnusedPortfolioJsonFieldSelector;
-  limit: InputMaybe<Scalars['Int']>;
-  skip: InputMaybe<Scalars['Int']>;
-};
-
-
-type UnusedPortfolioJsonConnection_maxArgs = {
-  field: UnusedPortfolioJsonFieldSelector;
-};
-
-
-type UnusedPortfolioJsonConnection_minArgs = {
-  field: UnusedPortfolioJsonFieldSelector;
-};
-
-
-type UnusedPortfolioJsonConnection_sumArgs = {
-  field: UnusedPortfolioJsonFieldSelector;
-};
-
-type UnusedPortfolioJsonEdge = {
-  readonly next: Maybe<UnusedPortfolioJson>;
-  readonly node: UnusedPortfolioJson;
-  readonly previous: Maybe<UnusedPortfolioJson>;
-};
-
-type UnusedPortfolioJsonFieldSelector = {
-  readonly blurb: InputMaybe<FieldSelectorEnum>;
-  readonly children: InputMaybe<NodeFieldSelector>;
-  readonly description: InputMaybe<FieldSelectorEnum>;
-  readonly id: InputMaybe<FieldSelectorEnum>;
-  readonly images: InputMaybe<UnusedPortfolioJsonImagesFieldSelector>;
-  readonly internal: InputMaybe<InternalFieldSelector>;
-  readonly parent: InputMaybe<NodeFieldSelector>;
-  readonly production: InputMaybe<FieldSelectorEnum>;
-  readonly project: InputMaybe<FieldSelectorEnum>;
-  readonly url: InputMaybe<FieldSelectorEnum>;
-};
-
-type UnusedPortfolioJsonFilterInput = {
-  readonly blurb: InputMaybe<StringQueryOperatorInput>;
-  readonly children: InputMaybe<NodeFilterListInput>;
-  readonly description: InputMaybe<StringQueryOperatorInput>;
-  readonly id: InputMaybe<StringQueryOperatorInput>;
-  readonly images: InputMaybe<UnusedPortfolioJsonImagesFilterListInput>;
-  readonly internal: InputMaybe<InternalFilterInput>;
-  readonly parent: InputMaybe<NodeFilterInput>;
-  readonly production: InputMaybe<BooleanQueryOperatorInput>;
-  readonly project: InputMaybe<StringQueryOperatorInput>;
-  readonly url: InputMaybe<StringQueryOperatorInput>;
-};
-
-type UnusedPortfolioJsonFilterListInput = {
-  readonly elemMatch: InputMaybe<UnusedPortfolioJsonFilterInput>;
-};
-
-type UnusedPortfolioJsonGroupConnection = {
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly edges: ReadonlyArray<UnusedPortfolioJsonEdge>;
-  readonly field: Scalars['String'];
-  readonly fieldValue: Maybe<Scalars['String']>;
-  readonly group: ReadonlyArray<UnusedPortfolioJsonGroupConnection>;
-  readonly max: Maybe<Scalars['Float']>;
-  readonly min: Maybe<Scalars['Float']>;
-  readonly nodes: ReadonlyArray<UnusedPortfolioJson>;
-  readonly pageInfo: PageInfo;
-  readonly sum: Maybe<Scalars['Float']>;
-  readonly totalCount: Scalars['Int'];
-};
-
-
-type UnusedPortfolioJsonGroupConnection_distinctArgs = {
-  field: UnusedPortfolioJsonFieldSelector;
-};
-
-
-type UnusedPortfolioJsonGroupConnection_groupArgs = {
-  field: UnusedPortfolioJsonFieldSelector;
-  limit: InputMaybe<Scalars['Int']>;
-  skip: InputMaybe<Scalars['Int']>;
-};
-
-
-type UnusedPortfolioJsonGroupConnection_maxArgs = {
-  field: UnusedPortfolioJsonFieldSelector;
-};
-
-
-type UnusedPortfolioJsonGroupConnection_minArgs = {
-  field: UnusedPortfolioJsonFieldSelector;
-};
-
-
-type UnusedPortfolioJsonGroupConnection_sumArgs = {
-  field: UnusedPortfolioJsonFieldSelector;
-};
-
-type UnusedPortfolioJsonImages = {
-  readonly alt: Maybe<Scalars['String']>;
-  readonly image: Maybe<File>;
-};
-
-type UnusedPortfolioJsonImagesFieldSelector = {
-  readonly alt: InputMaybe<FieldSelectorEnum>;
-  readonly image: InputMaybe<FileFieldSelector>;
-};
-
-type UnusedPortfolioJsonImagesFilterInput = {
-  readonly alt: InputMaybe<StringQueryOperatorInput>;
-  readonly image: InputMaybe<FileFilterInput>;
-};
-
-type UnusedPortfolioJsonImagesFilterListInput = {
-  readonly elemMatch: InputMaybe<UnusedPortfolioJsonImagesFilterInput>;
-};
-
-type UnusedPortfolioJsonImagesSortInput = {
-  readonly alt: InputMaybe<SortOrderEnum>;
-  readonly image: InputMaybe<FileSortInput>;
-};
-
-type UnusedPortfolioJsonSortInput = {
-  readonly blurb: InputMaybe<SortOrderEnum>;
-  readonly children: InputMaybe<NodeSortInput>;
-  readonly description: InputMaybe<SortOrderEnum>;
-  readonly id: InputMaybe<SortOrderEnum>;
-  readonly images: InputMaybe<UnusedPortfolioJsonImagesSortInput>;
-  readonly internal: InputMaybe<InternalSortInput>;
-  readonly parent: InputMaybe<NodeSortInput>;
-  readonly production: InputMaybe<SortOrderEnum>;
-  readonly project: InputMaybe<SortOrderEnum>;
-  readonly url: InputMaybe<SortOrderEnum>;
 };
 
 type WebPOptions = {

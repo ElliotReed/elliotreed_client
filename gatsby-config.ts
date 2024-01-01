@@ -29,37 +29,6 @@ module.exports = {
               withWebp: true,
             }
           },
-          {
-            resolve: `gatsby-remark-prismjs`,
-            options: {
-              classPrefix: "language-",
-              inlineCodeMarker: null,
-              aliases: {},
-              showLineNumbers: false,
-              noInlineHighlight: false,
-              languageExtensions: [
-                {
-                  language: "superscript",
-                  extend: "javascript",
-                  definition: {
-                    superscript_types: /(SuperType)/,
-                  },
-                  insertBefore: {
-                    function: {
-                      superscript_keywords: /(superif|superelse)/,
-                    },
-                  },
-                },
-              ],
-              prompt: {
-                user: "root",
-                host: "localhost",
-                global: false,
-              },
-
-              escapeEntities: {},
-            },
-          },
         ]
       },
     },
@@ -101,27 +70,12 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: "articles",
-        path: `${__dirname}/_articles`,
-      },
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
         name: "bands",
         path: `${__dirname}/_bands`,
       },
     },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "portfolio",
-        path: `${__dirname}/_portfolio`,
-      },
-    },
     "gatsby-transformer-json",
     "gatsby-transformer-sharp",
-    "gatsby-transformer-typescript-css-modules",
 
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline

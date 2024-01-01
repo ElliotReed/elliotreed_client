@@ -33,7 +33,7 @@ export default function MusicianNavbar() {
     <nav>
       <ul className={styles.navList}>
         <li>
-          <NavigationHeaderLink to="/musician/about">
+          <NavigationHeaderLink to="/about">
             About
           </NavigationHeaderLink>
         </li>
@@ -47,12 +47,12 @@ export default function MusicianNavbar() {
           </NavigationHeaderLink>
         </li> */}
         <li>
-          <NavigationHeaderLink to="/musician/lessons">
+          <NavigationHeaderLink to="/lessons">
             Lessons
           </NavigationHeaderLink>
         </li>
         <li>
-          <NavigationHeaderLink to="/musician/contact">
+          <NavigationHeaderLink to="/contact">
             Contact
           </NavigationHeaderLink>
         </li>

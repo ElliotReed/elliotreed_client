@@ -1,0 +1,52 @@
+@use "../../styles/abstracts/" as *;
+
+.lesson-page {
+  background: get-color("lightShades");
+  color: get-color("darkShades");
+
+  img {
+    border-radius: $border-radius;
+  }
+
+  .subHeading {
+    display: block;
+    font-size: 0.5em;
+  }
+
+  .listDefault {
+    list-style: initial;
+  }
+
+  .twoColumnGrid {
+    display: grid;
+    gap: 1em;
+
+    &.left {
+      @include respond-to("md") {
+        grid-template-columns: 1fr 1.618fr;
+      }
+    }
+
+    &.right {
+      @include respond-to("md") {
+        grid-template-columns: 1.618fr 1fr;
+      }
+    }
+
+    &>* {
+      margin-top: 0;
+    }
+  }
+
+
+  .map {
+    pointer-events: none;
+    border: 4px solid get-color("darkShades");
+    border-radius: $border-radius;
+  }
+}
+
+.genre-list {
+  background: get-color("darkShades");
+  color: get-color("lightShades");
+}

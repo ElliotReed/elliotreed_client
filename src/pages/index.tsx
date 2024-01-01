@@ -1,28 +1,21 @@
-import React from 'react';
-import { Link, HeadFC } from "gatsby";
+import React from "react";
+import { HeadFC } from "gatsby";
 
-import classnames from "classnames";
+import ProfileHeader from "../components/ProfileHeader";
+import { Seo } from "../components/SEO/Seo";
 
-import { Seo } from "../components/SEO";
+import * as styles from "./musician.module.scss"
 
-import * as styles from "./portal.module.scss";
-
-export default function PortalPage() {
+const MusicianPage = () => {
   return (
-    <nav className={styles.portalPage}>
-      <div className={classnames(styles.left, styles.aspectContainer)}>
-        <Link to="/developer" className={styles.aspectLink}>The Developer</Link>
-      </div>
-
-      <div className={classnames(styles.right, styles.aspectContainer)}>
-        <Link to="/musician" className={styles.aspectLink}>
-          The Musician
-        </Link>
-      </div>
-    </nav>
-  )
+    <main>
+      <ProfileHeader type="musician" />
+    </main>
+  );
 }
 
+export default MusicianPage
+
 export const Head: HeadFC<string> = () => (
-  <Seo title="Elliot Reed Developer | Musician" />
+  <Seo title="Elliot Reed | Musician" />
 )

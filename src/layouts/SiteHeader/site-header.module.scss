@@ -44,37 +44,16 @@
 
 // #region aspect //
 .aspect {
-  position: relative;
-  perspective: 400px;
+  display: inline-block;
+  margin-left: $space-sm;
+  @include padding-box("xs");
+  color: $body-text;
+  font-size: $fs-sm-em;
+  font-style: italic;
+  font-weight: normal;
+  text-align: center;
   background-color: get-color("lightShades", 300);
   border-radius: $border-radius;
-
-  .aspect-menu {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    min-width: 100%;
-    text-align: center;
-    backface-visibility: hidden;
-    background: $body-background-color;
-    border-radius: $border-radius;
-    @include shadow(2);
-    transform: rotateX(93deg) translateX(-50%);
-    transform-origin: top;
-    transform-style: preserve-3d;
-  }
-
-  .qualifier-text {
-    color: $body-text;
-    font-size: $fs-sm-em;
-    font-style: italic;
-    font-weight: normal;
-  }
-
-  a {
-    display: inline-block;
-    @include padding-box("xs");
-  }
 }
 
 // #endregion

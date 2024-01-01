@@ -9,9 +9,6 @@ const React = require("react");
 const GlobalContextProvider = require("./src/context/GlobalContextProvider")
   .default;
 
-require("prismjs/themes/prism-tomorrow.css");
-require("./src/styles/global.scss");
-
 exports.wrapRootElement = ({ element }) => {
   return <GlobalContextProvider>{element}</GlobalContextProvider>
 }
