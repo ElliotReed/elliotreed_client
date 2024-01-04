@@ -1,14 +1,15 @@
-import React, { useState } from "react"
-import { HeadFC } from 'gatsby'
-import { StaticImage } from "gatsby-plugin-image"
+import * as React from "react";
+import { HeadFC } from "gatsby";
 
-import { Seo } from "../../components/SEO"
-import Accordion from "../../components/UI/Accordion"
-import MaxWidthContainer from "../../components/MaxWidthContainer/MaxWidthContainer"
+import { StaticImage } from "gatsby-plugin-image";
 
-import { show } from "../../data/abbeyroad"
+import Accordion from "../../components/UI/Accordion";
+import MaxWidthContainer from "../../components/MaxWidthContainer/MaxWidthContainer";
+import Seo from "../../components/SEO";
 
-import * as styles from "./abbeyroad.module.scss"
+import { show } from "../../data/abbeyroad";
+
+import * as styles from "./abbeyroad.module.scss";
 
 interface VideoProps {
   id: string
@@ -58,7 +59,7 @@ const Parts = ({ song }: { song: SongProps }) => {
 const MusicContent = ({ song }: { song: SongProps }) => {
   return (
     <a className={styles.chartLink} title={`Follow link to open pdf`} href={song.link}>
-      <StaticImage src="../../../images/scores.jpg" alt="pdf link" />
+      <StaticImage src="../../images/scores.jpg" alt="pdf link" />
       <span>{song.title}</span>
     </a>
   )
@@ -85,7 +86,7 @@ const YouTube = ({ videoId, title }: YouTubeProps) => {
         title={title}
         src={source}
         loading="lazy"
-        allow="fullscreen"
+        allowFullScreen
       ></iframe>
     </div>
   )
@@ -112,7 +113,7 @@ const Video = ({ song }: { song: SongProps }) => {
 }
 
 export default function AbbeyRoadPage() {
-  const showParts = useState(false);
+  const showParts = false;
   return (
     <main>
       <h1 className={styles.pageTitle}>
@@ -157,5 +158,5 @@ export default function AbbeyRoadPage() {
 
 
 export const Head: HeadFC<string> = () => (
-  <Seo title="Musician | Abbey Road" />
+  <Seo title="Abbey Road" />
 )

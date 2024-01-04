@@ -1,6 +1,6 @@
-@use '../variables';
-@use '../color';
-@use '../scale-functions' as factors;
+@use "../variables";
+@use "../color";
+@use "../scale-functions";
 @use "./shadow" as shadow;
 @use "./respond-to" as mq;
 
@@ -34,6 +34,19 @@
 
 @mixin borderTest() {
   border: 1px solid color.$error Color;
+}
+
+@mixin flow {
+  &>*+* {
+    margin-block-start: variables.$space-md;
+  }
+}
+
+@mixin focus($color: color.get-color("mainBrand", 100)) {
+  outline-offset: 2px;
+  outline-color: $color;
+  outline-style: dotted;
+  outline-width: thin;
 }
 
 @mixin gradient($color) {
@@ -83,7 +96,7 @@
 
 @mixin scrollbar {
   &::-webkit-scrollbar {
-    width: factors.rem-scale(400);
+    width: scale-functions.rem-scale(400);
     border: variables.$border;
     /* Mostly for vertical scrollbars */
   }

@@ -41,7 +41,7 @@ module.exports = {
         defaults: {
           formats: [`auto`, `webp`],
           placeholder: `blurred`,
-          quality: 50,
+          quality: 60,
           breakpoints: [750, 1080, 1366, 1920],
           backgroundColor: `transparent`,
           blurredOptions: {},
@@ -70,6 +70,13 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
+        name: "ILoveParisGallery",
+        path: `${__dirname}/src/components/ILoveParisGallery`,
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
         name: "bands",
         path: `${__dirname}/_bands`,
       },
@@ -88,8 +95,8 @@ module.exports = {
 
   siteMetadata: {
     author: "Elliot Reed",
-    description: "Personal website",
+    description: "Elliot Reed Music website",
     siteUrl: "https://www.elliotreed.net",
-    title: "Elliot Reed",
+    title: "Elliot Reed Music",
   },
 }

@@ -1,5 +1,24 @@
 @use "../../styles/abstracts" as *;
 
 .about-me {
-  padding-inline: $space-md;
+
+  .introduction-container {
+    padding-block: $space-xl;
+    background-color: get-color("darkShades");
+
+    .introduction {
+      color: get-color("lightShades");
+      font-size: $fs-lg-em;
+
+      @include respond-to("md") {
+        display: grid;
+        grid-template-columns: calc(1fr * $goldenRatio) 1fr;
+        gap: $space-md;
+      }
+
+      &__image {
+        border-radius: $border-radius;
+      }
+    }
+  }
 }

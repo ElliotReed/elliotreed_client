@@ -1,9 +1,21 @@
 @use "../../../styles/abstracts/" as *;
 
-.p {
-  //default styles
+.paragraph-default {
   color: inherit;
-  margin-block: 1em;
+  margin-block: $space-md;
   margin-inline: auto;
   // line-height: ; set in base
+
+}
+
+.sm {
+  font-size: $fs-sm-em;
+}
+
+.md {
+  font-size: $fs-md-em;
+}
+
+.lg {
+  font-size: $fs-lg-em;
 }

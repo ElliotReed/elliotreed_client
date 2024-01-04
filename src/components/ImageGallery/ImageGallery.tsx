@@ -7,14 +7,14 @@ interface ImageProps {
   alt: string
 }
 
-interface ImageGalleryProps { children: [] }
+interface ImageGalleryProps { children: React.ReactNode[] }
 
 export default function ImageGallery({ children }: Readonly<ImageGalleryProps>) {
   return (
     <ul className={styles.imageGallery}>
-      {React.Children.map(children, child => {
+      {children.map((child: React.ReactNode, index: number) => {
         return (
-          <li key={child} className={styles.image}>
+          <li key={index} className={styles.image}>
             {child}
           </li>
         )

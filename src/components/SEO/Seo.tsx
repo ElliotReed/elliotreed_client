@@ -1,5 +1,6 @@
-import React from "react"
-import { useSiteMetadata } from "../../hooks/use-site-metadata"
+import * as React from "react";
+
+import { useSiteMetadata } from "../../hooks/useSiteMetadata";
 
 interface SEOProps {
   author?: string
@@ -9,14 +10,14 @@ interface SEOProps {
   title?: string
 }
 
-export const Seo: React.FC<React.PropsWithChildren<SEOProps>> = ({
+export default function Seo({
   author,
   description,
   pathname,
   siteUrl,
   title,
   children,
-}) => {
+}: React.PropsWithChildren<SEOProps>) {
   // const { title: defaultTitle, description: defaultDescription, image, twitterUsername } = useSiteMetadata()
   const {
     title: defaultTitle,
@@ -48,9 +49,7 @@ export const Seo: React.FC<React.PropsWithChildren<SEOProps>> = ({
       {/* <meta name="twitter:creator" content={seo.twitterUsername} /> */}
       {/* <link id="favicon-icon" rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>👤</text></svg>" /> */}
       {children}
-      <title>{seo.title}</title>
+      <title>{`${seo.title} | Elliot Reed Music`}</title>
     </>
   )
 }
-
-export default Seo;

@@ -13,3 +13,5 @@ RewriteRule (.*) https://elliotreed.net/$1 [R=301,L]
     Order allow,deny
     Deny from all
 </FilesMatch>
+
+ErrorDocument 404 /404/index.html

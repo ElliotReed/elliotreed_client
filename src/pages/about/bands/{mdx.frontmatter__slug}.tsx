@@ -3,18 +3,17 @@ import { HeadFC, PageProps, graphql } from "gatsby";
 
 import { GatsbyImage, IGatsbyImageData, getImage } from "gatsby-plugin-image";
 
-import Heading from "../../../components/Heading/Heading";
+import Heading from "../../../components/Heading";
 import MaxWidthContainer from "../../../components/MaxWidthContainer";
-import Paragraph from "../../../components/UI/Paragraph/Paragraph";
+import Paragraph from "../../../components/UI/Paragraph";
 import PhotoCredit from "../../../components/PhotoCredit";
-import Seo from "../../../components/SEO/Seo";
+import Seo from "../../../components/SEO";
 
 import * as styles from "./bands.module.scss";
 
 interface BandData {
   mdx: {
     frontmatter: {
-      title: string
       active_dates: string
       hero_image_alt: string
       hero_image_credit_link: string
@@ -24,6 +23,7 @@ interface BandData {
           gatsbyImageData: IGatsbyImageData
         }
       }
+      title: string
     }
   }
 }
@@ -76,6 +76,6 @@ export const query = graphql`
 `;
 
 
-const Head: HeadFC<string> = () => (
+export const Head: HeadFC<string> = () => (
   <Seo title="Bands | Elliot Reed | Musician" />
 )

@@ -14,21 +14,17 @@
     npm run build
     copy public folder contents to public_html on hosting
 
+### .htaccess
+
+.htaccess tells Apache about your site
+for custon error pages add:
+ErrorDocument 404 /404/index.html (path to page)
+
 ## Structure
-
-### Landing page
-
-(src/pages/edevloper/index.tsx)
-
-Leads to two facets of my professional life.
-
-### Deveolper
-
-(src/pages/index.tsx)
 
 ## Musician
 
-(src/pages/musiciian/index.tsx)
+(src/pages/index.tsx)
 
 ## Errors
 

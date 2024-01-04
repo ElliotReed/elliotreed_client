@@ -7,7 +7,7 @@ import * as styles from "./score-header.module.scss";
 export default function ScoreHeader() {
   return (
     <StaticImage
-      className={styles.image}
+      className={styles.scoreHeader}
       src="./score-landscape.png"
       layout="fullWidth"
       alt=""

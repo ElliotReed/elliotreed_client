@@ -27,7 +27,7 @@ async function sendEmail(url = "", data = {}) {
   return await response.json();
 }
 
-export default function ContactForm({ type }) {
+export default function ContactForm({ type, customHeader }) {
   const [directiveText, setDirectiveText] = useState("Send me a message!");
   const [sendButtonText, setSendButtonText] = useState('Send Message')
   const [message, setMessage] = useState({
@@ -95,9 +95,12 @@ export default function ContactForm({ type }) {
 
   return (
     <form className={styles.contactForm} onSubmit={handleSubmit}>
-      <h1>Contact</h1>
-
-      <hr />
+      {customHeader ?? (
+        <>
+          <h1>Contact</h1>
+          <hr />
+        </>
+      )}
 
       <p className={formState.error ? styles.error : null}>
         {directiveText}
@@ -136,6 +139,7 @@ export default function ContactForm({ type }) {
           id="message"
           name="message"
           required
+          rows="6"
           value={message.message}
           onChange={handleChange}
         />

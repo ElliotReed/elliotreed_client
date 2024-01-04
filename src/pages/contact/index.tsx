@@ -2,7 +2,7 @@ import React from "react"
 import { HeadFC } from 'gatsby'
 
 import ContactForm from "../../components/ContactForm"
-import { Seo } from "../../components/SEO/Seo"
+import Seo from "../../components/SEO"
 import MaxWidthContainer from "../../components/MaxWidthContainer/MaxWidthContainer"
 
 
@@ -17,5 +17,5 @@ export default function ContactPage() {
 }
 
 export const Head: HeadFC<string> = () => (
-  <Seo title="Musician | Contact" />
+  <Seo title="Contact" />
 )

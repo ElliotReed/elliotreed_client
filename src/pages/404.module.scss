@@ -1,17 +1,17 @@
-@use "../styles/abstracts";
+@use "../styles/abstracts" as *;
 
-.NotFoundPage {
-  display: grid;
-  place-content: center;
-  height: 100vh;
-  color: abstracts.get-color("lightShades");
-  text-align: center;
-  background: abstracts.get-color("mainBrand");
+.not-found-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  color: get-color("lightShades");
+  background: get-color("darkShades");
 
   button {
-    @include abstracts.padding-box();
+    @include padding-box();
     font-weight: bold;
-    border-radius: abstracts.$border-radius;
+    border-radius: $border-radius;
 
     &:hover {
       cursor: pointer;

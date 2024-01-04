@@ -3,10 +3,11 @@
 .band-link {
   display: inline-flex;
   gap: $space-md;
-  @include padding-box("sm");
+  padding: $space-xs;
   align-items: center;
   color: initial;
-  @include border($color: get-color("mainBrand", 100));
+  background: get-color("lightShades", 400);
+  @include border($color: get-color("lightShades", 600));
 
   img {
     display: block;

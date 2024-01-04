@@ -1,6 +1,6 @@
 import * as React from "react";
 import { HeadFC, PageProps, graphql } from "gatsby";
-import { IGatsbyImageData } from "gatsby-plugin-image";
+import { IGatsbyImageData, StaticImage } from "gatsby-plugin-image";
 
 import BandLink from "../../components/BandLink/";
 import ExternalLink from "../../components/ExternalLink";
@@ -43,25 +43,47 @@ export default function AboutMusician({ data: { allMdx: { nodes } } }: Readonly<
 
   return (
     <main className={styles.aboutMe} >
+      <div className={styles.introductionContainer}>
+        <MaxWidthContainer>
+          <div className={styles.introduction}>
+            <StaticImage
+              className={styles.introduction__image}
+              src="./about-me.jpg"
+              alt="Elliot Reed onstage playing a gypsy guitar"
+            />
+            <Paragraph>
+              I am a <strong>composer</strong>, <strong>arranger</strong>, <strong>teacher</strong>, <strong>guitarist</strong>, and <strong>vocalist</strong>.
+            </Paragraph>
+          </div>
+        </MaxWidthContainer>
+      </div>
       <MaxWidthContainer>
-        <Heading level={1}> Music and Me </Heading>
-        <Paragraph> My primary instrument is guitar, I also sing.</Paragraph>
+        <Heading level={1}>Music and Me</Heading>
+
         <Paragraph>
-          My musical focus is anything that swings!(gypsy jazz, jazz, western
+          I studied music at Casper College and the University of New Mexico.
+        </Paragraph>
+
+        <Paragraph>
+          My musical focus is anything that swings! (gypsy jazz, jazz, western
           swing).I also perform in the rock, pop, reggae, and country styles.
         </Paragraph>
+
         <Paragraph>
           My primary project is <ExternalLink to="https://www.gypsyswingrevue.com" target="_self"> Gypsy Swing Revue </ExternalLink>, a gypsy jazz band in the style of the Hot Club of France.
         </Paragraph>
 
-        <Paragraph> I compose, arrange and teach music.</Paragraph>
+        <Heading level={2}>History</Heading>
 
-        <Paragraph>After Suite 42, I decided to move to Denver to start an authentic gypsy jazz group: <BandLink node={gypsyswingrevue} />.
-        </Paragraph>
-        <Paragraph>I've also been doing shows with my brother in Phoenix, AZ in the faculty group <BandLink node={crossing32st} />
-        </Paragraph>
         <Paragraph>
-          I moved to Albuquerque, NM and started <BandLink node={puppiesWithGuns} />
+          After living in Albuquerque, New Mexico, I decided to move to Denver to start an authentic gypsy jazz group: <BandLink node={gypsyswingrevue} />.
+        </Paragraph>
+
+        <Paragraph>I've also been doing shows with my brother in Phoenix, Arizona in the faculty group <BandLink node={crossing32st} />
+        </Paragraph>
+
+        <Paragraph>
+          From Casper, Wyoming, I moved to Albuquerque, New Mexico and started <BandLink node={puppiesWithGuns} />
         </Paragraph>
       </MaxWidthContainer>
     </main>
@@ -89,5 +111,5 @@ query {
 `;
 
 export const Head: HeadFC<string> = () => (
-  <Seo title="About | Elliot Reed | Musician" />
+  <Seo title="About Me" />
 )

@@ -1,42 +1,59 @@
 @use "../../styles/abstracts/" as *;
+@use "../../styles/components";
 
 .lesson-page {
-  background: get-color("lightShades");
-  color: get-color("darkShades");
-
-  img {
-    border-radius: $border-radius;
-  }
-
   .subHeading {
     display: block;
     font-size: 0.5em;
   }
 
-  .listDefault {
+  .reason-list {
+    list-style-type: none;
+    padding-inline-start: $space-md;
+  }
+
+  .schedule {
+    display: block;
+    padding: 0;
+    background: get-color("mainBrand");
+    border: 1px solid transparent;
+    list-style: none;
+
+    li {
+      margin: $space-xs;
+      @include padding-box("xs");
+      background: get-color("mainBrand", 400);
+      @include border;
+      color: get-color("lightShades");
+    }
+
+    &__day {
+      font-weight: $fw-sm;
+    }
+
+    &__time {
+      font-weight: $fw-md;
+
+      &::before {
+        content: " - ";
+      }
+    }
+
+    em {
+      color: get-color("mainBrand", 100);
+      font-size: $fs-sm-em;
+
+      &::before {
+        content: " ";
+      }
+    }
+  }
+
+  .in-home-list {
     list-style: initial;
+    font-size: $fs-sm-em;
   }
 
-  .twoColumnGrid {
-    display: grid;
-    gap: 1em;
-
-    &.left {
-      @include respond-to("md") {
-        grid-template-columns: 1fr 1.618fr;
-      }
-    }
-
-    &.right {
-      @include respond-to("md") {
-        grid-template-columns: 1.618fr 1fr;
-      }
-    }
-
-    &>* {
-      margin-top: 0;
-    }
-  }
 
 
   .map {
@@ -47,6 +64,87 @@
 }
 
 .genre-list {
-  background: get-color("darkShades");
   color: get-color("lightShades");
+  background: get-color("darkShades");
+  border: $border;
+
+  span {
+    display: block;
+    margin-block: $space-xs;
+    font-size: $fs-sm-em;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-sm;
+    margin-block: 0 $space-xs;
+    padding-inline: 0;
+    list-style-type: none;
+
+    li {
+      @include padding-box("sm");
+      font-size: $fs-sm-em;
+      font-style: italic;
+      background: get-color("darkShades", 400);
+      @include components.pill();
+    }
+
+  }
+}
+
+.parent-blurb {
+  @include padding-box("xs");
+  background-color: get-color("mainBrand", 100);
+  @include border;
+
+  &__image {
+    float: left;
+    margin-inline-end: $space-sm;
+    border-radius: $border-radius;
+  }
+
+  &__text {
+    margin: 0;
+    font-size: $fs-sm-em;
+  }
+}
+
+.pricing {
+  margin-block-end: $space-md;
+
+  ul {
+    margin-block-start: -$space-md;
+    padding-inline-start: $space-md;
+    list-style-type: none;
+  }
+
+  &__price {
+    font-weight: $fw-md;
+
+    &::before {
+      content: ": ";
+    }
+  }
+}
+
+.twoColumnGrid {
+  display: grid;
+  gap: 1em;
+
+  &.left {
+    @include respond-to("md") {
+      grid-template-columns: 1fr 1.618fr;
+    }
+  }
+
+  &.right {
+    @include respond-to("md") {
+      grid-template-columns: 1.618fr 1fr;
+    }
+  }
+
+  &>* {
+    margin-top: 0;
+  }
 }

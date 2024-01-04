@@ -11,7 +11,6 @@ $scrollbar-track-background: get-color("lightShades", 500);
 
 /* sizes */
 $maxWidth: px-to-rem(960px);
-$paddingBox: 0.62rem 1rem; // switch to mixin
 
 $fs-xsm-em: em-scale(300);
 $fs-sm-em: em-scale(400);
@@ -31,7 +30,7 @@ $fw-sm: 400;
 $fw-md: 500;
 $fw-lg: 700;
 
-$space-xsm: em-scale(300);
+$space-xs: em-scale(300);
 $space-sm: em-scale(400);
 $space-md: em-scale(500);
 $space-lg: em-scale(600);

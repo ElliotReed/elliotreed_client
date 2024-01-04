@@ -1,11 +1,12 @@
 @use "../styles/abstracts" as *;
 
-.wrapper {
-  max-height: 50vh;
-  // margin-bottom: -25%;
+.musician-page {
 
-}
-
-.hero-image {
-  filter: grayscale(50%);
+  .blurb {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 25vw;
+    font-weight: bold;
+  }
 }

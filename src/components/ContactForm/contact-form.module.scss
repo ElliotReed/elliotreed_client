@@ -1,10 +1,12 @@
 @use "../../styles/abstracts" as *;
 
 .contact-form {
-  margin-inline: $space-md;
+  margin-inline: auto;
   margin-block: $space-md;
   padding-inline: $space-md;
+  max-width: 50ch;
   color: get-color("darkShades");
+  background: get-color("lightShades", 300);
   border: 1px solid transparent;
   border-radius: $border-radius;
 
@@ -43,10 +45,11 @@
     background-color: get-color("lightShades", 100);
     @include border($color: get-color("mainBrand", 100));
 
-    & textarea {
-      height: 10rem;
-      resize: vertical;
-    }
+  }
+
+  & textarea {
+    height: 10em;
+    resize: vertical;
   }
 }
 
@@ -54,7 +57,7 @@
   display: block;
   position: relative;
   inset: 0;
-  margin-block: $space-xsm;
+  margin-block: $space-xs;
 
   svg {
     color: get-color("lightShades");

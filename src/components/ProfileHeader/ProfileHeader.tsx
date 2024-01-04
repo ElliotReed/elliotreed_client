@@ -1,7 +1,7 @@
 import React from "react";
+
 import { StaticImage } from "gatsby-plugin-image";
 
-import Logo from "../../components/Logo"
 import * as styles from "./profile-header.module.scss";
 
 interface ProfileProps {
@@ -16,25 +16,6 @@ export default function ProfileHeader({ type }: Readonly<ProfileProps>) {
 
   return (
     <section className={styles.profileHeader}>
-      {type === 'developer' &&
-        <><StaticImage
-          src="../../images/landing-developer-background.jpg"
-          alt="pic"
-          formats={["auto", "webp", "avif"]}
-          className={IMAGE_WRAPPER_CLASS}
-          imgClassName={IMAGE_CLASS_NAME}
-          layout={LAYOUT}
-          placeholder={PLACEHOLDER}
-        />
-          <div className={styles.windowImage}>
-            <Logo
-              mode="developer"
-              width="20vw"
-              animation="DEVELOPER_PAGE_DISPLAY"
-            />
-          </div>
-        </>
-      }
       {type === 'musician' &&
         <StaticImage
           src="../../images/gypsy-swing-revue-1.jpg"
