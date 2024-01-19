@@ -1,0 +1,21 @@
+:root {
+  font-family: sans-serif;
+
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #ddd;
+}
+
+.page-container {
+  max-width: 600px;
+  margin-inline: auto;
+}

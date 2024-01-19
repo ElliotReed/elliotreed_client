@@ -3,7 +3,6 @@ import { HeadFC } from "gatsby";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpotify } from "@fortawesome/free-brands-svg-icons";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import cx from "classnames";
 import { StaticImage } from "gatsby-plugin-image";
 import { Map } from "pigeon-maps";
@@ -40,16 +39,26 @@ export default function LessonPage() {
   return (
     <main className={styles.lessonPage}>
       <MaxWidthContainer>
-        <Heading level={1}>
+
+        <Heading level={1} className={styles.mainHeading}>
           <span>Guitar Lessons</span>
           <span className={styles.subHeading}>
             <em>with Elliot Reed</em>
           </span>
         </Heading>
 
-        <Paragraph>
-          Are you ready to elevate your guitar playing to new heights? Look no further! I am a seasoned guitar virtuoso with 35+ years of experience, and I am here to guide you on your musical journey. Whether you're a beginner looking to strum your first chords or an advanced player seeking to refine your technique, I offer personalized lessons that cater to your skill level and musical aspirations.
-        </Paragraph>
+        <TwoColumnGrid smallSide="left">
+          <StaticImage
+            className={styles.introImage}
+            src="./slattery_jwm.jpg"
+            alt="Elliot Reed sitting, playing Epiphone guitar in Slattery's nightclub,"
+          />
+
+          <Paragraph>
+            Are you ready to elevate your guitar playing to new heights? Look no further! I am a seasoned guitar virtuoso with 35+ years of experience, and I am here to guide you on your musical journey. Whether you're a beginner looking to strum your first chords or an advanced player seeking to refine your technique, I offer personalized lessons that cater to your skill level and musical aspirations.
+          </Paragraph>
+        </TwoColumnGrid>
+
         <Heading level={2} size={3}>I Offer</Heading>
       </MaxWidthContainer>
 
@@ -228,5 +237,8 @@ export default function LessonPage() {
 }
 
 export const Head: HeadFC<string> = () => (
-  <Seo title="Lessons" />
+  <Seo
+    title="Guitar Lessons"
+    description="Are you ready to elevate your guitar playing to new heights? Look no further! I am a seasoned guitar virtuoso with 35+ years of experience, and I am here to guide you on your musical journey. Whether you're a beginner looking to strum your first chords or an advanced player seeking to refine your technique, I offer personalized lessons that cater to your skill level and musical aspirations."
+  />
 );

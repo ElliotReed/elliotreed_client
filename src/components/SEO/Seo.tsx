@@ -49,7 +49,11 @@ export default function Seo({
       {/* <meta name="twitter:creator" content={seo.twitterUsername} /> */}
       {/* <link id="favicon-icon" rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>👤</text></svg>" /> */}
       {children}
-      <title>{`${seo.title} | Elliot Reed Music`}</title>
+      {seo.title === "Elliot Reed Music" ?
+        <title>{`${seo.title}`}</title>
+        :
+        <title>{`${seo.title} | Elliot Reed Music`}</title>
+      }
     </>
   )
 }

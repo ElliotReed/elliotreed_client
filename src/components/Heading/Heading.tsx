@@ -8,14 +8,17 @@ type Heading = {
   size?: 1 | 2 | 3 | 4 | 5 | 6 | null,
   color?: "light" | "dark" | "default",
   align?: "start" | "center" | "end",
+  className?: string,
 }
 
 export default function Heading({
+  align = "start",
+  children,
+  className,
+  color = "default",
   level = 4,
   size = null,
-  color = "default",
-  align = "start",
-  children }: React.PropsWithChildren<Heading>) {
+}: React.PropsWithChildren<Heading>) {
   const HeadingTag = `h${level}` as const;
 
   if (!size) size = level;
@@ -52,7 +55,8 @@ export default function Heading({
       className={classNames(
         headingClass,
         colorClass,
-        alignmentClass
+        alignmentClass,
+        className,
       )}
     >{children}
     </HeadingTag>

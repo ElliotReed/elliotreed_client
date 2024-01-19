@@ -15,7 +15,7 @@ const MusicianPage = () => {
       <MaxWidthContainer>
         <div className={styles.blurb}>
           <Paragraph>
-            I <em>compose</em>, <em>arrange</em>, <em>perform</em>, and <em>teach</em> music.
+            I  <em>arrange</em>, <em>compose</em>, <em>perform</em>, and <em>teach</em> music.
           </Paragraph>
         </div>
       </MaxWidthContainer>

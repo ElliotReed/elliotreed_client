@@ -95,7 +95,7 @@ module.exports = {
 
   siteMetadata: {
     author: "Elliot Reed",
-    description: "Elliot Reed Music website",
+    description: "Elliot Reed Music, I arrange, compose, perform and teach music. Guitar lessons available",
     siteUrl: "https://www.elliotreed.net",
     title: "Elliot Reed Music",
   },

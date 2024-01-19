@@ -27,7 +27,7 @@ async function sendEmail(url = "", data = {}) {
   return await response.json();
 }
 
-export default function ContactForm({ type, customHeader }) {
+export default function ContactForm({ type, customHeader = null }) {
   const [directiveText, setDirectiveText] = useState("Send me a message!");
   const [sendButtonText, setSendButtonText] = useState('Send Message')
   const [message, setMessage] = useState({

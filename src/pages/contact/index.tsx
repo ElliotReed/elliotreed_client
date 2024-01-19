@@ -17,5 +17,8 @@ export default function ContactPage() {
 }
 
 export const Head: HeadFC<string> = () => (
-  <Seo title="Contact" />
+  <Seo
+    title="Contact"
+    description="Contact me for guitar lessons, arrangements, compositions, freelance work, or just to say hello."
+  />
 )
