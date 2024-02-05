@@ -1,14 +1,15 @@
 import React from "react";
+
 import { HeadFC } from "gatsby";
 
+import MaxWidthContainer from "../components/MaxWidthContainer";
+import Paragraph from "../components/UI/Paragraph";
 import ProfileHeader from "../components/ProfileHeader";
 import Seo from "../components/SEO";
 
-import * as styles from "./musician.module.scss"
-import Paragraph from "../components/UI/Paragraph";
-import MaxWidthContainer from "../components/MaxWidthContainer";
+import * as styles from "./index.module.scss"
 
-const MusicianPage = () => {
+export default function MusicianPage() {
   return (
     <main className={styles.musicianPage}>
       <ProfileHeader type="musician" />
@@ -22,8 +23,6 @@ const MusicianPage = () => {
     </main>
   );
 }
-
-export default MusicianPage
 
 export const Head: HeadFC<string> = () => (
   <Seo />
