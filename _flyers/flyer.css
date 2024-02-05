@@ -1,6 +1,6 @@
 :root {
   font-family: sans-serif;
-
+  font-size: 18px;
 }
 
 *,
@@ -16,6 +16,87 @@ body {
 }
 
 .page-container {
-  max-width: 600px;
+  max-width: 740px;
   margin-inline: auto;
 }
+
+header {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+header .image {
+  display: block;
+  width: 75%;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+h1 span {
+  font-weight: 500;
+  display: block;
+  font-size: .65em;
+  font-style: italic;
+}
+
+h2 {
+  font-size: 1rem;
+}
+
+.teacher-traits {
+ display: flex;
+}
+
+.offering {
+  list-style: none;
+  padding: 0;
+}
+
+.offering ul {
+  list-style-type: disc;
+}
+
+.journey {
+  text-align: center;
+  font-weight: bold;
+}
+
+.covid {
+  font-size: .8em;
+  font-weight: 500;
+}
+
+.covid + ul {
+  font-size: .75em;
+  font-style: italic;
+}
+
+footer {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1em;
+}
+
+/* #region Utility classes */
+.grid-2-col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 1em;
+}
+
+.grid-2-col .col-1 {
+  grid-column: 1/2;
+}
+.grid-2-col .col-2 {
+  grid-column: 2/-1;
+}
+.grid-2-col .row-1 {
+  grid-row: 1;
+}
+.grid-2-col .row-2 {
+  grid-row: 2;
+}
+/* #endregion Utility classes */
