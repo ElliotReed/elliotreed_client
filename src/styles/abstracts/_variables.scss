@@ -12,17 +12,18 @@ $scrollbar-track-background: get-color("lightShades", 500);
 /* sizes */
 $maxWidth: px-to-rem(960px);
 
-$fs-xsm-em: em-scale(300);
+$fs-xs-em: em-scale(300);
 $fs-sm-em: em-scale(400);
 $fs-md-em: em-scale(500);
 $fs-lg-em: em-scale(600);
-$fs-xlg-em: em-scale(700);
+$fs-xl-em: em-scale(700);
+$fs-2xl-em: em-scale(800);
 
 $fs-xsm-rem: rem-scale(400);
 $fs-sm-rem: rem-scale(400);
 $fs-md-rem: rem-scale(500);
 $fs-lg-rem: rem-scale(600);
-$fs-xlg-rem: rem-scale(700);
+$fs-xl-rem: rem-scale(700);
 
 /* font weights */
 $fw-xs: 300;
