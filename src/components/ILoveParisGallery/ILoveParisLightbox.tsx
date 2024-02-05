@@ -9,6 +9,20 @@ import ILoveParisGallery from "./ILoveParisGallery";
 import "yet-another-react-lightbox/styles.css";
 import * as styles from "./i-love-paris-gallery.module.scss";
 
+interface ParisImageProps {
+  slide: any
+}
+
+function ParisImage({ slide }: Readonly<ParisImageProps>) {
+  return (
+    <GatsbyImage
+      image={getImage(slide)}
+      alt=""
+      className={styles.lightboxImage}
+    />
+  );
+}
+
 export default function ILoveParisLightbox() {
   const [isOpen, setIsOpen] = React.useState(false)
   const data = useStaticQuery(
@@ -31,15 +45,10 @@ export default function ILoveParisLightbox() {
   }).filter(node => node.childImageSharp);
 
 
-  function ParisImage({ slide }) {
-    console.log('slide: ', slide)
-    return (
-      <GatsbyImage
-        image={getImage(slide)}
-        alt=""
-        className={styles.lightboxImage}
-      />
-    );
+
+
+  function handleClick() {
+    setIsOpen(true)
   }
 
   return (
@@ -55,7 +64,7 @@ export default function ILoveParisLightbox() {
             ) : undefined,
         }}
       />
-      <ILoveParisGallery />
-      <button onClick={() => setIsOpen(true)}>show</button >
+      <ILoveParisGallery onClick={handleClick} />
+      <button onClick={handleClick}>show</button >
     </>);
 }
