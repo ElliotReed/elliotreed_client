@@ -1,3 +1,4 @@
+import DesignNavbar from "./DesignNavbar";
 import MusicianNavbar from "./MusicianNavbar";
 
-export { MusicianNavbar };
+export { DesignNavbar, MusicianNavbar };

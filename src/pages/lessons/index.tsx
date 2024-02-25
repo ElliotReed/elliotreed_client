@@ -14,6 +14,9 @@ import Heading from "../../components/Heading";
 import Paragraph from "../../components/UI/Paragraph";
 import MaxWidthContainer from "../../components/MaxWidthContainer";
 import Seo from "../../components/SEO";
+import NoteGuitar from "../../images/hero/made-of-notes.svg";
+import Pick from "../../images/decorative/pick.svg";
+import Triangle from "../../images/hero/triangle.svg"
 
 import * as styles from "./lessons.module.scss";
 
@@ -38,14 +41,28 @@ function TwoColumnGrid({ smallSide, children }: Readonly<TwoColumnGridProps>) {
 export default function LessonPage() {
   return (
     <main className={styles.lessonPage}>
-      <MaxWidthContainer>
-
-        <Heading level={1} className={styles.mainHeading}>
-          <span>Guitar Lessons</span>
+      <div className={styles.hero}>
+        <Triangle id={styles["triangle"]} />
+        <Pick id={styles["pick"]} />
+        <Heading level={1} color="light" className={styles.lessonTextContainer}>
+          <span className={styles.mainHeading}>Guitar <br /> Lessons</span>
+          <span className={styles.headingConjunctionText}>
+            with
+          </span>
           <span className={styles.subHeading}>
-            <em>with Elliot Reed</em>
+            <em>Elliot Reed</em>
           </span>
         </Heading>
+        <NoteGuitar id={styles["notes"]} />
+
+
+        <div className={styles.ellipse}></div>
+        <div className={styles.ellipse}></div>
+      </div>
+      {/* <PickPart id={styles["pick"]} /> */}
+      {/* <Levels /> */}
+
+      <MaxWidthContainer>
 
         <TwoColumnGrid smallSide="left">
           <StaticImage
@@ -55,7 +72,7 @@ export default function LessonPage() {
           />
 
           <Paragraph>
-            Are you ready to elevate your guitar playing to new heights? Look no further! I am a seasoned guitar virtuoso with 35+ years of experience, and I am here to guide you on your musical journey. Whether you're a beginner looking to strum your first chords or an advanced player seeking to refine your technique, I offer personalized lessons that cater to your skill level and musical aspirations.
+            Are you ready to take your guitar playing to the next level? Or begin your learning path? I am a seasoned guitarist and teacher  with over 30 years of experience, and I am here to guide you on your musical path. Whether you're a beginner looking to strum your first chords or an advanced player seeking to refine your technique, I offer personalized lessons that cater to your skill level and musical aspirations.
           </Paragraph>
         </TwoColumnGrid>
 

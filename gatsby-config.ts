@@ -32,6 +32,14 @@ module.exports = {
         ]
       },
     },
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /images/ // Where your SVG files are located.
+        }
+      }
+    },
     "gatsby-plugin-mdx-source-name",
     // 'gatsby-plugin-postcss',
     "gatsby-plugin-sass",

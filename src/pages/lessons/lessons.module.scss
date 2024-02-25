@@ -1,15 +1,114 @@
-@use "../../styles/abstracts/" as *;
+@use "../../styles/abstracts" as *;
 @use "../../styles/components";
+@use "../../styles/config";
 
 .lesson-page {
-  .main-heading {
-    margin-top: $space-md;
+  .hero {
+    position: relative;
+    display: grid;
+    grid-template-columns:
+      [start] 1.618em [m-start] minmax(0, 1fr) [center] minmax(0, 1fr) [m-end] 1.618em [end];
+    grid-template-rows:
+      [top] calc(1.618em * 2) [m-top] minmax(0, 1fr) [center] minmax(0, 1fr) [m-bottom] 1.618em [bottom];
+    height: 61.8vh;
+
+    #pick {
+      grid-row-start: m-top;
+      grid-row-end: m-bottom;
+      grid-column-start: center;
+      grid-column-end: m-end;
+      transform: translateX(-50%);
+      height: 100%;
+      color: get-color("mainBrand", 300);
+      filter: drop-shadow(-1em em-scale(200) get-color("darkShades"));
+
+    }
+
+    .lesson-text-container {
+      $outline-size: 1.618px;
+      $text-outline: $outline-size $outline-size get-color("darkShades"),
+        $outline-size * -1 $outline-size get-color("darkShades"),
+        $outline-size $outline-size * -1 get-color("darkShades"),
+        $outline-size * -1 $outline-size * -1 get-color("darkShades");
+      $shadow-size: rem-scale(100);
+
+      margin: 0;
+      grid-column-start: center;
+      grid-column-end: m-end;
+      grid-row-start: m-top;
+      grid-row-end: m-bottom;
+      font-size: clamp(3em, 6.18vw, 6em);
+      margin-block-start: -0.31em;
+      line-height: 1;
+      text-shadow:
+        $text-outline,
+        $shadow-size $shadow-size $shadow-size get-color("dark", 400);
+      z-index: 10;
+      width: 100%;
+
+      >span {
+        display: block;
+      }
+
+      .main-heading {
+        font-family: config.$display-font-family;
+      }
+
+      .heading-conjunction-text {
+        font-family: config.$body-font-family;
+        letter-spacing: 0;
+        margin-block: em-scale(300);
+        font-size: calc(em-scale(000) * 0.618);
+        text-shadow: none;
+      }
+
+      .sub-heading {
+        font-size: em-scale(200);
+      }
+    }
+
+    #notes {
+      grid-column-start: center;
+      grid-row-start: center;
+      grid-row-end: bottom;
+      height: 100%;
+      transform: translateX(-100%);
+    }
+
+    #triangle {
+      grid-column-start: center;
+      grid-row-start: top;
+      grid-row-end: center;
+      height: 100%;
+      color: get-color("mainBrand");
+      opacity: get-scale(200);
+      transform: translate(-200%, -25%) rotate(-33deg);
+      z-index: -10;
+    }
+
+    .ellipse {
+      position: fixed;
+      right: -31%;
+      top: -31%;
+      z-index: 5;
+      width: percent-scale(400);
+      min-width: 500px;
+      aspect-ratio: 3/2;
+      border-radius: percent-scale(300) percent-scale(200);
+      background: transparentize(get-color("darkShades"), .95);
+      background: get-color("darkShades");
+      opacity: .1;
+    }
+
+    .ellipse+.ellipse {
+      top: unset;
+      right: unset;
+      left: -31%;
+      bottom: -31%;
+    }
   }
 
-  .subHeading {
-    display: block;
-    font-size: 0.5em;
-  }
+
 
   .intro-image {
     border-radius: $border-radius;

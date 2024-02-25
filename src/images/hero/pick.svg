@@ -1,0 +1,20 @@
+<svg id="pick" viewBox="0 0 520 552" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path class="pick" filter="url(#filter)"
+    d="M241.517 506.139C207.421 470.045 -11.8961 169.891 19.1552 100.319C50.2064 30.7475 459.495 -50.5005 515.509 43.6566C539.254 114.798 429.041 464.292 402.861 506.139C376.681 547.986 275.612 542.233 241.517 506.139Z"
+    fill="currentColor" shape-rendering="crispEdges" />
+
+  <defs>
+    <filter id="filter" x="0.298004" y="0.425461" width="519.126" height="550.837" filterUnits="userSpaceOnUse"
+      color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+        result="hardAlpha" />
+      <feOffset dx="-14.0939" dy="14.0939" />
+      <feGaussianBlur stdDeviation="0.587246" />
+      <feComposite in2="hardAlpha" operator="out" />
+      <feColorMatrix type="matrix" values="0 0 0 0 0.219608 0 0 0 0 0.180392 0 0 0 0 0.192157 0 0 0 1 0" />
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_25_5" />
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_25_5" result="shape" />
+    </filter>
+  </defs>
+</svg>
