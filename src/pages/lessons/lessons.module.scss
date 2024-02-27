@@ -11,6 +11,7 @@
     grid-template-rows:
       [top] calc(1.618em * 2) [m-top] minmax(0, 1fr) [center] minmax(0, 1fr) [m-bottom] 1.618em [bottom];
     height: 61.8vh;
+    margin-block: get-scale(200) * 10vw;
 
     #pick {
       grid-row-start: m-top;
@@ -21,7 +22,7 @@
       height: 100%;
       color: get-color("mainBrand", 300);
       filter: drop-shadow(-1em em-scale(200) get-color("darkShades"));
-
+      z-index: -10;
     }
 
     .lesson-text-container {
@@ -43,8 +44,13 @@
       text-shadow:
         $text-outline,
         $shadow-size $shadow-size $shadow-size get-color("dark", 400);
-      z-index: 10;
-      width: 100%;
+      z-index: 1;
+      width: fit-content;
+      transform: translateX(-50%);
+
+      @include respond-to("md") {
+        transform: translateX(0);
+      }
 
       >span {
         display: block;
@@ -73,6 +79,7 @@
       grid-row-end: bottom;
       height: 100%;
       transform: translateX(-100%);
+      z-index: 100;
     }
 
     #triangle {
@@ -88,30 +95,30 @@
 
     .ellipse {
       position: fixed;
-      right: -31%;
-      top: -31%;
-      z-index: 5;
-      width: percent-scale(400);
-      min-width: 500px;
+      inset: 0;
+      z-index: -1;
+      width: get-scale(500) * 100vw;
       aspect-ratio: 3/2;
-      border-radius: percent-scale(300) percent-scale(200);
+      border-radius: percent-scale(400) percent-scale(300);
       background: transparentize(get-color("darkShades"), .95);
       background: get-color("darkShades");
-      opacity: .1;
+      opacity: get-scale(100) * get-scale(100) * get-scale(100);
+      transform: translate(percent-scale(300), percent-scale(300) * -1);
     }
 
     .ellipse+.ellipse {
       top: unset;
-      right: unset;
-      left: -31%;
-      bottom: -31%;
+      bottom: 0;
+      transform: translate(percent-scale(300) * -1, percent-scale(300));
     }
   }
 
-
-
   .intro-image {
     border-radius: $border-radius;
+  }
+
+  .lg-bottom {
+    margin-block: em-scale(900);
   }
 
   .reason-list {
@@ -142,7 +149,7 @@
       font-weight: $fw-md;
 
       &::before {
-        content: " - ";
+        content: ": ";
       }
     }
 

@@ -10,7 +10,7 @@ export const onCreatePage: GatsbyNode['onCreatePage'] = ({ page, actions }) => {
 
   if (!page.context) return;
 
-  if (page.path.match(/design/)) {
+  if (RegExp(/design/).exec(page.path)) {
     page.context.layout = "design";
     createPage(page);
   }

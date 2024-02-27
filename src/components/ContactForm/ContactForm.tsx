@@ -1,8 +1,6 @@
-import React, { useState, useRef, useLayoutEffect } from "react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons"
-import { gsap } from "gsap/gsap-core"
+import React, { useState, ChangeEvent, FormEvent } from "react";
 
+import Sending from "./Sending";
 import ButtonGroup from "../UI/ButtonGroup/ButtonGroup";
 import Button from "../UI/Button";
 
@@ -27,7 +25,20 @@ async function sendEmail(url = "", data = {}) {
   return await response.json();
 }
 
-export default function ContactForm({ type, customHeader = null }) {
+type ContactFormProps = {
+  type?: string
+  customHeader: React.ReactElement | null
+}
+
+interface FormState {
+  dirty: boolean;
+  submitting: boolean;
+  success: boolean;
+  error: boolean;
+
+}
+
+export default function ContactForm({ type, customHeader = null }: Readonly<ContactFormProps>) {
   const [directiveText, setDirectiveText] = useState("Send me a message!");
   const [sendButtonText, setSendButtonText] = useState('Send Message')
   const [message, setMessage] = useState({
@@ -37,19 +48,19 @@ export default function ContactForm({ type, customHeader = null }) {
     type: type,
   });
 
-  const [formState, setFormState] = useState({
+  const [formState, setFormState] = useState<FormState>({
     dirty: true,
     submitting: false,
     success: false,
     error: false,
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setMessage({ ...message, [name]: value });
   };
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setFormState(prev => ({ ...prev, "submitting": true, "dirty": false }));
     setSendButtonText(buttonText.sending)
@@ -68,9 +79,8 @@ export default function ContactForm({ type, customHeader = null }) {
       console.error(response.error);
       throw new Error("There was an error sending your message!")
     }
-    catch (error) {
+    catch (error: unknown) {
       setFormState(prev => ({ ...prev, "submitting": false, "error": true }));
-      console.error(error.message);
       setDirectiveText("There was a server error!");
       setSendButtonText(buttonText.sendAgain);
     }
@@ -139,7 +149,7 @@ export default function ContactForm({ type, customHeader = null }) {
           id="message"
           name="message"
           required
-          rows="6"
+          rows={6}
           value={message.message}
           onChange={handleChange}
         />
@@ -155,41 +165,3 @@ export default function ContactForm({ type, customHeader = null }) {
   )
 }
 
-function Sending({ shouldAnimate = false }) {
-  const mail = useRef();
-  const container = useRef();
-
-  useLayoutEffect(() => {
-    if (shouldAnimate) {
-      const xDuration = 1.5;
-      const tl = gsap.timeline({
-        repeat: -1,
-      })
-      let ctx = gsap.context(() => {
-        tl.to(mail.current, {
-          rotation: 360,
-          duration: xDuration / 2,
-          ease: 'none',
-          repeat: 3,
-        }, "<");
-        tl.to(mail.current, {
-          scale: 1.29,
-          duration: xDuration / 2,
-          yoyo: true,
-          repeat: 3,
-          ease: 'none',
-        }, "<")
-      })
-
-      return () => {
-        ctx.revert()
-      }
-    }
-  },
-    [shouldAnimate])
-  return (
-    <div ref={container} className={styles.sending}>
-      <FontAwesomeIcon ref={mail} icon={faEnvelope} />
-    </div>
-  );
-}

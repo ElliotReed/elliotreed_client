@@ -4,11 +4,11 @@ import classNames from 'classnames';
 import * as styles from './button.module.scss';
 
 type ButtonProps = {
-  disabled: boolean;
-  orientation: "vertical" | "horizontal";
+  disabled?: boolean;
+  orientation?: "vertical" | "horizontal";
   type: "button" | "submit" | "reset";
   onClick?: () => void;
-  children: string;
+  children: React.ReactNode;
 }
 
 export default function Button({
@@ -17,7 +17,7 @@ export default function Button({
   type = "button",
   children,
   onClick
-}: ButtonProps) {
+}: Readonly<ButtonProps>) {
 
   const buttonStyle = classNames(
     styles.button,

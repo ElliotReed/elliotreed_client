@@ -21,18 +21,19 @@ import Triangle from "../../images/hero/triangle.svg"
 import * as styles from "./lessons.module.scss";
 
 interface TwoColumnGridProps {
-  smallSide: "left" | "right",
-  children: React.ReactNode,
+  smallSide: "left" | "right";
+  children: React.ReactNode;
+  className?: object;
 }
 
-function TwoColumnGrid({ smallSide, children }: Readonly<TwoColumnGridProps>) {
+function TwoColumnGrid({ smallSide, children, className }: Readonly<TwoColumnGridProps>) {
   let style = styles.left;
   if (smallSide === "right") {
     style = styles.right;
   }
 
   return (
-    <div className={cx(styles.twoColumnGrid, style)}>
+    <div className={cx(styles.twoColumnGrid, style, className)}>
       {children}
     </div>
   );
@@ -64,14 +65,14 @@ export default function LessonPage() {
 
       <MaxWidthContainer>
 
-        <TwoColumnGrid smallSide="left">
+        <TwoColumnGrid smallSide="left" className={styles.lgBottom}>
           <StaticImage
             className={styles.introImage}
             src="./slattery_jwm.jpg"
             alt="Elliot Reed sitting, playing Epiphone guitar in Slattery's nightclub,"
           />
 
-          <Paragraph>
+          <Paragraph >
             Are you ready to take your guitar playing to the next level? Or begin your learning path? I am a seasoned guitarist and teacher  with over 30 years of experience, and I am here to guide you on your musical path. Whether you're a beginner looking to strum your first chords or an advanced player seeking to refine your technique, I offer personalized lessons that cater to your skill level and musical aspirations.
           </Paragraph>
         </TwoColumnGrid>
@@ -139,21 +140,12 @@ export default function LessonPage() {
 
             <ul className={styles.schedule}>
               <li>
-                <span className={styles.schedule__day}>Tuesday</span>
-                <em>evenings</em>
-                <span className={styles.schedule__time}>5pm - 9pm</span>
+                <span className={styles.schedule__day}>Weekdays</span>
+                <span className={styles.schedule__time}>10am - 9pm</span>
               </li>
+
               <li>
-                <span className={styles.schedule__day}>Thursday</span>
-                <em>evenings</em>
-                <span className={styles.schedule__time}>5pm - 9pm</span>
-              </li>
-              <li>
-                <span className={styles.schedule__day}>Saturday</span>
-                <span className={styles.schedule__time}>9am - 6pm</span>
-              </li>
-              <li>
-                <span className={styles.schedule__day}>Sunday</span>
+                <span className={styles.schedule__day}>Weekends</span>
                 <span className={styles.schedule__time}>9am - 6pm</span>
               </li>
             </ul>
@@ -220,31 +212,28 @@ export default function LessonPage() {
 
 
           </li>
-
-          <li>
-            <Heading level={3} size={4}>Contact Me:</Heading>
-            <Paragraph>
-              Ready to embark on your musical journey? Contact me to schedule your first lesson or to inquire about in-home lesson availability. Let's make music together!
-            </Paragraph>
-
-            {/* [Contact Information]
+        </ul>
+        {/* [Contact Information]
           Email: [YourEmail@example.com]
           Phone: [Your Phone Number]
-
+          
           [Location]
           City, State
-
+          
           Follow me on [Social Media Links] for updates, tips, and musical inspiration!
+          
+        [Facebook] [Twitter] [Instagram] [YouTube] */}
 
-          [Facebook] [Twitter] [Instagram] [YouTube] */}
+        <Heading level={3} size={4}>Contact Me:</Heading>
+        <Paragraph>
+          Ready to embark on your musical journey? Contact me to schedule your first lesson or to inquire about in-home lesson availability. Let's make music together!
+        </Paragraph>
+        <Paragraph>
+          You can call/text me at 303.745.7044, or send me an email.
+        </Paragraph>
 
+        <ContactForm type="musician" customHeader={<div></div>} />
 
-          </li>
-          <Paragraph>
-            You can call/text me at 303.745.7044, or send me an email.
-          </Paragraph>
-        </ul>
-        <ContactForm type="musician" customHeader="" />
         <Paragraph>
           Don't just <em>play</em> the guitar – <strong>master</strong> it!
         </Paragraph>
