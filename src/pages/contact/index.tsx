@@ -10,7 +10,7 @@ export default function ContactPage() {
   return (
     <main>
       <MaxWidthContainer>
-        <ContactForm type="musician" />
+        <ContactForm />
       </MaxWidthContainer>
     </main>
   )

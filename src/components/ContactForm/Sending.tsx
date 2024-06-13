@@ -1,6 +1,9 @@
+import React, { useRef, useLayoutEffect } from "react";
+
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useRef, useLayoutEffect } from "react";
+import gsap from "gsap";
+
 import * as styles from "./sending.module.scss";
 
 export interface SendingProps {

@@ -26,8 +26,7 @@ async function sendEmail(url = "", data = {}) {
 }
 
 type ContactFormProps = {
-  type?: string
-  customHeader: React.ReactElement | null
+  customHeader?: React.ReactElement | null
 }
 
 interface FormState {
@@ -38,14 +37,13 @@ interface FormState {
 
 }
 
-export default function ContactForm({ type, customHeader = null }: Readonly<ContactFormProps>) {
+export default function ContactForm({ customHeader = null }: Readonly<ContactFormProps>) {
   const [directiveText, setDirectiveText] = useState("Send me a message!");
   const [sendButtonText, setSendButtonText] = useState('Send Message')
   const [message, setMessage] = useState({
     name: "",
     email: "",
     message: "",
-    type: type,
   });
 
   const [formState, setFormState] = useState<FormState>({
