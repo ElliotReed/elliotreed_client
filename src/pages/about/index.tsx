@@ -30,7 +30,9 @@ interface AboutMusicianData {
   }
 }
 
-export default function AboutMusician({ data: { allMdx: { nodes } } }: Readonly<PageProps<AboutMusicianData>>) {
+export default function AboutMusician({
+  data: { allMdx: { nodes } }
+}: Readonly<PageProps<AboutMusicianData>>) {
   function getBandNode(band: string): any {
     return nodes.filter((node) => {
       return node.frontmatter.title === band;

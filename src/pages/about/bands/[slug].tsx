@@ -3,7 +3,7 @@ import { HeadFC, PageProps, graphql } from "gatsby";
 
 import { GatsbyImage, IGatsbyImageData, getImage } from "gatsby-plugin-image";
 
-import Heading from "../../../components/Heading";
+import Heading from "../../../components/Heading/Heading";
 import MaxWidthContainer from "../../../components/MaxWidthContainer";
 import Paragraph from "../../../components/UI/Paragraph";
 import PhotoCredit from "../../../components/PhotoCredit";
@@ -28,7 +28,9 @@ interface BandData {
   }
 }
 
-export default function Band({ data: { mdx: { frontmatter } }, children }: Readonly<PageProps<BandData>>) {
+export default function Band({
+  data: { mdx: { frontmatter } }, children
+}: Readonly<PageProps<BandData>>) {
   const image = getImage(frontmatter.hero_image);
 
   return (

@@ -89,6 +89,41 @@ module.exports = {
         path: `${__dirname}/_bands`,
       },
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "cakewalk",
+        path: `${__dirname}/_cakewalk`,
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "finale",
+        path: `${__dirname}/_finale`,
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "guitar",
+        path: `${__dirname}/_guitar`,
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "vocals",
+        path: `${__dirname}/_vocals`,
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "jeremy-mahoney",
+        path: `${__dirname}/_jeremy-mahoney`,
+      },
+    },
     "gatsby-transformer-json",
     "gatsby-transformer-sharp",
 

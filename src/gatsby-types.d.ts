@@ -1253,7 +1253,6 @@ type Mdx = Node & {
   readonly excerpt: Maybe<Scalars['String']>;
   readonly fields: Maybe<MdxFields>;
   readonly frontmatter: Maybe<MdxFrontmatter>;
-  readonly gatsbyPath: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
   readonly parent: Maybe<Node>;
@@ -1263,11 +1262,6 @@ type Mdx = Node & {
 
 type Mdx_excerptArgs = {
   pruneLength?: InputMaybe<Scalars['Int']>;
-};
-
-
-type Mdx_gatsbyPathArgs = {
-  filePath: InputMaybe<Scalars['String']>;
 };
 
 
@@ -1326,7 +1320,6 @@ type MdxFieldSelector = {
   readonly excerpt: InputMaybe<FieldSelectorEnum>;
   readonly fields: InputMaybe<MdxFieldsFieldSelector>;
   readonly frontmatter: InputMaybe<MdxFrontmatterFieldSelector>;
-  readonly gatsbyPath: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly parent: InputMaybe<NodeFieldSelector>;
@@ -1355,7 +1348,6 @@ type MdxFilterInput = {
   readonly excerpt: InputMaybe<StringQueryOperatorInput>;
   readonly fields: InputMaybe<MdxFieldsFilterInput>;
   readonly frontmatter: InputMaybe<MdxFrontmatterFilterInput>;
-  readonly gatsbyPath: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
@@ -1368,6 +1360,7 @@ type MdxFilterListInput = {
 
 type MdxFrontmatter = {
   readonly active_dates: Maybe<Scalars['String']>;
+  readonly date_posted: Maybe<Scalars['String']>;
   readonly hero_image: Maybe<File>;
   readonly hero_image_alt: Maybe<Scalars['String']>;
   readonly hero_image_credit_link: Maybe<Scalars['String']>;
@@ -1379,6 +1372,7 @@ type MdxFrontmatter = {
 
 type MdxFrontmatterFieldSelector = {
   readonly active_dates: InputMaybe<FieldSelectorEnum>;
+  readonly date_posted: InputMaybe<FieldSelectorEnum>;
   readonly hero_image: InputMaybe<FileFieldSelector>;
   readonly hero_image_alt: InputMaybe<FieldSelectorEnum>;
   readonly hero_image_credit_link: InputMaybe<FieldSelectorEnum>;
@@ -1390,6 +1384,7 @@ type MdxFrontmatterFieldSelector = {
 
 type MdxFrontmatterFilterInput = {
   readonly active_dates: InputMaybe<StringQueryOperatorInput>;
+  readonly date_posted: InputMaybe<StringQueryOperatorInput>;
   readonly hero_image: InputMaybe<FileFilterInput>;
   readonly hero_image_alt: InputMaybe<StringQueryOperatorInput>;
   readonly hero_image_credit_link: InputMaybe<StringQueryOperatorInput>;
@@ -1401,6 +1396,7 @@ type MdxFrontmatterFilterInput = {
 
 type MdxFrontmatterSortInput = {
   readonly active_dates: InputMaybe<SortOrderEnum>;
+  readonly date_posted: InputMaybe<SortOrderEnum>;
   readonly hero_image: InputMaybe<FileSortInput>;
   readonly hero_image_alt: InputMaybe<SortOrderEnum>;
   readonly hero_image_credit_link: InputMaybe<SortOrderEnum>;
@@ -1457,7 +1453,6 @@ type MdxSortInput = {
   readonly excerpt: InputMaybe<SortOrderEnum>;
   readonly fields: InputMaybe<MdxFieldsSortInput>;
   readonly frontmatter: InputMaybe<MdxFrontmatterSortInput>;
-  readonly gatsbyPath: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
   readonly parent: InputMaybe<NodeSortInput>;
@@ -1740,7 +1735,6 @@ type Query_mdxArgs = {
   excerpt: InputMaybe<StringQueryOperatorInput>;
   fields: InputMaybe<MdxFieldsFilterInput>;
   frontmatter: InputMaybe<MdxFrontmatterFilterInput>;
-  gatsbyPath: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   parent: InputMaybe<NodeFilterInput>;

@@ -10,18 +10,16 @@ Personal website site.
 
 ## Dependencies
 
-```console
-@fortawesome/fontawesome-svg-core
-@fortawesome/free-solid-svg-icons
-@fortawesome/react-fontawesome
-@mdx-js/react
-classnames
-gatsby
-gatsby-plugin-image
-gatsby-plugin-layout
-gatsby-plugin-manifest
-gatsby-plugin-mdx
-```
+- @fortawesome/fontawesome-svg-core
+- @fortawesome/free-solid-svg-icons
+- @fortawesome/react-fontawesome
+- @mdx-js/react
+- classnames
+- [gatsby](https://www.gatsbyjs.com/docs/)
+- gatsby-plugin-image
+- gatsby-plugin-layout
+- gatsby-plugin-manifest
+- gatsby-plugin-mdx
 
   Adds a source name property to allMdx queries:  [gatsby-plugin-mdx-source-name](https://www.gatsbyjs.com/plugins/gatsby-plugin-mdx-source-name/)
 
