@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpotify } from "@fortawesome/free-brands-svg-icons";
 import { Image } from "astro:assets";
 import { Map } from "pigeon-maps";
-import { osm } from "pigeon-maps/providers";
+import { osm } from "pigeon-maps/lib/providers.cjs.js";
 
 import TwoColumnGrid from "@/components/UI/TwoColumnGrid";
 import ContactForm from "@/components/ContactForm";
@@ -251,6 +251,7 @@ import styles from "./lessons.module.scss";
 
                         <div class={styles.map}>
                             <Map
+                                client:only="react"
                                 provider={osm}
                                 height={200}
                                 defaultCenter={[39.5907927, -104.9968363]}
