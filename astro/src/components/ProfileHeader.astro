@@ -1,0 +1,26 @@
+---
+import { Image } from "astro:assets";
+import headerImage from "@/images/gypsy-swing-revue-1.jpg";
+import classnames from "classnames";
+
+import styles from "./profile-header.module.scss";
+
+const type = "musician"; // This should be passed as a prop to the component
+---
+
+<div class={classnames(styles.profileHeader, "layout-grid__full-width")}>
+  {
+    type === "musician" && (
+      <Image
+        src={headerImage}
+        alt="The band Gypsy Swing Revue performing live against a city backdrop, with violin, lead guitar, upright bass, and rhythm guitar."
+        class={styles.profileHeader__image}
+        layout="responsive"
+        loading="eager"
+      />
+    )
+  }
+  <h1 class={styles.profileHeader__text}>
+    I am a {type} living and working in the Denver Metro area.
+  </h1>
+</div>

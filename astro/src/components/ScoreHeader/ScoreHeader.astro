@@ -1,0 +1,36 @@
+---
+import { Image } from "astro:assets";
+import scoreImage from "./score-landscape.png";
+
+import styles from "./score-header.module.scss";
+---
+
+<div class="score"></div>
+<!-- <Image class={styles.scoreHeader} src={scoreImage} alt="" /> -->
+
+<style lang="scss">
+    @use "@/styles/abstracts" as *;
+    .score {
+        height: 20px;
+        width: 100%;
+        border-bottom: 1px solid get-color("lightShades", 600);
+        aspect-ratio: 12/1;
+        opacity: 0.5;
+        // filter: brightness(0.5) sepia(1) hue-rotate(0deg);
+        background-image: url("./score-landscape.png");
+        object-fit: cover;
+        object-position: bottom;
+
+        @include respond-to("sm") {
+            aspect-ratio: 16/1;
+        }
+
+        @include respond-to("md") {
+            aspect-ratio: 24/1;
+        }
+
+        @include respond-to("lg") {
+            aspect-ratio: 32/1;
+        }
+    }
+</style>

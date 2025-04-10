@@ -1,0 +1,37 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+import BlogPost from "@/layouts/BlogPost.astro";
+
+// This function tells Astro what routes to generate at build time
+export async function getStaticPaths() {
+    const allArticles = await getCollection("articles");
+
+    return allArticles.map((entry: CollectionEntry<"articles">) => {
+        // Assuming your collection is organized with categoryName/slugName.md structure
+        const [category, slug] = entry.slug.split("/");
+
+        return {
+            params: { category, slug },
+            props: { entry },
+        };
+    });
+}
+
+// Get the article from props
+interface Props {
+    entry: CollectionEntry<"articles">;
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<BlogPost>
+    <article>
+        <h1>{entry.data.title}</h1>
+        <p><em>{entry.data.pubDate.toDateString()}</em></p>
+        <Content />
+    </article>
+</BlogPost>

@@ -1,0 +1,251 @@
+@use "@/styles/abstracts" as *;
+@use "@/styles/components";
+@use "@/styles/config";
+@use 'sass:color' as sasscolor;
+
+.hero {
+    position: relative;
+    display: grid;
+    grid-template-columns:
+        [start] 1.618em [m-start] minmax(0, 1fr) [center] minmax(0, 1fr) [m-end] 1.618em [end];
+    grid-template-rows:
+        [top] calc(1.618em * 2) [m-top] minmax(0, 1fr) [center] minmax(0, 1fr) [m-bottom] 1.618em [bottom];
+    height: 61.8vh;
+    margin-block: get-scale(200) * 10vw;
+    animation: fade-up $duration-md ease-in-out forwards;
+
+    .pick {
+        grid-row-start: m-top;
+        grid-row-end: m-bottom;
+        grid-column-start: center;
+        grid-column-end: m-end;
+        transform: translateX(-50%);
+        height: 100%;
+        color: get-color("mainBrand", 300);
+
+        filter: drop-shadow(-1em em-scale(200) get-color("darkShades"));
+        z-index: -10;
+    }
+
+    .lessonTextContainer {
+        color: get-color("lightShades", 500);
+        $outline-size: 1.618px;
+        $text-outline: $outline-size $outline-size get-color("darkShades"),
+            $outline-size * -1 $outline-size get-color("darkShades"),
+            $outline-size $outline-size * -1 get-color("darkShades"),
+            $outline-size * -1 $outline-size * -1 get-color("darkShades");
+        $shadow-size: rem-scale(100);
+
+        margin: 0;
+        grid-column-start: center;
+        grid-column-end: m-end;
+        grid-row-start: m-top;
+        grid-row-end: m-bottom;
+        font-size: clamp(3em, 6.18vw, 6em);
+        margin-block-start: -0.31em;
+        line-height: 1;
+        text-shadow:
+            $text-outline,
+            $shadow-size $shadow-size $shadow-size get-color("dark", 400);
+        z-index: 1;
+        width: fit-content;
+        transform: translateX(-50%);
+
+        @include respond-to("md") {
+            transform: translateX(0);
+        }
+
+        >span {
+            display: block;
+        }
+
+        .main-heading {
+            font-family: config.$display-font-family;
+        }
+
+        .headingConjunctionText {
+            font-family: config.$body-font-family;
+            letter-spacing: 0;
+            margin-block: em-scale(300);
+            font-size: calc(em-scale(000) * 0.618);
+            text-shadow: none;
+        }
+
+        .subHeading {
+            font-size: em-scale(200);
+        }
+    }
+
+    .notes {
+        grid-column-start: center;
+        grid-row-start: center;
+        grid-row-end: bottom;
+        height: 100%;
+        transform: translateX(-100%);
+        z-index: 100;
+    }
+
+    .triangle {
+        grid-column-start: center;
+        grid-row-start: top;
+        grid-row-end: center;
+        height: 100%;
+        color: get-color("mainBrand");
+        opacity: get-scale(200);
+        transform: translate(-200%, -25%) rotate(-33deg);
+        z-index: -10;
+    }
+
+    .ellipse {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        width: get-scale(500) * 100vw;
+        aspect-ratio: 3/2;
+        border-radius: percent-scale(400) percent-scale(300);
+        background: get-color("darkShades");
+        opacity: get-scale(100) * get-scale(100) * get-scale(100);
+        transform: translate(percent-scale(300), percent-scale(300) * -1);
+    }
+
+    .ellipse+.ellipse {
+        top: unset;
+        bottom: 0;
+        transform: translate(percent-scale(300) * -1, percent-scale(300));
+    }
+}
+
+.introImage {
+    border-radius: $border-radius;
+    width: 100%;
+    height: 10ch;
+    aspect-ratio: 3/2;
+    overflow: hidden;
+    // display: block;
+
+}
+
+.lgBottom {
+    margin-block: em-scale(900);
+}
+
+.reasonList {
+    list-style-type: none;
+    padding-inline-start: $space-md;
+}
+
+.schedule {
+    display: block;
+    padding: 0;
+    background: get-color("mainBrand");
+    border: 1px solid transparent;
+    list-style: none;
+
+    li {
+        margin: $space-xs;
+        @include padding-box("xs");
+        background: get-color("mainBrand", 400);
+        @include border;
+        color: get-color("lightShades");
+    }
+
+    &__day {
+        font-weight: $fw-sm;
+    }
+
+    &__time {
+        font-weight: $fw-md;
+
+        &::before {
+            content: ": ";
+        }
+    }
+
+    em {
+        color: get-color("mainBrand", 100);
+        font-size: $fs-sm-em;
+
+        &::before {
+            content: " ";
+        }
+    }
+}
+
+.in-home-list {
+    list-style: initial;
+    font-size: $fs-sm-em;
+}
+
+
+
+.map {
+    pointer-events: none;
+    border: 4px solid get-color("darkShades");
+    border-radius: $border-radius;
+}
+
+
+.genreList {
+    color: get-color("lightShades");
+    background: get-color("darkShades");
+    border: $border;
+
+    span {
+        display: block;
+        margin-block: $space-xs;
+        font-size: $fs-sm-em;
+    }
+
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: $space-sm;
+        margin-block: 0 $space-xs;
+        padding-inline: 0;
+        list-style-type: none;
+
+        li {
+            @include padding-box("sm");
+            font-size: $fs-sm-em;
+            font-style: italic;
+            background: get-color("darkShades", 400);
+            @include components.pill();
+        }
+
+    }
+}
+
+.parentBlurb {
+    @include padding-box("xs");
+    background-color: get-color("mainBrand", 100);
+    @include border;
+
+    &__image {
+        float: left;
+        margin-inline-end: $space-sm;
+        border-radius: $border-radius;
+    }
+
+    &__text {
+        margin: 0;
+        font-size: $fs-sm-em;
+    }
+}
+
+.pricing {
+    margin-block-end: $space-md;
+
+    ul {
+        margin-block-start: -$space-md;
+        padding-inline-start: $space-md;
+        list-style-type: none;
+    }
+
+    &__price {
+        font-weight: $fw-md;
+
+        &::before {
+            content: ": ";
+        }
+    }
+}

@@ -1,0 +1,37 @@
+---
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import {
+//   faGithubSquare,
+//   faLinkedinIn,
+// } from "@fortawesome/free-brands-svg-icons";
+
+import Copyright from "@/components/Copyright";
+// import ExternalLink from "@/components/ExternalLink";
+
+import styles from "./site-footer.module.scss";
+const { type } = Astro.props;
+---
+
+<footer class={styles.footer}>
+  <div class={styles.socialIcons}>
+    <!-- {
+      type === "developer" && (
+        <>
+          <ExternalLink to="https://www.linkedin.com/in/elliot-reed/">
+            <FontAwesomeIcon icon={faLinkedinIn} className={styles.icon} />
+          </ExternalLink>
+          <ExternalLink to="https://github.com/ElliotReed">
+            <FontAwesomeIcon icon={faGithubSquare} className={styles.icon} />
+          </ExternalLink>
+        </>
+      )
+    } -->
+  </div>
+  <Copyright
+    originYear="2018"
+    holder="Elliot Reed"
+    link={{
+      to: "/",
+    }}
+  />
+</footer>

@@ -1,0 +1,13 @@
+@use "../../styles/abstracts" as *;
+
+.sending {
+  display: block;
+  position: relative;
+  inset: 0;
+  margin-block: $space-xs;
+
+  svg {
+    color: get-color("lightShades");
+    @include shadow(2);
+  }
+}

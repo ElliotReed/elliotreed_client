@@ -1,0 +1,41 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+import BlogPost from "@/layouts/BlogPost.astro";
+
+const articles = await getCollection("articles");
+
+// Create a typed map: Record<string, CollectionEntry<"articles">[]>
+const grouped: Record<string, CollectionEntry<"articles">[]> = {};
+
+for (const article of articles) {
+    const category = article.data.category;
+    if (!grouped[category]) {
+        grouped[category] = [];
+    }
+    grouped[category].push(article);
+}
+---
+
+<BlogPost title="Articles">
+    <h1>Articles</h1>
+
+    {
+        Object.entries(grouped).map(([category, items]) => (
+            <section>
+                <h2>{category}</h2>
+                <ul>
+                    {items.map((article) => (
+                        <li>
+                            <a href={`/articles/${article.slug}`}>
+                                {article.data.title}
+                            </a>
+                            <p>{article.data.description}</p>
+                        </li>
+                    ))}
+                </ul>
+            </section>
+        ))
+    }
+</BlogPost>

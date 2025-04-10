@@ -1,0 +1,61 @@
+@use "@/styles/abstracts" as *;
+
+.contactForm {
+  margin-block: $space-md;
+  padding-inline: $space-md;
+  min-width: 30ch;
+  color: get-color("darkShades");
+  background: get-color("lightShades", 300);
+  border: 1px solid transparent;
+  border-radius: $border-radius;
+
+  @include respond-to("sm") {
+    min-width: 50ch;
+  }
+
+  @include respond-to("md") {
+    min-width: 60ch;
+  }
+
+  .error {
+    color: get-color("error", 500);
+    font-weight: $fw-lg;
+  }
+
+  &>*+* {
+    margin-top: $space-sm;
+  }
+
+  &>:last-child {
+    margin-bottom: $space-sm;
+  }
+
+  & h1 {
+    font-weight: $fw-lg;
+    color: get-color("mainBrand");
+  }
+
+
+  & label {
+    display: block;
+
+    &::after {
+      content: ":";
+    }
+  }
+
+  & input,
+  textarea {
+    width: 100%;
+    @include padding-box('sm');
+    color: get-color("darkShades");
+    background-color: get-color("lightShades", 100);
+    @include border($color: get-color("mainBrand", 100));
+
+  }
+
+  & textarea {
+    height: 10em;
+    resize: vertical;
+  }
+}

@@ -1,0 +1,52 @@
+---
+import CollapsibleHeader from "@/components/CollapsibleHeader.astro";
+import Logo from "@/components/Logo";
+import ScoreHeader from "../components/ScoreHeader/ScoreHeader.astro";
+
+import styles from "./site-header.module.scss";
+
+function logoAnimation(type: string, mode: string) {
+  let animation;
+  if (type !== mode) {
+    if (type === "developer") {
+      animation = "SWITCH_TO_DEVELOPER";
+    }
+    if (type === "musician") {
+      animation = "SWITCH_TO_MUSICIAN";
+    }
+  }
+  if (type === mode) {
+    if (type === "developer") {
+      animation = "SET_TO_DEVELOPER";
+    }
+    if (type === "musician") {
+      animation = "SET_TO_MUSICIAN";
+    }
+  }
+
+  return animation;
+}
+
+// const state = React.useContext(GlobalStateContext);
+const state = { mode: "musician" }; // Placeholder for the context state
+const type = "musician"; // Placeholder for the type
+---
+
+<CollapsibleHeader contentClass={styles.header}>
+  <div class={styles.navBrand}>
+    <a href="/">
+      <div class={styles.logoWrapper}>
+        <!-- TODO: handle xs logo size -->
+        <Logo
+          client:only="react"
+          width="2.5em"
+          mode={type}
+          animation={logoAnimation(type, state.mode)}
+        />
+        <span class={styles.title}>Elliot Reed Music</span>
+      </div>
+    </a>
+  </div>
+  <slot />
+  <ScoreHeader />
+</CollapsibleHeader>

@@ -1,0 +1,56 @@
+@use "../styles/abstracts" as *;
+
+    @use "@/styles/abstracts" as *;
+    @use "@/styles/layouts" as *;
+  
+    .blurb {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-block: $space-md;
+      padding-inline: $space-lg;
+      @include layout-grid__centered;
+      color: get-color("lightShades");
+      font-weight: bold;
+      font-size: $fs-2xl-em;
+      background: get-color("mainBrand");
+      border-radius: $border-radius;
+      @include shadow(1);
+  
+      @media (prefers-reduced-motion: no-preference) {
+        em {
+          display: inline-block;
+          animation: grow 5s infinite;
+          filter: drop-shadow(0 0.1em rgba(0 0 0 /0.77));
+  
+          &:nth-child(1) {
+            animation-delay: 0;
+          }
+  
+          &:nth-child(2) {
+            animation-delay: 1s;
+          }
+  
+          &:nth-child(3) {
+            animation-delay: 2s;
+          }
+  
+          &:nth-child(4) {
+            animation-delay: 3s;
+          }
+        }
+  
+        @keyframes grow {
+  
+          0%,
+          20%,
+          100% {
+            transform: scaleY(1) translateY(0);
+          }
+  
+          10% {
+            transform: scaleY(1.1) translateY(-1%);
+          }
+        }
+      }
+    }

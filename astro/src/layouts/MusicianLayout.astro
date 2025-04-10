@@ -1,0 +1,23 @@
+---
+// import { ContextProviderComponent } from "../../context/Context";
+
+import MusicianNavbar from "./Navbar_Musician.astro";
+import Header from "./SiteHeader.astro";
+import Footer from "./SiteFooter.astro";
+
+import BaseLayout from "./BaseLayout.astro";
+
+let type = "musician";
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <Header type={type}>
+    <MusicianNavbar />
+  </Header>
+
+  <main class="layout-grid">
+    <slot />
+  </main>
+  <Footer type={type} />
+</BaseLayout>

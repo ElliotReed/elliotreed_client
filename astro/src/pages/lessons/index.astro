@@ -1,0 +1,283 @@
+---
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpotify } from "@fortawesome/free-brands-svg-icons";
+import { Image } from "astro:assets";
+import { Map } from "pigeon-maps";
+import { osm } from "pigeon-maps/providers";
+
+import TwoColumnGrid from "@/components/UI/TwoColumnGrid";
+import ContactForm from "@/components/ContactForm";
+import ExternalLink from "@/components/ExternalLink";
+import Heading from "@/components/Heading";
+import Paragraph from "@/components/UI/Paragraph.astro";
+import MaxWidthContainer from "@/components/UI/MaxWidthContainer.astro";
+// const noteGuitar = new URL("@/images/hero/made-of-notes.svg", import.meta.url)
+//     .href;
+
+import Pick from "@/images/decorative/pick.svg";
+import Triangle from "@/images/hero/triangle.svg";
+
+import MusicianLayout from "@/layouts/MusicianLayout.astro";
+
+import slatteryImage from "./slattery_jwm.jpg";
+import ellieDaddyImage from "./ellie-daddy-lesson.jpg";
+import styles from "./lessons.module.scss";
+/* [Contact Information] Email: [YourEmail@example.com] Phone:
+                [Your Phone Number] [Location] City, State Follow me on [Social
+                Media Links] for updates, tips, and musical inspiration!
+                [Facebook] [Twitter] [Instagram] [YouTube] */
+---
+
+<MusicianLayout
+    title="Guitar Lessons"
+    description="Are you ready to elevate your guitar playing to new heights? Look no further! I am a seasoned guitar virtuoso with 35+ years of experience, and I am here to guide you on your musical journey. Whether you're a beginner looking to strum your first chords or an advanced player seeking to refine your technique, I offer personalized lessons that cater to your skill level and musical aspirations."
+>
+    <div class={styles.hero}>
+        <svg
+            class={styles.triangle}
+            id="triangle"
+            viewBox="0 0 304 296"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <g>
+                <path
+                    id="Polygon 1"
+                    d="M186.851 54.6284C191.18 51.6757 197.103 54.3127 197.805 59.5054L220.398 226.519C221.137 231.988 215.589 236.146 210.548 233.901L48.7233 161.852C43.6821 159.608 43.06 152.702 47.6188 149.593L186.851 54.6284Z"
+                    fill="currentColor"></path>
+            </g>
+        </svg>
+        <svg
+            id="pick"
+            class={styles.pick}
+            viewBox="0 0 503 535"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M225.517 505.139C191.421 469.045 -27.8961 168.891 3.15515 99.3192C34.2064 29.7475 443.495 -51.5005 499.509 42.6566C523.254 113.798 413.041 463.292 386.861 505.139C360.681 546.986 259.612 541.233 225.517 505.139Z"
+                fill="currentColor"></path>
+        </svg>
+        <Heading level={1} color="light" className={styles.lessonTextContainer}>
+            <span class={styles.mainHeading}>Guitar <br /> Lessons</span>
+            <span class={styles.headingConjunctionText}> with </span>
+            <span class={styles.subHeading}>
+                <em>Elliot Reed</em>
+            </span>
+        </Heading>
+        <img src="/hero/made-of-notes.svg" class={styles.notes} alt="" />
+
+        <span class={styles.ellipse}></span>
+        <span class={styles.ellipse}></span>
+    </div>
+    <!-- {/* <PickPart id={styles["pick"]} /> */} -->
+    <!-- {/* <Levels /> */} -->
+
+    <MaxWidthContainer>
+        <TwoColumnGrid smallSide="left" className={styles.lgBottom}>
+            <Image
+                class={styles.introImage}
+                src={slatteryImage}
+                alt="Elliot Reed sitting, playing Epiphone guitar in Slattery's nightclub,"
+            />
+
+            <Paragraph>
+                Are you ready to take your guitar playing to the next level? Or
+                begin your learning path? I am a seasoned guitarist and teacher
+                with over 30 years of experience, and I am here to guide you on
+                your musical path. Whether you're a beginner looking to strum
+                your first chords or an advanced player seeking to refine your
+                technique, I offer personalized lessons that cater to your skill
+                level and musical aspirations.
+            </Paragraph>
+        </TwoColumnGrid>
+
+        <Heading level={2} size={3}>I Offer</Heading>
+    </MaxWidthContainer>
+
+    <ul class={styles.reasonList}>
+        <li>
+            <MaxWidthContainer>
+                <Heading level={3} size={4}>Expertise:</Heading>
+                <Paragraph>
+                    With 35+ years of playing and teaching experience, I bring a
+                    wealth of knowledge and expertise to every lesson. I have
+                    honed my skills through years of performing and instructing,
+                    and I am dedicated to helping you achieve your musical
+                    goals.
+                </Paragraph>
+                <ExternalLink
+                    to="https://open.spotify.com/artist/3ZJrLqiSpAZueYPclk65Cl?si=SvjEqUhZRNylCPcb1q8HAQ"
+                >
+                    <FontAwesomeIcon icon={faSpotify} /> Gypsy Swing Revue on Spotify
+                </ExternalLink>
+            </MaxWidthContainer>
+        </li>
+    </ul>
+
+    <div class={styles.genreList}>
+        <MaxWidthContainer>
+            <span> I've performed professionally in these styles: </span>
+
+            <ul>
+                <li>Jazz</li>
+                <li>Gypsy Jazz</li>
+                <li>Rock</li>
+                <li>Pop</li>
+                <li>Country</li>
+                <li>Western Swing</li>
+                <li>Reggae</li>
+                <li>Indie</li>
+                <li>Theater</li>
+                <li>Classical</li>
+            </ul>
+        </MaxWidthContainer>
+    </div>
+
+    <MaxWidthContainer>
+        <ul class={styles.reasonList}>
+            <li>
+                <Heading level={3} size={4}>Personalized Lessons:</Heading>
+                <Paragraph>
+                    No two students are the same, and I tailor my lessons to
+                    meet your individual needs and aspirations. Whether you're
+                    interested in acoustic or electric guitar, jazz, rock or
+                    blues, theory or technique, I will create a customized
+                    curriculum that suits your preferences and helps you
+                    progress at your own pace.
+                </Paragraph>
+            </li>
+
+            <li>
+                <Heading level={3} size={4}>Versatility:</Heading>
+                <Paragraph>
+                    From basic chord progressions to intricate solos, I cover a
+                    wide range of musical styles and techniques. Whether you're
+                    into classic rock, jazz, blues, or contemporary pop, I can
+                    help you master the skills needed to play your favorite
+                    genres.
+                </Paragraph>
+            </li>
+
+            <li>
+                <Heading level={3} size={4}>Flexible Scheduling:</Heading>
+                <Paragraph>
+                    Life can be busy, but that shouldn't hinder your musical
+                    aspirations. I offer flexible scheduling to accommodate your
+                    busy lifestyle. Whether you prefer weekly, bi-weekly, or
+                    monthly lessons, we can find a schedule that works for you.
+                </Paragraph>
+
+                <ul class={styles.schedule}>
+                    <li>
+                        <span class={styles.schedule__day}>Weekdays</span>
+                        <span class={styles.schedule__time}>10am - 9pm</span>
+                    </li>
+
+                    <li>
+                        <span class={styles.schedule__day}>Weekends</span>
+                        <span class={styles.schedule__time}>9am - 6pm</span>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <Heading level={3} size={4}>In-Home Lessons:</Heading>
+                <TwoColumnGrid smallSide="right">
+                    <div>
+                        <Paragraph>
+                            For added convenience and comfort, I offer in-home
+                            lessons within Littleton, CO. Enjoy the benefits of
+                            personalized instruction in the comfort of your own
+                            home.
+                        </Paragraph>
+                        <ul class={styles.inHomeList}>
+                            <li>Avoid traffic</li>
+                            <li>No drop off and pick up, or waiting</li>
+                        </ul>
+                    </div>
+
+                    <div class={styles.parentBlurb}>
+                        <Image
+                            class={styles.parentBlurb__image}
+                            src={ellieDaddyImage}
+                            alt="pic"
+                        />
+                        <!-- layout="constrained" -->
+                        <!-- aspectRatio={4 / 3} -->
+                        <!-- width={150} -->
+                        <!-- placeholder="blurred" -->
+                        <!-- formats={["auto", "webp", "avif"]} -->
+
+                        <Paragraph class={styles.parentBlurb__text}>
+                            As the father of an Arapahoe High School
+                            student/musician, I understand having to drive all
+                            over town for various activites. Wouldn't it be nice
+                            if the lessons <strong>came to you</strong>?
+                        </Paragraph>
+                    </div>
+
+                    <div class={styles.pricing}>
+                        <Heading level={4} size={5}>Pricing</Heading>
+                        <ul>
+                            <li>
+                                <span>1/2 hour lesson</span><span
+                                    class={styles.pricing__price}>$30</span
+                                >
+                            </li>
+                            <li>
+                                <span>1 hour lesson</span><span
+                                    class={styles.pricing__price}>$55</span
+                                >
+                                <span
+                                    >, <small
+                                        >(may be split between 2 students)</small
+                                    ></span
+                                >
+                            </li>
+                        </ul>
+                    </div>
+
+                    <TwoColumnGrid smallSide="right">
+                        <Paragraph size="sm">
+                            <em>
+                                Between <strong>Santa Fe Dr</strong> and <strong
+                                    >University Blvd</strong
+                                >, <strong>Littleton Blvd</strong> and <strong
+                                    >County Line Rd</strong
+                                >, additional charges for greater distances.
+                            </em>
+                        </Paragraph>
+
+                        <div class={styles.map}>
+                            <Map
+                                provider={osm}
+                                height={200}
+                                defaultCenter={[39.5907927, -104.9968363]}
+                                defaultZoom={12}
+                            />
+                        </div>
+                    </TwoColumnGrid>
+                </TwoColumnGrid>
+            </li>
+        </ul>
+    </MaxWidthContainer>
+
+    <MaxWidthContainer>
+        <Heading level={3} size={4}>Contact Me:</Heading>
+        <Paragraph>
+            Ready to embark on your musical journey? Contact me to schedule your
+            first lesson or to inquire about in-home lesson availability. Let's
+            make music together!
+        </Paragraph>
+        <Paragraph>
+            You can call/text me at 303.745.7044, or send me an email.
+        </Paragraph>
+
+        <!-- <ContactForm customHeader={(<div></div>)} /> -->
+
+        <Paragraph>
+            Don't just <em>play</em> the guitar – <strong>master</strong> it!
+        </Paragraph>
+    </MaxWidthContainer>
+</MusicianLayout>

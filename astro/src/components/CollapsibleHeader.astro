@@ -1,0 +1,137 @@
+---
+const { contentClass } = Astro.props;
+---
+
+<header
+    id="collapsible-header"
+    class:list={["collapsible-header", contentClass]}
+>
+    <slot />
+</header>
+
+<div id="header-spacer"></div>
+
+<style lang="scss">
+    @use "@/styles/abstracts" as *;
+
+    .collapsible-header {
+        position: fixed;
+        top: 0px;
+        width: 100%;
+        z-index: 100;
+    }
+
+    .collapse {
+        animation: collapse $duration-lg ease forwards;
+    }
+
+    /* Open nav bar on scroll up */
+    .expand {
+        animation: expand $duration-md ease forwards;
+    }
+
+    @keyframes collapse {
+        from {
+            opacity: 1;
+            top: 0;
+        }
+
+        to {
+            opacity: 0;
+            top: -100%;
+        }
+    }
+
+    @keyframes expand {
+        from {
+            opacity: 0;
+            top: -100%;
+        }
+
+        to {
+            opacity: 1;
+            top: 0;
+        }
+    }
+</style>
+
+<script>
+    function getCollapseClass(shouldCollapse: boolean) {
+        if (shouldCollapse == null) return;
+        if (shouldCollapse) {
+            return "collapse";
+        }
+        return "expand";
+    }
+
+    // Initialize state
+    let scrollState = 0;
+    let isCollapsed = false;
+
+    const header = document.getElementById("collapsible-header");
+    const spacer = document.getElementById("header-spacer");
+    // window.onload = () => header?.classList.add("collapsible-header");
+
+    function updateHeaderHeight() {
+        if (!header || !spacer) return;
+        const headerHeight = header.offsetHeight;
+        spacer.style.height = `${headerHeight}px`;
+    }
+
+    // Initial height calculation
+    updateHeaderHeight();
+
+    function homeAction() {
+        // Reset when at top of page
+        isCollapsed = false;
+        updateHeaderClass();
+    }
+
+    function downAction() {
+        isCollapsed = true;
+        updateHeaderClass();
+    }
+
+    function upAction() {
+        isCollapsed = false;
+        updateHeaderClass();
+    }
+
+    function updateHeaderClass() {
+        if (!header) return;
+
+        // Remove existing state classes
+        header.classList.remove("collapse");
+        header.classList.remove("expand");
+
+        const collapseClass = getCollapseClass(isCollapsed);
+        if (collapseClass) {
+            header.classList.add(collapseClass);
+        }
+    }
+
+    function getScrollTop() {
+        return window.scrollY;
+    }
+
+    function scrollDetect() {
+        const currentScrollPosition = getScrollTop();
+        if (currentScrollPosition === 0) {
+            homeAction();
+        } else if (currentScrollPosition > scrollState) {
+            downAction();
+        } else {
+            upAction();
+        }
+        scrollState = currentScrollPosition;
+    }
+
+    // Add scroll event listener
+    window.addEventListener("scroll", scrollDetect);
+
+    // Recalculate on resize
+    window.addEventListener("resize", updateHeaderHeight);
+
+    // Initial class setting
+    updateHeaderClass();
+</script>

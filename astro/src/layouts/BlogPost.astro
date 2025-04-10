@@ -1,0 +1,12 @@
+---
+import MusicianLayout from "./MusicianLayout.astro";
+
+import styles from "./layout.module.scss";
+
+let type = "musician";
+const { title } = Astro.props;
+---
+
+<MusicianLayout title={title}>
+  <slot />
+</MusicianLayout>

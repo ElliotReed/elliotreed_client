@@ -1,0 +1,62 @@
+{
+  "name": "elliotreed_client",
+  "private": true,
+  "description": "Elliot Reed website",
+  "version": "0.1.1",
+  "author": "Elliot Reed>",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-brands-svg-icons": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@mdx-js/react": "2.0.0",
+    "classnames": "^2.5.1",
+    "gatsby": "^5.13.4",
+    "gatsby-plugin-image": "^3.13.1",
+    "gatsby-plugin-layout": "^4.13.1",
+    "gatsby-plugin-manifest": "^5.13.1",
+    "gatsby-plugin-mdx": "^5.13.1",
+    "gatsby-plugin-mdx-source-name": "^1.0.1",
+    "gatsby-plugin-offline": "^6.13.2",
+    "gatsby-plugin-react-svg": "^3.3.0",
+    "gatsby-plugin-sass": "^6.13.1",
+    "gatsby-plugin-sharp": "^5.13.1",
+    "gatsby-plugin-typescript": "^5.13.1",
+    "gatsby-remark-images": "^7.13.1",
+    "gatsby-source-filesystem": "^5.13.1",
+    "gatsby-transformer-json": "^5.13.1",
+    "gatsby-transformer-sharp": "^5.13.1",
+    "gsap": "^3.12.5",
+    "pigeon-maps": "^0.21.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sass": "^1.77.0",
+    "yet-another-react-lightbox": "^3.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.11",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.4.5"
+  },
+  "keywords": [
+    "Elliot Reed musician"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "clean": "gatsby clean",
+    "dev": "gatsby develop",
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ElliotReed/elliotreed_client"
+  },
+  "bugs": {
+    "url": "https://github.com/ElliotReed/elliotreed_client"
+  }
+}

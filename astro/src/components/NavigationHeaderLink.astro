@@ -1,0 +1,17 @@
+---
+import styles from "./navigation-header-link.module.scss";
+
+// interface NavigationHeaderLink {
+//   to: string;
+//   children: React.ReactNode;
+// }
+const currentPath = Astro.url.pathname;
+const activeClassName = styles.navigationHeaderLinkActive;
+const { to } = Astro.props;
+const linkClassName =
+    currentPath === to ? activeClassName : styles.navigationHeaderLink;
+---
+
+<a href={to} class={styles.navigationHeaderLink}>
+    <slot />
+</a>

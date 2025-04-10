@@ -1,0 +1,17 @@
+@use "@/styles/abstracts";
+
+.header {
+  margin: abstracts.$space-md;
+  width: 100%;
+  border: abstracts.$border;
+  border-radius: abstracts.$border-radius;
+  background: abstracts.get-color("lightShades");
+  padding: abstracts.$space-md;
+  color: abstracts.get-color("darkShades");
+
+  & h1 {
+    margin: abstracts.$space-md 0;
+    font-weight: bold;
+    color: abstracts.get-color("mainBrand");
+  }
+}
