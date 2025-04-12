@@ -1,14 +1,13 @@
 ---
 import { Image } from "astro:assets";
 import headerImage from "@/images/gypsy-swing-revue-1.jpg";
-import classnames from "classnames";
 
 import styles from "./profile-header.module.scss";
 
 const type = "musician"; // This should be passed as a prop to the component
 ---
 
-<div class={classnames(styles.profileHeader, "layout-grid__full-width")}>
+<div class:list={[styles.profileHeader, "layout-grid__full-width"]}>
   {
     type === "musician" && (
       <Image

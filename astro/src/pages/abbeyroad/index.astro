@@ -1,0 +1,49 @@
+---
+import MaxWidthContainer from "@/components/UI/MaxWidthContainer.astro";
+import Parts from "./parts.astro";
+import Video from "./video.astro";
+import MusicLink from "./music-link.astro";
+import MusicianLayout from "@/layouts/MusicianLayout.astro";
+
+import { show } from "@/data/abbeyroad";
+
+import styles from "./abbeyroad.module.scss";
+
+const showParts = false;
+---
+
+<MusicianLayout>
+  <h1 class={styles.pageTitle}>Abbey Road / Beatles After The Beatles</h1>
+
+  <MaxWidthContainer>
+    {
+      show.map((set) => {
+        return (
+          <div class={styles.setWrapper}>
+            <h2 class={styles.setTitle}>
+              Set {set.set} <span>{set.title}</span>
+            </h2>
+            <hr />
+            <ul class={styles.songList}>
+              {set.songs.map((song) => {
+                if (!song) {
+                  return;
+                }
+                return (
+                  <li class={styles.song}>
+                    <h3 class={styles.songTitle}>{song.title}</h3>
+                    <div class={styles.songContent}>
+                      {showParts && <Parts song={song} />}
+                      {song.link !== "" && <MusicLink song={song} />}
+                      {song.videos.length > 0 && <Video song={song} />}
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        );
+      })
+    }
+  </MaxWidthContainer>
+</MusicianLayout>

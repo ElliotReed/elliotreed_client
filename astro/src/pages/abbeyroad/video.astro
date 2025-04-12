@@ -1,0 +1,12 @@
+---
+import Accordion from "@/components/UI/Accordion.astro";
+import VideoContent from "./video-content.astro";
+
+import styles from "./abbeyroad.module.scss";
+
+const { song } = Astro.props;
+---
+
+<Accordion title="Videos:" backgroundColor={styles.accordionBackground}>
+  <VideoContent song={song} />
+</Accordion>

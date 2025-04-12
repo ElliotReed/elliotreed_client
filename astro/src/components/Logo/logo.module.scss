@@ -1,6 +1,7 @@
 @use "@/styles/abstracts";
 
 .logo {
+  $size: abstracts.em-scale(400);
   filter: url(#shadow);
   fill: abstracts.get-color("mainBrand");
   // backface-visibility: visible;
@@ -8,6 +9,15 @@
   outline: none;
   display: block;
   transform-origin: center center;
+  width: $size;
+  height: $size;
+
+  @include abstracts.respond-to("sm") {
+    $size: abstracts.em-scale(700);
+    width: $size;
+    height: $size;
+
+  }
 }
 
 .musician,

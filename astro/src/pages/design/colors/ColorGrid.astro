@@ -1,0 +1,15 @@
+---
+import styles from "./colors.module.scss";
+const { color } = Astro.props;
+const items = [...Array(9).keys()].map((i) => (i + 1) * 100);
+---
+
+<ul class={styles.ColorGrid}>
+    {
+        items.map((item) => (
+            <li class={styles[`${color}${item}`]}>
+                {color}-{item}
+            </li>
+        ))
+    }
+</ul>

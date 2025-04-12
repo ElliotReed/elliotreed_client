@@ -1,55 +1,68 @@
-@use "../../styles/abstracts" as *;
+@use "@/styles/abstracts" as *;
+@use "sass:color" as sasscolor;
 
-.page-title {
+.accordionBackground {
+  background: get-color("darkShades", 700);
+}
+
+.pageTitle {
   color: get-color("mainBrand");
   text-align: center;
 }
 
-.container {
-  margin: 0 auto;
+.setWrapper {
   color: get-color("lightShades");
-}
-
-.set-wrapper {
-  margin: $space-md;
   padding: $space-md;
   background: get-color("darkShades");
   border-radius: $border-radius;
   @include shadow(1);
+  margin-block-end: $space-md;
+
+  hr {
+    border: none;
+    background-color: get-color("lightShades");
+    height: 1px;
+    margin-block: 2em;
+  }
 }
 
-.set-title {
+.setTitle {
   display: flex;
   justify-content: space-between;
-  padding: $space-md;
-  border-bottom: 1px solid get-color("lightShades");
+
 }
 
-.song-list {
+.songList {
   padding: 0;
+  margin: 0;
   list-style: none;
 }
 
-.song-content {
+.songContent {
   padding: $space-md;
 }
 
 .song {
   border-radius: $border-radius;
+  border: 1px solid sasscolor.change(get-color("lightShades"), $alpha: 0.5);
   @include shadow(1);
+
+  +.song {
+    margin-block-start: $space-md;
+  }
 }
 
-.song-title {
-  padding: $space-md;
+.songTitle {
+  padding-inline: $space-md;
 }
 
-.part-wrapper {
+.partWrapper {
   h6 {
     margin: 0;
   }
 }
 
-.part-list {
+.partList {
   list-style: none;
   margin: 0 0 $space-md;
   padding: $space-md;
@@ -74,7 +87,7 @@
   }
 }
 
-.title-button-wrapper {
+.titleButtonWrapper {
   display: flex;
 
   & button {
@@ -90,66 +103,4 @@
       transform: rotate(90deg);
     }
   }
-}
-
-.chart-link {
-  display: flex;
-  gap: $space-md;
-  margin-bottom: $space-md;
-  align-items: center;
-  padding: $space-md;
-  background: get-color("lightShades");
-  border-bottom-left-radius: $border-radius;
-  border-bottom-right-radius: $border-radius;
-  @include shadow(1);
-  color: get-color("mainBrand", 400);
-
-  &:visited {
-    color: get-color("mainBrand", 300);
-  }
-
-  img {
-    width: 4rem;
-  }
-}
-
-.videoList {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: $space-md;
-  overflow: hidden;
-  background: get-color("darkShades", 400);
-  border-radius: $border-radius;
-  @include shadow(1);
-
-  & li {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    margin: $space-md;
-    // max-width: 25rem;
-    min-width: 13rem;
-  }
-
-  & label {
-    padding: calc($space-md / 3) 0 $space-md;
-  }
-}
-
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  padding-top: 30px;
-  height: 0;
-  overflow: hidden;
-}
-
-.video-container iframe,
-.video-container object,
-.video-container embed {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
 }

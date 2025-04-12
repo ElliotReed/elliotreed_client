@@ -5,9 +5,17 @@
 
 /* #region Variables */
 :root {
-  /* animations */
-  --softIn: softIn 0.33s ease-in;
   @include typography.fonts();
+
+  & {
+    // Used in detail for transition 
+    interpolate-size: allow-keywords;
+  }
+
+  /* animations */
+  & {
+    --softIn: softIn 0.33s ease-in;
+  }
 }
 
 /* #endregion Variables */

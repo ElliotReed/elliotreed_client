@@ -1,0 +1,45 @@
+---
+import { Image } from "astro:assets";
+import scoreImage from "@/images/scores.jpg";
+
+const { song } = Astro.props;
+---
+
+<a class="chart-link" title={`Follow link to open pdf`} href={song.link}>
+    <Image src={scoreImage} alt="pdf link" />
+    <span>{song.title}</span>
+</a>
+
+<style lang="scss">
+    @use "@/styles/abstracts" as *;
+
+    .chart-link {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        place-items: center;
+        gap: $space-md;
+        padding: $space-md;
+        color: get-color("mainBrand", 400);
+        font-weight: $fw-lg;
+        background: get-color("lightShades");
+
+        &:visited {
+            color: initial;
+        }
+        &:hover {
+            color: get-color("mainBrand", 500);
+            background: get-color("lightShades", 400);
+        }
+
+        span {
+            display: inline-block;
+        }
+
+        img {
+            $size: 6em;
+            display: block;
+            width: $size;
+            height: calc($size * 1.5);
+        }
+    }
+</style>

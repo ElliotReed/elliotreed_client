@@ -1,0 +1,53 @@
+---
+import Youtube from "./youtube.astro";
+
+interface VideoProps {
+  id: string;
+  title: string;
+}
+
+interface SongProps {
+  position: number;
+  elliot: string;
+  steve: string;
+  alex: string;
+  title: string;
+  link: string;
+  videos: VideoProps[];
+}
+
+interface Props {
+  song: SongProps;
+}
+
+const { song } = Astro.props;
+---
+
+<ul class="video-list">
+  {
+    song.videos.length > 0 &&
+      song.videos.map((video) => {
+        return (
+          <li>
+            <Youtube videoId={video.id} title={video.title} />
+          </li>
+        );
+      })
+  }
+</ul>
+
+<style lang="scss" scoped>
+  @use "@/styles/abstracts" as *;
+
+  .video-list {
+    background: get-color("lightShades", 500);
+    padding: 0;
+
+    li {
+    }
+
+    li + li {
+      margin-block-start: $space-md;
+    }
+  }
+</style>

@@ -1,5 +1,5 @@
-@use "../../styles/abstracts" as *;
-@use "../../styles/abstracts/color/color-map";
+@use "@/styles/abstracts" as *;
+@use "@/styles/abstracts/color/color-map";
 
 .color-container {
   background: #fff;
@@ -7,7 +7,6 @@
 }
 
 .ColorGrid {
-
   li {
     @include padding-box();
     color: get-color('white', 100);

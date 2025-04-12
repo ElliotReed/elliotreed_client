@@ -1,0 +1,12 @@
+---
+import MusicContent from "./music-content.astro";
+import Accordion from "@/components/UI/Accordion.astro";
+
+import styles from "./abbeyroad.module.scss";
+
+const { song } = Astro.props;
+---
+
+<Accordion title="Music:" backgroundColor={styles.accordionBackground}>
+  <MusicContent song={song} />
+</Accordion>

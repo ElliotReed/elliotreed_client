@@ -1,6 +1,0 @@
-@use '@/styles/abstracts' as *;
-
-.maxWidthContainer {
-  margin: 0 auto;
-  max-width: min($max-width, calc(100% - $space-md * 2));
-}

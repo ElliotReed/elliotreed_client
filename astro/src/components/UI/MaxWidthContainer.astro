@@ -1,7 +1,16 @@
 ---
-import styles from "./max-width-container.module.scss";
+
 ---
 
-<div class={styles.maxWidthContainer}>
+<div class="max-width-container">
   <slot />
 </div>
+
+<style lang="scss">
+  @use "@/styles/abstracts" as *;
+
+  .max-width-container {
+    margin-inline: auto;
+    max-width: $max-width;
+  }
+</style>
