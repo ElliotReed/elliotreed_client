@@ -1,0 +1,58 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import MusicianLayout from "@/layouts/MusicianLayout.astro";
+
+export async function getStaticPaths() {
+    const allPosts: CollectionEntry<"singing">[] =
+        await getCollection("singing");
+
+    const categorySet = new Set(
+        allPosts.map((entry) => entry.slug.split("/")[0]),
+    );
+
+    return Array.from(categorySet).map((category) => ({
+        params: { category },
+    }));
+}
+
+const { category } = Astro.params;
+const allPosts: CollectionEntry<"singing">[] = await getCollection("singing");
+
+const posts = allPosts.filter(
+    (post) => post.slug.startsWith(`${category}/`) && post.slug !== category,
+);
+
+const categoryIndex = allPosts.find((post) => post.slug === category);
+
+const { Content } = categoryIndex
+    ? await categoryIndex.render()
+    : { Content: null };
+
+const breadcrumbItems = [
+    { label: "Singing", href: "/singing" },
+    {
+        label: category.charAt(0).toUpperCase() + category.slice(1),
+        href: `/singing/${category}`,
+    },
+];
+---
+
+<MusicianLayout>
+    <Breadcrumbs items={breadcrumbItems} />
+    <h1>{category}</h1>
+
+    {Content && <Content />}
+
+    <ul>
+        {
+            posts.map((post) => (
+                <li>
+                    <a href={`/singing/${post.slug}`}>{post.data.title}</a>
+                </li>
+            ))
+        }
+    </ul>
+</MusicianLayout>

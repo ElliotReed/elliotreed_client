@@ -14,16 +14,19 @@ const { name, title, backgroundColor } = Astro.props;
 
 <style lang="scss" scoped>
   @use "@/styles/abstracts" as *;
+  @use "sass:color";
 
   .backgroundColor {
     background-color: get-color("darkShades", 500);
   }
 
   details {
-    $radius: $border-radius;
+    $_ease: ease-in-out;
+    $_radius: $border-radius;
+    $_duration: $duration-md;
     position: relative;
     margin-block: em-scale(500);
-    border-radius: $radius;
+    border-radius: $_radius;
 
     color: get-color("lightShades");
     border: $border;
@@ -41,60 +44,46 @@ const { name, title, backgroundColor } = Astro.props;
     }
 
     summary {
-      padding: $space-md;
+      position: relative;
+      margin-block: $space-md;
+      margin-inline: $space-xl;
       cursor: pointer;
+      font-weight: $fw-lg;
       border-radius: $border-radius;
       overflow: hidden;
+
+      &::marker {
+        content: "";
+      }
+
+      &::before {
+        content: "\232a";
+        position: absolute;
+        inset-inline-end: 0;
+        transform-origin: center;
+        transition: transform $_duration $_ease;
+      }
 
       span {
       }
     }
+    &[open] summary::before {
+      transform: rotate(90deg);
+    }
 
     &::details-content {
-      border: 1px transparent;
-      border-bottom-left-radius: $radius;
-      border-bottom-right-radius: $radius;
+      border-bottom-left-radius: $_radius;
+      border-bottom-right-radius: $_radius;
       overflow: hidden;
       block-size: 0;
-      transition:
-        block-size $duration-md ease,
-        content-visibility $duration-md ease;
+      transition-property: block-size, content-visibility;
+      transition-duration: $_duration;
+      transition-timing-function: $_ease;
       transition-behavior: allow-discrete;
-      // background: red;
-      // @include padding-box("sm");
     }
 
     &[open]::details-content {
       block-size: auto;
-    }
-
-    $time: 0.6s;
-
-    .icon {
-      position: relative;
-      width: 1rem;
-      height: 1rem;
-      margin-left: auto;
-      text-align: center;
-      vertical-align: middle;
-      transition: transform $time ease;
-    }
-
-    .icon:before {
-      color: get-color("lightShades");
-      z-index: 1;
-      content: "\232a";
-      line-height: 1rem;
-      font-size: 1rem;
-      position: absolute;
-      left: 0;
-      top: -0.15em;
-      right: 0;
-      bottom: 0;
-    }
-
-    .rotate {
-      transform: rotate(90deg);
     }
   }
 </style>

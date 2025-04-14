@@ -29,7 +29,7 @@ $letter-spacing-list: (
     color: get-color("mainBrand", 500);
     font-family: base.$fontStackSans;
     font-size: rem-scale($font-size);
-    font-weight: $fw-lg;
+    font-weight: $fw-xl;
     line-height: (1 + scale($line-height-size));
     letter-spacing: list.nth($letter-spacing-list, $i);
 

@@ -1,17 +1,14 @@
 ---
-title: "MuseScore"
-description: "Learn the basics of scoring in MuseScore"
+title: "The Structure of Singing"
+description: 'This is information from the book, "The Structure of Singing" by Richard Miller.'
 publishedDate: 2025-04-06
-category: "musescore"
-tags: ["notation", "scoring"]
+category: "structure-of-singing"
+tags: ["daw", "recording"]
 ---
 
-Contents
+This is information from the book, "The Structure of Singing" by Richard Miller.
 
-- [Drums](#drums)
-- [Note Entry](#note-entry)
-
-## Drums
+## Onset
 
 ### Mixing
 

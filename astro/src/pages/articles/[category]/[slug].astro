@@ -2,13 +2,18 @@
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
-import BlogPost from "@/layouts/BlogPost.astro";
+import MusicianLayout from "@/layouts/MusicianLayout.astro";
 
 // This function tells Astro what routes to generate at build time
 export async function getStaticPaths() {
     const allArticles = await getCollection("articles");
 
-    return allArticles.map((entry: CollectionEntry<"articles">) => {
+    // Only consider posts whose slug contains a "/" (i.e. has category and a non-index slug part)
+    const filteredPosts = allArticles.filter(
+        (entry: CollectionEntry<"articles">) => entry.slug.includes("/"),
+    );
+
+    return filteredPosts.map((entry: CollectionEntry<"articles">) => {
         // Assuming your collection is organized with categoryName/slugName.md structure
         const [category, slug] = entry.slug.split("/");
 
@@ -28,10 +33,10 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<BlogPost>
+<MusicianLayout>
     <article>
         <h1>{entry.data.title}</h1>
-        <p><em>{entry.data.pubDate.toDateString()}</em></p>
+        <p><em>{entry.data.publishedDate.toDateString()}</em></p>
         <Content />
     </article>
-</BlogPost>
+</MusicianLayout>

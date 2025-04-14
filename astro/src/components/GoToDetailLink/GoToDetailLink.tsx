@@ -2,9 +2,9 @@ import * as React from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "gatsby";
+// import { Link } from "gatsby";
 
-import * as styles from "./go-to-detail-link.module.scss";
+import styles from "./go-to-detail-link.module.scss";
 
 interface GoToDetailLinkProps {
   children: React.ReactNode

@@ -1,0 +1,109 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+import MusicianLayout from "@/layouts/MusicianLayout.astro";
+import Paragraph from "@/components/UI/Paragraph.astro";
+import MaxWidthContainer from "@/components/UI/MaxWidthContainer.astro";
+
+const articles = await getCollection("singing");
+
+// Create a typed map: Record<string, CollectionEntry<"articles">[]>
+const grouped: Record<string, CollectionEntry<"singing">[]> = {};
+
+for (const article of articles) {
+    const category = article.data.category;
+
+    // Skip index files (those that don't have a slash in their slug)
+    if (!article.slug.includes("/")) {
+        continue;
+    }
+
+    if (!grouped[category]) {
+        grouped[category] = [];
+    }
+
+    grouped[category].push(article);
+}
+---
+
+<MusicianLayout
+    title="Singing"
+    description="A collection of singing-related articles and resources."
+>
+    <MaxWidthContainer>
+        <h1>Singing</h1>
+        {
+            Object.entries(grouped).map(([category, items]) => (
+                <section>
+                    <h2>
+                        <a href={`/singing/${category}`}>{category}</a>
+                    </h2>
+                    <ul>
+                        {items.map((article) => (
+                            <li>
+                                <a href={`/singing/${article.slug}`}>
+                                    {article.data.title}
+                                    <Paragraph size="sm">
+                                        {article.data.description}
+                                    </Paragraph>
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+            ))
+        }
+    </MaxWidthContainer>
+
+    <style lang="scss">
+        @use "@/styles/abstracts" as *;
+        section {
+            background: get-color("lightShades", 400);
+            border-radius: $border-radius;
+            @include padding-box("sm");
+            @include shadow(1);
+            & + section {
+                margin-block: $space-lg;
+            }
+
+            a {
+                padding-block: $space-sm;
+                padding-inline: $space-md;
+                display: inline-block;
+                width: 100%;
+                color: inherit;
+
+                &:visited {
+                    color: inherit;
+                }
+            }
+        }
+        ul {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fill,
+                minmax(px-to-rem(300), 1fr)
+            );
+            gap: $space-md;
+        }
+        li {
+            border-radius: $border-radius;
+            color: get-color("lightShades");
+            background: get-color("mainBrand");
+
+            a {
+                padding-block: $space-sm;
+                padding-inline: $space-md;
+                display: inline-block;
+                width: 100%;
+                color: get-color("lightShades");
+                text-decoration: none;
+
+                &:visited {
+                    color: get-color("lightShades", 600);
+                }
+            }
+        }
+    </style>
+</MusicianLayout>

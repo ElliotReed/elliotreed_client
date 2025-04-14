@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
-import BlogPost from "@/layouts/BlogPost.astro";
+import MusicianLayout from "@/layouts/MusicianLayout.astro";
 
 const articles = await getCollection("articles");
 
@@ -11,6 +11,12 @@ const grouped: Record<string, CollectionEntry<"articles">[]> = {};
 
 for (const article of articles) {
     const category = article.data.category;
+
+    // Skip index files (those that don't have a slash in their slug)
+    if (!article.slug.includes("/")) {
+        continue;
+    }
+
     if (!grouped[category]) {
         grouped[category] = [];
     }
@@ -18,13 +24,15 @@ for (const article of articles) {
 }
 ---
 
-<BlogPost title="Articles">
+<MusicianLayout title="Articles">
     <h1>Articles</h1>
 
     {
         Object.entries(grouped).map(([category, items]) => (
             <section>
-                <h2>{category}</h2>
+                <h2>
+                    <a href={`/articles/${category}`}>{category}</a>
+                </h2>
                 <ul>
                     {items.map((article) => (
                         <li>
@@ -38,4 +46,4 @@ for (const article of articles) {
             </section>
         ))
     }
-</BlogPost>
+</MusicianLayout>

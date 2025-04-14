@@ -19,7 +19,7 @@
 
   .error {
     color: get-color("error", 500);
-    font-weight: $fw-lg;
+    font-weight: $fw-xl;
   }
 
   &>*+* {
@@ -31,7 +31,7 @@
   }
 
   & h1 {
-    font-weight: $fw-lg;
+    font-weight: $fw-xl;
     color: get-color("mainBrand");
   }
 

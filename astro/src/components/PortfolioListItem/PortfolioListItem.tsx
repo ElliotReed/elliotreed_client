@@ -1,9 +1,9 @@
-import * as React from "react";
+---
 
-import * as styles from "./portfolio-list-item.module.scss";
-import { GatsbyImage, IGatsbyImageData, getImage } from "gatsby-plugin-image";
+import styles from "./portfolio-list-item.module.scss";
+// import { GatsbyImage, IGatsbyImageData, getImage } from "gatsby-plugin-image";
 import Heading from "../Heading/Heading";
-import Paragraph from "../UI/Paragraph/Paragraph";
+import Paragraph from "./UI/Paragrapph.astro";
 import GoToDetailLink from "../GoToDetailLink";
 
 interface PortfolioListItemNode {
@@ -55,3 +55,5 @@ export default function PortfolioListItem({ node, prefixed = true }: Readonly<Po
     </li>
   );
 }
+
+---

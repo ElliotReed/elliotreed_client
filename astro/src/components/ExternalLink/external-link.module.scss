@@ -2,7 +2,7 @@
 
 .external-link {
   color: get-color("mainBrand", 400);
-  font-weight: $fw-lg;
+  font-weight: $fw-xl;
 
   @include respond-to("lg") {
     text-decoration: none;

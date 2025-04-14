@@ -1,7 +1,7 @@
 ---
 title: "Style"
 description: "Cakewalk style"
-pubDate: 2025-04-06
+publishedDate: 2025-04-06
 category: "cakewalk"
 tags: ["daw", "recording"]
 ---

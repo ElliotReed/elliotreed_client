@@ -1,0 +1,59 @@
+---
+export interface Breadcrumb {
+    label: string;
+    href: string;
+}
+
+const { items = [] }: { items?: Breadcrumb[] } = Astro.props;
+---
+
+<nav aria-label="breadcrumb" class="text-sm text-gray-600">
+    <ul class="flex space-x-2">
+        <li>
+            <span>/</span>
+            <a href="/" class="text-blue-600 hover:underline">home</a>
+        </li>
+        {
+            items.map((item, i) => (
+                <li class="flex items-center">
+                    <span>/</span>
+                    <a href={item.href} class="text-blue-600 hover:underline">
+                        {item.label}
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</nav>
+
+<style lang="scss">
+    @use "@/styles/abstracts" as *;
+    nav {
+        margin-block: $space-md;
+        font-size: $fs-sm-em;
+        color: get-color("lightShades", 600);
+        a {
+            border-radius: $border-radius;
+            background: get-color("lightShades", 100);
+            padding-inline: em-scale(100);
+            cursor: pointer;
+            color: get-color("mainBrand", 600);
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+    ul {
+        padding: 0;
+        display: flex;
+    }
+    li {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        span {
+            color: get-color("lightShades", 900);
+        }
+    }
+</style>

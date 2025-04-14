@@ -1,0 +1,53 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import MusicianLayout from "@/layouts/MusicianLayout.astro";
+
+export async function getStaticPaths() {
+    const allPosts = await getCollection("singing");
+
+    // Only consider posts whose slug contains a "/" (i.e. has category and a non-index slug part)
+    const filteredPosts = allPosts.filter((entry: CollectionEntry<"singing">) =>
+        entry.slug.includes("/"),
+    );
+
+    return filteredPosts.map((entry: CollectionEntry<"singing">) => {
+        const [category, slug] = entry.slug.split("/");
+
+        return {
+            params: { category, slug },
+            props: { entry },
+        };
+    });
+}
+
+// Get the article from props
+interface Props {
+    entry: CollectionEntry<"singing">;
+}
+
+const { entry } = Astro.props as { entry: CollectionEntry<"singing"> };
+const { Content } = await entry.render();
+
+const { category, slug } = Astro.params;
+
+const breadcrumbItems = [
+    { label: "singing", href: "/singing" },
+    { label: category, href: `/singing/${category}` },
+    { label: slug, href: `/singing/${category}/${slug}` },
+];
+---
+
+<MusicianLayout
+    title="Singing"
+    description="A collection of singing-related articles and resources."
+>
+    <article>
+        <Breadcrumbs items={breadcrumbItems} />
+        <h1>{entry.data.title}</h1>
+        <p><em>{entry.data.publishedDate.toDateString()}</em></p>
+        <Content />
+    </article>
+</MusicianLayout>

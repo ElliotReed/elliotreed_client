@@ -1,7 +1,7 @@
 ---
 title: "Instruments"
 description: "Midi instrument tips."
-pubDate: 2025-04-06
+publishedDate: 2025-04-06
 category: "midi"
 tags: ["daw", "recording"]
 ---

@@ -1,4 +1,12 @@
-# Vocal Fry
+---
+title: "Vocal Fry"
+description: "Here are some vocal fry warm-up exercises."
+publishedDate: 2025-04-06
+category: "exercises"
+tags: ["exercises", "vocal fry"]
+---
+
+# 
 
 ChatGPT
 
