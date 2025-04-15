@@ -1,0 +1,32 @@
+---
+
+---
+
+<div class="card">
+    <header>
+        <slot name="header" />
+    </header>
+
+    <div class="content">
+        <slot name="content" />
+    </div>
+</div>
+
+<style lang="scss">
+    @use "@/styles/abstracts" as *;
+
+    .card {
+        display: grid;
+        grid-template-rows: auto auto;
+        gap: $space-md;
+        border: $border;
+        border-radius: $border-radius;
+        color: get-color("darkShades");
+        background: get-color("lightShades", 400);
+        @include shadow(2);
+
+        .content {
+            margin-inline: $space-md;
+        }
+    }
+</style>

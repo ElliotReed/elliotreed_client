@@ -1,0 +1,13 @@
+  @use "@/styles/abstracts" as *;
+
+  .backButton {
+      @include padding-box();
+      color: get-color("lightShades");
+      font-weight: bold;
+      background: get-color("darkShades");
+      border-radius: $border-radius;
+
+      &:hover {
+          cursor: pointer;
+      }
+  }

@@ -1,5 +1,3 @@
----
-
 import styles from "./portfolio-list-item.module.scss";
 // import { GatsbyImage, IGatsbyImageData, getImage } from "gatsby-plugin-image";
 import Heading from "../Heading/Heading";
@@ -55,5 +53,3 @@ export default function PortfolioListItem({ node, prefixed = true }: Readonly<Po
     </li>
   );
 }
-
----

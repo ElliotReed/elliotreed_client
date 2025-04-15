@@ -1,0 +1,17 @@
+---
+import Heading from "@/components/Heading";
+import MaxWidthContainer from "@/components/UI/MaxWidthContainer.astro";
+import Paragraph from "@/components/UI/Paragraph.astro";
+import BackButton from "@/components/BackButton/BackButton";
+import MusicianLayout from "@/layouts/MusicianLayout.astro";
+---
+
+<MusicianLayout>
+  <MaxWidthContainer>
+    <Heading level={1} color="light">NOT FOUND</Heading>
+    <Paragraph>
+      You just hit a route that doesn't exist...the sadness 😢.
+    </Paragraph>
+    <BackButton client:load />
+  </MaxWidthContainer>
+</MusicianLayout>
