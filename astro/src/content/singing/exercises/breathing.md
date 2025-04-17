@@ -1,7 +1,8 @@
 ---
+author: "Elliot Reed"
 category: "exercises"
 cover: "./_cover_breathing.jpg"
-coverLicense: "https://www.deviantart.com/however-improbable"
+coverCredit: "https://www.deviantart.com/however-improbable"
 description: "Breathing Exercises"
 publishedDate: 2025-04-06
 title: "Breathing"

@@ -54,7 +54,7 @@ const breadcrumbItems = [
         {
             posts.map((post) => (
                 <li>
-                    <Card>
+                    <Card href={`/singing/${post.slug}`}>
                         {post.data.cover && (
                             <Image
                                 class="cover"
@@ -65,9 +65,7 @@ const breadcrumbItems = [
                             />
                         )}
                         <Fragment slot="content" class="content">
-                            <a href={`/singing/${post.slug}`}>
-                                {post.data.title}
-                            </a>
+                            <Heading level={2}>{post.data.title}</Heading>
                             <Paragraph size="sm">
                                 {post.data.description}
                             </Paragraph>

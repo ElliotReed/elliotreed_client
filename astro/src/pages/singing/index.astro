@@ -8,7 +8,6 @@ import Paragraph from "@/components/UI/Paragraph.astro";
 import MaxWidthContainer from "@/components/UI/MaxWidthContainer.astro";
 import Card from "@/components/UI/Card.astro";
 import Heading from "@/components/Heading/Heading";
-import { Head } from "../performances";
 
 const articles = await getCollection("singing");
 
@@ -39,15 +38,17 @@ for (const article of articles) {
         <Heading level={1}>Singing</Heading>
         {
             Object.entries(grouped).map(([category, items]) => (
-                <section>
+                <section class="category">
                     <Heading level={2}>
-                        <a href={`/singing/${category}`}>{category}</a>
+                        <a class="category-link" href={`/singing/${category}`}>
+                            {category}
+                        </a>
                     </Heading>
 
                     <ul>
                         {items.map((article) => (
                             <li>
-                                <Card>
+                                <Card href={`/singing/${article.slug}`}>
                                     {article.data.cover && (
                                         <Image
                                             class="cover"
@@ -58,12 +59,12 @@ for (const article of articles) {
                                         />
                                     )}
                                     <Fragment slot="content" class="content">
-                                        <a href={`/singing/${article.slug}`}>
+                                        <Heading level={3}>
                                             {article.data.title}
-                                            <Paragraph size="sm">
-                                                {article.data.description}
-                                            </Paragraph>
-                                        </a>
+                                        </Heading>
+                                        <Paragraph size="sm">
+                                            {article.data.description}
+                                        </Paragraph>
                                     </Fragment>
                                 </Card>
                             </li>
@@ -76,8 +77,8 @@ for (const article of articles) {
 
     <style lang="scss">
         @use "@/styles/abstracts" as *;
-        section {
-            background: get-color("lightShades", 400);
+        .category {
+            background: get-color("lightShades", 300);
             border-radius: $border-radius;
             @include padding-box("sm");
             @include shadow(1);
@@ -85,9 +86,7 @@ for (const article of articles) {
                 margin-block: $space-lg;
             }
 
-            a {
-                padding-block: $space-sm;
-                padding-inline: $space-md;
+            .category-link {
                 display: inline-block;
                 width: 100%;
                 color: inherit;
@@ -97,14 +96,23 @@ for (const article of articles) {
                 }
             }
         }
+
         ul {
             display: grid;
+            padding-inline-start: $space-sm;
             grid-template-columns: repeat(
                 auto-fill,
                 minmax(px-to-rem(300), 1fr)
             );
             gap: $space-md;
             list-style: none;
+        }
+
+        .cover {
+            width: 100%;
+            height: 12em;
+            object-fit: cover;
+            aspect-ratio: 16 / 9;
         }
     </style>
 </MusicianLayout>

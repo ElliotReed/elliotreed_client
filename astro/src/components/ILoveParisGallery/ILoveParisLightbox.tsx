@@ -1,7 +1,7 @@
 import * as React from "react";
-import { graphql, useStaticQuery } from "gatsby";
+// import { graphql, useStaticQuery } from "gatsby";
 
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+// import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Lightbox from "yet-another-react-lightbox";
 
 import ILoveParisGallery from "./ILoveParisGallery";
@@ -15,34 +15,34 @@ interface ParisImageProps {
 
 function ParisImage({ slide }: Readonly<ParisImageProps>) {
   return (
-    <GatsbyImage
-      image={getImage(slide)}
-      alt=""
-      className={styles.lightboxImage}
-    />
+    // <GatsbyImage
+    //   image={getImage(slide)}
+    //   alt=""
+    //   className={styles.lightboxImage}
+    // />
   );
 }
 
 export default function ILoveParisLightbox() {
   const [isOpen, setIsOpen] = React.useState(false)
-  const data = useStaticQuery(
-    graphql`
-      query {
-        allFile(filter: {sourceInstanceName: {eq: "ILoveParisGallery"}}) {
-          totalCount
-          nodes {
-            name
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-        }
-      }
-    `
-  );
-  const slides = data.allFile.nodes.map(node => {
-    return { ...node, type: "custom-slide" }
-  }).filter(node => node.childImageSharp);
+  // const data = useStaticQuery(
+  //   graphql`
+  //     query {
+  //       allFile(filter: {sourceInstanceName: {eq: "ILoveParisGallery"}}) {
+  //         totalCount
+  //         nodes {
+  //           name
+  //           childImageSharp {
+  //             gatsbyImageData
+  //           }
+  //         }
+  //       }
+  //     }
+  //   `
+  // );
+  // const slides = data.allFile.nodes.map(node => {
+  //   return { ...node, type: "custom-slide" }
+  // }).filter(node => node.childImageSharp);
 
 
 

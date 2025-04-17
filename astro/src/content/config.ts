@@ -15,13 +15,14 @@ const articles = defineCollection({
 const singing = defineCollection({
     type: "content",
     schema: ({ image }) => z.object({
+        author: z.string().optional(),
         category: z.string(),
         description: z.string(),
         publishedDate: z.date(),
         tags: z.array(z.string()),
         title: z.string(),
         cover: image().optional(),
-        coverLicense: z.string().optional(),
+        coverCredit: z.string().optional(),
     }),
 });
 

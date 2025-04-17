@@ -7,6 +7,7 @@ import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import MusicianLayout from "@/layouts/MusicianLayout.astro";
 import Heading from "@/components/Heading/Heading";
 import MaxWidthContainer from "@/components/UI/MaxWidthContainer.astro";
+import Paragraph from "@/components/UI/Paragraph.astro";
 
 export async function getStaticPaths() {
     const allPosts = await getCollection("singing");
@@ -48,29 +49,80 @@ const breadcrumbItems = [
     description="A collection of singing-related articles and resources."
 >
     <Breadcrumbs items={breadcrumbItems} />
-    {
-        entry.data.cover && (
-            <Image
-                class="cover"
-                src={entry.data.cover}
-                alt={entry.data.title}
-                layout="full-width"
-            />
-        )
-    }
-    <Heading level={1}>{entry.data.title}</Heading>
+    <div class="layout-grid__prefered-width">
+        <figure class="">
+            {
+                entry.data.cover && (
+                    <Image
+                        class="cover"
+                        src={entry.data.cover}
+                        alt={entry.data.title}
+                        layout="full-width"
+                    />
+                )
+            }
+            <figcaption>
+                <a href={entry.data.coverCredit}>
+                    <em>Image Credit:</em>
+                    {entry.data.coverCredit}
+                </a>
+            </figcaption>
+        </figure>
 
-    <p><em>{entry.data.publishedDate.toDateString()}</em></p>
-    <Content />
+        <header class="">
+            <Heading level={1}>{entry.data.title}</Heading>
+            <span class="author"><em>by </em>{entry.data.author}</span>
+            <span class="published-date"
+                ><em>{entry.data.publishedDate.toDateString()}</em></span
+            >
+        </header>
+
+        <Content />
+    </div>
 </MusicianLayout>
 
 <style lang="scss">
     @use "@/styles/abstracts" as *;
 
+    figure {
+        margin: 0;
+        figcaption {
+            background: get-color("lightShades", 300);
+            a {
+                color: inherit;
+                @include padding-box("sm");
+                display: inline-block;
+                word-wrap: break-word; /* For legacy support */
+                word-break: break-word; /* Break long words */
+                overflow-wrap: anywhere; /* Best modern solution */
+                white-space: normal; /* Allow wrapping */
+                &:visited {
+                    color: inherit;
+                }
+            }
+        }
+    }
     .cover {
-        width: 100%;
-        height: 100%;
+        // width: 100%;
+        // max-height: 50%;
         object-fit: cover;
-        aspect-ratio: 16 /9;
+        object-position: center;
+        aspect-ratio: 16 / 9;
+    }
+
+    header {
+        .author {
+            display: block;
+            font-weight: $fw-lg;
+            em {
+                font-weight: $fw-md;
+                font-size: $fs-sm-rem;
+            }
+        }
+        .published-date {
+            margin-block-start: -$space-sm;
+            font-size: $fs-sm-rem;
+            color: get-color("darkShades", 500);
+        }
     }
 </style>
