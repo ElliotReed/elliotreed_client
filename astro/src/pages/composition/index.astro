@@ -10,10 +10,10 @@ import Card from "@/components/UI/Card.astro";
 import Heading from "@/components/Heading/Heading";
 import TagList from "@/components/TagList.astro";
 
-const articles = await getCollection("singing");
+const articles = await getCollection("composition");
 
 // Create a typed map: Record<string, CollectionEntry<"articles">[]>
-const grouped: Record<string, CollectionEntry<"singing">[]> = {};
+const grouped: Record<string, CollectionEntry<"composition">[]> = {};
 
 for (const article of articles) {
     const category = article.data.category;
@@ -32,11 +32,11 @@ for (const article of articles) {
 ---
 
 <MusicianLayout
-    title="Singing"
+    title="Composition and Arrangement"
     description="A collection of singing-related articles and resources."
 >
     <MaxWidthContainer>
-        <Heading level={1}>Singing</Heading>
+        <Heading level={1}>Composition and Arrangement</Heading>
 
         <TagList />
 
@@ -44,7 +44,10 @@ for (const article of articles) {
             Object.entries(grouped).map(([category, items]) => (
                 <section class="category">
                     <Heading level={2}>
-                        <a class="category-link" href={`/singing/${category}`}>
+                        <a
+                            class="category-link"
+                            href={`/composition/${category}`}
+                        >
                             {category}
                         </a>
                     </Heading>
@@ -52,7 +55,7 @@ for (const article of articles) {
                     <ul>
                         {items.map((article) => (
                             <li>
-                                <Card href={`/singing/${article.slug}`}>
+                                <Card href={`/composition/${article.slug}`}>
                                     {article.data.cover && (
                                         <Image
                                             class="cover"

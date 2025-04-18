@@ -1,14 +1,73 @@
 import { defineCollection, z, } from "astro:content";
 import { glob } from "astro/loaders";
 
-const articles = defineCollection({
+const projects = defineCollection({
     type: "content",
-    schema: z.object({
-        title: z.string(),
-        description: z.string(),
+    schema: ({ image }) => z.object({
+        author: z.string().optional(),
         category: z.string(),
+        description: z.string(),
         publishedDate: z.date(),
         tags: z.array(z.string()),
+        title: z.string(),
+        cover: image().optional(),
+        coverCredit: z.string().optional(),
+    }),
+});
+
+const composition = defineCollection({
+    type: "content",
+    schema: ({ image }) => z.object({
+        author: z.string().optional(),
+        category: z.string(),
+        description: z.string(),
+        publishedDate: z.date(),
+        tags: z.array(z.string()),
+        title: z.string(),
+        cover: image().optional(),
+        coverCredit: z.string().optional(),
+    }),
+});
+
+const guitar = defineCollection({
+    type: "content",
+    schema: ({ image }) => z.object({
+        author: z.string().optional(),
+        category: z.string(),
+        description: z.string(),
+        publishedDate: z.date(),
+        tags: z.array(z.string()),
+        title: z.string(),
+        cover: image().optional(),
+        coverCredit: z.string().optional(),
+    }),
+});
+
+const notation = defineCollection({
+    type: "content",
+    schema: ({ image }) => z.object({
+        author: z.string().optional(),
+        category: z.string(),
+        description: z.string(),
+        publishedDate: z.date(),
+        tags: z.array(z.string()),
+        title: z.string(),
+        cover: image().optional(),
+        coverCredit: z.string().optional(),
+    }),
+});
+
+const recording = defineCollection({
+    type: "content",
+    schema: ({ image }) => z.object({
+        author: z.string().optional(),
+        category: z.string(),
+        description: z.string(),
+        publishedDate: z.date(),
+        tags: z.array(z.string()),
+        title: z.string(),
+        cover: image().optional(),
+        coverCredit: z.string().optional(),
     }),
 });
 
@@ -26,12 +85,11 @@ const singing = defineCollection({
     }),
 });
 
-const flyers = defineCollection({
-    loader: glob({ pattern: "**/*.html", base: "./src/content/flyers" }),
-});
-
 export const collections = {
-    articles,
+    projects,
+    composition,
+    guitar,
+    notation,
+    recording,
     singing,
-    flyers,
 };
