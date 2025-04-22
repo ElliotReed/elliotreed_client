@@ -7,17 +7,16 @@ import { osm } from "pigeon-maps/lib/providers.cjs.js";
 
 import TwoColumnGrid from "@/components/UI/TwoColumnGrid";
 import ContactForm from "@/components/ContactForm";
-import ExternalLink from "@/components/ExternalLink";
+import ExternalLink from "@/components/ExternalLink.astro";
 import Heading from "@/components/Heading";
 import Paragraph from "@/components/UI/Paragraph.astro";
-import MaxWidthContainer from "@/components/UI/MaxWidthContainer.astro";
 // const noteGuitar = new URL("@/images/hero/made-of-notes.svg", import.meta.url)
 //     .href;
 
 import Pick from "@/images/decorative/pick.svg";
 import Triangle from "@/images/hero/triangle.svg";
 
-import MusicianLayout from "@/layouts/MusicianLayout.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
 
 import slatteryImage from "./slattery_jwm.jpg";
 import ellieDaddyImage from "./ellie-daddy-lesson.jpg";
@@ -28,11 +27,11 @@ import styles from "./lessons.module.scss";
                 [Facebook] [Twitter] [Instagram] [YouTube] */
 ---
 
-<MusicianLayout
+<MainLayout
     title="Guitar Lessons"
     description="Are you ready to elevate your guitar playing to new heights? Look no further! I am a seasoned guitar virtuoso with 35+ years of experience, and I am here to guide you on your musical journey. Whether you're a beginner looking to strum your first chords or an advanced player seeking to refine your technique, I offer personalized lessons that cater to your skill level and musical aspirations."
 >
-    <div class={styles.hero}>
+    <div class:list={[styles.hero, "layout-grid__full-width"]}>
         <svg
             class={styles.triangle}
             id="triangle"
@@ -73,11 +72,12 @@ import styles from "./lessons.module.scss";
     <!-- {/* <PickPart id={styles["pick"]} /> */} -->
     <!-- {/* <Levels /> */} -->
 
-    <MaxWidthContainer>
+    <div class="layout-grid__prefered-width">
         <TwoColumnGrid smallSide="left" className={styles.lgBottom}>
             <Image
                 class={styles.introImage}
                 src={slatteryImage}
+                layout="responsive"
                 alt="Elliot Reed sitting, playing Epiphone guitar in Slattery's nightclub,"
             />
 
@@ -91,32 +91,29 @@ import styles from "./lessons.module.scss";
                 level and musical aspirations.
             </Paragraph>
         </TwoColumnGrid>
+    </div>
 
-        <Heading level={2} size={3}>I Offer</Heading>
-    </MaxWidthContainer>
+    <Heading level={2} size={3}>I Offer</Heading>
 
-    <ul class={styles.reasonList}>
-        <li>
-            <MaxWidthContainer>
-                <Heading level={3} size={4}>Expertise:</Heading>
-                <Paragraph>
-                    With 35+ years of playing and teaching experience, I bring a
-                    wealth of knowledge and expertise to every lesson. I have
-                    honed my skills through years of performing and instructing,
-                    and I am dedicated to helping you achieve your musical
-                    goals.
-                </Paragraph>
-                <ExternalLink
-                    to="https://open.spotify.com/artist/3ZJrLqiSpAZueYPclk65Cl?si=SvjEqUhZRNylCPcb1q8HAQ"
-                >
-                    <FontAwesomeIcon icon={faSpotify} /> Gypsy Swing Revue on Spotify
-                </ExternalLink>
-            </MaxWidthContainer>
+    <ul class:list={[styles.reasonList, "layout-grid__prefered-width"]}>
+        <li class="layout-grid__prefered-width">
+            <Heading level={3} size={4}>Expertise:</Heading>
+            <Paragraph>
+                With 35+ years of playing and teaching experience, I bring a
+                wealth of knowledge and expertise to every lesson. I have honed
+                my skills through years of performing and instructing, and I am
+                dedicated to helping you achieve your musical goals.
+            </Paragraph>
+            <ExternalLink
+                to="https://open.spotify.com/artist/3ZJrLqiSpAZueYPclk65Cl?si=SvjEqUhZRNylCPcb1q8HAQ"
+            >
+                <FontAwesomeIcon icon={faSpotify} /> Gypsy Swing Revue on Spotify
+            </ExternalLink>
         </li>
     </ul>
 
-    <div class={styles.genreList}>
-        <MaxWidthContainer>
+    <div class:list={[styles.genreList, "layout-grid layout-grid__full-width"]}>
+        <div class="layout-grid__prefered-width">
             <span> I've performed professionally in these styles: </span>
 
             <ul>
@@ -131,10 +128,10 @@ import styles from "./lessons.module.scss";
                 <li>Theater</li>
                 <li>Classical</li>
             </ul>
-        </MaxWidthContainer>
+        </div>
     </div>
 
-    <MaxWidthContainer>
+    <div class="layout-grid__prefered-width">
         <ul class={styles.reasonList}>
             <li>
                 <Heading level={3} size={4}>Personalized Lessons:</Heading>
@@ -237,34 +234,34 @@ import styles from "./lessons.module.scss";
                             </li>
                         </ul>
                     </div>
+                </TwoColumnGrid>
 
-                    <TwoColumnGrid smallSide="right">
-                        <Paragraph size="sm">
-                            <em>
-                                Between <strong>Santa Fe Dr</strong> and <strong
-                                    >University Blvd</strong
-                                >, <strong>Littleton Blvd</strong> and <strong
-                                    >County Line Rd</strong
-                                >, additional charges for greater distances.
-                            </em>
-                        </Paragraph>
+                <TwoColumnGrid smallSide="right">
+                    <Paragraph size="sm">
+                        <em>
+                            Between <strong>Santa Fe Dr</strong> and <strong
+                                >University Blvd</strong
+                            >, <strong>Littleton Blvd</strong> and <strong
+                                >County Line Rd</strong
+                            >, additional charges for greater distances.
+                        </em>
+                    </Paragraph>
 
-                        <div class={styles.map}>
-                            <Map
-                                client:only="react"
-                                provider={osm}
-                                height={200}
-                                defaultCenter={[39.5907927, -104.9968363]}
-                                defaultZoom={12}
-                            />
-                        </div>
-                    </TwoColumnGrid>
+                    <div class={styles.map}>
+                        <Map
+                            client:only="react"
+                            provider={osm}
+                            height={200}
+                            defaultCenter={[39.5907927, -104.9968363]}
+                            defaultZoom={12}
+                        />
+                    </div>
                 </TwoColumnGrid>
             </li>
         </ul>
-    </MaxWidthContainer>
+    </div>
 
-    <MaxWidthContainer>
+    <div class="layout-grid__prefered-width">
         <Heading level={3} size={4}>Contact Me:</Heading>
         <Paragraph>
             Ready to embark on your musical journey? Contact me to schedule your
@@ -280,5 +277,5 @@ import styles from "./lessons.module.scss";
         <Paragraph>
             Don't just <em>play</em> the guitar – <strong>master</strong> it!
         </Paragraph>
-    </MaxWidthContainer>
-</MusicianLayout>
+    </div>
+</MainLayout>

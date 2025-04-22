@@ -1,7 +1,6 @@
 ---
-import MusicianNavbar from "./Navbar_Musician.astro";
-import Header from "./SiteHeader.astro";
-import Footer from "./SiteFooter.astro";
+import SiteHeader from "./SiteHeader.astro";
+import SiteFooter from "./SiteFooter.astro";
 
 import BaseLayout from "./BaseLayout.astro";
 
@@ -10,14 +9,12 @@ const { title, description } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-  <Header type={type}>
-    <MusicianNavbar />
-  </Header>
+  <SiteHeader type={type} />
 
   <main class="layout-grid">
     <slot />
   </main>
-  <Footer type={type} />
+  <SiteFooter type={type} />
 </BaseLayout>
 
 <style lang="scss"></style>

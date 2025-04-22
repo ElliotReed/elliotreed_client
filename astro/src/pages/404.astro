@@ -3,10 +3,10 @@ import Heading from "@/components/Heading";
 import MaxWidthContainer from "@/components/UI/MaxWidthContainer.astro";
 import Paragraph from "@/components/UI/Paragraph.astro";
 import BackButton from "@/components/BackButton/BackButton";
-import MusicianLayout from "@/layouts/MusicianLayout.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
 ---
 
-<MusicianLayout>
+<MainLayout>
   <MaxWidthContainer>
     <Heading level={1} color="light">NOT FOUND</Heading>
     <Paragraph>
@@ -14,4 +14,4 @@ import MusicianLayout from "@/layouts/MusicianLayout.astro";
     </Paragraph>
     <BackButton client:load />
   </MaxWidthContainer>
-</MusicianLayout>
+</MainLayout>

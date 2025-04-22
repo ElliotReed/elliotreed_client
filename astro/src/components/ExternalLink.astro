@@ -1,0 +1,39 @@
+---
+interface Props {
+  to: string;
+  target?: "_self" | "_blank";
+}
+
+const { to, target } = Astro.props;
+---
+
+<a class="external-link" href={to} target={target}>
+  <slot />
+</a>
+
+<style lang="scss">
+  @use "@/styles/abstracts" as *;
+
+  .external-link {
+    display: inline-flex;
+    gap: $space-md;
+    align-items: center;
+    color: get-color("mainBrand", 400);
+    font-weight: $fw-xl;
+
+    @include respond-to("lg") {
+      text-decoration: none;
+    }
+
+    &:focus,
+    &:hover {
+      color: get-color("mainBrand", 600);
+      text-decoration: underline;
+    }
+
+    &:visited {
+      font-weight: $fw-md;
+      color: get-color("mainBrand", 300);
+    }
+  }
+</style>

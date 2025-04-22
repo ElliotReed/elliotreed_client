@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import classnames from "classnames";
 import aboutMeImage from "./about-me.jpg";
 
-import MusicianLayout from "@/layouts/MusicianLayout.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
 
 // import BandLink from "@/components/BandLink/";
 import ExternalLink from "@/components/ExternalLink";
@@ -12,6 +12,7 @@ import Paragraph from "@/components/UI/Paragraph.astro";
 // import Seo from "@/components/SEO/Seo";
 
 import styles from "./about.module.scss";
+import NavigationHeaderLink from "@/components/NavigationHeaderLink.astro";
 
 // interface AboutMusicianData {
 //   allMdx: {
@@ -63,7 +64,7 @@ import styles from "./about.module.scss";
 // const puppiesWithGuns = getBandNode("Puppies With Guns");
 ---
 
-<MusicianLayout title="About Me">
+<MainLayout title="About Me">
   <div
     class={classnames(styles.introductionContainer, "layout-grid__full-width")}
   >
@@ -105,6 +106,8 @@ import styles from "./about.module.scss";
 
     <Heading level={2}>History</Heading>
 
+    <NavigationHeaderLink to="/projects">Projects</NavigationHeaderLink>
+
     <Paragraph>
       After living in Albuquerque, New Mexico, I decided to move to Denver to
       start an authentic gypsy jazz group:
@@ -122,4 +125,4 @@ import styles from "./about.module.scss";
       <!-- <BandLink node={puppiesWithGuns} /> -->
     </Paragraph>
   </div>
-</MusicianLayout>
+</MainLayout>

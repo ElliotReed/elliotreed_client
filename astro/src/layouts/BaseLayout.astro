@@ -1,8 +1,10 @@
 ---
 import "@/styles/index.scss";
+import { ClientRouter } from "astro:transitions";
 
+const defaultTitle = "Elliot Reed Music";
 const {
-	title = "Elliot Reed Music",
+	title = defaultTitle,
 	description = "Elliot Reed Music, I arrange, compose, perform and teach music. Guitar, bass, and theory lessons available",
 } = Astro.props;
 ---
@@ -10,6 +12,7 @@ const {
 <!doctype html>
 <html lang="en-US">
 	<head>
+		<!-- <ClientRouter /> -->
 		<meta name="author" content="Elliot Reed" />
 		<meta name="description" content={description} />
 		<meta charset="UTF-8" />
@@ -17,7 +20,13 @@ const {
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="manifest" href="/manifest.webmanifest" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<title>
+			{
+				title === defaultTitle
+					? defaultTitle
+					: `${title} | ${defaultTitle}`
+			}
+		</title>
 	</head>
 	<body>
 		<slot />

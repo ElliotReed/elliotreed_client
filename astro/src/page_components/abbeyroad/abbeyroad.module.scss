@@ -11,12 +11,12 @@
 }
 
 .setWrapper {
-  color: get-color("lightShades");
+  margin-block-end: $space-md;
   padding: $space-md;
+  color: get-color("lightShades");
+  @include shadow(1);
   background: get-color("darkShades");
   border-radius: $border-radius;
-  @include shadow(1);
-  margin-block-end: $space-md;
 
   hr {
     border: none;

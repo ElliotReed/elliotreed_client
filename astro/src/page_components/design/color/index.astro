@@ -1,0 +1,37 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+
+import ColorGrid from "./ColorGrid.astro";
+
+import styles from "./colors.module.scss";
+
+const colors = [
+    "light",
+    "dark",
+    "mainBrand",
+    "darkShades",
+    "lightShades",
+    "error",
+    "info",
+    "success",
+    "warning",
+    "white",
+    "black",
+    "neutral",
+];
+---
+
+<MainLayout>
+    <h1>Colors</h1>
+
+    <div class={styles.colorContainer}>
+        {
+            colors.map((color, i) => (
+                // <li key={i}>{color}</li>
+                <Fragment key={color}>
+                    <ColorGrid color={color} />
+                </Fragment>
+            ))
+        }
+    </div>
+</MainLayout>

@@ -10,9 +10,9 @@
   @include shadow(1);
   z-index: 10;
 
-  &>*:not(:last-child) {
-    margin: em-scale(100) em-scale(500);
-  }
+  // &>*:not(:last-child) {
+  //   margin: em-scale(100) em-scale(500);
+  // }
 }
 
 .navBrand {
@@ -20,6 +20,7 @@
   align-items: center;
   flex-wrap: nowrap;
   gap: $space-sm;
+  margin-inline: $space-md;
 
   & a {
     text-decoration: none;
@@ -44,19 +45,3 @@
     font-size: $fs-md-em;
   }
 }
-
-// #region aspect //
-.aspect {
-  display: inline-block;
-  margin-left: $space-sm;
-  @include padding-box("xs");
-  color: $body-text;
-  font-size: $fs-sm-em;
-  font-style: italic;
-  font-weight: normal;
-  text-align: center;
-  background-color: get-color("lightShades", 300);
-  border-radius: $border-radius;
-}
-
-// #endregion

@@ -5,6 +5,7 @@
 
 /* #region Variables */
 :root {
+  color-scheme: dark;
   @include typography.fonts();
 
   & {
@@ -24,6 +25,8 @@ html {
   box-sizing: border-box;
   font-family: config.$body-font-family;
   line-height: config.$line-height;
+  // scrollbar-gutter: stable;
+  scroll-behavior: smooth;
 }
 
 // added in normalize

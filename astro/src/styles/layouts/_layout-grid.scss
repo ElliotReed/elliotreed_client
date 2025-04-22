@@ -1,11 +1,11 @@
 @use "@/styles/abstracts" as *;
 
 .layout-grid {
-    $gutter-to-prefered-width: minmax(0, auto);
-    $prefered-width-to-center: minmax(0, calc($max-width / 2));
+    $_gutter-to-prefered-width: minmax(0, auto);
+    $_prefered-width-to-center: minmax(0, calc($max-width / 2));
     display: grid;
     grid-template-columns:
-        [start] em-scale(500) [gutter-start] $gutter-to-prefered-width [prefered-width-start] $prefered-width-to-center [center] $prefered-width-to-center [prefered-width-end] $gutter-to-prefered-width [gutter-end] em-scale(500) [end];
+        [start] em-scale(500) [gutter-start] $_gutter-to-prefered-width [prefered-width-start] $_prefered-width-to-center [center] $_prefered-width-to-center [prefered-width-end] $_gutter-to-prefered-width [gutter-end] em-scale(500) [end];
     grid-auto-rows: min-content;
 
     &>* {

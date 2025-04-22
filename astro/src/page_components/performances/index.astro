@@ -1,15 +1,15 @@
 ---
-import MusicianLayout from "@/layouts/MusicianLayout.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
 import MaxWidthContainer from "@/components/UI/MaxWidthContainer.astro";
 
 import styles from "./performances.module.scss";
 ---
 
-<MusicianLayout>
+<MainLayout>
   <MaxWidthContainer>
     <section class={styles.header}>
       <h1>Performance Page</h1>
       <p>No performances scheduled currently.</p>
     </section>
   </MaxWidthContainer>
-</MusicianLayout>
+</MainLayout>

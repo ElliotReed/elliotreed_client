@@ -1,17 +1,38 @@
 ---
-import styles from "./navigation-header-link.module.scss";
-
-// interface NavigationHeaderLink {
-//   to: string;
-//   children: React.ReactNode;
-// }
 const currentPath = Astro.url.pathname;
-const activeClassName = styles.navigationHeaderLinkActive;
 const { to } = Astro.props;
-const linkClassName =
-    currentPath === to ? activeClassName : styles.navigationHeaderLink;
+const isActive = currentPath === to ? "active" : null;
 ---
 
-<a href={to} class={styles.navigationHeaderLink}>
+<a href={to} class:list={["navigation-header-link", isActive]}>
     <slot />
 </a>
+
+<style lang="scss">
+    @use "@/styles/abstracts" as *;
+
+    .navigation-header-link {
+        display: block;
+        width: 100%;
+        color: get-color("mainBrand");
+        font-weight: $fw-md;
+        line-height: 1;
+        text-decoration: none;
+        @include padding-box("md");
+        white-space: nowrap;
+
+        &:visited {
+            color: inherit;
+        }
+
+        &:hover {
+            color: get-color("lightShades");
+            background: get-color("darkShades", 300);
+        }
+
+        &.active {
+            color: get-color("lightShades");
+            background: get-color("darkShades", 300);
+        }
+    }
+</style>

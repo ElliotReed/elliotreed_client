@@ -1,10 +1,10 @@
 ---
 import ProfileHeader from "@/components/ProfileHeader.astro";
-import MusicianLayout from "@/layouts/MusicianLayout.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
 import Paragraph from "@/components/UI/Paragraph.astro";
 ---
 
-<MusicianLayout>
+<MainLayout>
   <ProfileHeader type="musician" />
   <div class="blurb layout-grid__centered">
     <Paragraph>
@@ -12,7 +12,7 @@ import Paragraph from "@/components/UI/Paragraph.astro";
       music.
     </Paragraph>
   </div>
-</MusicianLayout>
+</MainLayout>
 
 <style lang="scss">
   @use "@/styles/abstracts" as *;

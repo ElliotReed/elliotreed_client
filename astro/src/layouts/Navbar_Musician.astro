@@ -1,62 +1,31 @@
 ---
-import * as React from "react";
-
 import NavigationHeaderLink from "@/components/NavigationHeaderLink.astro";
-
-import styles from "./navbars.module.scss";
-
-function MusicianNavbar() {
-  const [displayShowList, setDisplayShowList] = React.useState(false);
-
-  const hideDropdownMenu = () => {
-    setDisplayShowList(false);
-  };
-
-  React.useEffect(() => {
-    if (displayShowList) {
-      window.addEventListener("click", hideDropdownMenu);
-    }
-
-    return () => {
-      window.removeEventListener("click", hideDropdownMenu);
-    };
-  }, [displayShowList]);
-
-  const showDropdownMenu = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDisplayShowList(!displayShowList);
-  };
-}
 ---
 
-<nav>
-  <ul class={styles.navList}>
+<nav class="primary-nav">
+  <ul class="primary nav-list">
     <li>
-      <NavigationHeaderLink to="/projects">Projects</NavigationHeaderLink>
+      <NavigationHeaderLink to="#">Blog</NavigationHeaderLink>
+      <ul class="secondary nav-list">
+        <li>
+          <NavigationHeaderLink to="/composition"
+            >Composition</NavigationHeaderLink
+          >
+        </li>
+        <li>
+          <NavigationHeaderLink to="/guitar">Guitar</NavigationHeaderLink>
+        </li>
+        <li>
+          <NavigationHeaderLink to="/notation">Notation</NavigationHeaderLink>
+        </li>
+        <li>
+          <NavigationHeaderLink to="/recording">Recording</NavigationHeaderLink>
+        </li>
+        <li>
+          <NavigationHeaderLink to="/singing">Singing</NavigationHeaderLink>
+        </li>
+      </ul>
     </li>
-    <li>
-      <NavigationHeaderLink to="/composition">Composition</NavigationHeaderLink>
-    </li>
-    <li>
-      <NavigationHeaderLink to="/guitar">Guitar</NavigationHeaderLink>
-    </li>
-    <li>
-      <NavigationHeaderLink to="/notation">Notation</NavigationHeaderLink>
-    </li>
-    <li>
-      <NavigationHeaderLink to="/recording">Recording</NavigationHeaderLink>
-    </li>
-    <li>
-      <NavigationHeaderLink to="/singing">Singing</NavigationHeaderLink>
-    </li>
-    <li>
-      <NavigationHeaderLink to="/abbeyroad">Abbey Road</NavigationHeaderLink>
-    </li>
-    <li>
-      <NavigationHeaderLink to="/design">Design</NavigationHeaderLink>
-    </li>
-
     <li>
       <NavigationHeaderLink to="/about">About</NavigationHeaderLink>
     </li>
@@ -77,31 +46,74 @@ function MusicianNavbar() {
     <li>
       <NavigationHeaderLink to="/contact">Contact</NavigationHeaderLink>
     </li>
-
-    {
-      /* <li className={styles.showListLink}>
-          <button type="button" onClick={showDropdownMenu}>
-            &#8942;
-          </button>
-          <ul
-            className={classnames(styles.showList, {
-              [styles.rollDown]: displayShowList,
-            })}
-          >
-            <li>
-              <p>Show Notes</p>
-            </li>
-            <li>
-              <NavigationHeaderLink
-                to="/musician/abbeyroad"
-                activeClassName={styles.navList__linkActive}
-                className={styles.navList__link}
-              >
-                Abbey Road
-              </NavigationHeaderLink>
-            </li>
-          </ul>
-        </li> */
-    }
+    <li>
+      <NavigationHeaderLink to="/design">Design</NavigationHeaderLink>
+    </li>
+    <li>
+      <NavigationHeaderLink to="">Show Notes</NavigationHeaderLink>
+      <ul class="secondary nav-list">
+        <li>
+          <NavigationHeaderLink to="/abbeyroad">
+            Abbey Road
+          </NavigationHeaderLink>
+        </li>
+      </ul>
+    </li>
   </ul>
 </nav>
+
+<style lang="scss">
+  @use "sass:color";
+  @use "@/styles/abstracts" as *;
+
+  .nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @include respond-to("xs") {
+      flex-wrap: nowrap;
+    }
+
+    .secondary {
+      position: absolute;
+      top: $space-xl;
+      right: 0;
+      display: grid;
+      flex-direction: column;
+      height: 0;
+      width: fit-content;
+      @include shadow(1);
+      background: get-color("lightShades");
+      border-radius: $border-radius;
+      transition: all $duration-md ease-in-out;
+      transition-behavior: allow-discrete;
+      overflow: clip;
+
+      z-index: 1;
+    }
+
+    li {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-width: fit-content;
+      color: get-color("mainBrand");
+
+      // Navigation header link has child that has .active class
+      &:has(li .active) {
+        color: get-color("lightShades");
+        background: get-color("darkShades", 300);
+      }
+
+      &:hover {
+        .secondary {
+          height: auto;
+        }
+      }
+    }
+  }
+</style>
