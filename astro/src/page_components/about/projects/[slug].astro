@@ -1,0 +1,44 @@
+---
+import { Image } from "astro:assets";
+
+import Heading from "@/components/Heading";
+import MaxWidthContainer from "@/components/UI/MaxWidthContainer.astro";
+import Paragraph from "@/components/UI/Paragraph.astro";
+import PhotoCredit from "@/components/PhotoCredit.astro";
+
+import styles from "./projects.module.scss";
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+---
+
+<main class={styles.projects}>
+  <MaxWidthContainer>
+    {
+      project.data.hero_image && (
+        <div class={styles.projects__hero}>
+          <Image
+            src={project.data.hero_image}
+            alt={project.data.hero_image_alt}
+            width={1200}
+            height={600}
+            quality={80}
+          />
+        </div>
+      )
+    }
+
+    <PhotoCredit
+      link={project.data.hero_image_credit_link}
+      text={project.data.hero_image_credit_text}
+    />
+
+    <Heading level={1}>
+      {project.data.title}
+    </Heading>
+
+    <Paragraph>Active: {project.data.active_dates}</Paragraph>
+
+    <Content />
+  </MaxWidthContainer>
+</main>

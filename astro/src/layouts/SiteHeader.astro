@@ -114,14 +114,15 @@ const siteLinks = [
             aria-controls="nav-container"
             aria-expanded="false">open</button
         >
-        <div class="nav-container">
+        <div class="nav-container open">
+            <button
+                class="menu-toggle close"
+                aria-controls="nav-container"
+                aria-expanded="false">Close</button
+            >
             <div class="navbar-container">
-                <button
-                    class="menu-toggle close"
-                    aria-controls="nav-container"
-                    aria-expanded="false">Close</button
-                >
                 <Navbar links={siteLinks} />
+                <div class="seperator"></div>
                 <Navbar links={resourceLinks} />
             </div>
         </div>
@@ -141,9 +142,22 @@ const siteLinks = [
     .menu-toggle {
         margin-block: $space-xs;
         margin-inline: $space-md;
+        background: get-color("darkShades", 500);
+        color: get-color("lightShades", 500);
+        border: none;
+        border-radius: $border-radius;
+        font-size: $fs-md-rem;
+        font-weight: $fw-lg;
+        @include padding-box("sm");
 
         @include respond-to("sm") {
             display: none;
+        }
+
+        &.close {
+            position: absolute;
+            top: 0;
+            right: 0;
         }
     }
 
@@ -154,10 +168,25 @@ const siteLinks = [
         }
     }
 
+    .navbars + .navbars {
+        @include respond-to("sm") {
+            margin-inline: auto;
+            font-size: $fs-md-rem;
+            @include shadow(1);
+        }
+    }
+
+    .seperator {
+        display: block;
+        margin-block: $space-md;
+        margin-inline: $space-md;
+        border-bottom: 3px solid get-color("darkShades", 500);
+    }
+
     .nav-container {
         position: fixed;
         inset: 0;
-        background-color: get-color("dark", 500);
+        background-color: get-color("dark", 600);
         transform: translate(100%, 0);
         transition: transform $duration-md ease-in-out;
         z-index: 200;
@@ -177,10 +206,11 @@ const siteLinks = [
             display: flex;
             flex-direction: column;
             justify-content: center;
+            text-align: right;
             max-width: 66%;
             margin-inline-start: auto;
             height: 100%;
-            background-color: get-color("mainBrand", 100);
+            background-color: get-color("lightShades", 500);
 
             @include respond-to("sm") {
                 // flex-direction: row;
