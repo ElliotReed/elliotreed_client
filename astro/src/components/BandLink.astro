@@ -1,0 +1,22 @@
+---
+const { to, title } = Astro.props;
+---
+
+<a href=`/projects/${to}` class="band-link">
+  <slot name="image" />
+  <span>{title}</span>
+</a>
+
+<style lang="scss">
+  @use "@/styles/abstracts" as *;
+
+  .band-link {
+    display: inline-flex;
+    gap: $space-md;
+    padding: $space-xs;
+    align-items: center;
+    color: get-color("mainBrand", 500);
+    background: get-color("lightShades", 400);
+    @include border($color: get-color("lightShades", 600));
+  }
+</style>

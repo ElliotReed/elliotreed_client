@@ -1,67 +1,32 @@
 ---
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
 import classnames from "classnames";
 import aboutMeImage from "./about-me.jpg";
 
 import MainLayout from "@/layouts/MainLayout.astro";
 
-// import BandLink from "@/components/BandLink/";
+import BandLink from "@/components/BandLink.astro";
 import ExternalLink from "@/components/ExternalLink.astro";
 import Heading from "@/components/Heading/Heading";
+import NavigationHeaderLink from "@/components/NavigationHeaderLink.astro";
 import Paragraph from "@/components/UI/Paragraph.astro";
-// import Seo from "@/components/SEO/Seo";
 
 import styles from "./about.module.scss";
-import NavigationHeaderLink from "@/components/NavigationHeaderLink.astro";
 
-// interface AboutMusicianData {
-//   allMdx: {
-//     nodes: {
-//       filter(arg0: (node: any) => boolean): any;
-//       frontmatter: {
-//         hero_image: {
-//           childImageSharp: {
-//             gatsbyImageData: IGatsbyImageData;
-//           };
-//         };
-//         hero_image_alt: string;
-//         slug: string;
-//         title: string;
-//       };
-//       id: string;
-//     };
-//   };
-// }
-// export const pageQuery = graphql`
-//   query {
-//     allMdx(filter: { fields: { source: { eq: "bands" } } }) {
-//       nodes {
-//         frontmatter {
-//           slug
-//           title
-//           hero_image {
-//             childImageSharp {
-//               gatsbyImageData(height: 50)
-//             }
-//           }
-//           hero_image_alt
-//         }
-//         id
-//       }
-//     }
-//   }
-// `;
+const projects: CollectionEntry<"projects">[] = await getCollection("projects");
 
-// export const Head: HeadFC<string> = () => <Seo title="About Me" />;
-// function getBandNode(band: string): any {
-//   return nodes.filter((node) => {
-//     return node.frontmatter.title === band;
-//   })[0];
-// }
-
-// const crossing32st = getBandNode("Crossing 32nd Street");
-// const gypsyswingrevue = getBandNode("Gypsy Swing Revue");
-// const puppiesWithGuns = getBandNode("Puppies With Guns");
+const crossing32st = projects.find(
+  (project) => project.data.title === "Crossing 32nd Street",
+);
+const gypsySwingRevue = projects.find(
+  (project) => project.data.title === "Gypsy Swing Revue",
+);
+const puppiesWithGuns = projects.find(
+  (project) => project.data.title === "Puppies With Guns",
+);
 ---
 
 <MainLayout title="About Me">
@@ -111,18 +76,55 @@ import NavigationHeaderLink from "@/components/NavigationHeaderLink.astro";
     <Paragraph>
       After living in Albuquerque, New Mexico, I decided to move to Denver to
       start an authentic gypsy jazz group:
-      <!-- <BandLink node={gypsyswingrevue} />. -->
+      <BandLink to={gypsySwingRevue.slug} title={gypsySwingRevue.data.title}>
+        <Image
+          slot="image"
+          layout="responsive"
+          class="project-image"
+          src={gypsySwingRevue.data.cover}
+          alt="Gypsy Swing Revue"
+        />
+      </BandLink>
     </Paragraph>
 
     <Paragraph
       >I've also been doing shows with my brother in Phoenix, Arizona in the
       faculty group
-      <!-- <BandLink node={crossing32st} /> -->
+      <BandLink to={crossing32st.slug} title={crossing32st.data.title}>
+        <Image
+          slot="image"
+          layout="responsive"
+          class="project-image"
+          src={crossing32st.data.cover}
+          alt="Crossing 32nd Street"
+        />
+      </BandLink>
     </Paragraph>
 
     <Paragraph>
       From Casper, Wyoming, I moved to Albuquerque, New Mexico and started
-      <!-- <BandLink node={puppiesWithGuns} /> -->
+      <BandLink to={puppiesWithGuns.slug} title={puppiesWithGuns.data.title}>
+        <Image
+          slot="image"
+          class="project-image"
+          src={puppiesWithGuns.data.cover}
+          alt="Puppies With Guns"
+        />
+      </BandLink>
     </Paragraph>
   </div>
 </MainLayout>
+
+<style lang="scss">
+  @use "@/styles/abstracts" as *;
+
+  .project-image {
+    display: block;
+    max-width: 100%;
+    border-radius: $border-radius;
+    width: 10em;
+    aspect-ratio: 16 /9;
+    object-fit: cover;
+    object-position: center;
+  }
+</style>
