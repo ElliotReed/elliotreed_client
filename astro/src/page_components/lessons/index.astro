@@ -4,6 +4,7 @@ import { faSpotify } from "@fortawesome/free-brands-svg-icons";
 import { Image } from "astro:assets";
 import { Map } from "pigeon-maps";
 import { osm } from "pigeon-maps/lib/providers.cjs.js";
+import { Icon } from "astro-icon/components";
 
 import TwoColumnGrid from "@/components/UI/TwoColumnGrid";
 import ContactForm from "@/components/ContactForm";
@@ -107,7 +108,8 @@ import styles from "./lessons.module.scss";
             <ExternalLink
                 to="https://open.spotify.com/artist/3ZJrLqiSpAZueYPclk65Cl?si=SvjEqUhZRNylCPcb1q8HAQ"
             >
-                <FontAwesomeIcon icon={faSpotify} /> Gypsy Swing Revue on Spotify
+                <Icon name="tabler:brand-spotify" width={36} height={36} />Gypsy
+                Swing Revue on Spotify
             </ExternalLink>
         </li>
     </ul>
