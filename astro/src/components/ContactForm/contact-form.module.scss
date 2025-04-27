@@ -1,21 +1,14 @@
 @use "@/styles/abstracts" as *;
 
-.contactForm {
+.contact-form {
+  margin-inline: auto;
   margin-block: $space-md;
   padding-inline: $space-md;
-  min-width: 30ch;
+  max-width: 50ch;
   color: get-color("darkShades");
   background: get-color("lightShades", 300);
   border: 1px solid transparent;
   border-radius: $border-radius;
-
-  @include respond-to("sm") {
-    min-width: 50ch;
-  }
-
-  @include respond-to("md") {
-    min-width: 60ch;
-  }
 
   .error {
     color: get-color("error", 500);

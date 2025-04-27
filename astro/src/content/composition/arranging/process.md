@@ -28,3 +28,4 @@ Add "Reduction", a piano grand staff:
 4. Bass (walking bass plugin)
 5. Figures (repetitive okay)
 6. Intro, ending transitions
+7. Drum part, look for interesting rhythm opportunities.

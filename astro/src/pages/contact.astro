@@ -1,14 +1,14 @@
 ---
 import MainLayout from "@/layouts/MainLayout.astro";
-import ContactForm from "@/components/ContactForm/ContactForm.astro";
+import ContactForm from "@/components/ContactForm";
 ---
 
 <MainLayout
     title="Contact"
     description="Contact me for guitar lessons, arrangements, compositions, freelance work, or just to say hello."
 >
-    <div class="layout-grid__centered">
-        <ContactForm />
+    <div>
+        <ContactForm client:only="react" />
     </div>
 </MainLayout>
 

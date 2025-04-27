@@ -5,6 +5,7 @@ import ScoreHeader from "../components/ScoreHeader/ScoreHeader.astro";
 
 import styles from "./site-header.module.scss";
 import Navbar from "./Navbar.astro";
+import Icon from "node_modules/astro-icon/components/Icon.astro";
 
 let type = "musician";
 
@@ -95,9 +96,9 @@ const siteLinks = [
 
 <>
     <CollapsibleHeader contentClass={styles.header}>
-        <div class={styles.navBrand}>
+        <div class={styles["nav-brand"]}>
             <a href="/">
-                <div class={styles.logoWrapper}>
+                <div class={styles["logo-wrapper"]}>
                     <!-- TODO: handle xs logo size -->
                     <Logo
                         client:only="react"
@@ -112,13 +113,13 @@ const siteLinks = [
         <button
             class="menu-toggle open"
             aria-controls="nav-container"
-            aria-expanded="false">open</button
+            aria-expanded="false"><Icon name="tabler:menu-2" /></button
         >
-        <div class="nav-container open">
+        <div class="nav-container">
             <button
                 class="menu-toggle close"
                 aria-controls="nav-container"
-                aria-expanded="false">Close</button
+                aria-expanded="false"><Icon name="tabler:x" /></button
             >
             <div class="navbar-container">
                 <Navbar links={siteLinks} />
@@ -140,24 +141,37 @@ const siteLinks = [
     @use "@/styles/abstracts" as *;
 
     .menu-toggle {
-        margin-block: $space-xs;
+        display: grid;
+        place-content: center;
+        margin-block: $space-sm;
         margin-inline: $space-md;
-        background: get-color("darkShades", 500);
-        color: get-color("lightShades", 500);
-        border: none;
+        background: transparent;
+        color: inherit;
+        border: $border;
         border-radius: $border-radius;
         font-size: $fs-md-rem;
         font-weight: $fw-lg;
-        @include padding-box("sm");
+        @include padding-box("xxs");
+        cursor: pointer;
 
         @include respond-to("sm") {
             display: none;
+        }
+
+        &:hover,
+        &:active {
+            color: get-color("lightShades");
+            background: get-color("darkShades");
         }
 
         &.close {
             position: absolute;
             top: 0;
             right: 0;
+        }
+
+        svg {
+            font-size: $fs-xxl-rem;
         }
     }
 
@@ -170,8 +184,9 @@ const siteLinks = [
 
     .navbars + .navbars {
         @include respond-to("sm") {
-            margin-inline: auto;
+            justify-content: center;
             font-size: $fs-md-rem;
+            flex: 1 0 100%;
         }
     }
 

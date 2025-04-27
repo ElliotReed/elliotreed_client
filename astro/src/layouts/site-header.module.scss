@@ -10,12 +10,17 @@
   @include shadow(1);
   z-index: 10;
 
+  @include respond-to("sm") {
+    // display: grid;
+    // grid-template-columns: auto 1fr;
+  }
+
   // &>*:not(:last-child) {
   //   margin: em-scale(100) em-scale(500);
   // }
 }
 
-.navBrand {
+.nav-brand {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
@@ -28,7 +33,7 @@
   }
 }
 
-.logoWrapper {
+.logo-wrapper {
   position: relative;
   display: flex;
   align-items: center;
