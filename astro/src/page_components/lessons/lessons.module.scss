@@ -27,7 +27,7 @@
         z-index: -10;
     }
 
-    .lessonTextContainer {
+    .lesson-text-container {
         color: get-color("lightShades", 500);
         $outline-size: 1.618px;
         $text-outline: $outline-size $outline-size get-color("darkShades"),
@@ -96,23 +96,6 @@
         z-index: -10;
     }
 
-    .ellipse {
-        position: fixed;
-        inset: 0;
-        z-index: -1;
-        width: get-scale(500) * 100vw;
-        aspect-ratio: 3/2;
-        border-radius: percent-scale(400) percent-scale(300);
-        background: get-color("darkShades");
-        opacity: get-scale(100) * get-scale(100) * get-scale(100);
-        transform: translate(percent-scale(300), percent-scale(300) * -1);
-    }
-
-    .ellipse+.ellipse {
-        top: unset;
-        bottom: 0;
-        transform: translate(percent-scale(300) * -1, percent-scale(300));
-    }
 }
 
 .introImage {

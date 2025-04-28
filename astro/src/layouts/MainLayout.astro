@@ -1,6 +1,7 @@
 ---
 import SiteHeader from "./SiteHeader.astro";
 import SiteFooter from "./SiteFooter.astro";
+import ViewportDecorator from "@/components/ViewportDecorator.astro";
 
 import BaseLayout from "./BaseLayout.astro";
 
@@ -9,6 +10,7 @@ const { title, description } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
+  <ViewportDecorator style="ellipse" />
   <SiteHeader type={type} />
 
   <main class="layout-grid">
@@ -17,4 +19,8 @@ const { title, description } = Astro.props;
   <SiteFooter type={type} />
 </BaseLayout>
 
-<style lang="scss"></style>
+<style lang="scss">
+  main {
+    position: relative;
+  }
+</style>

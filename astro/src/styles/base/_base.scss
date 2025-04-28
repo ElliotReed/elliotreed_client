@@ -48,6 +48,7 @@ body {
   color: get-color("darkShades");
   font-size: calc(15px + 0.390625vw);
   background-color: get-color("lightShades");
+  // overflow: hidden;
   @include scrollbar;
 }
 
