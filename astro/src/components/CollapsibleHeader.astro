@@ -5,28 +5,27 @@ const { contentClass } = Astro.props;
 <header
     id="collapsible-header"
     class:list={["collapsible-header", contentClass]}
+    data-collapse="false"
 >
     <slot />
 </header>
-
-<div id="header-spacer"></div>
 
 <style lang="scss">
     @use "@/styles/abstracts" as *;
 
     .collapsible-header {
-        position: fixed;
-        top: 0px;
+        position: sticky;
+        top: 0;
         width: 100%;
         z-index: 100;
     }
 
-    .collapse {
+    [data-collapse] {
         animation: collapse $duration-lg ease forwards;
     }
 
     /* Open nav bar on scroll up */
-    .expand {
+    [data-collapse="false"] {
         animation: expand $duration-md ease forwards;
     }
 
@@ -58,84 +57,38 @@ const { contentClass } = Astro.props;
 <script>
     // Initialize state
     let scrollState = 0;
-    let isCollapsed = false;
 
     const header = document.getElementById("collapsible-header");
-    const spacer = document.getElementById("header-spacer");
 
-    function init() {
-        function getCollapseClass(shouldCollapse: boolean) {
-            if (shouldCollapse == null) return;
-            if (shouldCollapse) {
-                return "collapse";
-            }
-            return "expand";
-        }
-
-        function updateHeaderHeight() {
-            if (!header || !spacer) return;
-            const headerHeight = header.offsetHeight;
-            spacer.style.height = `${headerHeight}px`;
-        }
-
-        function homeAction() {
-            // Reset when at top of page
-            isCollapsed = false;
-            updateHeaderClass();
-        }
-
-        function downAction() {
-            isCollapsed = true;
-            updateHeaderClass();
-        }
-
-        function upAction() {
-            isCollapsed = false;
-            updateHeaderClass();
-        }
-
-        function updateHeaderClass() {
-            if (!header) return;
-            const collapseClass = getCollapseClass(isCollapsed);
-            if (collapseClass === "collapse") {
-                header.classList.remove("expand");
-                header.classList.add(collapseClass);
-            }
-
-            if (collapseClass === "expand") {
-                if (!isCollapsed) {
-                    header.classList.remove("collapse");
-                    header.classList.add(collapseClass);
-                }
-            }
-        }
-
-        function getScrollTop() {
-            return window.scrollY;
-        }
-
-        function scrollDetect() {
-            const currentScrollPosition = getScrollTop();
-            if (currentScrollPosition === 0) {
-                homeAction();
-            } else if (currentScrollPosition > scrollState) {
-                downAction();
-            } else {
-                upAction();
-            }
-            scrollState = currentScrollPosition;
-        }
-
-        // Initial height calculation
-        updateHeaderHeight();
-
-        // Add scroll event listener
-        window.addEventListener("scroll", scrollDetect);
-
-        // Recalculate on resize
-        window.addEventListener("resize", updateHeaderHeight);
+    function homeAction() {
+        // Reset when at top of page
+        header?.setAttribute("data-collapse", "false");
     }
 
-    init();
-    document.addEventListener("astro:after-swap", init);
+    function downAction() {
+        header?.setAttribute("data-collapse", "true");
+    }
+
+    function upAction() {
+        header?.setAttribute("data-collapse", "false");
+    }
+
+    function getScrollTop() {
+        return window.scrollY;
+    }
+
+    function scrollDetect() {
+        const currentScrollPosition = getScrollTop();
+        if (currentScrollPosition === 0) {
+            homeAction();
+        } else if (currentScrollPosition > scrollState) {
+            downAction();
+        } else {
+            upAction();
+        }
+        scrollState = currentScrollPosition;
+    }
+
+    // Add scroll event listener
+    window.addEventListener("scroll", scrollDetect);
 </script>
