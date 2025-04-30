@@ -1,7 +1,7 @@
 @use "@/styles/abstracts";
 
 .logo {
-  $size: abstracts.em-scale(400);
+  $size: abstracts.em-scale(600);
   filter: url(#shadow);
   fill: abstracts.get-color("mainBrand");
   // backface-visibility: visible;

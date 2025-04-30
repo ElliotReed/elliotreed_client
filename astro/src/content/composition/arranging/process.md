@@ -16,9 +16,9 @@ Add "Reduction", a piano grand staff:
 
 - Use this staff's chords for playback while working.
 
-- Lead vocal staff
+ Lead vocal staff
 
-- Bass
+ Bass staff
 
 ## Working
 

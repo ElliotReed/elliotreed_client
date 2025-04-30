@@ -1,10 +1,10 @@
 ---
-const { contentClass } = Astro.props;
+
 ---
 
 <header
     id="collapsible-header"
-    class:list={["collapsible-header", contentClass]}
+    class="collapsible-header"
     data-collapse="false"
 >
     <slot />
@@ -55,40 +55,45 @@ const { contentClass } = Astro.props;
 </style>
 
 <script>
-    // Initialize state
-    let scrollState = 0;
+    function init() {
+        // Initialize state
+        let scrollState = 0;
 
-    const header = document.getElementById("collapsible-header");
+        const header = document.getElementById("collapsible-header");
 
-    function homeAction() {
-        // Reset when at top of page
-        header?.setAttribute("data-collapse", "false");
-    }
-
-    function downAction() {
-        header?.setAttribute("data-collapse", "true");
-    }
-
-    function upAction() {
-        header?.setAttribute("data-collapse", "false");
-    }
-
-    function getScrollTop() {
-        return window.scrollY;
-    }
-
-    function scrollDetect() {
-        const currentScrollPosition = getScrollTop();
-        if (currentScrollPosition === 0) {
-            homeAction();
-        } else if (currentScrollPosition > scrollState) {
-            downAction();
-        } else {
-            upAction();
+        function homeAction() {
+            // Reset when at top of page
+            header?.setAttribute("data-collapse", "false");
         }
-        scrollState = currentScrollPosition;
+
+        function downAction() {
+            header?.setAttribute("data-collapse", "true");
+        }
+
+        function upAction() {
+            header?.setAttribute("data-collapse", "false");
+        }
+
+        function getScrollTop() {
+            return window.scrollY;
+        }
+
+        function scrollDetect() {
+            const currentScrollPosition = getScrollTop();
+            if (currentScrollPosition === 0) {
+                homeAction();
+            } else if (currentScrollPosition > scrollState) {
+                downAction();
+            } else {
+                upAction();
+            }
+            scrollState = currentScrollPosition;
+        }
+        // Add scroll event listener
+        window.addEventListener("scroll", scrollDetect);
     }
 
-    // Add scroll event listener
-    window.addEventListener("scroll", scrollDetect);
+    init();
+    // Run after Astro view transitions
+    document.addEventListener("astro:after-swap", init);
 </script>

@@ -1,6 +1,6 @@
 @use "@/styles/abstracts" as *;
 
-.header {
+.header__content {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -20,33 +20,23 @@
   // }
 }
 
-.nav-brand {
+.logo-link {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
-  gap: $space-sm;
   margin-inline: $space-md;
-
-  & a {
-    text-decoration: none;
-    color: inherit;
-  }
-}
-
-.logo-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.title {
-  margin: 0;
+  // margin-block: $space-sm;
+  text-decoration: none;
   color: inherit;
-  font-size: $fs-sm-em;
-  font-weight: bold;
-  text-transform: uppercase;
+  line-height: 1;
 
-  @include respond-to("sm") {
-    font-size: $fs-md-em;
+  .title {
+    display: block;
+    margin: 0;
+    margin-block: auto;
+    color: inherit;
+    font-size: $fs-md-rem;
+    font-weight: $fw-xl;
+    text-transform: uppercase;
   }
 }

@@ -2,10 +2,10 @@
 import CollapsibleHeader from "@/components/CollapsibleHeader.astro";
 import Logo from "@/components/Logo";
 import ScoreHeader from "../components/ScoreHeader/ScoreHeader.astro";
+import Hamburger from "@/components/Hamburger.astro";
 
 import styles from "./site-header.module.scss";
 import Navbar from "./Navbar.astro";
-import Icon from "node_modules/astro-icon/components/Icon.astro";
 
 let type = "musician";
 
@@ -22,17 +22,6 @@ function getLogoAnimation() {
 
     return animation;
 }
-
-const designLinks = [
-    {
-        content: "Color",
-        address: "/design/color",
-    },
-    {
-        content: "Typography",
-        address: "/design/typography",
-    },
-];
 
 const resourceLinks = [
     {
@@ -57,13 +46,6 @@ const resourceLinks = [
     },
 ];
 
-const showNotesLinks = [
-    {
-        content: "Abbey Road",
-        address: "/abbeyroad",
-    },
-];
-
 const siteLinks = [
     {
         content: "About",
@@ -81,52 +63,37 @@ const siteLinks = [
         content: "Performances",
         address: "/performances",
     },
-    {
-        content: "Design",
-        address: "/design",
-        subLinks: designLinks,
-    },
-    {
-        content: "Show Notes",
-        address: "/show-notes",
-        subLinks: showNotesLinks,
-    },
 ];
 ---
 
-<>
-    <CollapsibleHeader contentClass={styles.header}>
-        <div class={styles["nav-brand"]}>
-            <a href="/">
-                <div class={styles["logo-wrapper"]}>
-                    <!-- TODO: handle xs logo size -->
-                    <Logo
-                        client:only="react"
-                        width="2.5em"
-                        mode={type}
-                        animation={getLogoAnimation()}
-                    />
-                    <span class={styles.title}>Elliot Reed Music</span>
-                </div>
-            </a>
-        </div>
+<CollapsibleHeader>
+    <div class={styles.header__content}>
+        <a href="/" class={styles["logo-link"]}>
+            <Logo
+                client:only="react"
+                width="10rem"
+                mode={type}
+                animation={getLogoAnimation()}
+            />
+            <span class={styles.title}>Elliot Reed Music</span>
+        </a>
+
         <button
-            class="menu-toggle open"
-            aria-controls="nav-container"
-            aria-expanded="false"><Icon name="tabler:menu-2" /></button
+            class="menu-toggle"
+            aria-controls="nav-container__mobile"
+            aria-expanded="false"
         >
-        <div class="nav-container">
-            <button
-                class="menu-toggle close"
-                aria-controls="nav-container"
-                aria-expanded="false"><Icon name="tabler:x" /></button
-            >
+            <Hamburger />
+        </button>
+
+        <div class="nav-container__mobile">
             <div class="navbar-container">
                 <Navbar links={siteLinks} />
                 <div class="seperator"></div>
                 <Navbar links={resourceLinks} />
             </div>
         </div>
+
         <div class="navbars">
             <Navbar links={siteLinks} />
         </div>
@@ -134,18 +101,18 @@ const siteLinks = [
             <Navbar links={resourceLinks} />
         </div>
         <ScoreHeader />
-    </CollapsibleHeader>
-</>
+    </div>
+</CollapsibleHeader>
 
 <style lang="scss">
     @use "@/styles/abstracts" as *;
 
     .menu-toggle {
-        display: grid;
-        place-content: center;
-        margin-block: $space-sm;
-        margin-inline: $space-md;
+        z-index: 1100;
+        // margin-block: $space-sm;
+        // margin-inline: $space-md;
         background: transparent;
+        // background: get-color("lightShades");
         color: inherit;
         border: $border;
         border-radius: $border-radius;
@@ -160,18 +127,50 @@ const siteLinks = [
 
         &:hover,
         &:active {
-            color: get-color("lightShades");
-            background: get-color("darkShades");
-        }
-
-        &.close {
-            position: absolute;
-            top: 0;
-            right: 0;
+            // color: get-color("lightShades");
+            // background: get-color("darkShades");
         }
 
         svg {
+            pointer-events: none;
             font-size: $fs-xxl-rem;
+        }
+    }
+
+    .menu-toggle[aria-expanded="true"] + .nav-container__mobile {
+        transform: translate(0, 0);
+    }
+
+    .nav-container__mobile {
+        position: fixed;
+        inset: 0;
+        background-color: get-color("dark", 600);
+        transform: translate(100vw, 0);
+        transition: transform $duration-md ease-in-out;
+        z-index: 200;
+        // overflow: hidden;
+
+        @include respond-to("sm") {
+            position: relative;
+            display: none;
+            transform: unset;
+        }
+
+        .navbar-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: right;
+            max-width: 66%;
+            margin-inline-start: auto;
+            height: 100%;
+            background-color: get-color("lightShades", 500);
+
+            @include respond-to("sm") {
+                // flex-direction: row;
+                max-width: 100%;
+            }
         }
     }
 
@@ -194,65 +193,50 @@ const siteLinks = [
         display: block;
         margin-block: $space-md;
         margin-inline: $space-md;
-        border-bottom: 3px solid get-color("darkShades", 500);
-    }
-
-    .nav-container {
-        position: fixed;
-        inset: 0;
-        background-color: get-color("dark", 600);
-        transform: translate(100%, 0);
-        transition: transform $duration-md ease-in-out;
-        z-index: 200;
-        overflow: hidden;
-
-        @include respond-to("sm") {
-            position: relative;
-            display: none;
-            transform: unset;
-        }
-
-        &.open {
-            transform: translate(0, 0);
-        }
-
-        .navbar-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: right;
-            max-width: 66%;
-            margin-inline-start: auto;
-            height: 100%;
-            background-color: get-color("lightShades", 500);
-
-            @include respond-to("sm") {
-                // flex-direction: row;
-                max-width: 100%;
-            }
-        }
+        border-bottom: 3px solid get-color("dark", 200);
     }
 </style>
 
 <script>
     function setupNavMenu() {
-        const navContainer = document.querySelector(".nav-container");
+        const navContainerMobile = document.querySelector(
+            ".nav-container__mobile",
+        );
+        const body = document.querySelector("body");
         const navbarContainer = document.querySelector(".navbar-container");
-        const openButton = document.querySelector(".menu-toggle.open");
-        const closeButton = document.querySelector(".menu-toggle.close");
+        const menuToggle = document.querySelector(".menu-toggle");
+        const hamburger = document.querySelector(".hamburger");
 
-        openButton?.addEventListener("click", () => {
-            navContainer?.classList.add("open");
-        });
+        function toggleMenu() {
+            if (!menuToggle || !hamburger || !body) return;
+            console.log("here");
 
-        closeButton?.addEventListener("click", () => {
-            navContainer?.classList.remove("open");
-        });
-
-        navContainer?.addEventListener("click", (e) => {
-            if (e.target !== navbarContainer) {
-                navContainer?.classList.remove("open");
+            if (menuToggle.getAttribute("aria-expanded") === "false") {
+                menuToggle.setAttribute("aria-expanded", "true");
+                if (!hamburger.classList.contains("isActive")) {
+                    hamburger.classList.add("isActive");
+                }
+                if (!body.classList.contains("body-no-scroll")) {
+                    body.classList.add("body-no-scroll");
+                }
+            } else {
+                menuToggle.setAttribute("aria-expanded", "false");
+                if (hamburger?.classList.contains("isActive")) {
+                    hamburger?.classList.remove("isActive");
+                }
+                if (body.classList.contains("body-no-scroll")) {
+                    body.classList.remove("body-no-scroll");
+                }
             }
+        }
+
+        menuToggle?.addEventListener("click", () => {
+            toggleMenu();
+        });
+
+        navContainerMobile?.addEventListener("click", (e) => {
+            console.log("e.target: ", e.target);
+            toggleMenu();
         });
     }
 
