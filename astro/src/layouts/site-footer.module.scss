@@ -1,26 +1,42 @@
 @use "@/styles/abstracts" as *;
 
 .footer {
-  display: flex;
-  flex-shrink: 0;
-  justify-content: space-between;
-  padding: em-scale(500);
-  color: get-color("lightShades");
-  background: get-color("darkShades");
-
-  .socialIcons {
     display: flex;
-    gap: $space-md;
+    flex-shrink: 0;
+    justify-content: space-between;
+    padding: em-scale(500);
+    color: get-color("lightShades");
+    background: get-color("darkShades");
 
-    .icon {
-      color: get-color("lightShades");
+    .left {
+        display: flex;
+        flex-direction: column;
+
+        a {
+            // display: block;
+            color: initial;
+            font-size: em-scale(400);
+            font-weight: $fw-xs;
+
+            &:visited {
+                color: get-color("lightShades", 600);
+            }
+        }
     }
-  }
 
-  // copyright
-  p {
-    margin: 0;
-    font-size: em-scale(400);
-    font-weight: $fw-xs;
-  }
+    .socialIcons {
+        display: flex;
+        gap: $space-md;
+
+        .icon {
+            color: get-color("lightShades");
+        }
+    }
+
+    // copyright
+    p {
+        margin: 0;
+        font-size: em-scale(400);
+        font-weight: $fw-xs;
+    }
 }

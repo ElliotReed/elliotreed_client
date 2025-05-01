@@ -23,7 +23,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 0.5rem 0;
+        // padding: 0.5rem 0;
         cursor: pointer;
         transition-property: opacity, filter;
         transition-duration: 0.15s;
@@ -35,7 +35,8 @@
         // border: 1px solid red;
         // margin: 0 1rem * abstracts.$goldenRatio;
         // overflow: visible;
-        z-index: 2;
+        // z-index: 2;
+        opacity: 1;
     }
 
     .hamburger:hover {
@@ -54,12 +55,11 @@
 
     .hamburger-box {
         display: block;
-        width: 30px;
+        width: 24px;
         height: 24px;
         display: inline-block;
         position: relative;
-        //
-        border: 1px solid white;
+        // border: 1px solid white;
     }
 
     .hamburgerInner {
@@ -71,7 +71,7 @@
     .hamburgerInner,
     .hamburgerInner::before,
     .hamburgerInner::after {
-        width: 30px;
+        width: 24px;
         height: 4px;
         background-color: abstracts.get-color("mainBrand");
         border-radius: 4px;

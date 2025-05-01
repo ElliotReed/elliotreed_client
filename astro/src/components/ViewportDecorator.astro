@@ -19,12 +19,15 @@ interface Props {
 
         &.ellipse {
             > * {
-                position: relative;
+                position: fixed;
+                transform-origin: center;
                 width: get-scale(500) * 100vw;
                 aspect-ratio: 3/2;
                 background: get-color("darkShades");
                 border-radius: percent-scale(400) percent-scale(300);
                 opacity: get-scale(100) * get-scale(100) * get-scale(100);
+                // For testing
+                // opacity: get-scale(100);
             }
 
             :first-child {
@@ -35,10 +38,10 @@ interface Props {
             }
 
             :last-child {
-                bottom: -7.5em;
+                bottom: 0;
                 transform: translate(
                     percent-scale(300) * -1,
-                    percent-scale(300)
+                    percent-scale(400)
                 );
             }
         }

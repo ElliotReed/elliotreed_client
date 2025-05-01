@@ -13,7 +13,7 @@
   height: $size;
 
   @include abstracts.respond-to("sm") {
-    $size: abstracts.em-scale(700);
+    $size: abstracts.em-scale(600);
     width: $size;
     height: $size;
 

@@ -38,12 +38,12 @@ for (const article of articles) {
     <MaxWidthContainer>
         <Heading level={1}>Guitar</Heading>
 
-        <TagList />
+        <!-- <TagList /> -->
 
         {
             Object.entries(grouped).map(([category, items]) => (
                 <section class="category">
-                    <Heading level={2}>
+                    <Heading level={2} size={5}>
                         <a class="category-link" href={`/guitar/${category}`}>
                             {category}
                         </a>

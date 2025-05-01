@@ -1,7 +1,7 @@
 import React from "react"
 import classNames from "classnames";
 
-import * as styles from "./heading.module.scss"
+import styles from "./heading.module.scss"
 
 type Heading = {
   level?: 1 | 2 | 3 | 4 | 5 | 6,
@@ -26,13 +26,13 @@ export default function Heading({
   let colorClass;
   switch (color) {
     case 'light':
-      colorClass = styles.clrLight;
+      colorClass = styles['clr-light'];
       break;
     case 'dark':
-      colorClass = styles.clrDark;
+      colorClass = styles['clr-dark'];
       break;
     default:
-      colorClass = styles.clrDefault;
+      colorClass = styles['clr-default'];
       break;
   }
 
@@ -48,7 +48,7 @@ export default function Heading({
       alignmentClass = styles.start
   }
 
-  const headingClass = styles[`heading${size}`]
+  const headingClass = styles[`heading-${size}`]
 
   return (
     <HeadingTag

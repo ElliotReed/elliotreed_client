@@ -11,7 +11,11 @@ import styles from "./score-header.module.scss";
 <style lang="scss">
     @use "@/styles/abstracts" as *;
     .score {
-        height: $space-md;
+        $offsetHeight: $space-lg;
+        // margin-block-start: -$offsetHeight;
+        z-index: -1;
+        opacity: 0.8;
+        height: $offsetHeight;
         width: 100%;
         background-image: url("./score-landscape.jpg");
         background-position: center 25%;

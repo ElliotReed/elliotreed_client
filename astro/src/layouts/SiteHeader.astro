@@ -23,6 +23,13 @@ function getLogoAnimation() {
     return animation;
 }
 
+const appLinks = [
+    {
+        content: "Apps",
+        address: "/apps",
+    },
+];
+
 const resourceLinks = [
     {
         content: "Composition",
@@ -71,7 +78,7 @@ const siteLinks = [
         <a href="/" class={styles["logo-link"]}>
             <Logo
                 client:only="react"
-                width="10rem"
+                width="1rem"
                 mode={type}
                 animation={getLogoAnimation()}
             />
@@ -98,6 +105,7 @@ const siteLinks = [
             <Navbar links={siteLinks} />
         </div>
         <div class="navbars">
+            <Navbar links={appLinks} />
             <Navbar links={resourceLinks} />
         </div>
         <ScoreHeader />
@@ -109,16 +117,18 @@ const siteLinks = [
 
     .menu-toggle {
         z-index: 1100;
+        padding: 0;
         // margin-block: $space-sm;
         // margin-inline: $space-md;
         background: transparent;
         // background: get-color("lightShades");
         color: inherit;
         border: $border;
+        border: none;
         border-radius: $border-radius;
         font-size: $fs-md-rem;
         font-weight: $fw-lg;
-        @include padding-box("xxs");
+        @include padding-box("md");
         cursor: pointer;
 
         @include respond-to("sm") {
@@ -126,7 +136,9 @@ const siteLinks = [
         }
 
         &:hover,
-        &:active {
+        &:active,
+        &:focus {
+            outline: none;
             // color: get-color("lightShades");
             // background: get-color("darkShades");
         }
@@ -186,6 +198,7 @@ const siteLinks = [
             justify-content: center;
             font-size: $fs-md-rem;
             flex: 1 0 100%;
+            gap: $space-md;
         }
     }
 

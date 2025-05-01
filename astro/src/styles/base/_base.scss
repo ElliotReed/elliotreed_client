@@ -52,6 +52,14 @@ body {
     overflow: hidden;
 }
 
+a {
+    color: inherit;
+
+    &:visited {
+        color: inherit;
+    }
+}
+
 button,
 input,
 optgroup,

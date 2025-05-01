@@ -5,5 +5,3 @@ publishedDate: 2025-04-06
 category: "arranging"
 tags: ["notation", "scoring"]
 ---
-
-Arranging

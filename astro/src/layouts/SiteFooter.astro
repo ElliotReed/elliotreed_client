@@ -6,7 +6,7 @@
 // } from "@fortawesome/free-brands-svg-icons";
 
 import Copyright from "@/components/Copyright";
-import Navbar from "./Navbar.astro";
+import Heading from "@/components/Heading/Heading";
 // import ExternalLink from "@/components/ExternalLink";
 
 import styles from "./site-footer.module.scss";
@@ -15,13 +15,16 @@ const { type } = Astro.props;
 ---
 
 <footer class={styles.footer}>
-  <a href="/design">Design</a>
-  <a href="/show-notes">Show Notes</a>
-  <Copyright
-    originYear="2018"
-    holder="Elliot Reed"
-    link={{
-      to: "/",
-    }}
-  />
+    <section class={styles.left}>
+        <Heading level={1} size={6} color="light">Links</Heading>
+        <a href="/design">Design</a>
+        <a href="/show-notes">Show Notes</a>
+    </section>
+    <Copyright
+        originYear="2018"
+        holder="Elliot Reed"
+        link={{
+            to: "/",
+        }}
+    />
 </footer>

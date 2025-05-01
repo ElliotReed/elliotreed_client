@@ -37,7 +37,7 @@ const { Content } = categoryIndex
 const breadcrumbItems = [
     { label: "guitar", href: "/guitar" },
     {
-        label: category.charAt(0).toUpperCase() + category.slice(1),
+        label: category,
         href: `/guitar/${category}`,
     },
 ];
@@ -45,7 +45,9 @@ const breadcrumbItems = [
 
 <MainLayout>
     <Breadcrumbs items={breadcrumbItems} />
-    <Heading level={1}>{category}</Heading>
+    <Heading level={1}
+        >{category.charAt(0).toUpperCase() + category.slice(1)}</Heading
+    >
 
     {Content && <Content />}
 

@@ -1,0 +1,25 @@
+---
+import ExternalLink from "@/components/ExternalLink.astro";
+import Heading from "@/components/Heading/Heading";
+import MainLayout from "@/layouts/MainLayout.astro";
+import metronomeImage from "@/assets/images/metronome.png";
+import { Image } from "astro:assets";
+import { List, ListItem } from "@/components/List";
+---
+
+<MainLayout title="Apps" description="Links to relevant apps.">
+    <Heading level={1}>Apps</Heading>
+    <List>
+        <ListItem>
+            <ExternalLink to="https://metronome.elliotreed.net">
+                <Image src={metronomeImage} alt="Metronome App" width={40} />
+                Metronome
+            </ExternalLink>
+        </ListItem>
+        <li>
+            <ExternalLink to="https://vocal-trainer.elliotreed.net">
+                Vocal Trainer
+            </ExternalLink>
+        </li>
+    </List>
+</MainLayout>
