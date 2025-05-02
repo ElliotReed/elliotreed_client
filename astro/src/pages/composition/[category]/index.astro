@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
+import { capitalize } from "@/utils/stringHelpers";
 
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
@@ -45,11 +46,9 @@ const breadcrumbItems = [
 ];
 ---
 
-<MainLayout>
+<MainLayout title={capitalize(category)}>
     <Breadcrumbs items={breadcrumbItems} />
-    <Heading level={1}
-        >{category.charAt(0).toUpperCase() + category.slice(1)}</Heading
-    >
+    <Heading level={1}>{capitalize(category)}</Heading>
 
     {Content && <Content />}
 

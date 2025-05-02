@@ -1,4 +1,5 @@
 ---
+cover: "@/assets/images/notation/aint-that-a-kick.png"
 title: "Instruments"
 description: "Midi instrument tips."
 publishedDate: 2025-04-06

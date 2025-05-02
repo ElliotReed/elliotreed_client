@@ -1,10 +1,10 @@
 import React from 'react';
-import './List.css';
+import './List.module.scss';
 
 export const ListItem = props => {
   return (
-<li>
-    {props.children}
-</li>
+    <li>
+      {props.children}
+    </li>
   );
 }

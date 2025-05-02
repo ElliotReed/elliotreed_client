@@ -1,4 +1,6 @@
 ---
+cover: "../_cover_breathing.jpg"
+coverCredit: "https://www.deviantart.com/however-improbable"
 title: "Vocal Fry"
 description: "Here are some vocal fry warm-up exercises."
 publishedDate: 2025-04-06

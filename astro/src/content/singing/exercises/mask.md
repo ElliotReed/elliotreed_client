@@ -1,4 +1,6 @@
 ---
+cover: "../_cover_breathing.jpg"
+coverCredit: "https://www.deviantart.com/however-improbable"
 title: "The Mask"
 description: "The mask is the front of face nasal cavity."
 publishedDate: 2025-04-06

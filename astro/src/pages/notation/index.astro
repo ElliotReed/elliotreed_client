@@ -5,10 +5,10 @@ import { Image } from "astro:assets";
 
 import MainLayout from "@/layouts/MainLayout.astro";
 import Paragraph from "@/components/UI/Paragraph.astro";
-import MaxWidthContainer from "@/components/UI/MaxWidthContainer.astro";
 import Card from "@/components/UI/Card.astro";
 import Heading from "@/components/Heading/Heading";
 import TagList from "@/components/TagList.astro";
+import MainLayoutGrid from "@/layouts/MainLayoutGrid.astro";
 
 const articles = await getCollection("notation");
 
@@ -35,15 +35,15 @@ for (const article of articles) {
     title="Notation"
     description="A collection of notation-related articles and resources."
 >
-    <MaxWidthContainer>
+    <MainLayoutGrid style="prefered-width">
         <Heading level={1}>Notation</Heading>
 
-        <TagList />
+        <!-- <TagList /> -->
 
         {
             Object.entries(grouped).map(([category, items]) => (
                 <section class="category">
-                    <Heading level={2}>
+                    <Heading level={2} size={5}>
                         <a class="category-link" href={`/notation/${category}`}>
                             {category}
                         </a>
@@ -77,46 +77,43 @@ for (const article of articles) {
                 </section>
             ))
         }
-    </MaxWidthContainer>
-
-    <style lang="scss">
-        @use "@/styles/abstracts" as *;
-        .category {
-            background: get-color("lightShades", 300);
-            border-radius: $border-radius;
-            @include padding-box("sm");
-            @include shadow(1);
-            & + section {
-                margin-block: $space-lg;
-            }
-
-            .category-link {
-                display: inline-block;
-                width: 100%;
-                color: inherit;
-
-                &:visited {
-                    color: inherit;
-                }
-            }
-        }
-
-        ul {
-            display: grid;
-            padding-inline-start: $space-sm;
-            grid-template-columns: repeat(
-                auto-fill,
-                minmax(px-to-rem(300), 1fr)
-            );
-            gap: $space-md;
-            list-style: none;
-        }
-
-        .cover {
-            width: 100%;
-            height: 12em;
-            object-fit: cover;
-            aspect-ratio: 16 / 9;
-        }
-    </style>
+    </MainLayoutGrid>
 </MainLayout>
+
+<style lang="scss">
+    @use "@/styles/abstracts" as *;
+    .category {
+        background: get-color("lightShades", 300);
+        border-radius: $border-radius;
+        @include padding-box("sm");
+        @include shadow(1);
+        & + section {
+            margin-block: $space-lg;
+        }
+
+        .category-link {
+            display: inline-block;
+            width: 100%;
+            color: inherit;
+
+            &:visited {
+                color: inherit;
+            }
+        }
+    }
+
+    ul {
+        display: grid;
+        padding-inline-start: $space-sm;
+        grid-template-columns: repeat(auto-fill, minmax(px-to-rem(300), 1fr));
+        gap: $space-md;
+        list-style: none;
+    }
+
+    .cover {
+        width: 100%;
+        height: 12em;
+        object-fit: cover;
+        aspect-ratio: 16 / 9;
+    }
+</style>

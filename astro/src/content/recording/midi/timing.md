@@ -1,4 +1,5 @@
 ---
+cover: "@/assets/images/notation/aint-that-a-kick.png"
 title: "Midi Timing"
 description: "Midi groove tips."
 publishedDate: 2025-04-06

@@ -1,4 +1,6 @@
 ---
+cover: "../_cover_breathing.jpg"
+coverCredit: "https://www.deviantart.com/however-improbable"
 title: "Chapter 1: Onset and Release"
 description: "Working With the Track View"
 publishedDate: 2025-04-06

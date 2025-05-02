@@ -1,0 +1,11 @@
+---
+interface Props {
+    style: "prefered-width" | "centered";
+}
+
+const { style } = Astro.props;
+---
+
+<div class=`layout-grid__${style}`>
+    <slot />
+</div>

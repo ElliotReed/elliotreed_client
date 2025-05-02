@@ -1,4 +1,5 @@
 ---
+cover: "@/assets/images/notation/aint-that-a-kick__intro.png"
 title: "Ranges"
 description: "Instrument ranges"
 publishedDate: 2025-04-21

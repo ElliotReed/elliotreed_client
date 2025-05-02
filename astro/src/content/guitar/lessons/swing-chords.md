@@ -1,4 +1,5 @@
 ---
+cover: "@/assets/images/notation/aint-that-a-kick__intro.png"
 title: "Swing Chords"
 category: "lessons"
 description: "Swing Chords"

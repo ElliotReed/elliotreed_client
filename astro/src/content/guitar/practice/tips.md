@@ -1,4 +1,5 @@
 ---
+cover: "@/assets/images/notation/aint-that-a-kick.png"
 title: "Practice Tips"
 category: "practice"
 description: "practice Stuff"

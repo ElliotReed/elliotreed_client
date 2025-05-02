@@ -1,4 +1,5 @@
 ---
+cover: "@/assets/images/notation/aint-that-a-kick.png"
 title: "Keys"
 description: "MuseScore Home"
 publishedDate: 2025-04-06

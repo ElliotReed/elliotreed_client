@@ -8,6 +8,7 @@ import MainLayout from "@/layouts/MainLayout.astro";
 import Paragraph from "@/components/UI/Paragraph.astro";
 import Heading from "@/components/Heading/Heading";
 import Card from "@/components/UI/Card.astro";
+import { capitalize } from "@/utils/stringHelpers";
 
 export async function getStaticPaths() {
     const allPosts: CollectionEntry<"recording">[] =
@@ -39,15 +40,15 @@ const { Content } = categoryIndex
 const breadcrumbItems = [
     { label: "recording", href: "/recording" },
     {
-        label: category.charAt(0).toUpperCase() + category.slice(1),
+        label: category,
         href: `/recording/${category}`,
     },
 ];
 ---
 
-<MainLayout>
+<MainLayout title={capitalize(category)}>
     <Breadcrumbs items={breadcrumbItems} />
-    <Heading level={1}>{category}</Heading>
+    <Heading level={1}>{capitalize(category)}</Heading>
 
     {Content && <Content />}
 

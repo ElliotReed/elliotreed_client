@@ -1,4 +1,5 @@
 ---
+cover: "@/assets/images/notation/aint-that-a-kick__intro.png"
 title: "Kontakt"
 description: "Kontakt tips."
 publishedDate: 2025-04-06

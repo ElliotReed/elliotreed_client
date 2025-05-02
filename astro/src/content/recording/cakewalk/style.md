@@ -1,4 +1,5 @@
 ---
+cover: "@/assets/images/notation/aint-that-a-kick__intro.png"
 title: "Style"
 description: "Cakewalk style"
 publishedDate: 2025-04-06

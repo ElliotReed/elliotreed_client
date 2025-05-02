@@ -1,0 +1,44 @@
+---
+import Heading from "@/components/Heading/Heading";
+
+const { entry } = Astro.props;
+---
+
+<header class="">
+    <Heading level={1}>{entry.data.title}</Heading>
+    {
+        entry.data.author && (
+            <span class="author">
+                <em>by </em>
+                {entry.data.author}
+            </span>
+        )
+    }
+
+    {
+        entry.data.publishedDate && (
+            <span class="published-date">
+                <em>{entry.data.publishedDate.toDateString()}</em>
+            </span>
+        )
+    }
+</header>
+
+<style lang="scss">
+    @use "@/styles/abstracts" as *;
+    header {
+        .author {
+            display: block;
+            font-weight: $fw-lg;
+            em {
+                font-weight: $fw-md;
+                font-size: $fs-sm-rem;
+            }
+        }
+        .published-date {
+            margin-block-start: -$space-sm;
+            font-size: $fs-sm-rem;
+            color: get-color("darkShades", 500);
+        }
+    }
+</style>

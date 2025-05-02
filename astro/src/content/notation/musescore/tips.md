@@ -1,4 +1,5 @@
 ---
+cover: "./_cover_musescore.png"
 title: "MuseScore Tips"
 description: "Learn the basics of scoring in MuseScore"
 publishedDate: 2025-04-06

@@ -1,0 +1,56 @@
+---
+import { Image } from "astro:assets";
+
+const { entry } = Astro.props;
+---
+
+{
+    entry.data.cover && (
+        <figure class="">
+            <Image
+                class="cover"
+                src={entry.data.cover}
+                alt={entry.data.title}
+                layout="full-width"
+            />
+            {entry.data.coverCredit && (
+                <figcaption>
+                    <a href={entry.data.coverCredit}>
+                        <em>Image Credit:</em>
+                        {entry.data.coverCredit}
+                    </a>
+                </figcaption>
+            )}
+        </figure>
+    )
+}
+
+<style lang="scss">
+    @use "@/styles/abstracts" as *;
+
+    figure {
+        margin: 0;
+        figcaption {
+            background: get-color("lightShades", 300);
+            a {
+                color: inherit;
+                @include padding-box("sm");
+                display: inline-block;
+                word-wrap: break-word; /* For legacy support */
+                word-break: break-word; /* Break long words */
+                overflow-wrap: anywhere; /* Best modern solution */
+                white-space: normal; /* Allow wrapping */
+                &:visited {
+                    color: inherit;
+                }
+            }
+        }
+    }
+    .cover {
+        // width: 100%;
+        // max-height: 50%;
+        object-fit: cover;
+        object-position: center;
+        aspect-ratio: 16 / 9;
+    }
+</style>
