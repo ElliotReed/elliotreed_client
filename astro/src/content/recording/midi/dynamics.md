@@ -1,0 +1,23 @@
+---
+cover: "@/assets/images/notation/aint-that-a-kick.png"
+title: "Midi Dynamics"
+description: "A reference for midi dynamics."
+publishedDate: 2025-05-02
+category: "midi"
+tags: ["daw", "recording", "dynamics"]
+---
+
+## Markings
+
+| Dynamics | Velocity | CC1% | CC1 Envelope         |
+|----------|----------|------|---------------------|
+| pppp     | 10       | 10   |                     |
+| ppp      | 23       | 20   | solo background     |
+| pp       | 36       | 30   |                     |
+| p        | 49       | 40   |                     |
+| mp       | 61       | 50   | Fill & Line (Vocal) |
+| mf       | 75       | 64   | 90                  |
+| f        | 88       | 70   | Melody, Solo        |
+| ff       | 101      | 80   | dd                  |
+| fff      | 114      | 90   |                     |
+| ffff     | 127      | 100  |                     |
