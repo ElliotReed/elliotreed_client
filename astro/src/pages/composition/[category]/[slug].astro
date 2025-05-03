@@ -1,58 +1,12 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import { getCollection } from "astro:content";
-
-import Breadcrumbs from "@/components/Breadcrumbs.astro";
-import MainLayout from "@/layouts/MainLayout.astro";
-import CoverImage from "@/components/CoverImage.astro";
-import MainLayoutGrid from "@/layouts/MainLayoutGrid.astro";
-import ContentHeader from "@/layouts/ContentHeader.astro";
+import { getCollectionPaths } from "@/utils/getCollectionPaths";
+import CollectionArticlePage from "@/page_components/CollectionArticlePage.astro";
 
 export async function getStaticPaths() {
-    const allPosts = await getCollection("composition");
-
-    // Only consider posts whose slug contains a "/" (i.e. has category and a non-index slug part)
-    const filteredPosts = allPosts.filter(
-        (entry: CollectionEntry<"composition">) => entry.slug.includes("/"),
-    );
-
-    return filteredPosts.map((entry: CollectionEntry<"composition">) => {
-        const [category, slug] = entry.slug.split("/");
-
-        return {
-            params: { category, slug },
-            props: { entry },
-        };
-    });
+    return getCollectionPaths("composition");
 }
 
-// Get the article from props
-interface Props {
-    entry: CollectionEntry<"composition">;
-}
-
-const { entry } = Astro.props as { entry: CollectionEntry<"composition"> };
-const { Content } = await entry.render();
-
-const { category, slug } = Astro.params;
-
-const breadcrumbItems = [
-    { label: "composition", href: "/composition" },
-    { label: category, href: `/composition/${category}` },
-    { label: slug, href: `/composition/${category}/${slug}` },
-];
+const { article } = Astro.props;
 ---
 
-<MainLayout
-    title="Composition"
-    description="A collection of composition-related articles and resources."
->
-    <Breadcrumbs items={breadcrumbItems} />
-    <MainLayoutGrid style="prefered-width">
-        <CoverImage entry={entry} />
-
-        <ContentHeader entry={entry} />
-
-        <Content />
-    </MainLayoutGrid>
-</MainLayout>
+<CollectionArticlePage collectionName="composition" article={article} />

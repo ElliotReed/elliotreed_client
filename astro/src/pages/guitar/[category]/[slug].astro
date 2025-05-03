@@ -1,58 +1,12 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import { getCollection } from "astro:content";
-
-import Breadcrumbs from "@/components/Breadcrumbs.astro";
-import MainLayout from "@/layouts/MainLayout.astro";
-import Heading from "@/components/Heading/Heading";
-import CoverImage from "@/components/CoverImage.astro";
-import ContentHeader from "@/layouts/ContentHeader.astro";
+import { getCollectionPaths } from "@/utils/getCollectionPaths";
+import CollectionArticlePage from "@/page_components/CollectionArticlePage.astro";
 
 export async function getStaticPaths() {
-    const allPosts = await getCollection("guitar");
-
-    // Only consider posts whose slug contains a "/" (i.e. has category and a non-index slug part)
-    const filteredPosts = allPosts.filter((entry: CollectionEntry<"guitar">) =>
-        entry.slug.includes("/"),
-    );
-
-    return filteredPosts.map((entry: CollectionEntry<"guitar">) => {
-        const [category, slug] = entry.slug.split("/");
-
-        return {
-            params: { category, slug },
-            props: { entry },
-        };
-    });
+    return getCollectionPaths("guitar");
 }
 
-// Get the article from props
-interface Props {
-    entry: CollectionEntry<"guitar">;
-}
-
-const { entry } = Astro.props as { entry: CollectionEntry<"guitar"> };
-const { Content } = await entry.render();
-
-const { category, slug } = Astro.params;
-
-const breadcrumbItems = [
-    { label: "guitar", href: "/guitar" },
-    { label: category, href: `/guitar/${category}` },
-    { label: slug, href: `/guitar/${category}/${slug}` },
-];
+const { article } = Astro.props;
 ---
 
-<MainLayout
-    title="Guitar"
-    description="A collection of guitar-related articles and resources."
->
-    <Breadcrumbs items={breadcrumbItems} />
-    <div class="layout-grid__prefered-width">
-        <CoverImage entry={entry} />
-
-        <ContentHeader entry={entry} />
-
-        <Content />
-    </div>
-</MainLayout>
+<CollectionArticlePage collectionName="guitar" article={article} />

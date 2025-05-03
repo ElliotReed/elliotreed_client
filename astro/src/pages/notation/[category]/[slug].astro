@@ -1,58 +1,12 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import { getCollection } from "astro:content";
-
-import Breadcrumbs from "@/components/Breadcrumbs.astro";
-import MainLayout from "@/layouts/MainLayout.astro";
-import MainLayoutGrid from "@/layouts/MainLayoutGrid.astro";
-import CoverImage from "@/components/CoverImage.astro";
-import ContentHeader from "@/layouts/ContentHeader.astro";
+import { getCollectionPaths } from "@/utils/getCollectionPaths";
+import CollectionArticlePage from "@/page_components/CollectionArticlePage.astro";
 
 export async function getStaticPaths() {
-    const allPosts = await getCollection("notation");
-
-    // Only consider posts whose slug contains a "/" (i.e. has category and a non-index slug part)
-    const filteredPosts = allPosts.filter(
-        (entry: CollectionEntry<"notation">) => entry.slug.includes("/"),
-    );
-
-    return filteredPosts.map((entry: CollectionEntry<"notation">) => {
-        const [category, slug] = entry.slug.split("/");
-
-        return {
-            params: { category, slug },
-            props: { entry },
-        };
-    });
+    return getCollectionPaths("notation");
 }
 
-// Get the article from props
-interface Props {
-    entry: CollectionEntry<"notation">;
-}
-
-const { entry } = Astro.props as { entry: CollectionEntry<"notation"> };
-const { Content } = await entry.render();
-
-const { category, slug } = Astro.params;
-
-const breadcrumbItems = [
-    { label: "notation", href: "/notation" },
-    { label: category, href: `/notation/${category}` },
-    { label: slug, href: `/notation/${category}/${slug}` },
-];
+const { article } = Astro.props;
 ---
 
-<MainLayout
-    title="Notation"
-    description="A collection of notation-related articles and resources."
->
-    <Breadcrumbs items={breadcrumbItems} />
-    <MainLayoutGrid style="prefered-width">
-        <CoverImage entry={entry} />
-
-        <ContentHeader entry={entry} />
-
-        <Content />
-    </MainLayoutGrid>
-</MainLayout>
+<CollectionArticlePage collectionName="notation" article={article} />

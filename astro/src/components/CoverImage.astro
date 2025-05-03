@@ -1,23 +1,23 @@
 ---
 import { Image } from "astro:assets";
 
-const { entry } = Astro.props;
+const { article } = Astro.props;
 ---
 
 {
-    entry.data.cover && (
+    article.data.cover && (
         <figure class="">
             <Image
                 class="cover"
-                src={entry.data.cover}
-                alt={entry.data.title}
+                src={article.data.cover}
+                alt={article.data.title}
                 layout="full-width"
             />
-            {entry.data.coverCredit && (
+            {article.data.coverCredit && (
                 <figcaption>
-                    <a href={entry.data.coverCredit}>
+                    <a href={article.data.coverCredit}>
                         <em>Image Credit:</em>
-                        {entry.data.coverCredit}
+                        {article.data.coverCredit}
                     </a>
                 </figcaption>
             )}

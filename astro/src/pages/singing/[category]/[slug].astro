@@ -1,62 +1,12 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import { getCollection } from "astro:content";
-import { Image } from "astro:assets";
-
-import Breadcrumbs from "@/components/Breadcrumbs.astro";
-import MainLayout from "@/layouts/MainLayout.astro";
-import Heading from "@/components/Heading/Heading";
-import MaxWidthContainer from "@/components/UI/MaxWidthContainer.astro";
-import Paragraph from "@/components/UI/Paragraph.astro";
-import MainLayoutGrid from "@/layouts/MainLayoutGrid.astro";
-import CoverImage from "@/components/CoverImage.astro";
-import ContentHeader from "@/layouts/ContentHeader.astro";
+import { getCollectionPaths } from "@/utils/getCollectionPaths";
+import CollectionArticlePage from "@/page_components/CollectionArticlePage.astro";
 
 export async function getStaticPaths() {
-    const allPosts = await getCollection("singing");
-
-    // Only consider posts whose slug contains a "/" (i.e. has category and a non-index slug part)
-    const filteredPosts = allPosts.filter((entry: CollectionEntry<"singing">) =>
-        entry.slug.includes("/"),
-    );
-
-    return filteredPosts.map((entry: CollectionEntry<"singing">) => {
-        const [category, slug] = entry.slug.split("/");
-
-        return {
-            params: { category, slug },
-            props: { entry },
-        };
-    });
+    return getCollectionPaths("singing");
 }
 
-// Get the article from props
-interface Props {
-    entry: CollectionEntry<"singing">;
-}
-
-const { entry } = Astro.props as { entry: CollectionEntry<"singing"> };
-const { Content } = await entry.render();
-
-const { category, slug } = Astro.params;
-
-const breadcrumbItems = [
-    { label: "singing", href: "/singing" },
-    { label: category, href: `/singing/${category}` },
-    { label: slug, href: `/singing/${category}/${slug}` },
-];
+const { article } = Astro.props;
 ---
 
-<MainLayout
-    title="Singing"
-    description="A collection of singing-related articles and resources."
->
-    <Breadcrumbs items={breadcrumbItems} />
-    <MainLayoutGrid style="prefered-width">
-        <CoverImage entry={entry} />
-
-        <ContentHeader entry={entry} />
-
-        <Content />
-    </MainLayoutGrid>
-</MainLayout>
+<CollectionArticlePage collectionName="singing" article={article} />

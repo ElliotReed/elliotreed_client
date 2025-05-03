@@ -1,24 +1,24 @@
 ---
 import Heading from "@/components/Heading/Heading";
 
-const { entry } = Astro.props;
+const { article } = Astro.props;
 ---
 
 <header class="">
-    <Heading level={1}>{entry.data.title}</Heading>
+    <Heading level={1}>{article.data.title}</Heading>
     {
-        entry.data.author && (
+        article.data.author && (
             <span class="author">
                 <em>by </em>
-                {entry.data.author}
+                {article.data.author}
             </span>
         )
     }
 
     {
-        entry.data.publishedDate && (
+        article.data.publishedDate && (
             <span class="published-date">
-                <em>{entry.data.publishedDate.toDateString()}</em>
+                <em>{article.data.publishedDate.toDateString()}</em>
             </span>
         )
     }

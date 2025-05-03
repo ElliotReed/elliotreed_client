@@ -1,0 +1,38 @@
+---
+import type { CollectionEntry } from "astro:content";
+import type { CollectionNames } from "@/types/collections";
+
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import CoverImage from "@/components/CoverImage.astro";
+import MainLayoutGrid from "@/components/MainLayoutGrid.astro";
+import ContentHeader from "@/components/ContentHeader.astro";
+
+// Get the article from props
+interface Props {
+    collectionName: CollectionNames;
+    article: CollectionEntry<CollectionNames>;
+}
+
+const { collectionName, article } = Astro.props as Props;
+const { Content } = await article.render();
+
+const { category, slug } = Astro.params;
+
+const breadcrumbItems = [
+    { label: collectionName, href: `/${collectionName}` },
+    { label: category, href: `/${collectionName}/${category}` },
+    { label: slug, href: `/${collectionName}/${category}/${slug}` },
+];
+---
+
+<MainLayout title={article.data.title} description={article.data.description}>
+    <Breadcrumbs items={breadcrumbItems} />
+    <MainLayoutGrid style="prefered-width">
+        <CoverImage article={article} />
+
+        <ContentHeader article={article} />
+
+        <Content />
+    </MainLayoutGrid>
+</MainLayout>

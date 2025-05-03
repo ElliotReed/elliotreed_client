@@ -1,4 +1,5 @@
 ---
+import { navigationLinks } from "@/data/navigationLinks";
 import CollapsibleHeader from "@/components/CollapsibleHeader.astro";
 import Logo from "@/components/Logo";
 import ScoreHeader from "../components/ScoreHeader/ScoreHeader.astro";
@@ -22,55 +23,6 @@ function getLogoAnimation() {
 
     return animation;
 }
-
-const appLinks = [
-    {
-        content: "Apps",
-        address: "/apps",
-    },
-];
-
-const resourceLinks = [
-    {
-        content: "Composition",
-        address: "/composition",
-    },
-    {
-        content: "Guitar",
-        address: "/guitar",
-    },
-    {
-        content: "Notation",
-        address: "/notation",
-    },
-    {
-        content: "Recording",
-        address: "/recording",
-    },
-    {
-        content: "Singing",
-        address: "/singing",
-    },
-];
-
-const siteLinks = [
-    {
-        content: "About",
-        address: "/about",
-    },
-    {
-        content: "Contact",
-        address: "/contact",
-    },
-    {
-        content: "Lessons",
-        address: "/lessons",
-    },
-    {
-        content: "Performances",
-        address: "/performances",
-    },
-];
 ---
 
 <CollapsibleHeader>
@@ -95,18 +47,20 @@ const siteLinks = [
 
         <div class="nav-container__mobile">
             <div class="navbar-container">
-                <Navbar links={siteLinks} />
+                <Navbar links={navigationLinks.site} />
                 <div class="seperator"></div>
-                <Navbar links={resourceLinks} />
+                <Navbar links={navigationLinks.resource} />
+                <div class="seperator"></div>
+                <Navbar links={navigationLinks.app} />
             </div>
         </div>
 
         <div class="navbars">
-            <Navbar links={siteLinks} />
+            <Navbar links={navigationLinks.site} />
         </div>
         <div class="navbars">
-            <Navbar links={appLinks} />
-            <Navbar links={resourceLinks} />
+            <Navbar links={navigationLinks.app} />
+            <Navbar links={navigationLinks.resource} />
         </div>
         <ScoreHeader />
     </div>
