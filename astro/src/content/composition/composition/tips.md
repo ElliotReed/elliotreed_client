@@ -1,5 +1,6 @@
 ---
-cover: "@/assets/images/notation/aint-that-a-kick__intro.png"
+cover: "../w-closeup.jpg"
+coverCredit: "mike castro demaria unsplash"
 title: "Composition Tips"
 description: "Learn the basics of scoring in MuseScore"
 publishedDate: 2025-04-06

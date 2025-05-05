@@ -1,6 +1,7 @@
 ---
 category: "arranging"
-cover: "@/assets/images/notation/aint-that-a-kick.png"
+cover: "../dirty-layers.jpg"
+coverCredit: "kirk cameron unsplash"
 description: "My personal arranging process"
 publishedDate: 2025-04-21
 tags: ["notation", "scoring", "musescore"]

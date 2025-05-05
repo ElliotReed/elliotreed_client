@@ -1,5 +1,6 @@
 ---
-cover: "@/assets/images/notation/aint-that-a-kick.png"
+cover: "../page.jpg"
+coverCredit: "miguel alcantara unsplash"
 title: "Keys"
 description: "MuseScore Home"
 publishedDate: 2025-04-06

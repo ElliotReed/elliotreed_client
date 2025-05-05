@@ -1,6 +1,6 @@
 ---
-cover: "../_cover_breathing.jpg"
-coverCredit: "https://www.deviantart.com/however-improbable"
+cover: "../girl-singing.jpg"
+coverCredit: "astro/src/content/singing/keagan-henman-Pd1F502vfck-unsplash.jpg"
 title: "Vocal Fry"
 description: "Here are some vocal fry warm-up exercises."
 publishedDate: 2025-04-06

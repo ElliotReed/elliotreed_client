@@ -4,5 +4,24 @@ import MainLayout from "@/layouts/MainLayout.astro";
 
 <MainLayout title="Show Notes" description="Show notes">
     <h1>Show Notes</h1>
-    <a href="/show-notes/abbeyroad">Abbey Road / Beatles After The Beatles</a>
+    <ul class="list" role="list">
+        <li>
+            <a href="/show-notes/abbeyroad"
+                >Abbey Road / Beatles After The Beatles</a
+            >
+        </li>
+    </ul>
 </MainLayout>
+
+<style lang="scss">
+    @use "@/styles/abstracts" as *;
+
+    .list {
+        list-style: none;
+        margin: 0;
+        padding: $space-md;
+    }
+    .list li {
+        font-weight: $fw-md;
+    }
+</style>

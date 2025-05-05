@@ -1,5 +1,6 @@
 ---
-cover: "@/assets/images/notation/aint-that-a-kick.png"
+cover: "../acoustic-soundhole.jpg"
+coverCredit: "jefferson santos unsplash"
 title: "Instrument"
 category: "instrument"
 description: "instrumentStuff"

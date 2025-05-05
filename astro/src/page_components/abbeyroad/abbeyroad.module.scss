@@ -29,6 +29,7 @@
 .setTitle {
   display: flex;
   justify-content: space-between;
+  color: inherit;
 
 }
 
@@ -54,6 +55,7 @@
 
 .songTitle {
   padding-inline: $space-md;
+  color: inherit;
 }
 
 .partWrapper {

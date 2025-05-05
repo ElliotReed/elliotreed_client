@@ -1,5 +1,6 @@
 ---
-cover: "@/assets/images/notation/aint-that-a-kick.png"
+cover: "../bw-neck.jpg"
+coverCredit: "caio silva  unsplash"
 title: "Practice Tips"
 category: "practice"
 description: "practice Stuff"

@@ -28,9 +28,11 @@ const breadcrumbItems = [
 
 <MainLayout title={article.data.title} description={article.data.description}>
     <Breadcrumbs items={breadcrumbItems} />
-    <MainLayoutGrid style="prefered-width">
+    <MainLayoutGrid style="centered">
         <CoverImage article={article} />
+    </MainLayoutGrid>
 
+    <MainLayoutGrid style="prefered-width">
         <ContentHeader article={article} />
 
         <Content />

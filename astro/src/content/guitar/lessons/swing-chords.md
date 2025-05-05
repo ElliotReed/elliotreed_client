@@ -1,5 +1,6 @@
 ---
-cover: "@/assets/images/notation/aint-that-a-kick__intro.png"
+cover: "../electric-frets.jpg"
+coverCredit: "oleg ivanov unsplash"
 title: "Swing Chords"
 category: "lessons"
 description: "Swing Chords"

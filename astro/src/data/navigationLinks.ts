@@ -1,29 +1,20 @@
 export const navigationLinks = {
-    site: [
-        {
-            content: "About",
-            address: "/about",
-        },
-        {
-            content: "Contact",
-            address: "/contact",
-        },
-        {
-            content: "Lessons",
-            address: "/lessons",
-        },
-        {
-            content: "Performances",
-            address: "/performances",
-        },
-    ],
     app: [
         {
             content: "Apps",
             address: "/apps",
         },
     ],
-
+    design: [
+        {
+            content: "Color",
+            address: "/design/color",
+        },
+        {
+            content: "Typography",
+            address: "/design/typography",
+        },
+    ],
     resource: [
         {
             content: "Composition",
@@ -44,6 +35,24 @@ export const navigationLinks = {
         {
             content: "Singing",
             address: "/singing",
+        },
+    ],
+    site: [
+        {
+            content: "About",
+            address: "/about",
+        },
+        {
+            content: "Contact",
+            address: "/contact",
+        },
+        {
+            content: "Lessons",
+            address: "/lessons",
+        },
+        {
+            content: "Performances",
+            address: "/performances",
         },
     ],
 }

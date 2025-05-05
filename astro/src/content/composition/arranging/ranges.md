@@ -1,5 +1,6 @@
 ---
-cover: "@/assets/images/notation/aint-that-a-kick__intro.png"
+cover: "../open-book.jpg"
+coverCredit: "miguel alcantara unsplash"
 title: "Ranges"
 description: "Instrument ranges"
 publishedDate: 2025-04-21

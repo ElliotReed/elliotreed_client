@@ -9,6 +9,7 @@ type Heading = {
   color?: "light" | "dark" | "default",
   align?: "start" | "center" | "end",
   className?: string,
+  [key: string]: any
 }
 
 export default function Heading({
@@ -18,6 +19,7 @@ export default function Heading({
   color = "default",
   level = 4,
   size = null,
+  ...rest
 }: React.PropsWithChildren<Heading>) {
   const HeadingTag = `h${level}` as const;
 
@@ -58,6 +60,7 @@ export default function Heading({
         alignmentClass,
         className,
       )}
+      {...rest}
     >{children}
     </HeadingTag>
   )

@@ -1,8 +1,11 @@
 ---
-import DesignLayout from "@/layouts/DesignLayout.astro";
+import { navigationLinks } from "@/data/navigationLinks";
+import Navbar from "@/components/Navbar.astro";
 import Heading from "../../components/Heading/Heading";
+import MainLayout from "@/layouts/MainLayout.astro";
 ---
 
-<DesignLayout>
+<MainLayout>
   <Heading level={1}>Design System</Heading>
-</DesignLayout>
+  <Navbar links={navigationLinks.design} />
+</MainLayout>

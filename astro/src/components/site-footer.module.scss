@@ -1,5 +1,9 @@
 @use "@/styles/abstracts" as *;
 
+.heading-override {
+    margin-block: $space-xs;
+}
+
 .footer {
     display: flex;
     flex-shrink: 0;

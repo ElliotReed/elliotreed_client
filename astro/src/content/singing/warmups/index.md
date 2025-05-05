@@ -1,4 +1,6 @@
 ---
+cover: "../boy-singing-loud.jpg"
+coverCredit: "jason rosewell unsplash"
 title: "Warmups"
 description: "Vocal Warmups Home"
 publishedDate: 2025-04-10

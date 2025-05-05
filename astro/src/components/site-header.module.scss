@@ -10,26 +10,17 @@
   background-color: $body-background-color;
   @include shadow(1);
   z-index: 10;
-
-  @include respond-to("sm") {
-    // display: grid;
-    // grid-template-columns: auto 1fr;
-  }
-
-  // &>*:not(:last-child) {
-  //   margin: em-scale(100) em-scale(500);
-  // }
 }
 
 .logo-link {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
+  gap: .168em;
   margin-inline: $space-md;
-  // margin-block: $space-sm;
-  text-decoration: none;
   color: inherit;
   line-height: 1;
+  text-decoration: none;
 
   .title {
     display: block;
