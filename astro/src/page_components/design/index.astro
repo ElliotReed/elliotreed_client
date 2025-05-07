@@ -3,9 +3,25 @@ import { navigationLinks } from "@/data/navigationLinks";
 import Navbar from "@/components/Navbar.astro";
 import Heading from "../../components/Heading/Heading";
 import MainLayout from "@/layouts/MainLayout.astro";
+import Table from "@/components/UI/Table.astro";
+const headings = ["Dynamics", "Velocity", "CC1%", "CC1 Envelope"];
+
+const data = [
+  ["pppp", "10", "10", ""],
+  ["ppp", "23", "20", "solo background"],
+  ["pp", "36", "30", ""],
+  ["p", "49", "40", ""],
+  ["mp", "61", "50", "Fill & Line (Vocal)"],
+  ["mf", "75", "64", "90"],
+  ["f", "88", "70", "Melody, Solo"],
+  ["ff", "101", "80", "dd"],
+  ["fff", "114", "90", ""],
+  ["ffff", "127", "100", ""],
+];
 ---
 
 <MainLayout>
   <Heading level={1}>Design System</Heading>
   <Navbar links={navigationLinks.design} />
+  <Table headings={headings} data={data} />
 </MainLayout>

@@ -1,0 +1,69 @@
+---
+interface Props {
+    headings: string[];
+    data: string[][];
+    footHeading?: string;
+    footData?: string;
+}
+
+const { headings, data, footHeading = "", footData = "" } = Astro.props;
+---
+
+<div class="table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                {headings.map((heading) => <th>{heading}</th>)}
+            </tr>
+        </thead>
+        <tbody>
+            {
+                data.map((row) => (
+                    <tr>
+                        {row.map((rowData) => (
+                            <td>{rowData}</td>
+                        ))}
+                    </tr>
+                ))
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan={headings.length - 1}>
+                    {footHeading}
+                </th>
+                <td> {footData}</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<style lang="scss" is:global>
+    @use "@/styles/abstracts" as *;
+
+    .table-container {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 100%;
+        border-radius: $border-radius;
+        overflow-x: auto;
+    }
+
+    .table {
+        // border-collapse: collapse;
+        // width: 100%;
+        // max-width: 100%;
+        // margin: 0 auto;
+    }
+
+    th,
+    td {
+        // padding: 8px;
+        // text-align: left;
+        // border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        // background-color: #f2f2f2;
+    }
+</style>

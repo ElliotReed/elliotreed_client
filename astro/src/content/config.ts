@@ -59,6 +59,7 @@ const notation = defineCollection({
 
 const recording = defineCollection({
     type: "content",
+
     schema: ({ image }) => z.object({
         author: z.string().optional(),
         category: z.string(),
