@@ -1,0 +1,66 @@
+@use "@/styles/abstracts" as *;
+
+@layer components {
+    .page-layout {
+        $_gutter-to-prefered-width: minmax(0, auto);
+        $_prefered-width-to-center: minmax(0, calc($max-width / 2));
+        display: grid;
+        grid-template-columns:
+            [start] em-scale(500) [gutter-start] $_gutter-to-prefered-width [prefered-width-start] $_prefered-width-to-center [center] $_prefered-width-to-center [prefered-width-end] $_gutter-to-prefered-width [gutter-end] em-scale(500) [end];
+        grid-auto-rows: min-content;
+
+        &>* {
+            grid-column: gutter-start / gutter-end;
+        }
+
+        .page-layout__without-auto-rows {
+            grid-auto-rows: initial;
+        }
+
+        .page-layout__with-gutter {
+            grid-column: gutter-start / gutter-end;
+        }
+
+        .page-layout__prefered-width {
+            grid-column: prefered-width-start / prefered-width-end;
+        }
+
+        .page-layout__centered {
+            grid-column: gutter-start / gutter-end;
+            justify-self: center;
+            max-width: $max-width;
+        }
+
+        .page-layout__full-width {
+            grid-column: start / end;
+        }
+    }
+
+    .column-layout {
+        $_gutter-to-prefered-width: minmax(0, auto);
+        $_prefered-width-to-center: minmax(0, calc($max-width / 2));
+        display: grid;
+        grid-template-columns:
+            [start] em-scale(500) [gutter-start] repeat(3, 1fr) [gutter-end] em-scale(500) [end];
+        // grid-auto-rows: min-content;
+        overflow: clip;
+
+        &>* {
+            grid-column: gutter-start / gutter-end;
+        }
+
+        .column-layout__with-gutter {
+            // @include grid-columns(3, true);
+        }
+    }
+}
+
+@mixin grid-columns($count, $gutter: "true") {
+    @if $gutter {
+        grid-template-columns: [start] em-scale(500) [gutter-start] repeat(#{$count}, 1fr) [gutter-end] em-scale(500) [end];
+    }
+
+    @else {
+        grid-template-columns: repeat(#{$count}, 1fr);
+    }
+}

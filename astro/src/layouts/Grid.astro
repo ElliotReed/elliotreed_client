@@ -1,0 +1,22 @@
+---
+import type { Grid } from "@/types/grid";
+
+const {
+    element = "div",
+    grid = "page",
+    customClasses,
+    columns,
+    rows,
+} = Astro.props as Grid;
+const Tag = element as keyof HTMLElementTagNameMap;
+const normalizeClasses = Array.isArray(customClasses)
+    ? customClasses
+    : [customClasses];
+---
+
+<Tag
+    class:list={[`${grid}-layout`, ...normalizeClasses]}
+    style={`grid-template-columns: repeat(${columns}, 1fr); grid-template-rows: repeat(${rows}, auto);`}
+>
+    <slot />
+</Tag>

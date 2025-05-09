@@ -4,24 +4,113 @@ import Navbar from "@/components/Navbar.astro";
 import Heading from "../../components/Heading/Heading";
 import MainLayout from "@/layouts/MainLayout.astro";
 import Table from "@/components/UI/Table.astro";
+import Grid from "@/layouts/Grid.astro";
+import GridChild from "@/layouts/GridChild.astro";
+import styles from "@/layouts/layout.module.scss";
+import testImage from "@/assets/images/beatles-faces.jpeg";
+import { Image } from "astro:assets";
+
 const headings = ["Dynamics", "Velocity", "CC1%", "CC1 Envelope"];
 
 const data = [
-  ["pppp", "10", "10", ""],
-  ["ppp", "23", "20", "solo background"],
-  ["pp", "36", "30", ""],
-  ["p", "49", "40", ""],
-  ["mp", "61", "50", "Fill & Line (Vocal)"],
-  ["mf", "75", "64", "90"],
-  ["f", "88", "70", "Melody, Solo"],
-  ["ff", "101", "80", "dd"],
-  ["fff", "114", "90", ""],
-  ["ffff", "127", "100", ""],
+    ["pppp", "10", "10", ""],
+    ["ppp", "23", "20", "solo background"],
+    ["pp", "36", "30", ""],
+    ["p", "49", "40", ""],
+    ["mp", "61", "50", "Fill & Line (Vocal)"],
+    ["mf", "75", "64", "90"],
+    ["f", "88", "70", "Melody, Solo"],
+    ["ff", "101", "80", "dd"],
+    ["fff", "114", "90", ""],
+    ["ffff", "127", "100", ""],
 ];
 ---
 
 <MainLayout>
-  <Heading level={1}>Design System</Heading>
-  <Navbar links={navigationLinks.design} />
-  <Table headings={headings} data={data} />
+    <Heading level={1}>Design System</Heading>
+    <Navbar links={navigationLinks.design} />
+    <Table headings={headings} data={data} />
+    <Grid
+        element="div"
+        grid="column"
+        customClasses="some-class"
+        rows="4"
+        columns="4"
+    >
+        <GridChild
+            parentGrid="column"
+            element="div"
+            customClasses="some-image-class"
+            style="centered"
+            colStart={2}
+            colEnd={5}
+            rowStart={1}
+            rowEnd={5}
+        >
+            <Image
+                src={testImage}
+                alt="Test image"
+                layout="full-width"
+                class="img"
+            />
+        </GridChild>
+
+        <!-- <h4>Some rogue grid child</h4> -->
+
+        <GridChild
+            parentGrid="column"
+            element="p"
+            customClasses={["some-child-class", styles.content]}
+            style="centered"
+            colStart={1}
+            colEnd={2}
+            rowStart={2}
+            rowEnd={3}
+        >
+            Some grid child
+        </GridChild>
+
+        <GridChild
+            parentGrid="column"
+            element="h4"
+            customClasses={["some-child-class", styles.content]}
+            style="centered"
+            colStart={1}
+            colEnd={4}
+            rowStart={3}
+            rowEnd={5}
+        >
+            Some other grid child
+        </GridChild>
+    </Grid>
+
+    <style lang="scss" is:global>
+        @use "@/styles/abstracts/" as *;
+
+        .some-class {
+            background-color: get-color("dark", 200);
+            border-radius: 0.5rem;
+            margin-block: $space-md;
+        }
+
+        .some-child-class {
+            background-color: get-color("dark", 200);
+            border-radius: 0.5rem;
+            margin-block: $space-md;
+            display: flex;
+            justify-content: center;
+        }
+
+        .some-image-class {
+            background-color: get-color("dark", 300);
+            border-radius: 0.5rem;
+            display: flex;
+            justify-content: end;
+
+            & .img {
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+    </style>
 </MainLayout>
