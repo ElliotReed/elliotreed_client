@@ -3,7 +3,7 @@ name: Deploy to Hosting
 on:
   push:
     branches:
-      - astro_migrate # You can adjust this to your default branch
+      - dev # used for staging
 
 jobs:
   deploy:
