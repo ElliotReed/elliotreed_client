@@ -1,0 +1,89 @@
+---
+const { name, title, backgroundColor } = Astro.props;
+---
+
+<details
+  name={name}
+  class={backgroundColor ? backgroundColor : "backgroundColor"}
+>
+  <summary>
+    <span>{title}</span>
+  </summary>
+  <slot />
+</details>
+
+<style lang="scss" scoped>
+  @use "@/styles/abstracts" as *;
+  @use "sass:color";
+
+  .backgroundColor {
+    background-color: get-color("darkShades", 500);
+  }
+
+  details {
+    $_ease: ease-in-out;
+    $_radius: $border-radius;
+    $_duration: $duration-md;
+    position: relative;
+    margin-block: em-scale(500);
+    border-radius: $_radius;
+
+    color: get-color("lightShades");
+    border: $border;
+    outline: none;
+    overflow: hidden;
+
+    &:hover {
+      @include shadow(1);
+    }
+
+    &:active,
+    &:focus {
+      @include focus();
+      @include shadow(1);
+    }
+
+    summary {
+      position: relative;
+      margin-block: $space-md;
+      margin-inline: $space-xl;
+      cursor: pointer;
+      font-weight: $fw-lg;
+      border-radius: $border-radius;
+      overflow: hidden;
+
+      &::marker {
+        content: "";
+      }
+
+      &::before {
+        content: "\232a";
+        position: absolute;
+        inset-inline-end: 0;
+        transform-origin: center;
+        transition: transform $_duration $_ease;
+      }
+
+      span {
+      }
+    }
+    &[open] summary::before {
+      transform: rotate(90deg);
+    }
+
+    &::details-content {
+      border-bottom-left-radius: $_radius;
+      border-bottom-right-radius: $_radius;
+      overflow: hidden;
+      block-size: 0;
+      transition-property: block-size, content-visibility;
+      transition-duration: $_duration;
+      transition-timing-function: $_ease;
+      transition-behavior: allow-discrete;
+    }
+
+    &[open]::details-content {
+      block-size: auto;
+    }
+  }
+</style>

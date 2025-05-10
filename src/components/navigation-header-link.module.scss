@@ -1,0 +1,21 @@
+@use "@/styles/abstracts" as *;
+
+.navigationHeaderLink {
+  padding-inline: $space-xs;
+  color: get-color("mainBrand");
+  font-weight: $fw-md;
+  text-decoration: none;
+
+  &:hover {
+    color: get-color("darkShades");
+    background: none;
+  }
+
+  &:visited {
+    color: inherit;
+  }
+
+  &Active {
+    border-bottom: 2px solid get-color("mainBrand");
+  }
+}

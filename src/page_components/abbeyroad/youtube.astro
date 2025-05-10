@@ -1,0 +1,42 @@
+---
+const { videoId, title } = Astro.props;
+const youTubeBaseURL = "https://www.youtube.com/embed/";
+const source = `${youTubeBaseURL}${videoId}`;
+---
+
+<figure>
+    <div class="video-container">
+        <iframe title={title} src={source} loading="lazy" allowfullscreen
+        ></iframe>
+    </div>
+    <figcaption>{title}</figcaption>
+</figure>
+
+<style lang="scss">
+    @use "@/styles/abstracts" as *;
+    figure {
+        margin: 0;
+
+        figcaption {
+            color: get-color("darkShades", 500);
+            @include padding-box("sm");
+        }
+    }
+
+    .video-container {
+        position: relative;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+
+        iframe,
+        object,
+        embed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    }
+</style>

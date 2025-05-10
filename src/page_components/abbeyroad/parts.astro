@@ -1,0 +1,54 @@
+---
+import styles from "./abbeyroad.module.scss";
+
+interface VideoProps {
+  id: string;
+  title: string;
+}
+
+interface SongProps {
+  position: number;
+  elliot: string;
+  steve: string;
+  alex: string;
+  title: string;
+  link: string;
+  videos: VideoProps[];
+}
+
+const { song } = Astro.props;
+
+const showParts = false;
+---
+
+<div class={styles.partWrapper}>
+  <h6>
+    <small>Parts:</small>
+  </h6>
+  <ul class={styles.partList}>
+    {
+      song.alex !== "" && (
+        <li>
+          <span>Alex:</span>
+          <span class={styles.part}>{song.alex}</span>
+        </li>
+      )
+    }
+    {
+      song.elliot !== "" && (
+        <li>
+          <span>Elliot:</span>
+          <span class={styles.part}>{song.elliot}</span>
+        </li>
+      )
+    }
+    {
+      song.steve !== "" && (
+        <li>
+          <span>Steve:</span>
+          <span class={styles.part}>{song.steve}</span>
+        </li>
+      )
+    }
+  </ul>
+</div>

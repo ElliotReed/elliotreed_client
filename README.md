@@ -1,12 +1,22 @@
 # Elliot Reed Music
 
-[Docs](docs.elliotreed.net)
+Website: [Elliot Reed Music](https://elliotreed.net).
 
-[Elliot Reed Music](https://elliotreed.net)
+Repository [elliotreed_client](https://github.com/ElliotReed/elliotreed_client).
 
-[staging.elliotreed.net](https://staging.elliotreed.net)
+Documentation for this site: [docs.elliotreed.net](https://docs.elliotreed.net).
+
+Staging deploy: [staging.elliotreed.net](https://staging.elliotreed.net).
 
 
-[Astro](https://astro.build/)
+## Third-party
 
-[Starlight Theme](https://starlight.astro.build/)
+Astro development framework: [Astro](https://astro.build/).
+
+Astro DOCS: [Astro DOCS]{https://docs.astro.build/}.
+
+Astro official docs theme: [Starlight Theme](https://starlight.astro.build/).
+
+## Hosting
+
+Hosted on A2 Hosting: [Client Area](https://my.a2hosting.com/clientarea.php).

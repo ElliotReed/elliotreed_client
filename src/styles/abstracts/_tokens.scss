@@ -1,0 +1,5 @@
+@use "color" as *;
+@use 'scale-functions' as *;
+
+$logo-size: em-scale(300);
+$logo-size-sm: em-scale(500)

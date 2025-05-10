@@ -1,0 +1,100 @@
+---
+import NavigationHeaderLink from "@/components/NavigationHeaderLink.astro";
+
+interface Link {
+    content: string;
+    address: string;
+    subLinks?: Link[];
+}
+
+interface Props {
+    links: Link[];
+}
+const { links } = Astro.props;
+---
+
+<nav class="primary-nav">
+    <ul class="primary nav-list">
+        {
+            links.map((link) => (
+                <>
+                    <li>
+                        <NavigationHeaderLink to={link.address}>
+                            {link.content}
+                        </NavigationHeaderLink>
+                    </li>
+
+                    {link.subLinks && (
+                        <ul class="secondary nav-list">
+                            {link.subLinks.map((subLink) => (
+                                <li>
+                                    <NavigationHeaderLink to={subLink.address}>
+                                        {subLink.content}
+                                    </NavigationHeaderLink>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </>
+            ))
+        }
+    </ul>
+</nav>
+
+<style lang="scss">
+    @use "sass:color";
+    @use "@/styles/abstracts" as *;
+
+    .nav-list {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        @include respond-to("sm") {
+            flex-wrap: nowrap;
+            flex-direction: row;
+        }
+
+        .secondary {
+            position: absolute;
+            top: $space-xl;
+            right: 0;
+            display: grid;
+            flex-direction: column;
+            height: 0;
+            width: fit-content;
+            @include shadow(1);
+            background: get-color("lightShades");
+            border-radius: $border-radius;
+            transition: all $duration-md ease-in-out;
+            transition-behavior: allow-discrete;
+            overflow: clip;
+
+            z-index: 1;
+        }
+
+        li {
+            position: relative;
+            display: flex;
+            align-items: center;
+            min-width: fit-content;
+            color: get-color("mainBrand");
+
+            // Navigation header link has child that has .active class
+            &:has(li .active) {
+                color: get-color("lightShades");
+                background: get-color("darkShades", 300);
+            }
+
+            &:hover {
+                .secondary {
+                    height: auto;
+                }
+            }
+        }
+    }
+</style>

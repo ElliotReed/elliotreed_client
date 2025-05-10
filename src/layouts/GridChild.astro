@@ -1,0 +1,24 @@
+---
+import type { GridChild } from "@/types/grid";
+
+const { element, customClasses, style, colStart, colEnd, rowStart, rowEnd } =
+    Astro.props as GridChild;
+
+const grid = "page";
+const Tag = element;
+
+const normalizeClasses = Array.isArray(customClasses)
+    ? customClasses
+    : [customClasses];
+---
+
+<Tag
+    class:list={[`${grid}-layout__${style}`, ...normalizeClasses]}
+    style={`grid-column-start: ${colStart}; 
+    grid-column-end: ${colEnd};
+    grid-row-start: ${rowStart};
+     grid-row-end: ${rowEnd};
+    ;`}
+>
+    <slot />
+</Tag>

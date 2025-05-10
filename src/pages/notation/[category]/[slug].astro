@@ -1,0 +1,12 @@
+---
+import { getCollectionPaths } from "@/utils/getCollectionPaths";
+import CollectionArticlePage from "@/page_components/CollectionArticlePage.astro";
+
+export async function getStaticPaths() {
+    return getCollectionPaths("notation");
+}
+
+const { article } = Astro.props;
+---
+
+<CollectionArticlePage collectionName="notation" article={article} />

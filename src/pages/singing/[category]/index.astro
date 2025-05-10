@@ -1,0 +1,10 @@
+---
+import CollectionCategoryPage from "@/page_components/CollectionCategoryPage.astro";
+import { getCollectionCategoryPaths } from "@/utils/getCollectctionCagegoryPaths";
+
+export async function getStaticPaths() {
+    return getCollectionCategoryPaths("singing");
+}
+---
+
+<CollectionCategoryPage collectionName="singing" />
