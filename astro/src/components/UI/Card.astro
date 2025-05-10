@@ -16,16 +16,17 @@ const { href } = Astro.props;
     @use "@/styles/abstracts" as *;
 
     .card {
-        text-decoration: none;
         display: flex;
         flex-direction: column;
         gap: $space-md;
+        min-height: 100%;
+        overflow: hidden;
+        color: get-color("darkShades");
+        text-decoration: none;
+        background: get-color("lightShades", 400);
         border: $border;
         border-radius: $border-radius;
-        color: get-color("darkShades");
-        background: get-color("lightShades", 400);
-        @include shadow(2);
-        overflow: hidden;
+        @include shadow(1);
 
         .content {
             margin-inline: $space-md;

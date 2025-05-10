@@ -6,12 +6,13 @@ const projects = defineCollection({
     schema: ({ image }) => z.object({
         author: z.string().optional(),
         category: z.string(),
+        cover: image().optional(),
+        coverCredit: z.string().optional(),
+        coverCreditLink: z.string().optional(),
         description: z.string(),
         publishedDate: z.date(),
         tags: z.array(z.string()),
         title: z.string(),
-        cover: image().optional(),
-        coverCredit: z.string().optional(),
     }),
 });
 
@@ -20,12 +21,13 @@ const composition = defineCollection({
     schema: ({ image }) => z.object({
         author: z.string().optional(),
         category: z.string(),
+        cover: image().optional(),
+        coverCredit: z.string().optional(),
+        coverCreditLink: z.string().optional(),
         description: z.string(),
         publishedDate: z.date(),
         tags: z.array(z.string()),
         title: z.string(),
-        cover: image().optional(),
-        coverCredit: z.string().optional(),
     }),
 });
 
@@ -34,12 +36,13 @@ const guitar = defineCollection({
     schema: ({ image }) => z.object({
         author: z.string().optional(),
         category: z.string(),
+        cover: image().optional(),
+        coverCredit: z.string().optional(),
+        coverCreditLink: z.string().optional(),
         description: z.string(),
         publishedDate: z.date(),
         tags: z.array(z.string()),
         title: z.string(),
-        cover: image().optional(),
-        coverCredit: z.string().optional(),
     }),
 });
 
@@ -48,12 +51,13 @@ const notation = defineCollection({
     schema: ({ image }) => z.object({
         author: z.string().optional(),
         category: z.string(),
+        cover: image().optional(),
+        coverCredit: z.string().optional(),
+        coverCreditLink: z.string().optional(),
         description: z.string(),
         publishedDate: z.date(),
         tags: z.array(z.string()),
         title: z.string(),
-        cover: image().optional(),
-        coverCredit: z.string().optional(),
     }),
 });
 
@@ -63,12 +67,13 @@ const recording = defineCollection({
     schema: ({ image }) => z.object({
         author: z.string().optional(),
         category: z.string(),
+        cover: image().optional(),
+        coverCredit: z.string().optional(),
+        coverCreditLink: z.string().optional(),
         description: z.string(),
         publishedDate: z.date(),
         tags: z.array(z.string()),
         title: z.string(),
-        cover: image().optional(),
-        coverCredit: z.string().optional(),
     }),
 });
 
@@ -77,12 +82,13 @@ const singing = defineCollection({
     schema: ({ image }) => z.object({
         author: z.string().optional(),
         category: z.string(),
+        cover: image().optional(),
+        coverCredit: z.string().optional(),
+        coverCreditLink: z.string().optional(),
         description: z.string(),
         publishedDate: z.date(),
         tags: z.array(z.string()),
         title: z.string(),
-        cover: image().optional(),
-        coverCredit: z.string().optional(),
     }),
 });
 

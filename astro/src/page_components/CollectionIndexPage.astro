@@ -47,7 +47,7 @@ for (const article of articles) {
                         </a>
                     </Heading>
 
-                    <ul>
+                    <ul role="list">
                         {items.map((article) => (
                             <li>
                                 <Card
@@ -62,14 +62,17 @@ for (const article of articles) {
                                             layout="full-width"
                                         />
                                     )}
-                                    <Fragment slot="content" class="content">
-                                        <Heading level={3}>
+                                    <div
+                                        slot="content"
+                                        class="content-container"
+                                    >
+                                        <Heading level={3} size={4}>
                                             {article.data.title}
                                         </Heading>
                                         <Paragraph size="sm">
                                             {article.data.description}
                                         </Paragraph>
-                                    </Fragment>
+                                    </div>
                                 </Card>
                             </li>
                         ))}
@@ -83,37 +86,60 @@ for (const article of articles) {
 <style lang="scss">
     @use "@/styles/abstracts" as *;
     .category {
-        background: get-color("lightShades", 300);
+        background: get-color("light", 200);
+        border: 1px solid transparent;
         border-radius: $border-radius;
-        @include padding-box("sm");
-        @include shadow(1);
+
+        & > * {
+            margin-inline: $space-md;
+        }
+
         & + section {
             margin-block: $space-lg;
         }
 
         .category-link {
-            display: inline-block;
-            width: 100%;
             color: inherit;
+            font-family: "Montserrat";
+            text-transform: uppercase;
+
+            &:hover,
+            &:focus {
+                background: get-color("light", 200);
+            }
 
             &:visited {
                 color: inherit;
             }
         }
-    }
 
-    ul {
-        display: grid;
-        padding-inline-start: $space-sm;
-        grid-template-columns: repeat(auto-fill, minmax(px-to-rem(300), 1fr));
-        gap: $space-md;
-        list-style: none;
-    }
+        ul {
+            display: grid;
+            gap: $space-md;
+            grid-template-columns: repeat(
+                auto-fill,
+                minmax(px-to-rem(280), 1fr)
+            );
+            padding-inline-start: $space-sm;
+            list-style: none;
 
-    .cover {
-        width: 100%;
-        height: 12em;
-        object-fit: cover;
-        aspect-ratio: 16 / 9;
+            // This counters the Card gap
+            .content-container {
+                h1,
+                h2,
+                h3,
+                h4,
+                h5,
+                h6 {
+                    margin-block: 0;
+                }
+            }
+        }
+
+        .cover {
+            width: 100%;
+            object-fit: cover;
+            aspect-ratio: 16 / 9;
+        }
     }
 </style>

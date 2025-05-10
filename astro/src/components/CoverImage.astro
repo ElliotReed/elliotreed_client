@@ -15,10 +15,18 @@ const { article } = Astro.props;
             />
             {article.data.coverCredit && (
                 <figcaption>
-                    <a href={article.data.coverCredit}>
-                        <em>Image Credit:</em>
-                        {article.data.coverCredit}
-                    </a>
+                    {article.data.coverCreditLink && (
+                        <a href={article.data.coverCreditLink}>
+                            <em>Image Credit: </em>
+                            {article.data.coverCredit}
+                        </a>
+                    )}
+                    {!article.data.coverCreditLink && (
+                        <span>
+                            <em>Image Credit: </em>
+                            {article.data.coverCredit}
+                        </span>
+                    )}
                 </figcaption>
             )}
         </figure>
@@ -32,6 +40,7 @@ const { article } = Astro.props;
         margin: 0;
         figcaption {
             background: get-color("lightShades", 300);
+            font-size: $fs-sm-rem;
             a {
                 color: inherit;
                 @include padding-box("sm");

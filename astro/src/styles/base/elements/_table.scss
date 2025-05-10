@@ -32,9 +32,13 @@
 
         tfoot tr th,
         tfoot tr td {
-            line-height: 1;
             background-color: get-color("darkShades");
             color: get-color("lightShades", 500);
+        }
+
+        tfoot tr th:empty,
+        tfoot tr td:empty {
+            padding: em-scale(100);
         }
     }
 }

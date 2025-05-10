@@ -1,5 +1,6 @@
 ---
-cover: "@/assets/images/notation/aint-that-a-kick__intro.png"
+cover: "@/assets/images/recording/kontakt.png"
+coverCredit: "Elliot Reed"
 title: "Kontakt"
 description: "Kontakt tips."
 publishedDate: 2025-04-06
