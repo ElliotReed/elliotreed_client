@@ -1,5 +1,5 @@
 ---
-cover: "../page.jpg"
+cover: "@images/composition/page.jpg"
 coverCredit: "miguel alcantara unsplash"
 title: "Keys"
 description: "MuseScore Home"

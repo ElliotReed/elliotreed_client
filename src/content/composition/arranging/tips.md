@@ -1,5 +1,5 @@
 ---
-cover: "@/assets/images/notation/aint-that-a-kick__intro.png"
+cover: "@images/notation/aint-that-a-kick__intro.png"
 coverCredit: "Elliot Reed"
 title: "Arranging Tips"
 description: "Learn the basics of scoring in MuseScore"

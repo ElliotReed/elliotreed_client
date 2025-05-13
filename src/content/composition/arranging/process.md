@@ -1,6 +1,6 @@
 ---
 category: "arranging"
-cover: "../dirty-layers.jpg"
+cover: "@images/composition/dirty-layers.jpg"
 coverCredit: "kirk cameron unsplash"
 description: "My personal arranging process"
 publishedDate: 2025-04-21

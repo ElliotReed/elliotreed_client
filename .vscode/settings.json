@@ -1,13 +1,33 @@
 {
-  "workbench.colorCustomizations": {
-    "statusBar.foreground": "#e4ddcd",
-    "statusBar.background": "#382e31",
-    "statusBarItem.remoteBackground": "#2e3832",
-    "statusBarItem.remoteForeground": "#e4ddcd",
-    "titleBar.activeForeground": "#382e31",
-    "titleBar.activeBackground": "#e4ddcd",
-    "titleBar.inactiveForeground": "#e4ddcd",
-    "titleBar.inactiveBackground": "#382e31",
-  },
-  "workbench.colorTheme": "βui - Tomorrow Dark"
+    // "editor.fontFamily": "Operator Mono SSM Lig",
+    // "editor.lineHeight": 25,
+    // "explorer.decorations.badges": false,
+    // "editor.fontSize": 14,
+    // "editor.letterSpacing": 0.5,
+    // "editor.fontWeight": "400",
+    // "editor.renderWhitespace": "none",
+    // "workbench.statusBar.feedback.visible": false,
+    "editor.rulers": [
+        80,
+        100,
+        120
+    ],
+    // "whiteviz.maximumLimit": 500,
+    // "whiteviz.expandedTabIndicator": false,
+    // "editor.occurrencesHighlight": true,
+    // "workbench.tree.horizontalScrolling": true,
+    // "editor.cursorStyle": "line-thin",
+    // "editor.showFoldingControls": "always",
+    // "editor.matchBrackets": true
+    "workbench.colorCustomizations": {
+        "statusBar.foreground": "#e4ddcd",
+        "statusBar.background": "#382e31",
+        "statusBarItem.remoteBackground": "#2e3832",
+        "statusBarItem.remoteForeground": "#e4ddcd",
+        "titleBar.activeForeground": "#382e31",
+        "titleBar.activeBackground": "#e4ddcd",
+        "titleBar.inactiveForeground": "#e4ddcd",
+        "titleBar.inactiveBackground": "#382e31",
+    },
+    "workbench.colorTheme": "βui - Tomorrow Dark"
 }

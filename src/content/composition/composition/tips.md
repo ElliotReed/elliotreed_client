@@ -1,5 +1,5 @@
 ---
-cover: "../w-closeup.jpg"
+cover: "@images/composition/w-closeup.jpg"
 coverCredit: "mike castro demaria unsplash"
 title: "Composition Tips"
 description: "Learn the basics of scoring in MuseScore"

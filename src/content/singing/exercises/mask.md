@@ -1,5 +1,5 @@
 ---
-cover: "../microphone.jpg"
+cover: "@images/singing/microphone.jpg"
 coverCredit: "bogomil mihaylov unsplash"
 title: "The Mask"
 description: "The mask is the front of face nasal cavity."

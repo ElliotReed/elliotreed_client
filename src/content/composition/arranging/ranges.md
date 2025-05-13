@@ -1,5 +1,5 @@
 ---
-cover: "../open-book.jpg"
+cover: "@images/composition/open-book.jpg"
 coverCredit: "miguel alcantara unsplash"
 title: "Ranges"
 description: "Instrument ranges"

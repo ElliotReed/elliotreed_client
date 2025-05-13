@@ -1,5 +1,5 @@
 ---
-cover: "../mixing-board.jpg"
+cover: "@images/recording/mixing-board.jpg"
 coverCredit: "james kovin unsplash"
 title: "Style"
 description: "Cakewalk style"

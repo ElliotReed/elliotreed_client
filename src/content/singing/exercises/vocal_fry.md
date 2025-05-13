@@ -1,5 +1,5 @@
 ---
-cover: "../girl-singing.jpg"
+cover: "@images/singing/girl-singing.jpg"
 coverCredit: "astro/src/content/singing/keagan-henman-Pd1F502vfck-unsplash.jpg"
 title: "Vocal Fry"
 description: "Here are some vocal fry warm-up exercises."
