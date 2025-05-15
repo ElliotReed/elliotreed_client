@@ -7,6 +7,7 @@ import MainLayout from "@/layouts/MainLayout.astro";
 import CoverImage from "@/components/CoverImage.astro";
 import MainLayoutGrid from "@/components/MainLayoutGrid.astro";
 import ContentHeader from "@/components/ContentHeader.astro";
+import TagList from "@/components/TagList.astro";
 
 // Get the article from props
 interface Props {
@@ -33,6 +34,7 @@ const breadcrumbItems = [
     </MainLayoutGrid>
 
     <MainLayoutGrid style="prefered-width">
+        <TagList tags={article.data.tags} />
         <ContentHeader article={article} />
 
         <Content />

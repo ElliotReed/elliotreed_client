@@ -33,10 +33,8 @@ for (const article of articles) {
     <MainLayoutGrid style="prefered-width">
         <Heading level={1}>{title}</Heading>
 
-        <!-- <TagList /> -->
-
         {
-            Object.entries(grouped).map(([category, items]) => (
+            Object.entries(grouped).map(([category, articles]) => (
                 <section class="category">
                     <Heading level={2} size={5}>
                         <a
@@ -48,34 +46,43 @@ for (const article of articles) {
                     </Heading>
 
                     <ul role="list">
-                        {items.map((article) => (
-                            <li>
-                                <Card
-                                    href={`/${collectionName}/${article.slug}`}
-                                >
-                                    {article.data.cover && (
-                                        <Image
-                                            class="cover"
-                                            slot="header"
-                                            src={article.data.cover}
-                                            alt={article.data.title}
-                                            layout="full-width"
-                                        />
-                                    )}
-                                    <div
-                                        slot="content"
-                                        class="content-container"
+                        {articles
+                            .sort((a, b) =>
+                                a.data.title
+                                    .toLowerCase()
+                                    .localeCompare(b.data.title.toLowerCase()),
+                            )
+                            .map((article) => (
+                                <li>
+                                    <Card
+                                        href={`/${collectionName}/${article.slug}`}
                                     >
-                                        <Heading level={3} size={4}>
-                                            {article.data.title}
-                                        </Heading>
-                                        <Paragraph size="sm">
-                                            {article.data.description}
-                                        </Paragraph>
-                                    </div>
-                                </Card>
-                            </li>
-                        ))}
+                                        {article.data.cover && (
+                                            <Image
+                                                class="cover"
+                                                slot="header"
+                                                src={article.data.cover}
+                                                alt={
+                                                    article.data.coverAltText ??
+                                                    article.data.title
+                                                }
+                                                layout="full-width"
+                                            />
+                                        )}
+                                        <div
+                                            slot="content"
+                                            class="content-container"
+                                        >
+                                            <Heading level={3} size={4}>
+                                                {article.data.title}
+                                            </Heading>
+                                            <Paragraph size="sm">
+                                                {article.data.description}
+                                            </Paragraph>
+                                        </div>
+                                    </Card>
+                                </li>
+                            ))}
                     </ul>
                 </section>
             ))

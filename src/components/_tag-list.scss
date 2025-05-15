@@ -1,0 +1,35 @@
+@use "@/styles/abstracts" as *;
+
+@layer component {
+    .tag-component {
+        display: flex;
+        align-items: center;
+        gap: $space-sm;
+        font-size: $fs-sm-rem;
+    }
+
+    .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+        gap: $space-xs;
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            background-color: get-color("lightShades", 600);
+            @include padding-box("xs");
+            border-radius: $border-radius;
+            transition: background-color 0.2s ease-in-out;
+
+            &:hover {
+                background-color: get-color("lightShades", 700);
+                // color: get-color("dark", 300);
+            }
+        }
+    }
+}

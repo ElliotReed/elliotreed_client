@@ -1,11 +1,15 @@
 ---
+author: "Elliot Reed"
 cover: "@images/composition/open-book.jpg"
-coverCredit: "miguel alcantara unsplash"
-title: "Ranges"
+coverAltText: "Sepia toned open book of sheet music"
+coverCredit: "Miguel Alcântara"
+coverCreditLink: "https://unsplash.com/@miguelalcantara"
 description: "Instrument ranges"
 publishedDate: 2025-04-21
+updatedDate: 
 category: "arranging"
-tags: ["notation", "scoring", "musescore", "instrument"]
+tags: ["notation", "scoring", "instrument"]
+title: "Ranges"
 ---
 
 [Orchestration and Arranging Wiki](https://arranging.fandom.com/wiki/Orchestration_and_Arranging_Wiki)

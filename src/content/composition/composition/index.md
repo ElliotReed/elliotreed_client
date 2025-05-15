@@ -1,7 +1,9 @@
 ---
 title: "Composition"
-description: "Learn the basics of scoring in MuseScore"
+description: "Composition home"
 publishedDate: 2025-04-06
 category: "composition"
-tags: ["notation", "scoring"]
+tags: []
 ---
+
+Composition home

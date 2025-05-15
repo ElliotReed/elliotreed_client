@@ -1,13 +1,15 @@
 ---
+category: "cakewalk"
 cover: "@images/recording/mixing-board.jpg"
-coverCredit: "james kovin unsplash"
-title: "Style"
+coverCredit: "James Kovin"
+coverAltText: "audio mixing board"
+coverCreditLink: "https//unsplash.com/@james2k"
 description: "Cakewalk style"
 publishedDate: 2025-04-06
-category: "cakewalk"
-tags: ["daw", "recording"]
+updatedDate:
+tags: ["daw", "recording", "cakewalk"]
+title: "Style"
 ---
-
 
 ## Mix Scenes
 

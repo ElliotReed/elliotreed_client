@@ -10,22 +10,23 @@ const { article } = Astro.props;
             <Image
                 class="cover"
                 src={article.data.cover}
-                alt={article.data.title}
+                alt={article.data.coverAltText ?? article.data.title}
                 layout="full-width"
             />
-            {article.data.coverCredit && (
-                <figcaption>
-                    <em>Image Credit: </em>
-                    {article.data.coverCreditLink && (
-                        <a href={article.data.coverCreditLink}>
-                            {article.data.coverCredit}
-                        </a>
-                    )}
-                    {!article.data.coverCreditLink && (
-                        <span>{article.data.coverCredit}</span>
-                    )}
-                </figcaption>
-            )}
+            {article.data.coverCredit &&
+                article.data.coverCredit !== "Elliot Reed" && (
+                    <figcaption>
+                        <em>Image Credit: </em>
+                        {article.data.coverCreditLink && (
+                            <a href={article.data.coverCreditLink}>
+                                {article.data.coverCredit}
+                            </a>
+                        )}
+                        {!article.data.coverCreditLink && (
+                            <span>{article.data.coverCredit}</span>
+                        )}
+                    </figcaption>
+                )}
         </figure>
     )
 }
@@ -36,9 +37,7 @@ const { article } = Astro.props;
     figure {
         margin: 0;
         figcaption {
-            background: get-color("lightShades", 300);
             font-size: $fs-sm-rem;
-            padding-inline: $space-sm;
 
             a {
                 color: inherit;

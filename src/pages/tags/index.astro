@@ -1,7 +1,42 @@
 ---
+import { getCollection } from "astro:content";
+
+import { slugify } from "@/utils/slugify";
 import MainLayout from "@/layouts/MainLayout.astro";
+import MainLayoutGrid from "@/components/MainLayoutGrid.astro";
+
+const collections = [
+    "projects",
+    "composition",
+    "guitar",
+    "notation",
+    "recording",
+    "singing",
+];
+
+const allArticles = await Promise.all(
+    collections.map((collection) => getCollection(collection)),
+);
+const articles = allArticles.flat();
+
+const allTags = articles.flatMap((article) => article.data.tags ?? []);
+const uniqueTags = [...new Set(allTags)].sort((a, b) =>
+    a.toLowerCase().localeCompare(b.toLowerCase()),
+);
 ---
 
 <MainLayout title="Tags" description="A list of all tags used in the blog.">
-    Tags
+    <MainLayoutGrid style="prefered-width">
+        <h1>Tags</h1>
+        <p>Explore articles by tags.</p>
+        <ul class="tag-list">
+            {
+                uniqueTags.map((tag) => (
+                    <li>
+                        <a href={`/tags/${slugify(tag)}/`}>{tag}</a>
+                    </li>
+                ))
+            }
+        </ul>
+    </MainLayoutGrid>
 </MainLayout>

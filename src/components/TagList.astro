@@ -1,5 +1,26 @@
 ---
+import { slugify } from "@/utils/slugify";
+import { Icon } from "astro-icon/components";
 
+const { tags } = Astro.props;
 ---
 
-<ul class="tag-list">tags</ul>
+<div class="tag-component">
+    <a href="/tags/">
+        <Icon name="tabler:tag" />
+    </a>
+    <ul class="tag-list">
+        {
+            Array.isArray(tags) &&
+                tags
+                    .sort((a, b) =>
+                        a.toLowerCase().localeCompare(b.toLowerCase()),
+                    )
+                    .map((tag) => (
+                        <li>
+                            <a href={`/tags/${slugify(tag)}/`}>{tag}</a>
+                        </li>
+                    ))
+        }
+    </ul>
+</div>

@@ -1,9 +1,13 @@
 ---
+author: "Elliot Reed"
 category: "arranging"
 cover: "@images/composition/dirty-layers.jpg"
-coverCredit: "kirk cameron unsplash"
+coverAltText: "Yellowed sheet music fragments over penciled sheet music with erasure smudges"
+coverCredit: "Kirk Cameron"
+coverCreditLink: "https://unsplash.com/@psarahtonen"
 description: "My personal arranging process"
 publishedDate: 2025-04-21
+updatedDate:
 tags: ["notation", "scoring", "musescore"]
 title: "Arranging Process"
 ---

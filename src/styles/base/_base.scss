@@ -3,8 +3,8 @@
 @use "./elements/table";
 @use '../layouts';
 @use "../config";
-@use "@/layouts/index";
-@use "@/components/UI/table" as *;
+@use "@/layouts/lay-outs";
+@use "@/components/components";
 
 @layer base {
 

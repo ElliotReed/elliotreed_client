@@ -1,7 +1,7 @@
 ---
 title: "Arranging"
-description: "Learn the basics of scoring in MuseScore"
+description: "Arranging home."
 publishedDate: 2025-04-06
 category: "arranging"
-tags: ["notation", "scoring"]
+tags: []
 ---
