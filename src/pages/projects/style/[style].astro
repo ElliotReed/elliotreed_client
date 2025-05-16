@@ -1,0 +1,52 @@
+---
+import { getCollection } from "astro:content";
+import { slugify } from "@/utils/slugify";
+import MainLayout from "@/layouts/MainLayout.astro";
+import type { CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+    const projects = (await getCollection(
+        "projects",
+    )) as CollectionEntry<"projects">[];
+
+    const allStyles = projects.flatMap((project) => project.data.styles ?? []);
+    const uniqueStyles = [...new Set(allStyles)];
+
+    return uniqueStyles.map((style) => ({
+        params: { style: slugify(style) },
+    }));
+}
+
+const { params } = Astro;
+const slug = params.style;
+
+const projects = (await getCollection(
+    "projects",
+)) as CollectionEntry<"projects">[];
+
+const allStyles = projects.flatMap((project) => project.data.styles ?? []);
+const realStyle = allStyles.find((style) => slugify(style) === slug);
+const filteredProjects = realStyle
+    ? projects.filter((project) =>
+          (project.data.styles ?? []).includes(realStyle),
+      )
+    : [];
+---
+
+<MainLayout
+    title={`Style: ${realStyle}`}
+    description={`Articles tagged with ${realStyle}`}
+>
+    <h1>Projects in the "{realStyle}" style</h1>
+    <ul>
+        {
+            filteredProjects.map((project) => (
+                <li>
+                    <a href={`/projects/${slugify(project.data.title)}/`}>
+                        {project.data.title}
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</MainLayout>

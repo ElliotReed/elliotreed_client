@@ -1,0 +1,50 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import type { CollectionNames } from "@/types/collections";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import ContentHeader from "@/components/ContentHeader.astro";
+import CoverImage from "@/components/CoverImage.astro";
+import MainLayoutGrid from "@/components/MainLayoutGrid.astro";
+import TagList from "@/components/TagList.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import { slugify } from "@/utils/slugify";
+
+export async function getStaticPaths() {
+    const projects = (await getCollection(
+        "projects",
+    )) as CollectionEntry<"projects">[];
+    return projects.map((project) => ({
+        params: { slug: slugify(project.data.title) },
+    }));
+}
+
+const { slug } = Astro.params;
+const projects = (await getCollection(
+    "projects",
+)) as CollectionEntry<"projects">[];
+
+const project = projects.filter(
+    (project) => slugify(project.data.title) === slug,
+)[0];
+
+const { Content } = await project.render();
+const breadcrumbItems = [
+    { label: "Projects", href: "/projects" },
+    { label: project.data.title, href: `/projects/${slug}` },
+];
+---
+
+<MainLayout title={project.data.title} description={project.data.description}>
+    <Breadcrumbs items={breadcrumbItems} />
+    <MainLayoutGrid style="centered">
+        <CoverImage article={project} />
+    </MainLayoutGrid>
+
+    <MainLayoutGrid style="prefered-width">
+        <TagList tags={project.data.musicians} path="/projects/musician/" />
+        <TagList tags={project.data.styles} path="/projects/style/" />
+        <ContentHeader article={project} />
+
+        <Content />
+    </MainLayoutGrid>
+</MainLayout>

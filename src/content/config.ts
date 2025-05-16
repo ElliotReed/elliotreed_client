@@ -1,15 +1,14 @@
 import { defineCollection, z, } from "astro:content";
-import { glob } from "astro/loaders";
 
 const projects = defineCollection({
     type: "content",
     schema: ({ image }) => z.object({
-        category: z.string(),
         cover: image().optional(),
         coverAltText: z.string().optional(),
         coverCredit: z.string().optional(),
         coverCreditLink: z.string().optional(),
         description: z.string(),
+        musicians: z.array(z.string()),
         startDate: z.string()
             .regex(/^\d{4}\??$|^\?$/, {
                 message: 'Must be a 4-digit year, optionally followed by "?", or just "?"',
@@ -20,7 +19,7 @@ const projects = defineCollection({
                 message: 'Must be a 4-digit year, optionally followed by "?", or just "?"',
             })
             .optional(),
-        tags: z.array(z.string()),
+        styles: z.array(z.string()),
         title: z.string(),
     }),
 });

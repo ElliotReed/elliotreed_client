@@ -6,17 +6,25 @@ import MainLayout from "@/layouts/MainLayout.astro";
 import Card from "@/components/UI/Card.astro";
 import Heading from "@/components/Heading/Heading";
 import Paragraph from "@/components/UI/Paragraph.astro";
-import { addIssueToContext } from "astro:schema";
+
+const collections = [
+    "composition",
+    "guitar",
+    "notation",
+    "recording",
+    "singing",
+];
 
 export async function getStaticPaths() {
+    // Collections must be duplicated in getStaticPaths, it runs in an isolated sourceMapsEnabled.
     const collections = [
-        "projects",
         "composition",
         "guitar",
         "notation",
         "recording",
         "singing",
     ];
+
     const allArticles = await Promise.all(
         collections.map((c) => getCollection(c)),
     );
@@ -33,14 +41,6 @@ export async function getStaticPaths() {
 const { params } = Astro;
 const slug = params.tag;
 
-const collections = [
-    "projects",
-    "composition",
-    "guitar",
-    "notation",
-    "recording",
-    "singing",
-];
 const allArticles = await Promise.all(collections.map((c) => getCollection(c)));
 const articles = allArticles.flat();
 
