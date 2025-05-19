@@ -1,15 +1,25 @@
 import type { CollectionEntry } from "astro:content";
 
-export function sortFrontmatterByDataKey<T>(
+export function sortByFrontmatterDataKey<T>(
     collection: CollectionEntry<T>[],
     dataKey: string,
+    desc: boolean = false
 ): CollectionEntry<T>[] {
     return collection.sort((a, b) => {
         const aData = a.data[dataKey];
         const bData = b.data[dataKey];
 
-        if (aData < bData) return -1;
-        if (aData > bData) return 1;
-        return 0;
+        let result = 0;
+
+        // Handle strings with locale-aware, case-insensitive comparison
+        if (typeof aData === "string" && typeof bData === "string") {
+            result = aData.localeCompare(bData, undefined, { sensitivity: "base" });
+        } else if (aData < bData) {
+            result = -1;
+        } else if (aData > bData) {
+            result = 1;
+        }
+
+        return desc ? -result : result;
     });
 }

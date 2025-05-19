@@ -8,6 +8,7 @@ import Paragraph from "@/components/UI/Paragraph.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
 import TagList from "@/components/TagList.astro";
 import { getTags } from "@/utils/getTags";
+import { sortByFrontmatterDataKey } from "@/utils/frontmatter";
 
 interface Props {
     collectionName: string;
@@ -21,9 +22,7 @@ const articles = Array.isArray(maybeArticles)
     ? (maybeArticles as CollectionEntry<typeof collectionName>[])
     : [];
 
-const sortedArticles = articles.sort((a, b) =>
-    a.data.title.toLowerCase().localeCompare(b.data.title.toLowerCase()),
-);
+const sortedArticles = sortByFrontmatterDataKey(articles, "title");
 ---
 
 <MainLayout title={title} description={description}>
