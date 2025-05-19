@@ -1,5 +1,5 @@
 ---
-category: "structure-of-singing"
+category: "structure of singing"
 title: "The Structure of Singing"
 description: 'This is information from the book, "The Structure of Singing" by Richard Miller.'
 publishedDate: 2025-04-06

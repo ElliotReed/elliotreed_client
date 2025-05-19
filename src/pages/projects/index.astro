@@ -8,24 +8,28 @@ import Paragraph from "@/components/UI/Paragraph.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
 import { slugify } from "@/utils/slugify";
 import TagList from "@/components/TagList.astro";
+import { getTags } from "@/utils/getTags";
 
 const projects = (await getCollection(
     "projects",
 )) as CollectionEntry<"projects">[];
-
-const musicianTags = projects.flatMap(
-    (project) => project.data.musicians ?? [],
-);
-const uniqueMusicianTags = [...new Set(musicianTags)];
-const styleTags = projects.flatMap((project) => project.data.styles ?? []);
-const uniqueStyleTags = [...new Set(styleTags)];
 ---
 
 <MainLayout title="Projects" description="Projects">
     <MainLayoutGrid style="prefered-width">
         <Heading level={1}>Projects</Heading>
-        <TagList tags={uniqueMusicianTags} path="/projects/musician/" />
-        <TagList tags={uniqueStyleTags} path="/projects/style/" />
+        <TagList
+            tags={getTags(projects, "musicians")}
+            path="/projects/musician/"
+            iconName="tabler:brand-netease-music"
+            iconLinkPath="/projects/"
+        />
+        <TagList
+            tags={getTags(projects, "styles")}
+            path="/projects/style/"
+            iconName="tabler:file-music"
+            iconLinkPath="/projects/"
+        />
         <ul role="list">
             {
                 projects

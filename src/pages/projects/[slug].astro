@@ -8,6 +8,7 @@ import MainLayoutGrid from "@/components/MainLayoutGrid.astro";
 import TagList from "@/components/TagList.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
 import { slugify } from "@/utils/slugify";
+import { getTags } from "@/utils/getTags";
 
 export async function getStaticPaths() {
     const projects = (await getCollection(
@@ -41,8 +42,18 @@ const breadcrumbItems = [
     </MainLayoutGrid>
 
     <MainLayoutGrid style="prefered-width">
-        <TagList tags={project.data.musicians} path="/projects/musician/" />
-        <TagList tags={project.data.styles} path="/projects/style/" />
+        <TagList
+            tags={getTags(projects, "musicians")}
+            path="/projects/musician/"
+            iconName="tabler:brand-netease-music"
+            iconLinkPath="/projects/"
+        />
+        <TagList
+            tags={getTags(projects, "styles")}
+            path="/projects/style/"
+            iconName="tabler:file-music"
+            iconLinkPath="/projects/"
+        />
         <ContentHeader article={project} />
 
         <Content />

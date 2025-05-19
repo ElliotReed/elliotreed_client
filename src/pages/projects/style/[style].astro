@@ -1,8 +1,14 @@
 ---
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
 import { slugify } from "@/utils/slugify";
 import MainLayout from "@/layouts/MainLayout.astro";
 import type { CollectionEntry } from "astro:content";
+import Heading from "@/components/Heading/Heading";
+import Card from "@/components/UI/Card.astro";
+import Paragraph from "@/components/UI/Paragraph.astro";
+import TagList from "@/components/TagList.astro";
+import { getTags } from "@/utils/getTags";
 
 export async function getStaticPaths() {
     const projects = (await getCollection(
@@ -38,15 +44,88 @@ const filteredProjects = realStyle
     description={`Articles tagged with ${realStyle}`}
 >
     <h1>Projects in the "{realStyle}" style</h1>
-    <ul>
+
+    <TagList
+        tags={getTags(projects, "styles")}
+        path="/projects/style/"
+        iconName="tabler:file-music"
+        iconLinkPath="/projects/"
+    />
+
+    <ul role="list" class="projects">
+        {
+            // If no style is found, show all projects
+            filteredProjects.length === 0 && (
+                <li>
+                    <p>No projects found for this style.</p>
+                </li>
+            )
+        }
+        {
+            // If style is found, show the projects
+        }
         {
             filteredProjects.map((project) => (
                 <li>
-                    <a href={`/projects/${slugify(project.data.title)}/`}>
-                        {project.data.title}
-                    </a>
+                    <Card href={`/projects/${slugify(project.data.title)}/`}>
+                        {project.data.cover && (
+                            <Image
+                                class="cover"
+                                slot="header"
+                                src={project.data.cover}
+                                alt={project.data.title}
+                                layout="full-width"
+                            />
+                        )}
+                        <div slot="content" class="content-container">
+                            <Heading level={2} size={4}>
+                                {project.data.title}
+                            </Heading>
+                            <Paragraph size="sm">
+                                {project.data.description}
+                            </Paragraph>
+                        </div>
+                    </Card>
                 </li>
             ))
         }
     </ul>
 </MainLayout>
+<style lang="scss">
+    @use "@/styles/abstracts" as *;
+
+    .cover {
+        width: 100%;
+        object-fit: cover;
+        aspect-ratio: 16 /9;
+    }
+
+    .projects {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(px-to-rem(280), 1fr));
+        gap: $space-md;
+        margin-block: $space-md;
+        padding-inline-start: $space-md;
+        list-style-type: none;
+
+        li {
+            a {
+                color: inherit;
+                font-weight: $fw-lg;
+                text-decoration: none;
+            }
+
+            // This counters the Card gap
+            .content-container {
+                h1,
+                h2,
+                h3,
+                h4,
+                h5,
+                h6 {
+                    margin-block: 0;
+                }
+            }
+        }
+    }
+</style>

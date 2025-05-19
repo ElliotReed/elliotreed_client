@@ -6,147 +6,90 @@ import MainLayoutGrid from "@/components/MainLayoutGrid.astro";
 import Card from "@/components/UI/Card.astro";
 import Paragraph from "@/components/UI/Paragraph.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
+import TagList from "@/components/TagList.astro";
+import { getTags } from "@/utils/getTags";
+
+interface Props {
+    collectionName: string;
+    title: string;
+    description: string;
+}
 
 const { collectionName, title, description } = Astro.props;
-const articles = await getCollection(collectionName);
+const maybeArticles = await getCollection(collectionName);
+const articles = Array.isArray(maybeArticles)
+    ? (maybeArticles as CollectionEntry<typeof collectionName>[])
+    : [];
 
-// Create a typed map: Record<string, CollectionEntry<"articles">[]>
-const grouped: Record<string, CollectionEntry<typeof collectionName>[]> = {};
-
-for (const article of articles) {
-    const category = article.data.category;
-
-    // Skip index files (those that don't have a slash in their slug)
-    if (!article.slug.includes("/")) {
-        continue;
-    }
-
-    if (!grouped[category]) {
-        grouped[category] = [];
-    }
-
-    grouped[category].push(article);
-}
+const sortedArticles = articles.sort((a, b) =>
+    a.data.title.toLowerCase().localeCompare(b.data.title.toLowerCase()),
+);
 ---
 
 <MainLayout title={title} description={description}>
     <MainLayoutGrid style="prefered-width">
         <Heading level={1}>{title}</Heading>
 
-        {
-            Object.entries(grouped).map(([category, articles]) => (
-                <section class="category">
-                    <Heading level={2} size={5}>
-                        <a
-                            class="category-link"
-                            href={`/${collectionName}/${category}`}
-                        >
-                            {category}
-                        </a>
-                    </Heading>
+        <TagList tags={getTags(articles, "category")} path={collectionName} />
 
-                    <ul role="list">
-                        {articles
-                            .sort((a, b) =>
-                                a.data.title
-                                    .toLowerCase()
-                                    .localeCompare(b.data.title.toLowerCase()),
-                            )
-                            .map((article) => (
-                                <li>
-                                    <Card
-                                        href={`/${collectionName}/${article.slug}`}
-                                    >
-                                        {article.data.cover && (
-                                            <Image
-                                                class="cover"
-                                                slot="header"
-                                                src={article.data.cover}
-                                                alt={
-                                                    article.data.coverAltText ??
-                                                    article.data.title
-                                                }
-                                                layout="full-width"
-                                            />
-                                        )}
-                                        <div
-                                            slot="content"
-                                            class="content-container"
-                                        >
-                                            <Heading level={3} size={4}>
-                                                {article.data.title}
-                                            </Heading>
-                                            <Paragraph size="sm">
-                                                {article.data.description}
-                                            </Paragraph>
-                                        </div>
-                                    </Card>
-                                </li>
-                            ))}
-                    </ul>
-                </section>
-            ))
-        }
+        <ul role="list">
+            {
+                sortedArticles.map((article) => (
+                    <li>
+                        <Card href={`/${collectionName}/${article.slug}`}>
+                            {article.data.cover && (
+                                <Image
+                                    class="cover"
+                                    slot="header"
+                                    src={article.data.cover}
+                                    alt={
+                                        article.data.coverAltText ??
+                                        article.data.title
+                                    }
+                                    layout="full-width"
+                                />
+                            )}
+                            <div slot="content" class="content-container">
+                                <Heading level={3} size={4}>
+                                    {article.data.title}
+                                </Heading>
+                                <Paragraph size="sm">
+                                    {article.data.description}
+                                </Paragraph>
+                            </div>
+                        </Card>
+                    </li>
+                ))
+            }
+        </ul>
     </MainLayoutGrid>
 </MainLayout>
 
 <style lang="scss">
     @use "@/styles/abstracts" as *;
-    .category {
-        background: get-color("light", 200);
-        border: 1px solid transparent;
-        border-radius: $border-radius;
+    ul {
+        display: grid;
+        gap: $space-md;
+        grid-template-columns: repeat(auto-fill, minmax(px-to-rem(280), 1fr));
+        padding-inline-start: $space-sm;
+        list-style: none;
 
-        & > * {
-            margin-inline: $space-md;
-        }
-
-        & + section {
-            margin-block: $space-lg;
-        }
-
-        .category-link {
-            color: inherit;
-            font-family: "Montserrat";
-            text-transform: uppercase;
-
-            &:hover,
-            &:focus {
-                background: get-color("light", 200);
-            }
-
-            &:visited {
-                color: inherit;
+        // This counters the Card gap
+        .content-container {
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                margin-block: 0;
             }
         }
+    }
 
-        ul {
-            display: grid;
-            gap: $space-md;
-            grid-template-columns: repeat(
-                auto-fill,
-                minmax(px-to-rem(280), 1fr)
-            );
-            padding-inline-start: $space-sm;
-            list-style: none;
-
-            // This counters the Card gap
-            .content-container {
-                h1,
-                h2,
-                h3,
-                h4,
-                h5,
-                h6 {
-                    margin-block: 0;
-                }
-            }
-        }
-
-        .cover {
-            width: 100%;
-            object-fit: cover;
-            aspect-ratio: 16 / 9;
-        }
+    .cover {
+        width: 100%;
+        object-fit: cover;
+        aspect-ratio: 16 / 9;
     }
 </style>

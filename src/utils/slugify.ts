@@ -10,3 +10,10 @@ export function slugify(str: string): string {
         .replace(/^-+/, "") // Trim - from start of text
         .replace(/-+$/, ""); // Trim - from end of text
 }
+
+export function deSlugify(str: string): string {
+    return str
+        .toLowerCase()
+        .trim()
+        .replace(/-/g, " ") // Replace - with spaces
+}

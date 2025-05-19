@@ -2,26 +2,40 @@
 import { slugify } from "@/utils/slugify";
 import { Icon } from "astro-icon/components";
 
-const { tags, path } = Astro.props;
-const tagPath = path || "/tags/";
+interface Props {
+    tags: string[];
+    path?: string;
+    iconName?: string;
+    iconLinkPath?: string;
+}
+
+const { tags, path, iconName, iconLinkPath } = Astro.props;
+let tagPath = path || "/tags";
+tagPath = tagPath.replace(/\/$/, "");
+
+const sortedTags = tags.sort((a, b) =>
+    a.toLowerCase().localeCompare(b.toLowerCase()),
+);
 ---
 
 <div class="tag-component">
-    <a href={tagPath}>
-        <Icon name="tabler:tag" />
+    <a href={iconLinkPath ? iconLinkPath : tagPath}>
+        {
+            iconName ? (
+                <Icon name={iconName} size={"1.25em"} />
+            ) : (
+                <Icon name="tabler:tag" size={"1.25em"} />
+            )
+        }
     </a>
     <ul class="tag-list">
         {
             Array.isArray(tags) &&
-                tags
-                    .sort((a, b) =>
-                        a.toLowerCase().localeCompare(b.toLowerCase()),
-                    )
-                    .map((tag) => (
-                        <li>
-                            <a href={`${tagPath}${slugify(tag)}/`}>{tag}</a>
-                        </li>
-                    ))
+                sortedTags.map((tag) => (
+                    <li>
+                        <a href={`${tagPath}/${slugify(tag)}/`}>{tag}</a>
+                    </li>
+                ))
         }
     </ul>
 </div>

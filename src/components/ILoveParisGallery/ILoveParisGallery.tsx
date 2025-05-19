@@ -21,15 +21,15 @@ export default function ILoveParisGallery({ onClick }: Readonly<ILoveParisGaller
                 />
                 <Image
                     src={kuvoImage}
-                    alt=""
+                    alt="KUVO 89.3 FM performance with Kristi Stice and Gypsy Swing Revue."
                 />
                 <Image
                     src={bohemianImage}
-                    alt=""
+                    alt="Bohemian Nights performance with Kristi Stice and Gypsy Swing Revue."
                 />
                 <Image
                     src={redImage}
-                    alt=""
+                    alt="Performance with Kristi Stice and Gypsy Swing Revue at the Red Rocks Amphitheater."
                 />
             </ImageGallery>
         </div>
