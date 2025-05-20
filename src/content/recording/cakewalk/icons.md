@@ -5,7 +5,7 @@ title: "Icons"
 description: "Icons information."
 publishedDate: 2025-04-06
 category: "cakewalk"
-tags: ["daw", "recording", "settings"]
+tags: ["daw", "interface", "settings"]
 ---
 
 ## Size

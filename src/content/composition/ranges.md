@@ -7,8 +7,8 @@ coverCreditLink: "https://unsplash.com/@miguelalcantara"
 description: "Instrument ranges"
 publishedDate: 2025-04-21
 updatedDate: 
-category: "arranging"
-tags: ["notation", "scoring", "instrument"]
+category: "composition"
+tags: ["instrument"]
 title: "Ranges"
 ---
 

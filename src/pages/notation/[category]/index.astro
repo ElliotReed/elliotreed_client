@@ -1,10 +1,28 @@
 ---
+import CollectionArticlePage from "@/page_components/CollectionArticlePage.astro";
 import CollectionCategoryPage from "@/page_components/CollectionCategoryPage.astro";
+import { getArticleIfNotCategory } from "@/utils/getArticleIfNotCategory";
 import { getCollectionCategoryPaths } from "@/utils/getCollectctionCagegoryPaths";
 
+const COLLECTION_NAME = "notation";
+
 export async function getStaticPaths() {
+    // Cannot use COLLECTION_NAME in this function @astro
     return getCollectionCategoryPaths("notation");
 }
+
+const { category } = Astro.params;
+
+const article = await getArticleIfNotCategory(COLLECTION_NAME, category);
 ---
 
-<CollectionCategoryPage collectionName="notation" />
+{
+    article !== undefined ? (
+        <CollectionArticlePage
+            collectionName={COLLECTION_NAME}
+            article={article}
+        />
+    ) : (
+        <CollectionCategoryPage collectionName={COLLECTION_NAME} />
+    )
+}

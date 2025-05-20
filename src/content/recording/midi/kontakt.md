@@ -5,7 +5,7 @@ title: "Kontakt"
 description: "Kontakt tips."
 publishedDate: 2025-04-06
 category: "midi"
-tags: ["daw", "recording"]
+tags: ["daw", "plug-ins"]
 ---
 
 Under "Samplers" in the new Synth menu.

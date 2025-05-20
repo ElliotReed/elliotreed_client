@@ -8,7 +8,7 @@ coverCreditLink: "https://unsplash.com/@psarahtonen"
 description: "My personal arranging process"
 publishedDate: 2025-04-21
 updatedDate:
-tags: ["notation", "scoring", "musescore"]
+tags: ["musescore"]
 title: "Arranging Process"
 ---
 

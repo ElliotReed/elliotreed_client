@@ -4,7 +4,7 @@ title: "Instruments"
 description: "Midi instrument tips."
 publishedDate: 2025-04-06
 category: "midi"
-tags: ["daw", "recording"]
+tags: ["daw", "drums"]
 ---
 
 ## Drums

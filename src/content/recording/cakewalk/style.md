@@ -7,7 +7,7 @@ coverCreditLink: "https//unsplash.com/@james2k"
 description: "Cakewalk style"
 publishedDate: 2025-04-06
 updatedDate:
-tags: ["daw", "recording", "cakewalk"]
+tags: ["daw", "mix scenes"]
 title: "Style"
 ---
 
