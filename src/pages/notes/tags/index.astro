@@ -1,0 +1,22 @@
+---
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import MainLayoutGrid from "@/components/MainLayoutGrid.astro";
+import TagList from "@/components/TagList.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import { getTags } from "@/utils/getTags";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+
+const notes: CollectionEntry<"notes">[] = await getCollection("notes");
+const breadcrumbs = [
+    { label: "notes", href: "/notes/" },
+    { label: "tags", href: "/notes/tags" },
+];
+---
+
+<MainLayout title="Tags" description="List of note tags.">
+    <Breadcrumbs items={breadcrumbs} />
+    <MainLayoutGrid style={"prefered-width"}>
+        <TagList tags={getTags(notes, "tags")} path="/notes/tags" />
+    </MainLayoutGrid>
+</MainLayout>

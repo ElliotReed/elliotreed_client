@@ -1,0 +1,54 @@
+---
+import type { GetStaticPaths } from "astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import { getTags } from "@/utils/getTags";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import { deSlugify, slugify } from "@/utils/slugify";
+import MainLayoutGrid from "@/components/MainLayoutGrid.astro";
+import Heading from "@/components/Heading/Heading";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import { getEntryFilename } from "@/utils/collectionHelpers";
+
+export async function getStaticPaths() {
+    const notes: CollectionEntry<"notes">[] = await getCollection("notes");
+    const tags = getTags(notes, "tags");
+    return tags.map((tag) => ({
+        params: {
+            tag: slugify(tag),
+        },
+    }));
+}
+
+const { tag } = Astro.params;
+const notes: CollectionEntry<"notes">[] = await getCollection("notes");
+const filteredNotes = notes.filter((note) =>
+    (note.data.tags ?? []).includes(tag),
+);
+
+const breadcrumbs = [
+    { label: "notes", href: "/notes/" },
+    { label: "tags", href: "/notes/tags/" },
+    { label: `${tag}`, href: `/notes/tags/${slugify(tag)}/` },
+];
+---
+
+<MainLayout title={tag} description={tag}>
+    <Breadcrumbs items={breadcrumbs} />
+
+    <MainLayoutGrid style={"prefered-width"}>
+        <Heading level={1}>{tag}</Heading>
+        <ul role="list">
+            {
+                filteredNotes.length > 0 &&
+                    filteredNotes.map((note) => (
+                        <li>
+                            <a href={`/notes/${getEntryFilename(note)}/`}>
+                                {note.data.title}
+                            </a>
+                        </li>
+                    ))
+            }
+        </ul>
+    </MainLayoutGrid>
+</MainLayout>

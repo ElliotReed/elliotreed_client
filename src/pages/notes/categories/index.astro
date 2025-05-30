@@ -1,0 +1,98 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
+import type { CollectionEntry } from "astro:content";
+
+import Card from "@/components/elements/Card.astro";
+import Heading from "@/components/Heading/Heading";
+import MainLayout from "@/layouts/MainLayout.astro";
+import MainLayoutGrid from "@/components/MainLayoutGrid.astro";
+import TagList from "@/components/TagList.astro";
+
+import { slugify } from "@/utils/slugify";
+
+import defaultCategoryImage from "@images/category/default.png";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+
+const notes: CollectionEntry<"notes">[] = await getCollection("notes");
+const categories = [...new Set(notes.map((note) => note.data.category))];
+const sortedCategories = categories.sort((a, b) =>
+    a.toLowerCase().localeCompare(b.toLowerCase()),
+);
+
+const breadcumbs = [
+    { label: "notes", href: "/notes/" },
+    { label: "categories", href: "/notes/categories/" },
+];
+---
+
+<MainLayout
+    title="Note Categories"
+    description="A collection of my personal notes on music."
+>
+    <Breadcrumbs items={breadcumbs} />
+
+    <MainLayoutGrid style="prefered-width">
+        <Heading level={1}><Icon name="tabler:file-music" />Categories</Heading>
+
+        <TagList
+            tags={categories}
+            path={`/notes/categories/`}
+            iconName="tabler:category"
+            iconLinkPath="/notes/categories"
+        />
+
+        <ul role="list">
+            {
+                sortedCategories.map((category) => (
+                    <li>
+                        <Card href={`/notes/categories/${slugify(category)}/`}>
+                            <Image
+                                class="cover"
+                                slot="header"
+                                src={defaultCategoryImage}
+                                alt={category}
+                                layout="full-width"
+                            />
+                            <div slot="content" class="content-container">
+                                <Heading level={3} size={4}>
+                                    {category}
+                                </Heading>
+                            </div>
+                        </Card>
+                    </li>
+                ))
+            }
+        </ul>
+    </MainLayoutGrid>
+</MainLayout>
+
+<style lang="scss">
+    @use "@/styles/abstracts" as *;
+    ul {
+        display: grid;
+        gap: $space-md;
+        grid-template-columns: repeat(auto-fill, minmax(px-to-rem(280), 1fr));
+        padding-inline-start: $space-sm;
+        list-style: none;
+
+        // This counters the Card gap
+        .content-container {
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                margin-block: 0;
+            }
+        }
+    }
+
+    .cover {
+        width: 100%;
+        object-fit: cover;
+        aspect-ratio: 16 / 9;
+    }
+</style>
