@@ -4,14 +4,16 @@
     "description": "cli for elliotreed.net",
     "main": "bin/index.js",
     "scripts": {
-        "test": "jest --watch"
+        "test": "jest --watch",
+        "test:integration": "jest integration-tests"
     },
     "type": "module",
     "author": "Elliot Reed",
     "license": "ISC",
     "dependencies": {
         "chalk": "^5.4.1",
-        "inquirer": "^12.6.1"
+        "inquirer": "^12.6.1",
+        "node-file-dialog": "^1.0.3"
     },
     "devDependencies": {
         "@babel/core": "^7.27.1",
