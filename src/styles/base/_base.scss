@@ -1,10 +1,13 @@
-@use "../abstracts" as *;
-@use './typography';
-@use "./elements/table";
-@use '../layouts';
+// imported config varialbles
 @use "../config";
-@use "@/layouts/lay-outs";
-@use "@/components/components";
+// imported styles
+@use "../abstracts" as *;
+@use "../components";
+@use '../layouts';
+@use './typography';
+
+// Default tag level styles
+@use "./elements/table";
 
 @layer base {
 
