@@ -1,3 +1,4 @@
+import { validCategoryIds } from "@/data/category";
 import { defineCollection, z, } from "astro:content";
 
 const projects = defineCollection({
@@ -110,7 +111,25 @@ const singing = defineCollection({
     }),
 });
 
+const notes = defineCollection({
+    type: "content",
+    schema: ({ image }) => z.object({
+        author: z.string().optional(),
+        category: z.enum(validCategoryIds),
+        cover: image().optional(),
+        coverAltText: z.string().optional(),
+        coverCredit: z.string().optional(),
+        coverCreditLink: z.string().optional(),
+        description: z.string(),
+        publishedDate: z.date(),
+        updatedDate: z.date().nullable().optional(),
+        tags: z.array(z.string()),
+        title: z.string(),
+    }),
+});
+
 export const collections = {
+    notes,
     projects,
     composition,
     guitar,
