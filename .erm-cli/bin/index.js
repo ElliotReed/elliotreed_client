@@ -4,15 +4,48 @@ import path from "node:path";
 import { fileURLToPath } from 'node:url';
 import inquirer from "inquirer";
 import chalk from "chalk";
+import nodeFileDialog from "node-file-dialog";
 
 import { capitalize, getCurrentDateString } from "./utils/functions.js";
 
 import { help } from "./help.js";
 import content from "./content.js";
+import sidecar from "./imageMetadataGenerator.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+async function handleAddImageMetadata() {
+    try {
+        console.log(
+            chalk.bgGreen.black.bold(' 📂  Select the Source File '),
+            chalk.greenBright('(e.g. /assets/image.jpg)')
+        );
+        const sourceImagePath = await sidecar.selectSourceImageFile();
+        const metadataFilePath = sidecar.generateMetadataFilePath(sourceImagePath);
+
+        const metadataExists = await sidecar.checkMetadataFileExists(metadataFilePath);
+        if (metadataExists) {
+            console.log(chalk.red(`Metadata file already exists at: ${metadataFilePath}`));
+            const answer = await inquirer.prompt(sidecar.createOverwritePrompt());
+            if (!answer.overwrite) {
+                console.log(chalk.yellow('Operation cancelled.'));
+                return;
+            }
+        }
+
+        console.log('');
+
+        const metadataValues = await inquirer.prompt(sidecar.createMetadataPrompts());
+        const metadataContent = sidecar.createMetadataContent(metadataValues);
+
+        sidecar.writeMetadataFile(metadataFilePath, metadataContent);
+        console.log(chalk.green(`${path.basename(metadataFilePath)} was successfully created!`));
+
+    } catch (error) {
+        console.error(chalk.red('❌ Error creating metadata file:'), error.message);
+    }
+}
 
 
 function noteTemplate(answer) {
@@ -40,7 +73,7 @@ function noteTemplate(answer) {
             message: 'What do you want to do?',
             choices: [
                 content.ADD_CONTENT_FILE_TEXT,
-                'Generate page',
+                sidecar.ADD_IMAGE_METADATA_TEXT,
                 'Exit',
             ],
         },
@@ -80,7 +113,11 @@ function noteTemplate(answer) {
             }
         } while (!verified)
 
-    } else {
+    } else if (action === sidecar.ADD_IMAGE_METADATA_TEXT) {
+        handleAddImageMetadata();
+    }
+
+    else {
         console.log('Bye!');
     }
 
