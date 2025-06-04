@@ -1,0 +1,23 @@
+@use "@/styles/abstracts" as *;
+
+.twoColumnGrid {
+    display: grid;
+    gap: 1em;
+
+    &.left {
+        @include respond-to("md") {
+            grid-template-columns: 1fr 1.618fr;
+        }
+    }
+
+    &.right {
+        @include respond-to("md") {
+            grid-template-columns: 1.618fr 1fr;
+        }
+    }
+
+    &>* {
+        margin-top: 0;
+    }
+
+}

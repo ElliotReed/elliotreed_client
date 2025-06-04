@@ -1,0 +1,29 @@
+---
+import classnames from "classnames";
+import styles from "./paragraph.module.scss";
+
+const { className, size = "md" } = Astro.props;
+
+let sizeClass;
+switch (size) {
+  case "sm":
+    sizeClass = styles.sm;
+    break;
+  case "lg":
+    sizeClass = styles.lg;
+    break;
+  default:
+    sizeClass = styles.md;
+    break;
+}
+
+const paragraphClass = classnames(
+  styles.paragraphDefault,
+  sizeClass,
+  className,
+);
+---
+
+<p class={paragraphClass}>
+  <slot />
+</p>

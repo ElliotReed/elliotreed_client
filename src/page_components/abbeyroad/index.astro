@@ -1,5 +1,5 @@
 ---
-import MaxWidthContainer from "@/components/UI/MaxWidthContainer.astro";
+import MaxWidthContainer from "@/components/elements/MaxWidthContainer.astro";
 import Parts from "./parts.astro";
 import Video from "./video.astro";
 import MusicLink from "./music-link.astro";
@@ -13,35 +13,46 @@ const showParts = false;
 ---
 
 <MainLayout>
-  <h1 class={styles.pageTitle}>Abbey Road / Beatles After The Beatles</h1>
+    <h1 class={styles.pageTitle}>Abbey Road / Beatles After The Beatles</h1>
 
-  {
-    show.map((set) => {
-      return (
-        <div class:list={[styles.setWrapper, "layout-grid__prefered-width"]}>
-          <h2 class={styles.setTitle}>
-            Set {set.set} <span>{set.title}</span>
-          </h2>
-          <hr />
-          <ul class={styles.songList}>
-            {set.songs.map((song) => {
-              if (!song) {
-                return;
-              }
-              return (
-                <li class={styles.song}>
-                  <h3 class={styles.songTitle}>{song.title}</h3>
-                  <div class={styles.songContent}>
-                    {showParts && <Parts song={song} />}
-                    {song.link !== "" && <MusicLink song={song} />}
-                    {song.videos.length > 0 && <Video song={song} />}
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      );
-    })
-  }
+    {
+        show.map((set) => {
+            return (
+                <div
+                    class:list={[
+                        styles.setWrapper,
+                        "layout-grid__prefered-width",
+                    ]}
+                >
+                    <h2 class={styles.setTitle}>
+                        Set {set.set} <span>{set.title}</span>
+                    </h2>
+                    <hr />
+                    <ul class={styles.songList}>
+                        {set.songs.map((song) => {
+                            if (!song) {
+                                return;
+                            }
+                            return (
+                                <li class={styles.song}>
+                                    <h3 class={styles.songTitle}>
+                                        {song.title}
+                                    </h3>
+                                    <div class={styles.songContent}>
+                                        {showParts && <Parts song={song} />}
+                                        {song.link !== "" && (
+                                            <MusicLink song={song} />
+                                        )}
+                                        {song.videos.length > 0 && (
+                                            <Video song={song} />
+                                        )}
+                                    </div>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
+            );
+        })
+    }
 </MainLayout>

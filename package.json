@@ -7,7 +7,8 @@
         "build": "astro build",
         "preview": "astro preview",
         "astro": "astro",
-        "erm": "node .erm-cli"
+        "erm": "node .erm-cli",
+        "generate:filters": "node ./scripts/generateFilters.js"
     },
     "dependencies": {
         "@astrojs/mdx": "^4.2.6",

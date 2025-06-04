@@ -7,10 +7,10 @@ import { deSlugify } from "@/utils/slugify";
 import type { CollectionNames } from "@/types/collections";
 
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
-import Card from "@/components/UI/Card.astro";
+import Card from "@/components/elements/Card.astro";
 import Heading from "@/components/Heading/Heading";
 import MainLayout from "@/layouts/MainLayout.astro";
-import Paragraph from "@/components/UI/Paragraph.astro";
+import Paragraph from "@/components/elements/Paragraph.astro";
 import { sortByFrontmatterDataKey } from "@/utils/frontmatter";
 
 const { collectionName } = Astro.props as { collectionName: CollectionNames };

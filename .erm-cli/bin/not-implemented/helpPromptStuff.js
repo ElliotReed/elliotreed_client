@@ -1,5 +1,5 @@
 import fs from "node:fs";
-import { help } from "./help.js";
+import { help } from "../help.js";
 
 function noteTemplate(answer) {
     const { title, categories } = answer;

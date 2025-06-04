@@ -7,35 +7,57 @@ interface Props {
     path?: string;
     iconName?: string;
     iconLinkPath?: string;
+    size?: "sm" | "md" | "lg";
+    title?: string;
 }
 
-const { tags, path, iconName, iconLinkPath } = Astro.props;
-let tagPath = path || "/tags";
-tagPath = tagPath.replace(/\/$/, "");
+const {
+    iconLinkPath,
+    iconName = "tabler:tag",
+    path,
+    size = "sm",
+    tags,
+    title = null,
+} = Astro.props;
+let tagPath = path || "/tags/";
+tagPath = tagPath.endsWith("/") ? tagPath : tagPath + "/";
 
 const sortedTags = tags.sort((a, b) =>
     a.toLowerCase().localeCompare(b.toLowerCase()),
 );
+
+const iconSize = "1.25em";
 ---
 
-<div class="tag-component">
-    <a href={iconLinkPath ? iconLinkPath : tagPath}>
+<div class:list={["tag-component", size]}>
+    {
+        title && (
+            <a
+                class="tag-component__title-link"
+                href={iconLinkPath ? iconLinkPath : tagPath}
+            >
+                <Icon name={iconName} size={iconSize} />
+                <span class="tag-component__title">{title}</span>
+            </a>
+        )
+    }
+    <div class="tag-component__links">
         {
-            iconName ? (
-                <Icon name={iconName} size={"1.25em"} />
-            ) : (
-                <Icon name="tabler:tag" size={"1.25em"} />
+            !title && (
+                <a href={iconLinkPath ? iconLinkPath : tagPath}>
+                    <Icon name={iconName} size={iconSize} />
+                </a>
             )
         }
-    </a>
-    <ul class="tag-list">
-        {
-            Array.isArray(tags) &&
-                sortedTags.map((tag) => (
-                    <li>
-                        <a href={`${tagPath}/${slugify(tag)}/`}>{tag}</a>
-                    </li>
-                ))
-        }
-    </ul>
+        <ul class="tag-list">
+            {
+                Array.isArray(tags) &&
+                    sortedTags.map((tag) => (
+                        <li>
+                            <a href={`${tagPath}${slugify(tag)}/`}>{tag}</a>
+                        </li>
+                    ))
+            }
+        </ul>
+    </div>
 </div>

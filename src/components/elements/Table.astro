@@ -1,0 +1,46 @@
+---
+interface Props {
+    headings: string[];
+    data: string[][];
+    footHeading?: string;
+    footData?: string;
+}
+
+const { headings, data, footHeading = "", footData = "" } = Astro.props;
+---
+
+<div class="table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                {headings.map((heading) => <th>{heading}</th>)}
+            </tr>
+        </thead>
+        <tbody>
+            {
+                data.map((row) => (
+                    <tr>
+                        {row.map((rowData) => (
+                            <td>{rowData}</td>
+                        ))}
+                    </tr>
+                ))
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                {footData && footHeading && (
+                    <th colspan={headings.length - 1}>
+                        {footHeading}
+                    </th>
+                    <td> {footData}</td>
+                )}
+
+                {!footData && !footHeading && (
+                    <th colspan={headings.length}>
+                    </th>
+                )}
+            </tr>
+        </tfoot>
+    </table>
+</div>
