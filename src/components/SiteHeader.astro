@@ -47,20 +47,18 @@ function getLogoAnimation() {
 
         <div class="nav-container__mobile">
             <div class="navbar-container">
-                <Navbar links={navigationLinks.site} />
-                <div class="seperator"></div>
                 <Navbar links={navigationLinks.resource} />
+                <div class="seperator"></div>
+                <Navbar links={navigationLinks.site} />
                 <div class="seperator"></div>
                 <Navbar links={navigationLinks.app} />
             </div>
         </div>
 
         <div class="navbars">
-            <Navbar links={navigationLinks.site} />
-        </div>
-        <div class="navbars">
-            <Navbar links={navigationLinks.app} />
             <Navbar links={navigationLinks.resource} />
+            <Navbar links={navigationLinks.site} />
+            <Navbar links={navigationLinks.app} />
         </div>
         <ScoreHeader />
     </div>
@@ -68,6 +66,8 @@ function getLogoAnimation() {
 
 <style lang="scss">
     @use "@/styles/abstracts" as *;
+
+    $break-point: "md";
 
     .menu-toggle {
         z-index: 1100;
@@ -85,7 +85,7 @@ function getLogoAnimation() {
         @include padding-box("md");
         cursor: pointer;
 
-        @include respond-to("sm") {
+        @include respond-to($break-point) {
             display: none;
         }
 
@@ -116,7 +116,7 @@ function getLogoAnimation() {
         z-index: 200;
         // overflow: hidden;
 
-        @include respond-to("sm") {
+        @include respond-to($break-point) {
             position: relative;
             display: none;
             transform: unset;
@@ -133,7 +133,7 @@ function getLogoAnimation() {
             height: 100%;
             background-color: get-color("lightShades", 500);
 
-            @include respond-to("sm") {
+            @include respond-to($break-point) {
                 // flex-direction: row;
                 max-width: 100%;
             }
@@ -142,17 +142,8 @@ function getLogoAnimation() {
 
     .navbars {
         display: none;
-        @include respond-to("sm") {
+        @include respond-to($break-point) {
             display: flex;
-        }
-    }
-
-    .navbars + .navbars {
-        @include respond-to("sm") {
-            justify-content: center;
-            font-size: $fs-md-rem;
-            flex: 1 0 100%;
-            gap: $space-md;
         }
     }
 

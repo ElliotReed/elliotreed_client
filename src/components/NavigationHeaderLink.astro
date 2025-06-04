@@ -12,13 +12,14 @@ const isActive = currentPath === to ? "active" : null;
     @use "@/styles/abstracts" as *;
 
     .navigation-header-link {
-        display: block;
+        display: flex;
         width: 100%;
         color: get-color("mainBrand");
         font-weight: $fw-lg;
+        font-size: $fs-md-rem;
         line-height: 1;
         text-decoration: none;
-        @include padding-box("sm");
+        @include padding-box("lg");
         white-space: nowrap;
 
         &:visited {

@@ -2,57 +2,41 @@ export const navigationLinks = {
     app: [
         {
             content: "Apps",
-            address: "/apps",
+            address: "/apps/",
         },
     ],
     design: [
         {
             content: "Color",
-            address: "/design/color",
+            address: "/design/color/",
         },
         {
             content: "Typography",
-            address: "/design/typography",
+            address: "/design/typography/",
         },
     ],
     resource: [
         {
-            content: "Composition",
-            address: "/composition",
-        },
-        {
-            content: "Guitar",
-            address: "/guitar",
-        },
-        {
-            content: "Notation",
-            address: "/notation",
-        },
-        {
-            content: "Recording",
-            address: "/recording",
-        },
-        {
-            content: "Singing",
-            address: "/singing",
+            content: "Notes",
+            address: "/notes/",
         },
     ],
     site: [
         {
             content: "About",
-            address: "/about",
+            address: "/about/",
         },
         {
             content: "Contact",
-            address: "/contact",
+            address: "/contact/",
         },
         {
             content: "Lessons",
-            address: "/lessons",
+            address: "/lessons/",
         },
         {
             content: "Performances",
-            address: "/performances",
+            address: "/performances/",
         },
     ],
 }
