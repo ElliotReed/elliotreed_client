@@ -1,6 +1,6 @@
 ---
-category: "composition"
-cover: "@images/composition/page.jpg"
+category: "scoring"
+cover: "@images/scores/page.jpg"
 coverAltText: ""
 coverCredit: ""
 coverCreditLink: ""

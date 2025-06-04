@@ -1,7 +1,7 @@
 ---
 author: "Elliot Reed"
 category: "singing"
-cover: "@images/singing/_cover_breathing.jpg"
+cover: "@images/musicians/_cover_breathing.jpg"
 coverCredit: "however-improbable"
 coverCreditLink: "https://www.deviantart.com/however-improbable"
 description: "Breathing Exercises"

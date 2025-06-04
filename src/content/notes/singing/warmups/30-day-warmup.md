@@ -1,5 +1,5 @@
 ---
-cover: "@images/singing/boy-singing-loud.jpg"
+cover: "@images/musicians/boy-singing-loud.jpg"
 coverCredit: "jason rosewell unsplash"
 title: "Warmups"
 description: "Vocal Warmups Home"

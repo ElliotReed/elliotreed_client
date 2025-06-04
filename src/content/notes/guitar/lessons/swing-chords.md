@@ -1,5 +1,5 @@
 ---
-cover: "@images/guitar/electric-frets.jpg"
+cover: "@images/instruments/electric-frets.jpg"
 coverCredit: "oleg ivanov unsplash"
 title: "Swing Chords"
 category: "guitar"

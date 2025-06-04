@@ -1,7 +1,7 @@
 ---
 author: "ChatGPT"
 category: "audio-production"
-cover: "@images/recording/close-up-mixer_bw.jpg"
+cover: "@images/equipment/close-up-mixer_bw.jpg"
 coverAltText: "selective grayscale photography of mixing console"
 coverCredit: "Leo Wieling"
 coverCreditLink: "https://unsplash.com/@leowieling"

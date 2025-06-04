@@ -1,7 +1,7 @@
 ---
 author: "Elliot Reed"
-category: "arranging"
-cover: "@images/composition/dirty-layers.jpg"
+category: "scoring"
+cover: "@images/scores/dirty-layers.jpg"
 coverAltText: "Yellowed sheet music fragments over penciled sheet music with erasure smudges"
 coverCredit: "Kirk Cameron"
 coverCreditLink: "https://unsplash.com/@psarahtonen"

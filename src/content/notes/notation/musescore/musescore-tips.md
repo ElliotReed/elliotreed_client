@@ -1,6 +1,6 @@
 ---
 author: Elliot Reed
-cover: "@images/notation/_cover_musescore.png"
+cover: "@images/scores/_cover_musescore.png"
 title: MuseScore Tips
 description: Learn the basics of scoring in MuseScore
 publishedDate: 2025-04-06

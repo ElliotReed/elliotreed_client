@@ -1,5 +1,5 @@
 ---
-cover: "@images/recording/console.png"
+cover: "@images/equipment/console.png"
 coverCredit: "Elliot Reed"
 title: "Icons"
 description: "Icons information."

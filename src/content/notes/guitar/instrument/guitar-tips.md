@@ -1,5 +1,5 @@
 ---
-cover: "@images/guitar/acoustic-soundhole.jpg"
+cover: "@images/instruments/acoustic-soundhole.jpg"
 coverCredit: "jefferson santos unsplash"
 title: "Instrument"
 category: "guitar"

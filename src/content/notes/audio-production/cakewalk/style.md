@@ -1,6 +1,6 @@
 ---
 category: "audio-production"
-cover: "@images/recording/mixing-board.jpg"
+cover: "@images/equipment/mixing-board.jpg"
 coverCredit: "James Kovin"
 coverAltText: "audio mixing board"
 coverCreditLink: "https//unsplash.com/@james2k"

@@ -1,13 +1,13 @@
 ---
 author: "Elliot Reed"
-cover: "@images/composition/open-book.jpg"
+cover: "@images/scores/open-book.jpg"
 coverAltText: "Sepia toned open book of sheet music"
 coverCredit: "Miguel Alcântara"
 coverCreditLink: "https://unsplash.com/@miguelalcantara"
 description: "Instrument ranges"
 publishedDate: 2025-04-21
 updatedDate: 
-category: "composition"
+category: "scoring"
 tags: ["instrument"]
 title: "Ranges"
 ---

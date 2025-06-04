@@ -1,5 +1,5 @@
 ---
-cover: "@/assets/images/recording/kontakt.png"
+cover: "@/assets/images/equipment/kontakt.png"
 coverCredit: "Elliot Reed"
 title: "Kontakt"
 description: "Kontakt tips."
