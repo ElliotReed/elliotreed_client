@@ -8,9 +8,10 @@ import nodeFileDialog from "node-file-dialog";
 
 import { capitalize, getCurrentDateString } from "./utils/functions.js";
 
-import { help } from "./help.js";
+
 import content from "./content.js";
 import sidecar from "./imageMetadataGenerator.js";
+import { getImageContent } from "./getImageContent.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -45,25 +46,106 @@ async function handleAddImageMetadata() {
     } catch (error) {
         console.error(chalk.red('❌ Error creating metadata file:'), error.message);
     }
+
+    return
+}
+
+async function handleAddContentFile() {
+    const frontmatter = {};
+    let contentDirectory;
+
+    function logDirectoryPrompt(collectionName) {
+        console.log(
+            chalk.bgGreen.black.bold(' 📂  Select the Directory for the Content File '),
+            chalk.greenBright(`(e.g. /content/${collectionName}/...)`)
+        );
+    }
+    function logImagePrompt() {
+        console.log(
+            chalk.bgGreen.white.bold(' 🖼️  Select the image for the cover '),
+            chalk.green(`(e.g. /src/assets/images/...)`)
+        );
+    }
+
+    function displayFrontmatterResult(answers) {
+        console.log('---');
+        Object.entries(answers)
+            .sort(([aKey], [bKey]) => aKey.localeCompare(bKey))
+            .forEach(([key, value]) => {
+                console.log(`${key}: ${chalk.cyan(value)}`);
+            });
+        console.log('---');
+    }
+
+    try {
+        let verified = false;
+        do {
+            const { collectionName } = await inquirer.prompt(content.selectCollectionPrompt());
+
+            if (collectionName === 'notes') {
+                logDirectoryPrompt(collectionName);
+                contentDirectory = await content.selectDestinationDirectory();
+                const { category } = await inquirer.prompt(content.selectCategoryPrompt());
+                const { tags } = await inquirer.prompt(content.selectTagsPrompt());
+                logImagePrompt();
+                const imageContent = await getImageContent();
+                const noteValues = await inquirer.prompt(content.noteValuesPrompt());
+                // Add these values to frontmatter 
+                Object.assign(frontmatter, noteValues);
+                frontmatter.category = category;
+                frontmatter.tags = tags;
+                frontmatter.cover = imageContent.imagePath;
+                frontmatter.coverAltText = imageContent.imageAltText;
+                frontmatter.coverCredit = imageContent.imageCreator;
+                frontmatter.coverCreditLink = imageContent.imageCreatorLink;
+                displayFrontmatterResult(frontmatter);
+            } else if (collectionName === 'projects') {
+                logDirectoryPrompt(collectionName);
+                contentDirectory = await content.selectDestinationDirectory()
+                const { musicians } = await inquirer.prompt(content.selectMusiciansPrompt());
+                const { styles } = await inquirer.prompt(content.selectStylesPrompt());
+                logImagePrompt();
+                const imageContent = await getImageContent();
+                const projectValues = await inquirer.prompt(content.projectValuesPrompt());
+                // Add these values to frontmatter 
+                Object.assign(frontmatter, projectValues);
+                frontmatter.musicians = musicians;
+                frontmatter.styles = styles;
+                frontmatter.cover = imageContent.imagePath;
+                frontmatter.coverAltText = imageContent.imageAltText;
+                frontmatter.coverCredit = imageContent.imageCreator;
+                frontmatter.coverCreditLink = imageContent.imageCreatorLink;
+                displayFrontmatterResult(frontmatter);
+            }
+
+            const { fileExtension } = await inquirer.prompt(content.selectFileExtensionPrompt());
+
+            const confirm = await inquirer.prompt([{
+                type: 'confirm',
+                name: 'verify',
+                message: 'Are you sure you want to create this file?',
+                default: true,
+            }]);
+
+            verified = confirm.verify;
+            if (verified) {
+                content.createContentFile(
+                    collectionName,
+                    contentDirectory,
+                    fileExtension,
+                    frontmatter
+                );
+            }
+        } while (!verified)
+
+    } catch (error) {
+        console.error(chalk.red('❌ Error creating content file:'), error.message);
+        return;
+    }
+    return;
 }
 
 
-function noteTemplate(answer) {
-    const { title, categories } = answer;
-
-    const noteContent =
-        `---
-    layout: note
-    date: ${getCurrentDateString()}
-    title: "${capitalize(title)}"
-    categories: ["${categories.toLowerCase()}"]
-    ---
-    
-    - toc
-    {:toc}
-    `
-    return noteContent;
-}
 
 (async function () {
     const { action } = await inquirer.prompt([
@@ -80,38 +162,7 @@ function noteTemplate(answer) {
     ]);
 
     if (action === content.ADD_CONTENT_FILE_TEXT) {
-        let verified = false;
-        do {
-            const { collection } = await inquirer.prompt(content.selectCollectionPrompt());
-            const { category } = await inquirer.prompt(content.selectCategoryPrompt(collection));
-            const { tags } = await inquirer.prompt(content.selectTagsPrompt(collection));
-            const { fileExtension } = await inquirer.prompt(content.selectFileExtensionPrompt());
-            const questions = content.inputValuesPrompt(collection);
-            const answers = await inquirer.prompt(questions);
-            answers.category = category;
-            answers.tags = tags;
-            console.log('Collection: ', chalk.cyan(collection));
-
-            console.log('---');
-            Object.entries(answers)
-                .sort(([aKey], [bKey]) => aKey.localeCompare(bKey))
-                .forEach(([key, value]) => {
-                    console.log(`${key}: ${chalk.cyan(value)}`);
-                });
-            console.log('---');
-
-            const confirm = await inquirer.prompt([{
-                type: 'confirm',
-                name: 'verify',
-                message: 'Are you sure you want to create this file?',
-                default: true,
-            }]);
-
-            verified = confirm.verify;
-            if (verified) {
-                content.createContentFile(collection, category, answers, fileExtension);
-            }
-        } while (!verified)
+        handleAddContentFile();
 
     } else if (action === sidecar.ADD_IMAGE_METADATA_TEXT) {
         handleAddImageMetadata();
@@ -119,46 +170,5 @@ function noteTemplate(answer) {
 
     else {
         console.log('Bye!');
-    }
-
-
-
-
-
-
-
-    const args = process.argv.slice(2);
-
-    if (args.includes('-h') || args.includes('--help')) {
-        console.log(help());
-    }
-
-    if (args.includes('-n') || args.includes('--note')) {
-        const answer = await inquirer.prompt([{
-            type: 'input',
-            message: 'What is the note title?',
-            suffix: " (will be auto capitalized)",
-            name: 'title',
-        }, {
-            type: "input",
-            message: "What is/are the categories?",
-            suffix: " (used in url, use one)",
-            name: "categories",
-        }])
-
-        const filename = answer.title.toLowerCase().split(' ').join('-') + '.md';
-        const filepath = path.join(NOTES_DIRECTORY, filename);
-
-        if (fs.existsSync(filepath)) {
-            console.log(chalk.red(`File at ${filepath} already exists.`));
-            return
-        }
-
-        fs.writeFile(filepath, noteTemplate(answer), 'utf-8', (err) => {
-            if (err) {
-                console.log('err: ', err);
-            }
-            console.log(chalk.green(`${filename} was successfully created!`));
-        });
     }
 })();

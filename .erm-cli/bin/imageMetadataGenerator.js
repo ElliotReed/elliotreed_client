@@ -1,7 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import chalk from "chalk";
 import dialog from "node-file-dialog";
 
 const ADD_IMAGE_METADATA_TEXT = 'Add image metadata sidecar';
