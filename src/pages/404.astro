@@ -1,17 +1,17 @@
 ---
 import Heading from "@/components/Heading";
-import MaxWidthContainer from "@/components/UI/MaxWidthContainer.astro";
-import Paragraph from "@/components/UI/Paragraph.astro";
+import MaxWidthContainer from "@/components/elements/MaxWidthContainer.astro";
+import Paragraph from "@/components/elements/Paragraph.astro";
 import BackButton from "@/components/BackButton/BackButton";
 import MainLayout from "@/layouts/MainLayout.astro";
 ---
 
 <MainLayout>
-  <MaxWidthContainer>
-    <Heading level={1} color="light">NOT FOUND</Heading>
-    <Paragraph>
-      You just hit a route that doesn't exist...the sadness 😢.
-    </Paragraph>
-    <BackButton client:load />
-  </MaxWidthContainer>
+    <MaxWidthContainer>
+        <Heading level={1} color="light">NOT FOUND</Heading>
+        <Paragraph>
+            You just hit a route that doesn't exist...the sadness 😢.
+        </Paragraph>
+        <BackButton client:load />
+    </MaxWidthContainer>
 </MainLayout>
