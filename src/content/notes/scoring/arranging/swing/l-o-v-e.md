@@ -26,4 +26,4 @@ Style with emphasis on the horns laying down the groove.
 
 Closed voicings.
 
-Use _ for passing chords.
+Use diatonic passing chords.

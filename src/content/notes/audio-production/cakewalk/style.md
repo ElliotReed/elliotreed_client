@@ -2,7 +2,7 @@
 category: "audio-production"
 cover: "@images/equipment/mixing-board.jpg"
 coverCredit: "James Kovin"
-coverAltText: "audio mixing board"
+coverAltText: "Dj's Mixing console with bright buttons make sounds on dark background. Sound engineer inside party"
 coverCreditLink: "https//unsplash.com/@james2k"
 description: "Cakewalk style"
 publishedDate: 2025-04-06

@@ -16,8 +16,10 @@ title: "Bookends"
 
 - Last eight
 - I vi ii V vamp (usually eight bars, twice)
+- vamp on V pedal
 
 
 ## Endings
 
 - Ryhthm section stop for rubato last vocal line
+- vamp on V pedal
