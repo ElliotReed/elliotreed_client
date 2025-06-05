@@ -13,6 +13,7 @@ import MainLayout from "@/layouts/MainLayout.astro";
 import MainLayoutGrid from "@/components/MainLayoutGrid.astro";
 
 import NotesGrid from "@/components/NotesGrid.astro";
+import { sortCollectionByDate } from "@/utils/collectionHelpers";
 
 export async function getStaticPaths() {
     const notes: CollectionEntry<"notes">[] = await getCollection("notes");
@@ -32,6 +33,8 @@ const notes: CollectionEntry<"notes">[] = await getCollection("notes");
 const filteredNotes = notes.filter(
     (note) => slugify(note.data.category) === category,
 );
+
+const dateSortedNotes = sortCollectionByDate(filteredNotes);
 
 const categoryItem = categoryList.find((item) => item.id === category);
 
@@ -57,6 +60,6 @@ const capitalizedCategory = titleCase(deSlugify(category));
             <cite>{categoryItem?.quoteAuthor}</cite>
         </blockquote>
 
-        <NotesGrid notes={filteredNotes} />
+        <NotesGrid notes={dateSortedNotes} />
     </MainLayoutGrid>
 </MainLayout>

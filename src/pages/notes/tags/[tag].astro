@@ -8,7 +8,10 @@ import { deSlugify, slugify } from "@/utils/slugify";
 import MainLayoutGrid from "@/components/MainLayoutGrid.astro";
 import Heading from "@/components/Heading/Heading";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
-import { getEntryFilename } from "@/utils/collectionHelpers";
+import {
+    getEntryFilename,
+    sortCollectionByDate,
+} from "@/utils/collectionHelpers";
 import NotesGrid from "@/components/NotesGrid.astro";
 import { titleCase } from "@/utils/stringHelpers";
 
@@ -28,6 +31,8 @@ const filteredNotes = notes.filter((note) =>
     (note.data.tags ?? []).includes(tag),
 );
 
+const dateSortedNotes = sortCollectionByDate(filteredNotes);
+
 const breadcrumbs = [
     { label: "notes", href: "/notes/" },
     { label: "tags", href: "/notes/tags/" },
@@ -42,6 +47,6 @@ const heading = titleCase(deSlugify(tag));
 
     <MainLayoutGrid style={"prefered-width"}>
         <Heading level={1}>{heading}</Heading>
-        <NotesGrid notes={filteredNotes} />
+        <NotesGrid notes={dateSortedNotes} />
     </MainLayoutGrid>
 </MainLayout>
