@@ -1,5 +1,10 @@
 import defaultImage from "@images/scores/default.png";
-import singingImage from "@images/musicians/singing.jpg";
+import audioProdutionImage from "@images/equipment/mixing-board.jpg";
+import audioRecordingImage from "@images/equipment/condenser-microphone-in-a-studio.jpg";
+import guitarImage from "@images/musicians/Tchavolo_Schmitt_&_Steeve_Laffont.jpg";
+import notationImage from "@images/scores/musescore.png";
+import scoringImage from "@images/scores/bw-score-fade-to-distance.jpg";
+import singingImage from "@images/musicians/boy-singing-loud.jpg";
 
 export interface Category {
     id: string;
@@ -18,7 +23,7 @@ export const categoryList: Category[] = [
         quoteAuthor: "Rick Rubin",
         blurb:
             "Audio production is the process of shaping and refining sound. It includes editing, mixing, and polishing musical ideas into a final form — where creative decisions and technical expertise converge.",
-        image: defaultImage,
+        image: audioProdutionImage,
     },
     {
         id: "audio-recording",
@@ -27,7 +32,7 @@ export const categoryList: Category[] = [
         quoteAuthor: "Brian Eno",
         blurb:
             "Audio recording is the technical and creative process of capturing sound. Whether in a studio or live setting, it's where performance meets preservation, enabling music to be shared, studied, or transformed.",
-        image: defaultImage,
+        image: audioRecordingImage,
     },
     {
         id: "guitar",
@@ -36,7 +41,7 @@ export const categoryList: Category[] = [
         quoteAuthor: "Jimi Hendrix",
         blurb:
             "Guitar is one of the most expressive and versatile instruments in modern music. From fingerstyle to distortion, it bridges rhythm and melody in countless genres and styles.",
-        image: defaultImage,
+        image: guitarImage,
     },
     {
         id: "notation",
@@ -45,7 +50,7 @@ export const categoryList: Category[] = [
         quoteAuthor: "Leonard Bernstein",
         blurb:
             "Notation is the visual language of music — a way to preserve and communicate musical ideas. Whether for performance or analysis, it turns sound into symbol, and intention into instruction.",
-        image: defaultImage,
+        image: notationImage,
     },
     {
         id: "scoring",
@@ -54,7 +59,7 @@ export const categoryList: Category[] = [
         quoteAuthor: "Anonymous",
         blurb:
             "Scoring is the craft of adapting or composing a musical idea for a specific performance, ensemble, or style. It bridges creativity and structure by deciding how parts are distributed, harmonies built, and textures created.",
-        image: defaultImage,
+        image: scoringImage,
     },
     {
         id: "singing",
