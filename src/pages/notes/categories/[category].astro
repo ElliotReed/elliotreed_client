@@ -1,12 +1,18 @@
 ---
-import Heading from "@/components/Heading/Heading";
-import MainLayout from "@/layouts/MainLayout.astro";
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
-import { slugify } from "@/utils/slugify";
-import MainLayoutGrid from "@/components/MainLayoutGrid.astro";
+
+import { deSlugify, slugify } from "@/utils/slugify";
+import { titleCase } from "@/utils/stringHelpers";
+import { categoryList } from "@/data/category";
+
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
-import { getEntryFilename } from "@/utils/collectionHelpers";
+
+import Heading from "@/components/Heading/Heading";
+import MainLayout from "@/layouts/MainLayout.astro";
+import MainLayoutGrid from "@/components/MainLayoutGrid.astro";
+
+import NotesGrid from "@/components/NotesGrid.astro";
 
 export async function getStaticPaths() {
     const notes: CollectionEntry<"notes">[] = await getCollection("notes");
@@ -27,25 +33,30 @@ const filteredNotes = notes.filter(
     (note) => slugify(note.data.category) === category,
 );
 
+const categoryItem = categoryList.find((item) => item.id === category);
+
 const breadcrumbs = [
     { label: "notes", href: "/notes/" },
     { label: `categories`, href: `/notes/categories/` },
     { label: `${category}`, href: `/notes/categories/${category}/` },
 ];
+
+const capitalizedCategory = titleCase(deSlugify(category));
 ---
 
-<MainLayout title={category} description={category}>
+<MainLayout title={capitalizedCategory} description={capitalizedCategory}>
     <Breadcrumbs items={breadcrumbs} />
+
     <MainLayoutGrid style={"prefered-width"}>
-        <Heading level={1}>{category}</Heading>
-        {
-            filteredNotes.map((note) => (
-                <Heading level={2}>
-                    <a href={`/notes/${getEntryFilename(note)}/`}>
-                        {note.data.title}
-                    </a>
-                </Heading>
-            ))
-        }
+        <Heading level={1}>{capitalizedCategory}</Heading>
+
+        <p>{categoryItem?.blurb}</p>
+
+        <blockquote>
+            {categoryItem?.quote}
+            <cite>{categoryItem?.quoteAuthor}</cite>
+        </blockquote>
+
+        <NotesGrid notes={filteredNotes} />
     </MainLayoutGrid>
 </MainLayout>

@@ -10,13 +10,15 @@ import MainLayout from "@/layouts/MainLayout.astro";
 import MainLayoutGrid from "@/components/MainLayoutGrid.astro";
 import TagList from "@/components/TagList.astro";
 
+import { categoryList } from "@/data/category";
 import { slugify } from "@/utils/slugify";
 
 import defaultCategoryImage from "@images/scores/default.png";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import Paragraph from "@/components/elements/Paragraph.astro";
 
 const notes: CollectionEntry<"notes">[] = await getCollection("notes");
-const categories = [...new Set(notes.map((note) => note.data.category))];
+const categories = [...categoryList.map((category) => category.id)];
 const sortedCategories = categories.sort((a, b) =>
     a.toLowerCase().localeCompare(b.toLowerCase()),
 );
@@ -34,31 +36,32 @@ const breadcumbs = [
     <Breadcrumbs items={breadcumbs} />
 
     <MainLayoutGrid style="prefered-width">
-        <Heading level={1}><Icon name="tabler:file-music" />Categories</Heading>
-
-        <TagList
-            tags={categories}
-            path={`/notes/categories/`}
-            iconName="tabler:category"
-            iconLinkPath="/notes/categories"
-        />
+        <Heading level={1}>
+            <Icon name="tabler:file-music" />
+            Categories
+        </Heading>
 
         <ul role="list">
             {
-                sortedCategories.map((category) => (
+                categoryList.map((category) => (
                     <li>
-                        <Card href={`/notes/categories/${slugify(category)}/`}>
+                        <Card href={`/notes/categories/${category.id}/`}>
                             <Image
                                 class="cover"
                                 slot="header"
-                                src={defaultCategoryImage}
-                                alt={category}
+                                src={category.image}
+                                alt={category.blurb}
                                 layout="full-width"
                             />
                             <div slot="content" class="content-container">
                                 <Heading level={3} size={4}>
-                                    {category}
+                                    {category.title}
                                 </Heading>
+                                <Paragraph size="sm">
+                                    <span class="clamp-text">
+                                        {category.blurb}
+                                    </span>
+                                </Paragraph>
                             </div>
                         </Card>
                     </li>
@@ -70,6 +73,15 @@ const breadcumbs = [
 
 <style lang="scss">
     @use "@/styles/abstracts" as *;
+
+    .clamp-text {
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* Adjust based on content */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
     ul {
         display: grid;
         gap: $space-md;

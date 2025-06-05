@@ -1,11 +1,13 @@
 ---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+import { getTags } from "@/utils/getTags";
+
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
 import MainLayoutGrid from "@/components/MainLayoutGrid.astro";
 import TagList from "@/components/TagList.astro";
-import MainLayout from "@/layouts/MainLayout.astro";
-import { getTags } from "@/utils/getTags";
-import type { CollectionEntry } from "astro:content";
-import { getCollection } from "astro:content";
 
 const notes: CollectionEntry<"notes">[] = await getCollection("notes");
 const breadcrumbs = [
@@ -17,6 +19,11 @@ const breadcrumbs = [
 <MainLayout title="Tags" description="List of note tags.">
     <Breadcrumbs items={breadcrumbs} />
     <MainLayoutGrid style={"prefered-width"}>
-        <TagList tags={getTags(notes, "tags")} path="/notes/tags" />
+        <TagList
+            tags={getTags(notes, "tags")}
+            title="Tags"
+            path="/notes/tags"
+            size="lg"
+        />
     </MainLayoutGrid>
 </MainLayout>

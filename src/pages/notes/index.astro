@@ -7,17 +7,12 @@ import { Icon } from "astro-icon/components";
 
 import { categoryList } from "@/data/category";
 import { getTags } from "@/utils/getTags";
-import { slugify } from "@/utils/slugify";
-import {
-    getEntryFilename,
-    sortCollectionByDate,
-} from "@/utils/collectionHelpers";
+import { sortCollectionByDate } from "@/utils/collectionHelpers";
 
 import Heading from "@/components/Heading/Heading";
 import TagList from "@/components/TagList.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
-import Card from "@/components/elements/Card.astro";
-import Paragraph from "@/components/elements/Paragraph.astro";
+import NotesGrid from "@/components/NotesGrid.astro";
 
 const notes: CollectionEntry<"notes">[] = await getCollection("notes");
 const categories = categoryList.map((category) => category.id);
@@ -47,66 +42,13 @@ const tags = getTags(notes, "tags");
 
     <TagList size="md" tags={tags} path="/notes/tags/" title="Tags" />
 
-    <ul role="list">
-        {
-            sortedNotes.map((note) => (
-                <li>
-                    <Card href={`/notes/${getEntryFilename(note)}/`}>
-                        {note.data.cover && (
-                            <Image
-                                class="cover"
-                                slot="header"
-                                src={note.data.cover}
-                                alt={note.data.coverAltText ?? note.data.title}
-                                layout="full-width"
-                            />
-                        )}
-                        <div slot="content" class="content-container">
-                            <Heading level={3} size={4}>
-                                {note.data.title}
-                            </Heading>
-                            <Paragraph size="sm">
-                                {note.data.description}
-                            </Paragraph>
-                        </div>
-                    </Card>
-                </li>
-            ))
-        }
-    </ul>
+    <NotesGrid notes={sortedNotes} />
 </MainLayout>
 
 <style lang="scss">
     @use "@/styles/abstracts" as *;
-    @use "sass:color" as color;
 
     .space {
         height: $space-md;
-    }
-
-    ul {
-        display: grid;
-        gap: $space-md;
-        grid-template-columns: repeat(auto-fill, minmax(px-to-rem(280), 1fr));
-        padding-inline-start: $space-sm;
-        list-style: none;
-
-        // This counters the Card gap
-        .content-container {
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6 {
-                margin-block: 0;
-            }
-        }
-    }
-
-    .cover {
-        width: 100%;
-        object-fit: cover;
-        aspect-ratio: 16 / 9;
     }
 </style>

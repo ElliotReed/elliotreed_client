@@ -9,6 +9,8 @@ import MainLayoutGrid from "@/components/MainLayoutGrid.astro";
 import Heading from "@/components/Heading/Heading";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import { getEntryFilename } from "@/utils/collectionHelpers";
+import NotesGrid from "@/components/NotesGrid.astro";
+import { titleCase } from "@/utils/stringHelpers";
 
 export async function getStaticPaths() {
     const notes: CollectionEntry<"notes">[] = await getCollection("notes");
@@ -31,24 +33,15 @@ const breadcrumbs = [
     { label: "tags", href: "/notes/tags/" },
     { label: `${tag}`, href: `/notes/tags/${slugify(tag)}/` },
 ];
+
+const heading = titleCase(deSlugify(tag));
 ---
 
 <MainLayout title={tag} description={tag}>
     <Breadcrumbs items={breadcrumbs} />
 
     <MainLayoutGrid style={"prefered-width"}>
-        <Heading level={1}>{tag}</Heading>
-        <ul role="list">
-            {
-                filteredNotes.length > 0 &&
-                    filteredNotes.map((note) => (
-                        <li>
-                            <a href={`/notes/${getEntryFilename(note)}/`}>
-                                {note.data.title}
-                            </a>
-                        </li>
-                    ))
-            }
-        </ul>
+        <Heading level={1}>{heading}</Heading>
+        <NotesGrid notes={filteredNotes} />
     </MainLayoutGrid>
 </MainLayout>
