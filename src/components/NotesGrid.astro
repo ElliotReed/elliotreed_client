@@ -1,0 +1,71 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+import { getEntryFilename } from "@/utils/collectionHelpers";
+
+import Card from "@/components/elements/Card.astro";
+import Heading from "@/components/Heading/Heading";
+import Paragraph from "@/components/elements/Paragraph.astro";
+
+const { notes } = Astro.props;
+
+const typedNotes = notes as CollectionEntry<"notes">[];
+---
+
+<ul role="list">
+    {
+        typedNotes.map((note) => (
+            <li>
+                <Card href={`/notes/${getEntryFilename(note)}/`}>
+                    {note.data.cover && (
+                        <Image
+                            class="cover"
+                            slot="header"
+                            src={note.data.cover}
+                            alt={note.data.coverAltText ?? note.data.title}
+                            layout="full-width"
+                        />
+                    )}
+                    <div slot="content" class="content-container">
+                        <Heading level={3} size={4}>
+                            {note.data.title}
+                        </Heading>
+                        <Paragraph size="sm">{note.data.description}</Paragraph>
+                    </div>
+                </Card>
+            </li>
+        ))
+    }
+</ul>
+
+<style lang="scss">
+    @use "@/styles/abstracts" as *;
+    @use "sass:color" as color;
+
+    ul {
+        display: grid;
+        gap: $space-md;
+        grid-template-columns: repeat(auto-fill, minmax(px-to-rem(280), 1fr));
+        padding-inline-start: 0;
+        list-style: none;
+
+        // This counters the Card gap
+        .content-container {
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                margin-block: 0;
+            }
+        }
+    }
+
+    .cover {
+        width: 100%;
+        object-fit: cover;
+        aspect-ratio: 16 / 9;
+    }
+</style>
