@@ -120,9 +120,11 @@
     }
 
     // Firefox-only styles using the @supports hack
-    @supports (-moz-appearance: none) {
-        scrollbar-width: auto;
-        scrollbar-color:
-            variables.$scrollbar-thumb-background variables.$scrollbar-track-background;
+    & {
+        @supports (-moz-appearance: none) {
+            scrollbar-width: auto;
+            scrollbar-color:
+                variables.$scrollbar-thumb-background variables.$scrollbar-track-background;
+        }
     }
 }

@@ -36,12 +36,12 @@
     }
 
     .tag-list {
-        @include scrollbar;
         display: flex;
         flex-wrap: wrap;
         padding: 0;
         padding-block-end: $space-xxs;
         gap: $space-xs;
+        @include scrollbar;
 
         &.scroll-x {
             flex-wrap: nowrap;
