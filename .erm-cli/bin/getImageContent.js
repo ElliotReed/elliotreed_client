@@ -1,7 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-
-import dialog from 'node-file-dialog';
+import chalk from 'chalk';
 import inquirer from "inquirer";
 
 import sidecar from "./imageMetadataGenerator.js";

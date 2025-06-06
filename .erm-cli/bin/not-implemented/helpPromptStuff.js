@@ -1,4 +1,6 @@
 import fs from "node:fs";
+
+import chalk from "chalk";
 import { help } from "../help.js";
 
 function noteTemplate(answer) {
