@@ -30,8 +30,8 @@ const project = projects.filter(
 
 const { Content } = await project.render();
 const breadcrumbItems = [
-    { label: "Projects", href: "/projects" },
-    { label: project.data.title, href: `/projects/${slug}` },
+    { label: "projects", href: "/projects/" },
+    { label: `${slug}`, href: `/projects/${slug}/` },
 ];
 ---
 
@@ -43,16 +43,18 @@ const breadcrumbItems = [
 
     <MainLayoutGrid style="prefered-width">
         <TagList
-            tags={getTags(projects, "musicians")}
-            path="/projects/musician/"
+            tags={project.data.musicians}
+            path="/projects/musicians/"
             iconName="tabler:brand-netease-music"
-            iconLinkPath="/projects/"
+            iconLinkPath="/projects/musicians/"
+            scrollX={true}
         />
+
         <TagList
-            tags={getTags(projects, "styles")}
-            path="/projects/style/"
+            tags={project.data.styles}
+            path="/projects/styles/"
             iconName="tabler:file-music"
-            iconLinkPath="/projects/"
+            iconLinkPath="/projects/styles/"
         />
         <ContentHeader article={project} />
 

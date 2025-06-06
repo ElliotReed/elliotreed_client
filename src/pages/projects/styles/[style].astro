@@ -1,0 +1,65 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import { slugify } from "@/utils/slugify";
+import MainLayout from "@/layouts/MainLayout.astro";
+import type { CollectionEntry } from "astro:content";
+import Heading from "@/components/Heading/Heading";
+import Card from "@/components/elements/Card.astro";
+import Paragraph from "@/components/elements/Paragraph.astro";
+import TagList from "@/components/TagList.astro";
+import { getTags } from "@/utils/getTags";
+import ProjectsGrid from "@/components/ProjectsGrid.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+
+export async function getStaticPaths() {
+    const projects = (await getCollection(
+        "projects",
+    )) as CollectionEntry<"projects">[];
+
+    const allStyles = projects.flatMap((project) => project.data.styles ?? []);
+    const uniqueStyles = [...new Set(allStyles)];
+
+    return uniqueStyles.map((style) => ({
+        params: { style: slugify(style) },
+    }));
+}
+
+const { params } = Astro;
+const slug = params.style;
+
+const projects = (await getCollection(
+    "projects",
+)) as CollectionEntry<"projects">[];
+
+const allStyles = projects.flatMap((project) => project.data.styles ?? []);
+const realStyle = allStyles.find((style) => slugify(style) === slug);
+const filteredProjects = realStyle
+    ? projects.filter((project) =>
+          (project.data.styles ?? []).includes(realStyle),
+      )
+    : [];
+
+const breadcrumbItems = [
+    { label: "projects", href: "/projects/" },
+    { label: "styles", href: "/projects/styles/" },
+    { label: `${slug}`, href: `/projects/styles/${slug}/` },
+];
+---
+
+<MainLayout
+    title={`Style: ${realStyle}`}
+    description={`Articles tagged with ${realStyle}`}
+>
+    <Breadcrumbs items={breadcrumbItems} />
+    <h1>Projects in the "{realStyle}" style</h1>
+
+    <TagList
+        tags={getTags(projects, "styles")}
+        path="/projects/styles/"
+        iconName="tabler:file-music"
+        iconLinkPath="/projects/styles/"
+    />
+
+    <ProjectsGrid projects={filteredProjects} />
+</MainLayout>

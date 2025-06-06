@@ -40,7 +40,13 @@ const tags = getTags(notes, "tags");
         size="md"
     />
 
-    <TagList size="md" tags={tags} path="/notes/tags/" title="Tags" />
+    <TagList
+        size="md"
+        tags={tags}
+        path="/notes/tags/"
+        title="Tags"
+        scrollX={true}
+    />
 
     <NotesGrid notes={sortedNotes} />
 </MainLayout>
