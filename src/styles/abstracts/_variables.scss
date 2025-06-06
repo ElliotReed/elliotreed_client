@@ -7,7 +7,7 @@ $body-text: get-color("darkShades");
 // color
 $scrollbar-thumb-background: get-color("darkShades", 500);
 $scrollbar-thumb-background-hover: get-color("darkShades", 400);
-$scrollbar-track-background: get-color("lightShades", 500);
+$scrollbar-track-background: get-color("lightShades", 600);
 
 /* sizes */
 $maxWidth: px-to-rem(960px);
@@ -52,7 +52,7 @@ $ease: ease-in-out;
 /* box model */
 // $border: 1px solid transparentize(color(brown, 900), functions.scale(500));
 $border: 1px solid get-color("darkShades", 500);
-$border-radius: em-scale(100);
+$border-radius: em-scale(300);
 
 $max-width: px-to-rem(960px);
 
