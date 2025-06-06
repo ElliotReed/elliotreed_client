@@ -17,7 +17,6 @@
         display: flex;
         align-items: center;
         gap: $space-sm;
-
     }
 
     .tag-component__title-link {
@@ -37,20 +36,36 @@
     }
 
     .tag-list {
+        @include scrollbar;
         display: flex;
         flex-wrap: wrap;
         padding: 0;
+        padding-block-end: $space-xxs;
         gap: $space-xs;
+
+        &.scroll-x {
+            flex-wrap: nowrap;
+            overflow-x: auto;
+        }
+
+        &.scroll-y {
+            flex-wrap: nowrap;
+            overflow-y: auto;
+        }
 
         li {
             list-style: none;
         }
 
         a {
+            display: inline-block;
+            min-width: fit-content;
+            white-space: nowrap;
             text-decoration: none;
+            word-break: none;
             color: inherit;
             background-color: get-color("lightShades", 600);
-            @include padding-box("xs");
+            @include padding-box("sm");
             border-radius: $border-radius;
             transition: background-color 0.2s ease-in-out;
 

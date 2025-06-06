@@ -9,6 +9,8 @@ interface Props {
     iconLinkPath?: string;
     size?: "sm" | "md" | "lg";
     title?: string;
+    scrollX?: boolean;
+    scrollY?: boolean;
 }
 
 const {
@@ -18,6 +20,8 @@ const {
     size = "sm",
     tags,
     title = null,
+    scrollX = false,
+    scrollY = false,
 } = Astro.props;
 let tagPath = path || "/tags/";
 tagPath = tagPath.endsWith("/") ? tagPath : tagPath + "/";
@@ -49,7 +53,13 @@ const iconSize = "1.25em";
                 </a>
             )
         }
-        <ul class="tag-list">
+        <ul
+            class:list={[
+                "tag-list",
+                scrollX && "scroll-x",
+                scrollY && "scroll-y",
+            ]}
+        >
             {
                 Array.isArray(tags) &&
                     sortedTags.map((tag) => (
