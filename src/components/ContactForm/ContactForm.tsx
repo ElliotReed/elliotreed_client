@@ -6,7 +6,7 @@ import Button from "../elements/Button";
 
 import styles from "./contact-form.module.scss"
 
-const CONTACT_ROUTE_URL = import.meta.env.CONTACT_ROUTE_URL;
+const CONTACT_ROUTE_URL = import.meta.env.PUBLIC_CONTACT_ROUTE_URL;
 
 const buttonText = {
     sendAnother: "Send Another Message",
