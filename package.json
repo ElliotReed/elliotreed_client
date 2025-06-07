@@ -11,9 +11,9 @@
         "generate:filters": "node ./scripts/generateFilters.js"
     },
     "dependencies": {
-        "@astrojs/mdx": "^4.2.6",
-        "@astrojs/react": "^4.2.7",
-        "astro": "^5.7.13",
+        "@astrojs/mdx": "^4.3.0",
+        "@astrojs/react": "^4.3.0",
+        "astro": "^5.9.1",
         "classnames": "^2.5.1",
         "gsap": "^3.13.0",
         "pigeon-maps": "^0.22.1",
@@ -21,10 +21,10 @@
         "yet-another-react-lightbox": "^3.23.2"
     },
     "devDependencies": {
-        "@iconify-json/tabler": "^1.2.18",
-        "@types/node": "^22.15.19",
+        "@iconify-json/tabler": "^1.2.19",
+        "@types/node": "^22.15.30",
         "astro-icon": "^1.1.5",
-        "sass": "^1.89.0",
+        "sass": "^1.89.1",
         "typescript": "^5.8.3"
     }
 }
