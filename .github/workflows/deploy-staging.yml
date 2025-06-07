@@ -25,6 +25,9 @@ jobs:
         run: | 
           npm run build
 
+        env:
+          PUBLIC_CONTACT_ROUTE_URL: ${{ secrets.PUBLIC_CONTACT_ROUTE_URL }}
+
       - name: Test SSH connectivity
         run: |
           ssh -v -o StrictHostKeyChecking=no -p 7822 elliotre@elliotreed.net "echo 'SSH connection successful'"
