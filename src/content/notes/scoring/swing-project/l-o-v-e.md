@@ -1,10 +1,10 @@
 ---
 author: "Elliot Reed"
 category: "scoring"
-cover: "@images/scores/dirty-layers.jpg"
-coverAltText: "Yellowed sheet music fragments over penciled sheet music with erasure smudges"
-coverCredit: "Kirk Cameron"
-coverCreditLink: "https://unsplash.com/@psarahtonen"
+cover: "@images/musicians/l-o-v-e.jpg"
+coverAltText: "Nat 'King' Cole headshot in checkered suit, smiling"
+coverCredit: ""
+coverCreditLink: ""
 description: "My personal arranging process for L-O-V-E"
 publishedDate: 2025-05-23
 updatedDate:
