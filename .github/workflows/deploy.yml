@@ -13,19 +13,18 @@ env:
   SSH_USER: elliotre
   
   # Project-specific variables (customize these for each project)
-  PROJECT_NAME: api.gigmanager.elliotreed.net
+  PROJECT_NAME: static-site
   NODE_VERSION: "20"
   BUILD_COMMAND: "npm run build"
   BUILD_OUTPUT_DIR: "./dist/"
   
   # Deployment paths
-  REMOTE_BASE_PATH: "/home/elliotre"
-  NODE_ENV_PATH: "/home/elliotre/nodevenv"
+  REMOTE_DEPLOY_PATH: "/home/elliotre/public_html"
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
     
     steps:
       - name: Checkout code
@@ -62,65 +61,85 @@ jobs:
 
       - name: Build project
         run: ${{ env.BUILD_COMMAND }}
+        env:
+          # Build-time environment variables (add your secrets here)
+          PUBLIC_CONTACT_ROUTE_URL: ${{ secrets.PUBLIC_CONTACT_ROUTE_URL }}
+          # Add other build-time secrets as needed:
+          # VITE_API_URL: ${{ secrets.VITE_API_URL }}
+          # NEXT_PUBLIC_ANALYTICS_ID: ${{ secrets.NEXT_PUBLIC_ANALYTICS_ID }}
+
+      - name: Verify build output
+        run: |
+          if [ ! -d "${{ env.BUILD_OUTPUT_DIR }}" ]; then
+            echo "❌ Build output directory not found: ${{ env.BUILD_OUTPUT_DIR }}"
+            exit 1
+          fi
+          echo "✅ Build output verified"
+          ls -la ${{ env.BUILD_OUTPUT_DIR }}
 
       - name: Test SSH connectivity
         run: |
           ssh -p ${{ env.SSH_PORT }} ${{ env.SSH_USER }}@${{ env.SSH_HOST }} \
-            "echo 'SSH connection successful to ${{ env.PROJECT_NAME }}'"
+            "echo '🔗 SSH connection successful for ${{ env.PROJECT_NAME }}'"
 
-      - name: Prepare remote environment
+      - name: Prepare remote directory
         run: |
           ssh -p ${{ env.SSH_PORT }} ${{ env.SSH_USER }}@${{ env.SSH_HOST }} << 'ENDSSH'
             set -e
-            mkdir -p ${{ env.REMOTE_BASE_PATH }}/${{ env.PROJECT_NAME }}
-            echo "Remote directory prepared: ${{ env.REMOTE_BASE_PATH }}/${{ env.PROJECT_NAME }}"
+            mkdir -p ${{ env.REMOTE_DEPLOY_PATH }}
+            echo "📁 Remote directory prepared: ${{ env.REMOTE_DEPLOY_PATH }}"
           ENDSSH
 
-      - name: Deploy files via rsync
+      - name: Deploy static files via rsync
         run: |
           rsync -avz --delete --progress \
             --exclude '.well-known' \
             --exclude 'cgi-bin' \
-            --exclude 'node_modules' \
+            --exclude '.htaccess' \
+            --exclude '*.log' \
             --exclude '.git' \
             --exclude '.github' \
+            --exclude 'node_modules' \
             --exclude '.env*' \
-            --exclude '*.log' \
-            --exclude '.htaccess' \
+            --exclude 'README.md' \
+            --exclude 'package*.json' \
             -e "ssh -p ${{ env.SSH_PORT }}" \
-            ${{ env.BUILD_OUTPUT_DIR }} package.json package-lock.json \
-            ${{ env.SSH_USER }}@${{ env.SSH_HOST }}:${{ env.REMOTE_BASE_PATH }}/${{ env.PROJECT_NAME }}/
+            ${{ env.BUILD_OUTPUT_DIR }} \
+            ${{ env.SSH_USER }}@${{ env.SSH_HOST }}:${{ env.REMOTE_DEPLOY_PATH }}/
 
-      - name: Install production dependencies and restart services
+      - name: Set proper file permissions
         run: |
           ssh -p ${{ env.SSH_PORT }} ${{ env.SSH_USER }}@${{ env.SSH_HOST }} << 'ENDSSH'
             set -e
-            cd ${{ env.REMOTE_BASE_PATH }}/${{ env.PROJECT_NAME }}
+            cd ${{ env.REMOTE_DEPLOY_PATH }}
             
-            # Activate Node.js virtual environment
-            if [ -f "${{ env.NODE_ENV_PATH }}/${{ env.PROJECT_NAME }}/${{ env.NODE_VERSION }}/bin/activate" ]; then
-              source ${{ env.NODE_ENV_PATH }}/${{ env.PROJECT_NAME }}/${{ env.NODE_VERSION }}/bin/activate
-              echo "Node.js virtual environment activated"
-            else
-              echo "Warning: Node.js virtual environment not found"
-            fi
+            # Set directory permissions
+            find . -type d -exec chmod 755 {} \;
             
-            # Configure npm and install dependencies
-            npm config set strict-ssl false
-            npm ci --omit=dev --silent
-            npm config set strict-ssl true
+            # Set file permissions
+            find . -type f -exec chmod 644 {} \;
             
-            echo "Production dependencies installed successfully"
+            # Make scripts executable if any exist
+            find . -name "*.sh" -exec chmod 755 {} \; 2>/dev/null || true
+            find . -name "*.cgi" -exec chmod 755 {} \; 2>/dev/null || true
             
-            # Optional: Restart services (uncomment and customize as needed)
-            # pm2 restart ${{ env.PROJECT_NAME }} || echo "PM2 restart failed or not configured"
-            # systemctl --user restart ${{ env.PROJECT_NAME }} || echo "systemd restart failed or not configured"
+            echo "✅ File permissions set correctly"
           ENDSSH
 
       - name: Verify deployment
         run: |
           ssh -p ${{ env.SSH_PORT }} ${{ env.SSH_USER }}@${{ env.SSH_HOST }} \
-            "cd ${{ env.REMOTE_BASE_PATH }}/${{ env.PROJECT_NAME }} && ls -la && echo 'Deployment verified'"
+            "cd ${{ env.REMOTE_DEPLOY_PATH }} && ls -la && echo '✅ Static site deployment verified'"
+
+      - name: Optional - Clear CDN cache
+        run: |
+          # Uncomment and customize for your CDN provider
+          # echo "🔄 Clearing CDN cache..."
+          # curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
+          #   -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+          #   -H "Content-Type: application/json" \
+          #   --data '{"purge_everything":true}'
+          echo "💡 CDN cache clearing not configured (see workflow comments)"
 
       - name: Cleanup SSH agent
         if: always()
@@ -136,7 +155,8 @@ jobs:
 
       - name: Deployment summary
         run: |
-          echo "🚀 Deployment completed successfully!"
+          echo "🚀 Static site deployment completed successfully!"
           echo "📁 Project: ${{ env.PROJECT_NAME }}"
           echo "🖥️  Server: ${{ env.SSH_USER }}@${{ env.SSH_HOST }}:${{ env.SSH_PORT }}"
-          echo "📂 Path: ${{ env.REMOTE_BASE_PATH }}/${{ env.PROJECT_NAME }}"
+          echo "📂 Deploy Path: ${{ env.REMOTE_DEPLOY_PATH }}"
+          echo "🌐 Site should now be live!"
