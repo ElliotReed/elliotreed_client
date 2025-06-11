@@ -14,6 +14,8 @@ title: "Star Eyes"
 
 ## Overview
 
+I think the concept should be very "floaty", through the skies, space...
+
 Parker at 144
 Lafertin 116
 
