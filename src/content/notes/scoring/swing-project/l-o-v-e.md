@@ -27,3 +27,7 @@ Style with emphasis on the horns laying down the groove.
 Closed voicings.
 
 Use diatonic passing chords.
+
+## Key Structure
+
+Starting in Eb (3 flats), to Bb (2 flats), to F (1 flat).
