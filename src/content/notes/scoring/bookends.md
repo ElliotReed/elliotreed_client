@@ -12,15 +12,22 @@ tags: ["introductions", "endings"]
 title: "Bookends"
 ---
 
-## Introductions
+## Introductions and Endings
+
+- Nelson Riddle likes to take a fragment of the melody, and repeat it in different transpositions. Very nice!
+
+### Introductions
+
+According to **Nelson Riddle**, you shouldn't upstage the vocalist by stating the melody in the introduction, instead, come up with a figure that captures the mood of the piece. The figure can then be used in other parts of the arrangement as well. The singer will thank you!
 
 - Last eight
 - I vi ii V vamp (usually eight bars, twice)
 - vamp on V pedal
 - Tied to ending vocal tag or vamp, same vamp, no vocal for intro.
+
  
 
-## Endings
+### Endings
 
 - Ryhthm section stop for rubato last vocal line
 - vamp on V pedal

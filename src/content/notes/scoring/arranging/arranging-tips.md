@@ -11,8 +11,13 @@ tags: ["arranging", "tips"]
 title: "Arranging Tips"
 ---
 
+## Listen!
+
 Spend time listening to your favorite arrangers.
 
-## Introductions
+I would certainly reccomend:
 
-According to **Nelson Riddle**, you shouldn't upstage the vocalist by stating the melody in the introduction, instead, come up with a figure that captures the mood of the piece. The figure can then be used in other parts of the arrangement as well. The singer will thank you!
+- Nelson Riddle
+
+## [Introductions and Endings](../bookends/#introductions-and-endings)
+
