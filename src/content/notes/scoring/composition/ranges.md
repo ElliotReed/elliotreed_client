@@ -20,7 +20,7 @@ title: "Ranges"
 
 The standard trumpet range extends from the written F♯ immediately below Middle C up to about three octaves higher. Traditional trumpet repertoire rarely calls for notes beyond this range, and the fingering tables of most method books peak at the high C, two octaves above middle C.
 
-Roughly, middle C to to octaves above.
+Roughly, middle C to two octaves above.
 
 ### Trombone
 
@@ -38,13 +38,13 @@ A transposing instrument pitched in the key of B♭, modern soprano saxophones w
 
 The range of the alto saxophone is from concert D♭3 (the D♭ below middle C—see Scientific pitch notation) to concert A♭5 (or A5 on altos with a high F♯ key). As with most types of saxophones, the standard written range is B♭3 to F6 (or F♯6). Above that, the altissimo register begins at F♯ and extends upwards. The saxophone's altissimo register is more difficult to control than that of other woodwinds and is usually only expected from advanced players.
 
-Roughly, Bb 10th below middle C, F ?octaves above middle C
+Roughly, bb 10th below middle C, F 2 octaves above middle C
 
-#### Tenor
+#### Tenor  
 
 Modern tenor saxophones which have a high F# key have a range from A♭2 to E5 (concert) and are therefore pitched one octave below the soprano saxophone.
 
-Roughly, Ab 2 octaves below middle C, E ?octaves above middle C
+Roughly, Ab 2 octaves below middle C, E 2 octaves above middle C
 
 #### Baritone
 
