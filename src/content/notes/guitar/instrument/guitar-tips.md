@@ -5,7 +5,7 @@ title: "Instrument"
 category: "guitar"
 description: "instrumentStuff"
 publishedDate: 2025-04-13
-tags: ["notation", "scoring", "instrument"]
+tags: ["guitar", "tips", "instrument"]
 ---
 
 TBD

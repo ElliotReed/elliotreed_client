@@ -7,7 +7,7 @@ coverCreditLink: ""
 description: "Composition tips"
 publishedDate: 2025-04-06
 updatedDate:
-tags: ["notation", "scoring"]
+tags: ["scoring"]
 title: "Composition Tips"
 ---
 
