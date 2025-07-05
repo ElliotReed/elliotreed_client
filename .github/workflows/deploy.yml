@@ -13,7 +13,7 @@ env:
   SSH_USER: elliotre
   
   # Project-specific variables (customize these for each project)
-  PROJECT_NAME: static-site
+  PROJECT_NAME: elliotreed.net
   NODE_VERSION: "20"
   BUILD_COMMAND: "npm run build"
   BUILD_OUTPUT_DIR: "./dist/"
