@@ -2,10 +2,10 @@
 author: "Elliot Reed"
 category: "scoring"
 cover: "@images/scores/june-night.jpg"
-coverAltText: "Sheet music for "June Night"red hues on a blue background of a painted night scene with moon and flowers. A superimposed image of Paul Whiteman"
+coverAltText: 'Sheet music for "June Night"red hues on a blue background of a painted night scene with moon and flowers. A superimposed image of Paul Whiteman'
 coverCredit: ""
 coverCreditLink: ""
-description: "Thoughts on my arrangement of "June Night""
+description: 'Thoughts on my arrangement of "June Night"'
 publishedDate: 2025-07-04
 updatedDate: 
 tags: ["swing", "swing project"]
