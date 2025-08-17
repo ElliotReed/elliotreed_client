@@ -1,0 +1,51 @@
+---
+author: "Elliot Reed"
+category: "notation"
+cover: "@images/scores/pile-of-music-sheets.jpg"
+coverAltText: "A pile of loose, yellowing sheet music"
+coverCredit: "Buchkiste"
+coverCreditLink: "https://www.pexels.com/@buchkiste-3204235/"
+description: "A reference for score formatting."
+publishedDate: 2025-08-17
+updatedDate: 
+tags: ["scoring"]
+title: "My Score Formatting Style"
+---
+
+import Table from "@/components/elements/Table.astro";
+
+## Display vs. Playback Staves
+
+Use extra staves within the instrument for playback and display staves. Only the visible staves will play sound.
+
+## Custom Styles
+
+Load and save custom styles. `Format > Load style...`.
+
+My style file `A:/Charts/_MuseScore4/Styles/ElliotReedJazz.mss`
+
+## Page Styles
+
+<Table
+headings={["Property", "Value"]}
+data={[["All Margins", "0.25in"]]}
+/>
+
+## Header Styles
+
+<Table
+headings={[
+"Property",
+"Font",
+"Position",
+"Size",
+"Style",
+]}
+data={[
+["Title", "Calibri", "Center/Top", "Bold", "28pts"],
+["Composer", "Calibri", "Right/Top", "Normal", "12pts"],
+["Lyricist", "Calibri", "Right/Middle", "Normal", "12pts"],
+["Year Composed", "Calibri", "Right/Bottom", "Normal", "12pts"],
+["Part Name", "Calibri", "Left/Top", "Bold", "12pts"],
+]}
+      />
