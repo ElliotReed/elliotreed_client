@@ -50,3 +50,8 @@ tags: ["notation", "scoring", "musescore"]
 4. Paste from the clipboard to the new stave.
 
 [https://www.youtube.com/watch?v=8DwIhWNmWH4&t=113s](https://www.youtube.com/watch?v=8DwIhWNmWH4&t=113s)
+
+
+## Auto Placement
+
+If an object has been moved, `Ctrl + R` will reset the placement to auto. 

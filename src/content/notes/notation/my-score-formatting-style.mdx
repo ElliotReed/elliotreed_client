@@ -14,38 +14,107 @@ title: "My Score Formatting Style"
 
 import Table from "@/components/elements/Table.astro";
 
-## Display vs. Playback Staves
-
-Use extra staves within the instrument for playback and display staves. Only the visible staves will play sound.
-
 ## Custom Styles
 
 Load and save custom styles. `Format > Load style...`.
 
 My style file `A:/Charts/_MuseScore4/Styles/ElliotReedJazz.mss`
 
-## Page Styles
+## Display vs. Playback Staves
 
-<Table
-headings={["Property", "Value"]}
-data={[["All Margins", "0.25in"]]}
-/>
+~~Use extra staves within the instrument for playback and display staves. Only the visible staves will play sound.~~
+
+Both staves sound, so this is a bad idea. One instrument for playback and one for display.
+
+## Feel
+
+- Even 8ths
+- Swing
 
 ## Header Styles
 
 <Table
-headings={[
-"Property",
-"Font",
-"Position",
-"Size",
-"Style",
-]}
-data={[
-["Title", "Calibri", "Center/Top", "Bold", "28pts"],
-["Composer", "Calibri", "Right/Top", "Normal", "12pts"],
-["Lyricist", "Calibri", "Right/Middle", "Normal", "12pts"],
-["Year Composed", "Calibri", "Right/Bottom", "Normal", "12pts"],
-["Part Name", "Calibri", "Left/Top", "Bold", "12pts"],
-]}
-      />
+    headings={[
+        "Property",
+        "Font",
+        "Position",
+        "Size",
+        "Style",
+    ]}
+    data={[
+        ["Title", "Calibri", "Center/Top", "Bold", "28pts"],
+        ["Composer", "Calibri", "Right/Top", "Normal", "10pts"],
+        ["Lyricist", "Calibri", "Right/Middle", "Normal", "10pts"],
+        ["Year Composed", "Calibri", "Right/Bottom", "Normal", "10pts"],
+        ["Part Name", "Calibri", "Left/Top", "Bold", "12pts"],
+        ["Style", "Finale Jazz Text", "Left/Middle", "Normal", "12pts"],
+    ]}
+/>
+
+## Page Styles
+
+<Table
+    headings={["Property", "Value"]}
+    data={[
+        ["All Margins", "0.25in"],
+        ["Staff space", "0.75in"],
+    ]}
+/>
+
+## Repeats
+
+- Use winged repeats.
+- No period for numbers ("1,2" not "1.,2.")
+
+- Symbols (code, segno) 22pts
+
+
+### Phrasing
+
+- Repeat For Solos
+- After Solos
+
+## Text Elements
+
+### Performance Notes
+
+Staff text required for each instrument, e.g. "Solo".
+
+- Capitalized
+- Full Word
+
+<Table
+    headings={["Property","Value"]}
+    data={[
+        ["Font", "Calibri"],
+        ["Color", "Green"],
+        ["Style", "Bold"],
+        ["Size", "10pt"],
+        ["Border", "Rectangle"],
+        ["Border color", "Green"],
+        ["Thickness", "0.25"],
+        ["Padding", "0.5"],
+        ["Corner radius", "8"],
+        ["Line spacing", "1li"],
+    ]}
+/>
+
+### Arrangement Notes
+
+Staff text usefull for each instrument, e.g. "gtr solo".
+
+- No Capitalization
+- Abbreviated Words
+
+<Table
+    headings={["Property","Value"]}
+    data={[
+        ["Font", "Calibri"],
+        ["Color", "Green"],
+        ["Style", "Bold"],
+        ["Style", "Italic"],
+        ["Size", "10pt"],
+        ["Border", "None"],
+
+    ]}
+/>
