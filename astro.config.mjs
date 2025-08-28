@@ -7,14 +7,12 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-    experimental: {
-        responsiveImages: true,
-    },
-
+    experimental: {},
     image: {
         // Used for all Markdown images; not configurable per-image
+        responsiveStyles: true,
         // Used for all `<Image />` and `<Picture />` components unless overridden with a prop
-        experimentalLayout: 'constrained',
+        layout: 'constrained',
     },
     integrations: [
         icon(),

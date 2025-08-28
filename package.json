@@ -11,9 +11,9 @@
         "generate:filters": "node ./scripts/generateFilters.js"
     },
     "dependencies": {
-        "@astrojs/mdx": "^4.3.0",
+        "@astrojs/mdx": "^4.3.4",
         "@astrojs/react": "^4.3.0",
-        "astro": "^5.9.1",
+        "astro": "^5.13.4",
         "classnames": "^2.5.1",
         "gsap": "^3.13.0",
         "pigeon-maps": "^0.22.1",
