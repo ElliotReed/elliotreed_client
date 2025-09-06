@@ -9,6 +9,8 @@ category: "notation"
 tags: ["notation", "scoring", "musescore"]
 ---
 
+import Table from "@/components/elements/Table.astro"
+
 ## Contents
 
 - [Note Entry](#note-entry)
@@ -55,3 +57,22 @@ tags: ["notation", "scoring", "musescore"]
 ## Auto Placement
 
 If an object has been moved, `Ctrl + R` will reset the placement to auto. 
+
+## Swing
+
+<Table
+    headings={["Feel / Style","Ratio (long:short)","% of beat (long)","% of beat (short)"]}
+    data={[ 
+        ["Straight 8ths","1:1","50%","50%"],
+        ["Light swing","~3:2","60%","40%"],
+        ["Triplet swing","2:1 (triplet feel)","66%","33%"],
+        ["Shuffle","~3:1","75%","25%"],
+        ["Extreme swing","4:1+","80%","20%"],
+        ]}     
+/>
+
+## Tempo
+
+### rit.---
+
+- "Seul ce Soir" 55% (found by trial and error), ease-out
