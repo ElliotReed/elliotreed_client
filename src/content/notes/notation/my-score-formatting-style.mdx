@@ -14,6 +14,10 @@ title: "My Score Formatting Style"
 
 import Table from "@/components/elements/Table.astro";
 
+## Chords
+
+Size up the chord symbols on parts to 13pt (12pt default for the score).?
+
 ## Custom Styles
 
 Load and save custom styles. `Format > Load style...`.
@@ -67,7 +71,15 @@ Both staves sound, so this is a bad idea. One instrument for playback and one fo
 - Use winged repeats.
 - No period for numbers ("1,2" not "1.,2.")
 
-- Symbols (code, segno) 22pts
+- Symbols (coda, segno) 22pts
+
+<Table
+    headings={["Symbol","Font Size"]}
+    data={[
+        ["Segno", "26pts"],
+        ["Coda", "22pts"],
+    ]}
+/>
 
 <Table
     headings={["Property","Value"]}
