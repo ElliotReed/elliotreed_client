@@ -114,22 +114,26 @@ Staff text required for each instrument, e.g. "Solo".
 <Table
     headings={["Property","Value"]}
     data={[
-        ["Font", "Calibri"],
-        ["Color", "Green"],
-        ["Style", "Bold"],
+        ["Font", "Edwin"],
         ["Size", "10pt"],
-        ["Border", "Rectangle"],
-        ["Border color", "Green"],
-        ["Thickness", "0.25"],
-        ["Padding", "0.5"],
-        ["Corner radius", "25"],
         ["Line spacing", "1li"],
+        ["Follow staff size", "Unchecked"],
+        ["Style", "Bold"],
+        ["Align", "Left, Top"],
+        ["Color", "Green (#407840)"],
+        ["Frame", "Rectangle"],
+        ["Border", "Green (#407840)"],
+        ["Fill color", "Green (#407840, Alpha channel 16)"],
+        ["Border thickness", "0"],
+        ["Thickness", "0.25"],
+        ["Padding", "1"],
+        ["Corner radius", "25? (currently resets to 0)"],
     ]}
 />
 
 ### Arrangement Notes
 
-Staff text usefull for each instrument, e.g. "gtr solo".
+Staff text usefull for each instrument (but not required), e.g. "gtr solo".
 
 - No Capitalization
 - Abbreviated Words
@@ -138,11 +142,34 @@ Staff text usefull for each instrument, e.g. "gtr solo".
     headings={["Property","Value"]}
     data={[
         ["Font", "Calibri"],
-        ["Color", "Green"],
-        ["Style", "Bold"],
-        ["Style", "Italic"],
         ["Size", "10pt"],
-        ["Border", "None"],
+        ["Follow staff size", "Unchecked"],
+        ["Style", "Bold, Italic"],
+        ["Align", "Left, Top"],
+        ["Color", "Green (#407840)"],
+        ["Frame", "None"],
+    ]}
+/>
 
+## Staves
+
+When creating an extra stave for a part (to display hits, or one-off notation):
+
+- Put the staff under the same instrument in Layout and define 
+  the staff by right clicking and set staff/part properties.
+
+- You can set the number of lines, hide clefs, time signature, and key signature
+ (in Advanced style properties).
+
+It has to be done on every part.
+
+## Symbols
+
+<Table
+    headings={["Symbol","Context", "Size"]}
+    data={[
+        ["Segnoe 𝄋", "Alone", "26pt"],
+        ["Coda 𝄌", "Alone", "22pts"],
+        ["Coda 𝄌", "In Text", "18pts"],
     ]}
 />
