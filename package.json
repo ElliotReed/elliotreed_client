@@ -11,20 +11,20 @@
         "generate:filters": "node ./scripts/generateFilters.js"
     },
     "dependencies": {
-        "@astrojs/mdx": "^4.3.11",
+        "@astrojs/mdx": "^4.3.12",
         "@astrojs/react": "^4.4.2",
-        "astro": "^5.15.9",
+        "astro": "^5.16.0",
         "classnames": "^2.5.1",
         "gsap": "^3.13.0",
         "pigeon-maps": "^0.22.1",
         "react-icons": "^5.5.0",
-        "yet-another-react-lightbox": "^3.23.2"
+        "yet-another-react-lightbox": "^3.25.0"
     },
     "devDependencies": {
-        "@iconify-json/tabler": "^1.2.19",
-        "@types/node": "^22.15.30",
+        "@iconify-json/tabler": "^1.2.23",
+        "@types/node": "^24.10.1",
         "astro-icon": "^1.1.5",
-        "sass": "^1.89.1",
-        "typescript": "^5.8.3"
+        "sass": "^1.94.2",
+        "typescript": "^5.9.3"
     }
 }
