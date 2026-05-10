@@ -8,7 +8,6 @@ Documentation for this site: [docs.elliotreed.net](https://docs.elliotreed.net).
 
 Staging deploy: [staging.elliotreed.net](https://staging.elliotreed.net).
 
-
 ## Third-party
 
 Astro development framework: [Astro](https://astro.build/).
@@ -19,4 +18,4 @@ Astro official docs theme: [Starlight Theme](https://starlight.astro.build/).
 
 ## Hosting
 
-Hosted on A2 Hosting: [Client Area](https://my.a2hosting.com/clientarea.php).
+Hosted on private vps

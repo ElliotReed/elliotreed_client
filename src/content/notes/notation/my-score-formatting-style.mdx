@@ -36,7 +36,7 @@ Both staves sound, so this is a bad idea. One instrument for playback and one fo
 - Swing
 
 ## Header Styles
-guitars-on-stands-in-sunlit-room
+**guitars-on-stands-in-sunlit-room**
 <Table
     headings={[
         "Property",
@@ -86,6 +86,22 @@ guitars-on-stands-in-sunlit-room
         ["Align", "Center, Baseline"],
         ["Color", "Black"],
         ["Frame", "None"],
+    ]}
+/>
+
+### Mixer
+
+<Table
+    headings={["Part","Instrument", "Sound", "Reverb", "Panning", "Volume", "Notes"]}
+    data={[
+        ["Vocal", "Bassoon", "SoundFonts: Bassoon", "-", "0", "0"],
+        ["Clarinet", "Clarinet in Bb","SoundFonts: Clarinet in Bb","","","",""],
+        ["Lead Sub", "Trumpet","SoundFonts: Trumpet in Bb","","","",""],
+        ["Violin", "Violin","SoundFonts: Violin","5%","-30","0",""],
+        ["Lead Guitar", "Acoustic Guitar","SoundFonts: Nylon String Guitar","5%","-10","0",""],
+        ["Rhythm Guitar", "Acoustic Guitar","SoundFonts: Nylon String Guitar","10%","30","0",""],
+        ["Bass", "Acoustic Bass","SoundFonts: Bass","-","0","0",""],
+        ["Drums", "Drums","SoundFonts: ","-","","0",""],
     ]}
 />
 
@@ -147,6 +163,17 @@ When creating an extra stave for a part (to display hits, or one-off notation):
  (in Advanced style properties).
 
 ***It has to be done on every part***.
+
+### Hits Staff
+
+in Advanced style properties
+
+- Uncheck `Show clef`
+- Uncheck `Show time signature`
+- Uncheck `Show key signature`
+- Lines: 1, Line distance: 0
+
+This allows rhytmic notation on a single line staff
 
 ## Swing
 

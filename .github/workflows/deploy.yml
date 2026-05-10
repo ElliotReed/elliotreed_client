@@ -1,32 +1,28 @@
-name: Deploy to Hosting (Production)
+name: Deploy Production to VPS
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
 
 env:
-  # Server connection details
-  SSH_HOST: elliotreed.net
-  SSH_PORT: 7822
-  SSH_USER: elliotre
-  
-  # Project-specific variables (customize these for each project)
-  PROJECT_NAME: elliotreed.net
-  NODE_VERSION: "20"
-  BUILD_COMMAND: "npm run build"
-  BUILD_OUTPUT_DIR: "./dist/"
-  
-  # Deployment paths
-  REMOTE_DEPLOY_PATH: "/home/elliotre/public_html"
+  # VPS connection
+  VPS_HOST: ${{ secrets.VPS_HOST }}
+  VPS_USER: ${{ secrets.VPS_USER }}
+
+  # Project config
+  SITE_NAME: elliotreedmusic
+  NODE_VERSION: "24"
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    
+
     steps:
+      - name: Set remote path
+        run: echo "REMOTE_SITE_PATH=~/apps/${{ env.SITE_NAME }}" >> $GITHUB_ENV
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -34,129 +30,33 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: "npm"
 
-      - name: Setup SSH key for deployment
+      - name: Setup SSH key
         uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
-        env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+          ssh-private-key: ${{ secrets.VPS_SSH_KEY }}
 
       - name: Add SSH host to known_hosts
-        run: |
-          ssh-keyscan -p ${{ env.SSH_PORT }} ${{ env.SSH_HOST }} >> ~/.ssh/known_hosts
+        run: ssh-keyscan ${{ env.VPS_HOST }} >> ~/.ssh/known_hosts
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Run tests (if available)
-        run: |
-          if npm run | grep -q "test"; then
-            npm test
-          else
-            echo "No test script found, skipping tests"
-          fi
-        continue-on-error: false
-
       - name: Build project
-        run: ${{ env.BUILD_COMMAND }}
-        env:
-          # Build-time environment variables (add your secrets here)
-          PUBLIC_CONTACT_ROUTE_URL: ${{ secrets.PUBLIC_CONTACT_ROUTE_URL }}
-          # Add other build-time secrets as needed:
-          # VITE_API_URL: ${{ secrets.VITE_API_URL }}
-          # NEXT_PUBLIC_ANALYTICS_ID: ${{ secrets.NEXT_PUBLIC_ANALYTICS_ID }}
+        run: npm run build
 
-      - name: Verify build output
+      - name: Deploy via rsync
         run: |
-          if [ ! -d "${{ env.BUILD_OUTPUT_DIR }}" ]; then
-            echo "❌ Build output directory not found: ${{ env.BUILD_OUTPUT_DIR }}"
-            exit 1
-          fi
-          echo "✅ Build output verified"
-          ls -la ${{ env.BUILD_OUTPUT_DIR }}
-
-      - name: Test SSH connectivity
-        run: |
-          ssh -p ${{ env.SSH_PORT }} ${{ env.SSH_USER }}@${{ env.SSH_HOST }} \
-            "echo '🔗 SSH connection successful for ${{ env.PROJECT_NAME }}'"
-
-      - name: Prepare remote directory
-        run: |
-          ssh -p ${{ env.SSH_PORT }} ${{ env.SSH_USER }}@${{ env.SSH_HOST }} << 'ENDSSH'
-            set -e
-            mkdir -p ${{ env.REMOTE_DEPLOY_PATH }}
-            echo "📁 Remote directory prepared: ${{ env.REMOTE_DEPLOY_PATH }}"
-          ENDSSH
-
-      - name: Deploy static files via rsync
-        run: |
-          rsync -avz --delete --progress \
-            --exclude '.well-known' \
-            --exclude 'cgi-bin' \
-            --exclude '.htaccess' \
-            --exclude '*.log' \
+          rsync -avz --delete \
+            --exclude 'node_modules' \
             --exclude '.git' \
             --exclude '.github' \
-            --exclude 'node_modules' \
-            --exclude '.env*' \
-            --exclude 'README.md' \
-            --exclude 'package*.json' \
-            -e "ssh -p ${{ env.SSH_PORT }}" \
-            ${{ env.BUILD_OUTPUT_DIR }} \
-            ${{ env.SSH_USER }}@${{ env.SSH_HOST }}:${{ env.REMOTE_DEPLOY_PATH }}/
-
-      - name: Set proper file permissions
-        run: |
-          ssh -p ${{ env.SSH_PORT }} ${{ env.SSH_USER }}@${{ env.SSH_HOST }} << 'ENDSSH'
-            set -e
-            cd ${{ env.REMOTE_DEPLOY_PATH }}
-            
-            # Set directory permissions
-            find . -type d -exec chmod 755 {} \;
-            
-            # Set file permissions
-            find . -type f -exec chmod 644 {} \;
-            
-            # Make scripts executable if any exist
-            find . -name "*.sh" -exec chmod 755 {} \; 2>/dev/null || true
-            find . -name "*.cgi" -exec chmod 755 {} \; 2>/dev/null || true
-            
-            echo "✅ File permissions set correctly"
-          ENDSSH
-
-      - name: Verify deployment
-        run: |
-          ssh -p ${{ env.SSH_PORT }} ${{ env.SSH_USER }}@${{ env.SSH_HOST }} \
-            "cd ${{ env.REMOTE_DEPLOY_PATH }} && ls -la && echo '✅ Static site deployment verified'"
-
-      - name: Optional - Clear CDN cache
-        run: |
-          # Uncomment and customize for your CDN provider
-          # echo "🔄 Clearing CDN cache..."
-          # curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
-          #   -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
-          #   -H "Content-Type: application/json" \
-          #   --data '{"purge_everything":true}'
-          echo "💡 CDN cache clearing not configured (see workflow comments)"
-
-      - name: Cleanup SSH agent
-        if: always()
-        run: |
-          if [ -n "$SSH_AGENT_PID" ]; then
-            echo "Stopping SSH agent (PID: $SSH_AGENT_PID)"
-            kill $SSH_AGENT_PID || true
-          fi
-          if [ -S "$SSH_AUTH_SOCK" ]; then
-            echo "Removing SSH auth socket"
-            rm -f "$SSH_AUTH_SOCK" || true
-          fi
+            --exclude 'src' \
+            ./dist/ \
+            ${{ env.VPS_USER }}@${{ env.VPS_HOST }}:${{ env.REMOTE_SITE_PATH }}/
 
       - name: Deployment summary
         run: |
-          echo "🚀 Static site deployment completed successfully!"
-          echo "📁 Project: ${{ env.PROJECT_NAME }}"
-          echo "🖥️  Server: ${{ env.SSH_USER }}@${{ env.SSH_HOST }}:${{ env.SSH_PORT }}"
-          echo "📂 Deploy Path: ${{ env.REMOTE_DEPLOY_PATH }}"
-          echo "🌐 Site should now be live!"
+          echo "🚀 Deployed to ${{ env.VPS_HOST }}"
+          echo "📁 Site: ${{ env.SITE_NAME }}"

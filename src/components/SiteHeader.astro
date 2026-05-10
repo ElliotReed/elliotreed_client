@@ -13,194 +13,192 @@ let type = "musician";
 const currentPath = Astro.url.pathname;
 
 function getLogoAnimation() {
-    let animation;
-    if (currentPath === "/design") {
-        animation = "SWITCH_TO_DEVELOPER";
-    }
-    if (currentPath === "/") {
-        animation = "SWITCH_TO_MUSICIAN";
-    }
+  let animation;
+  if (currentPath === "/design") {
+    animation = "SWITCH_TO_DEVELOPER";
+  }
+  if (currentPath === "/") {
+    animation = "SWITCH_TO_MUSICIAN";
+  }
 
-    return animation;
+  return animation;
 }
 ---
 
 <CollapsibleHeader>
-    <div class={styles.header__content}>
-        <a href="/" class={styles["logo-link"]}>
-            <Logo
-                client:only="react"
-                width="1rem"
-                mode={type}
-                animation={getLogoAnimation()}
-            />
-            <span class={styles.title}>Elliot Reed Music</span>
-        </a>
+  <div class={styles.header__content}>
+    <a href="/" class={styles["logo-link"]}>
+      <Logo
+        client:only="react"
+        width="1rem"
+        mode={type}
+        animation={getLogoAnimation()}
+      />
+      <span class={styles.title}>Elliot Reed Music</span>
+    </a>
 
-        <button
-            class="menu-toggle"
-            aria-controls="nav-container__mobile"
-            aria-expanded="false"
-        >
-            <Hamburger />
-        </button>
+    <button
+      class="menu-toggle"
+      aria-controls="nav-container__mobile"
+      aria-expanded="false"
+    >
+      <Hamburger />
+    </button>
 
-        <div class="nav-container__mobile">
-            <div class="navbar-container">
-                <Navbar links={navigationLinks.resource} />
-                <div class="seperator"></div>
-                <Navbar links={navigationLinks.site} />
-                <div class="seperator"></div>
-                <Navbar links={navigationLinks.app} />
-            </div>
-        </div>
-
-        <div class="navbars">
-            <Navbar links={navigationLinks.resource} />
-            <Navbar links={navigationLinks.site} />
-            <Navbar links={navigationLinks.app} />
-        </div>
-        <ScoreHeader />
+    <div class="nav-container__mobile">
+      <div class="navbar-container">
+        <Navbar links={navigationLinks.resource} />
+        <div class="seperator"></div>
+        <Navbar links={navigationLinks.site} />
+        <div class="seperator"></div>
+        <Navbar links={navigationLinks.app} />
+      </div>
     </div>
+
+    <div class="navbars">
+      <Navbar links={navigationLinks.resource} />
+      <Navbar links={navigationLinks.site} />
+      <Navbar links={navigationLinks.app} />
+    </div>
+    <ScoreHeader />
+  </div>
 </CollapsibleHeader>
 
 <style lang="scss">
-    @use "@/styles/abstracts" as *;
+  @use "@/styles/abstracts" as *;
 
-    $break-point: "md";
+  $break-point: "md";
 
-    .menu-toggle {
-        z-index: 1100;
-        padding: 0;
-        // margin-block: $space-sm;
-        // margin-inline: $space-md;
-        background: transparent;
-        // background: get-color("lightShades");
-        color: inherit;
-        border: $border;
-        border: none;
-        border-radius: $border-radius;
-        font-size: $fs-md-rem;
-        font-weight: $fw-lg;
-        @include padding-box("md");
-        cursor: pointer;
+  .menu-toggle {
+    z-index: 1100;
+    padding: 0;
+    // margin-block: $space-sm;
+    // margin-inline: $space-md;
+    background: transparent;
+    // background: get-color("lightShades");
+    color: inherit;
+    border: $border;
+    border: none;
+    border-radius: $border-radius;
+    font-size: $fs-md-rem;
+    font-weight: $fw-lg;
+    @include padding-box("md");
+    cursor: pointer;
 
-        @include respond-to($break-point) {
-            display: none;
-        }
-
-        &:hover,
-        &:active,
-        &:focus {
-            outline: none;
-            // color: get-color("lightShades");
-            // background: get-color("darkShades");
-        }
-
-        svg {
-            pointer-events: none;
-            font-size: $fs-xxl-rem;
-        }
+    @include respond-to($break-point) {
+      display: none;
     }
 
-    .menu-toggle[aria-expanded="true"] + .nav-container__mobile {
-        transform: translate(0, 0);
+    &:hover,
+    &:active,
+    &:focus {
+      outline: none;
+      // color: get-color("lightShades");
+      // background: get-color("darkShades");
     }
 
-    .nav-container__mobile {
-        position: fixed;
-        inset: 0;
-        background-color: get-color("dark", 600);
-        transform: translate(100vw, 0);
-        transition: transform $duration-md ease-in-out;
-        z-index: 200;
-        // overflow: hidden;
+    svg {
+      pointer-events: none;
+      font-size: $fs-xxl-rem;
+    }
+  }
 
-        @include respond-to($break-point) {
-            position: relative;
-            display: none;
-            transform: unset;
-        }
+  .menu-toggle[aria-expanded="true"] + .nav-container__mobile {
+    transform: translate(0, 0);
+  }
 
-        .navbar-container {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: right;
-            max-width: 66%;
-            margin-inline-start: auto;
-            height: 100%;
-            background-color: get-color("lightShades", 500);
+  .nav-container__mobile {
+    position: fixed;
+    inset: 0;
+    background-color: get-color("dark", 600);
+    transform: translate(100vw, 0);
+    transition: transform $duration-md ease-in-out;
+    z-index: 200;
+    // overflow: hidden;
 
-            @include respond-to($break-point) {
-                // flex-direction: row;
-                max-width: 100%;
-            }
-        }
+    @include respond-to($break-point) {
+      position: relative;
+      display: none;
+      transform: unset;
     }
 
-    .navbars {
-        display: none;
-        @include respond-to($break-point) {
-            display: flex;
-        }
-    }
+    .navbar-container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: right;
+      max-width: 66%;
+      margin-inline-start: auto;
+      height: 100%;
+      background-color: get-color("lightShades", 500);
 
-    .seperator {
-        display: block;
-        margin-block: $space-md;
-        margin-inline: $space-md;
-        border-bottom: 3px solid get-color("dark", 200);
+      @include respond-to($break-point) {
+        // flex-direction: row;
+        max-width: 100%;
+      }
     }
+  }
+
+  .navbars {
+    display: none;
+    @include respond-to($break-point) {
+      display: flex;
+    }
+  }
+
+  .seperator {
+    display: block;
+    margin-block: $space-md;
+    margin-inline: $space-md;
+    border-bottom: 3px solid get-color("dark", 200);
+  }
 </style>
 
 <script>
-    function setupNavMenu() {
-        const navContainerMobile = document.querySelector(
-            ".nav-container__mobile",
-        );
-        const body = document.querySelector("body");
-        const navbarContainer = document.querySelector(".navbar-container");
-        const menuToggle = document.querySelector(".menu-toggle");
-        const hamburger = document.querySelector(".hamburger");
+  function setupNavMenu() {
+    const navContainerMobile = document.querySelector(".nav-container__mobile");
+    const body = document.querySelector("body");
+    const navbarContainer = document.querySelector(".navbar-container");
+    const menuToggle = document.querySelector(".menu-toggle");
+    const hamburger = document.querySelector(".hamburger");
 
-        function toggleMenu() {
-            if (!menuToggle || !hamburger || !body) return;
-            console.log("here");
+    function toggleMenu() {
+      if (!menuToggle || !hamburger || !body) return;
+      console.log("here");
 
-            if (menuToggle.getAttribute("aria-expanded") === "false") {
-                menuToggle.setAttribute("aria-expanded", "true");
-                if (!hamburger.classList.contains("isActive")) {
-                    hamburger.classList.add("isActive");
-                }
-                if (!body.classList.contains("body-no-scroll")) {
-                    body.classList.add("body-no-scroll");
-                }
-            } else {
-                menuToggle.setAttribute("aria-expanded", "false");
-                if (hamburger?.classList.contains("isActive")) {
-                    hamburger?.classList.remove("isActive");
-                }
-                if (body.classList.contains("body-no-scroll")) {
-                    body.classList.remove("body-no-scroll");
-                }
-            }
+      if (menuToggle.getAttribute("aria-expanded") === "false") {
+        menuToggle.setAttribute("aria-expanded", "true");
+        if (!hamburger.classList.contains("isActive")) {
+          hamburger.classList.add("isActive");
         }
-
-        menuToggle?.addEventListener("click", () => {
-            toggleMenu();
-        });
-
-        navContainerMobile?.addEventListener("click", (e) => {
-            console.log("e.target: ", e.target);
-            toggleMenu();
-        });
+        if (!body.classList.contains("body-no-scroll")) {
+          body.classList.add("body-no-scroll");
+        }
+      } else {
+        menuToggle.setAttribute("aria-expanded", "false");
+        if (hamburger?.classList.contains("isActive")) {
+          hamburger?.classList.remove("isActive");
+        }
+        if (body.classList.contains("body-no-scroll")) {
+          body.classList.remove("body-no-scroll");
+        }
+      }
     }
 
-    // Run on initial load
-    setupNavMenu();
+    menuToggle?.addEventListener("click", () => {
+      toggleMenu();
+    });
 
-    // Run after Astro view transitions
-    document.addEventListener("astro:after-swap", setupNavMenu);
+    navContainerMobile?.addEventListener("click", (e) => {
+      console.log("e.target: ", e.target);
+      toggleMenu();
+    });
+  }
+
+  // Run on initial load
+  setupNavMenu();
+
+  // Run after Astro view transitions
+  document.addEventListener("astro:after-swap", setupNavMenu);
 </script>
