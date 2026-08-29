@@ -1,5 +1,7 @@
-import { validCategoryIds } from "@/data/category";
 import { defineCollection, z, } from "astro:content";
+import { glob } from 'astro/loaders';
+
+import { validCategoryIds } from "@/data/category";
 
 const projectYearValidation = () => z.string()
     .regex(/^$|^[\d?]{4}\??$|^\?$/, {
@@ -8,7 +10,7 @@ const projectYearValidation = () => z.string()
     .optional();
 
 const projects = defineCollection({
-    type: "content",
+    loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects' }),
     schema: ({ image }) => z.object({
         cover: image().optional(),
         coverAltText: z.string().optional(),
@@ -24,7 +26,7 @@ const projects = defineCollection({
 });
 
 const notes = defineCollection({
-    type: "content",
+    loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/notes' }),
     schema: ({ image }) => z.object({
         author: z.string().optional(),
         category: z.enum(validCategoryIds),

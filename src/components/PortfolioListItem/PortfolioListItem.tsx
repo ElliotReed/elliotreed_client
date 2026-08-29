@@ -1,7 +1,7 @@
 import styles from "./portfolio-list-item.module.scss";
 // import { GatsbyImage, IGatsbyImageData, getImage } from "gatsby-plugin-image";
 import Heading from "../Heading/Heading";
-import Paragraph from "./elements/Paragrapph.astro";
+import Paragraph from "../elements/Paragraph.astro";
 import GoToDetailLink from "../GoToDetailLink";
 
 interface PortfolioListItemNode {

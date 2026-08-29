@@ -6,24 +6,24 @@ import MainLayoutGrid from "@/components/MainLayoutGrid.astro";
 import TagList from "@/components/TagList.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
 import { slugify } from "@/utils/slugify";
-import { getCollection, type CollectionEntry } from "astro:content";
+import { getCollection, type CollectionEntry, render } from "astro:content";
 import { getEntryFilename } from "@/utils/collectionHelpers";
 
 export async function getStaticPaths() {
-    const allNotes: CollectionEntry<"notes">[] = await getCollection("notes");
+  const allNotes: CollectionEntry<"notes">[] = await getCollection("notes");
 
-    const paths = allNotes.map((entry) => {
-        return {
-            params: {
-                slug: getEntryFilename(entry),
-            },
-            props: {
-                entry: entry,
-            },
-        };
-    });
+  const paths = allNotes.map((entry) => {
+    return {
+      params: {
+        slug: getEntryFilename(entry),
+      },
+      props: {
+        entry: entry,
+      },
+    };
+  });
 
-    return paths;
+  return paths;
 }
 
 const collection = "notes";
@@ -33,70 +33,70 @@ const { entry } = Astro.props;
 
 // Use the entry from props
 const note = entry;
-const { Content } = await note.render();
+const { Content } = await render(note);
 
 // Build breadcrumbs using the original slug structure if needed
 const breadcrumbItems = [
-    { label: `${collection}`, href: `/${collection}/` },
-    {
-        label: note.data.category,
-        href: `/${collection}/categories/${slugify(note.data.category)}/`,
-    },
-    { label: slug, href: `/${collection}/${slug}/` }, // Final breadcrumb with flattened URL
+  { label: `${collection}`, href: `/${collection}/` },
+  {
+    label: note.data.category,
+    href: `/${collection}/categories/${slugify(note.data.category)}/`,
+  },
+  { label: slug, href: `/${collection}/${slug}/` }, // Final breadcrumb with flattened URL
 ];
 ---
 
 <MainLayout title={note.data.title} description={note.data.description}>
-    <Breadcrumbs items={breadcrumbItems} />
+  <Breadcrumbs items={breadcrumbItems} />
 
-    <MainLayoutGrid style="prefered-width">
-        <div class="header">
-            <div class="cover-image">
-                <CoverImage article={note} />
-            </div>
+  <MainLayoutGrid style="prefered-width">
+    <div class="header">
+      <div class="cover-image">
+        <CoverImage article={note} />
+      </div>
 
-            <div class="content-header">
-                <ContentHeader article={note} />
-            </div>
-        </div>
+      <div class="content-header">
+        <ContentHeader article={note} />
+      </div>
+    </div>
 
-        <TagList tags={note.data.tags} path="/notes/tags" />
+    <TagList tags={note.data.tags} path="/notes/tags" />
 
-        <Content />
-    </MainLayoutGrid>
+    <Content />
+  </MainLayoutGrid>
 </MainLayout>
 
 <style lang="scss">
-    @use "@/styles/abstracts" as *;
-    @use "sass:color" as color;
+  @use "@/styles/abstracts" as *;
+  @use "sass:color" as color;
 
-    .header {
-        $break-point: "md";
-        // aspect-ratio: 16 /9;
-        @include respond-to($break-point) {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(4, 1fr);
-            border: $border;
-            border-radius: $border-radius;
-        }
-
-        .cover-image {
-            @include respond-to($break-point) {
-                grid-column: 1 / -1;
-                grid-row: 1 / -1;
-            }
-        }
-
-        .content-header {
-            @include respond-to($break-point) {
-                grid-column: 3 / -1;
-                grid-row: 2 / -1;
-                align-self: end; /* Align to bottom of grid area */
-                @include padding-box();
-                border-radius: $border-radius;
-                background: color.adjust(get-color("lightShades"), $alpha: 0.1);
-            }
-        }
+  .header {
+    $break-point: "md";
+    // aspect-ratio: 16 /9;
+    @include respond-to($break-point) {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      border: $border;
+      border-radius: $border-radius;
     }
+
+    .cover-image {
+      @include respond-to($break-point) {
+        grid-column: 1 / -1;
+        grid-row: 1 / -1;
+      }
+    }
+
+    .content-header {
+      @include respond-to($break-point) {
+        grid-column: 3 / -1;
+        grid-row: 2 / -1;
+        align-self: end; /* Align to bottom of grid area */
+        @include padding-box();
+        border-radius: $border-radius;
+        background: color.adjust(get-color("lightShades"), $alpha: 0.1);
+      }
+    }
+  }
 </style>

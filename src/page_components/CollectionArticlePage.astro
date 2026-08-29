@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { render } from "astro:content";
 import type { CollectionNames } from "@/types/collections";
 
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
@@ -11,33 +12,33 @@ import TagList from "@/components/TagList.astro";
 
 // Get the article from props
 interface Props {
-    collectionName: CollectionNames;
-    article: CollectionEntry<CollectionNames>;
+  collectionName: CollectionNames;
+  article: CollectionEntry<CollectionNames>;
 }
 
 const { collectionName, article } = Astro.props as Props;
-const { Content } = await article.render();
+const { Content } = await render(article);
 
 const { category, slug } = Astro.params;
 
 const breadcrumbItems = [
-    { label: collectionName, href: `/${collectionName}` },
-    { label: category, href: `/${collectionName}/${category}` },
-    { label: slug, href: `/${collectionName}/${category}/${slug}` },
+  { label: collectionName, href: `/${collectionName}` },
+  { label: category, href: `/${collectionName}/${category}` },
+  { label: slug, href: `/${collectionName}/${category}/${slug}` },
 ];
 ---
 
 <MainLayout title={article.data.title} description={article.data.description}>
-    <Breadcrumbs items={breadcrumbItems} />
-    <MainLayoutGrid style="centered">
-        <CoverImage article={article} />
-    </MainLayoutGrid>
+  <Breadcrumbs items={breadcrumbItems} />
+  <MainLayoutGrid style="centered">
+    <CoverImage article={article} />
+  </MainLayoutGrid>
 
-    <MainLayoutGrid style="prefered-width">
-        <TagList tags={article.data.tags} />
+  <MainLayoutGrid style="prefered-width">
+    <TagList tags={article.data.tags} />
 
-        <ContentHeader article={article} />
+    <ContentHeader article={article} />
 
-        <Content />
-    </MainLayoutGrid>
+    <Content />
+  </MainLayoutGrid>
 </MainLayout>

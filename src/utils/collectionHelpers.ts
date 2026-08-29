@@ -1,7 +1,7 @@
 import type { CollectionEntry } from "astro:content";
 
 export function getEntryFilename<T>(entry: CollectionEntry<T>) {
-    const slugArray = entry.slug.split("/");
+    const slugArray = entry.id.split("/");
     const filename = slugArray[slugArray.length - 1];
     return filename;
 }

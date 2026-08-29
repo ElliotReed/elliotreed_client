@@ -1,5 +1,5 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content";
+import { getCollection, type CollectionEntry, render } from "astro:content";
 import type { CollectionNames } from "@/types/collections";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import ContentHeader from "@/components/ContentHeader.astro";
@@ -11,53 +11,54 @@ import { slugify } from "@/utils/slugify";
 import { getTags } from "@/utils/getTags";
 
 export async function getStaticPaths() {
-    const projects = (await getCollection(
-        "projects",
-    )) as CollectionEntry<"projects">[];
-    return projects.map((project) => ({
-        params: { slug: slugify(project.data.title) },
-    }));
+  const projects = (await getCollection(
+    "projects",
+  )) as CollectionEntry<"projects">[];
+  return projects.map((project) => ({
+    params: { slug: slugify(project.data.title) },
+  }));
 }
 
 const { slug } = Astro.params;
 const projects = (await getCollection(
-    "projects",
+  "projects",
 )) as CollectionEntry<"projects">[];
 
 const project = projects.filter(
-    (project) => slugify(project.data.title) === slug,
+  (project) => slugify(project.data.title) === slug,
 )[0];
 
-const { Content } = await project.render();
+const { Content } = await render(project);
+
 const breadcrumbItems = [
-    { label: "projects", href: "/projects/" },
-    { label: `${slug}`, href: `/projects/${slug}/` },
+  { label: "projects", href: "/projects/" },
+  { label: `${slug}`, href: `/projects/${slug}/` },
 ];
 ---
 
 <MainLayout title={project.data.title} description={project.data.description}>
-    <Breadcrumbs items={breadcrumbItems} />
-    <MainLayoutGrid style="centered">
-        <CoverImage article={project} />
-    </MainLayoutGrid>
+  <Breadcrumbs items={breadcrumbItems} />
+  <MainLayoutGrid style="centered">
+    <CoverImage article={project} />
+  </MainLayoutGrid>
 
-    <MainLayoutGrid style="prefered-width">
-        <TagList
-            tags={project.data.musicians}
-            path="/projects/musicians/"
-            iconName="tabler:brand-netease-music"
-            iconLinkPath="/projects/musicians/"
-            scrollX={true}
-        />
+  <MainLayoutGrid style="prefered-width">
+    <TagList
+      tags={project.data.musicians}
+      path="/projects/musicians/"
+      iconName="tabler:brand-netease-music"
+      iconLinkPath="/projects/musicians/"
+      scrollX={true}
+    />
 
-        <TagList
-            tags={project.data.styles}
-            path="/projects/styles/"
-            iconName="tabler:file-music"
-            iconLinkPath="/projects/styles/"
-        />
-        <ContentHeader article={project} />
+    <TagList
+      tags={project.data.styles}
+      path="/projects/styles/"
+      iconName="tabler:file-music"
+      iconLinkPath="/projects/styles/"
+    />
+    <ContentHeader article={project} />
 
-        <Content />
-    </MainLayoutGrid>
+    <Content />
+  </MainLayoutGrid>
 </MainLayout>
