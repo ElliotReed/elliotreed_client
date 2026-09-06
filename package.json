@@ -11,9 +11,9 @@
         "generate:filters": "node ./scripts/generateFilters.js"
     },
     "dependencies": {
-        "@astrojs/mdx": "^7.0.8",
-        "@astrojs/react": "^6.0.4",
-        "astro": "^7.2.9",
+        "@astrojs/mdx": "^8.0.0",
+        "@astrojs/react": "^6.0.5",
+        "astro": "^7.3.1",
         "classnames": "^2.5.1",
         "gsap": "^3.15.0",
         "pigeon-maps": "^0.22.1",
@@ -22,9 +22,9 @@
     },
     "devDependencies": {
         "@iconify-json/tabler": "^1.2.38",
-        "@types/node": "^26.4.0",
+        "@types/node": "^26.4.1",
         "astro-icon": "^1.2.0",
-        "sass": "^1.103.1",
+        "sass": "^1.104.0",
         "typescript": "^7.0.2"
     }
 }
