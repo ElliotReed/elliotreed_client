@@ -6,10 +6,65 @@ import styles from "./performances.module.scss";
 ---
 
 <MainLayout>
-    <MaxWidthContainer>
-        <section class={styles.header}>
-            <h1>Performance Page</h1>
-            <p>No performances scheduled currently.</p>
-        </section>
-    </MaxWidthContainer>
+  <MaxWidthContainer>
+    <div class={styles["performance-page"]}>
+      <h1>Performance Page</h1>
+      <ul id="performance-list" class={styles["performance-list"]}></ul>
+    </div>
+  </MaxWidthContainer>
 </MainLayout>
+
+<script>
+  import { formatTime } from "@/utils/formatDate";
+
+  const response = await fetch(
+    `${import.meta.env.PUBLIC_BASE_URL}/v1/events/feed?status=5&includes=venue,musicians`,
+    {
+      headers: {
+        "x-api-key": "elliotreed.net",
+      },
+    },
+  );
+  const data = await response.json();
+  const performanceContainer = document.getElementById("performance-list")!;
+  if (data?.data?.length > 0) {
+    performanceContainer.innerHTML = data.data
+      .map((performance: any) => {
+        const eventDate = new Date(performance.eventDate);
+        const formattedDate = eventDate.toLocaleDateString("en-us", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          timeZone: "UTC",
+        });
+
+        const venueOrPrivate = performance.publicEvent
+          ? performance.venue?.name
+            ? `<p class="performance__venue">${performance.venue.name}${performance.venue.address ? `, ${performance.venue.address}` : ""}${performance.venue.state ? `, ${performance.venue.state}` : ""}${performance.venue.zipcode ? ` ${performance.venue.zipcode}` : ""}</p>`
+            : ""
+          : `<p class="performance__venue performance__venue--private">Private performance</p>`;
+
+        const priceHtml = performance.eventPrice
+          ? `<p class="performance__price">$${performance.eventPrice}</p>`
+          : "";
+
+        const html = `
+<li class="performance">
+  <div class="performance__datetime">
+    <span class="performance__date">${formattedDate}</span>
+    <span class="performance__time">${formatTime(performance.eventStart)} – ${formatTime(performance.eventEnd)}</span>
+  </div>
+  <h3 class="performance__name">${performance.eventName}</h3>
+  ${venueOrPrivate}
+  ${priceHtml}
+</li>`;
+
+        return html;
+      })
+      .join("");
+  } else {
+    performanceContainer.innerHTML = `<p>No performances scheduled currently.</p>`;
+  }
+
+  console.log("data: ", data);
+</script>

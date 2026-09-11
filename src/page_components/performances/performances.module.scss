@@ -1,6 +1,6 @@
 @use "../../styles/abstracts";
 
-.header {
+.performance-page {
   margin: abstracts.$space-md;
   max-width: 100%;
   border-radius: abstracts.$border-radius;
@@ -12,5 +12,29 @@
     margin: abstracts.$space-md 0;
     font-weight: bold;
     color: abstracts.get-color("mainBrand");
+  }
+}
+
+.performance-list {
+  list-style-type: none;
+  padding: 0;
+
+  li {
+    padding-block: abstracts.$space-sm;
+    padding-inline: abstracts.$space-md;
+
+    &:nth-child(odd) {
+      border-radius: abstracts.$border-radius;
+      background: #0000000e;
+    }
+    :first-child {
+      display: block;
+      font-size: abstracts.$fs-sm-rem;
+      font-weight: abstracts.$fw-lg;
+    }
+
+    :last-child {
+      display: block;
+    }
   }
 }
