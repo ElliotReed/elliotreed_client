@@ -1,10 +1,11 @@
 ---
+export const prerender = true;
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import { Icon } from "astro-icon/components";
 import type { CollectionEntry } from "astro:content";
 
-import Card from "@/components/elements/Card.astro";
+import Card from "@/components/_elements/Card.astro";
 import Heading from "@/components/Heading/Heading";
 import MainLayout from "@/layouts/MainLayout.astro";
 import MainLayoutGrid from "@/components/MainLayoutGrid.astro";
@@ -15,96 +16,94 @@ import { slugify } from "@/utils/slugify";
 
 import defaultCategoryImage from "@images/scores/default.png";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
-import Paragraph from "@/components/elements/Paragraph.astro";
+import Paragraph from "@/components/_elements/Paragraph.astro";
 
 const notes: CollectionEntry<"notes">[] = await getCollection("notes");
 const categories = [...categoryList.map((category) => category.id)];
 const sortedCategories = categories.sort((a, b) =>
-    a.toLowerCase().localeCompare(b.toLowerCase()),
+  a.toLowerCase().localeCompare(b.toLowerCase()),
 );
 
 const breadcumbs = [
-    { label: "notes", href: "/notes/" },
-    { label: "categories", href: "/notes/categories/" },
+  { label: "notes", href: "/notes/" },
+  { label: "categories", href: "/notes/categories/" },
 ];
 ---
 
 <MainLayout
-    title="Note Categories"
-    description="A collection of my personal notes on music."
+  title="Note Categories"
+  description="A collection of my personal notes on music."
 >
-    <Breadcrumbs items={breadcumbs} />
+  <Breadcrumbs items={breadcumbs} />
 
-    <MainLayoutGrid style="prefered-width">
-        <Heading level={1}>
-            <Icon name="tabler:file-music" />
-            Categories
-        </Heading>
+  <MainLayoutGrid style="prefered-width">
+    <Heading level={1}>
+      <Icon name="tabler:file-music" />
+      Categories
+    </Heading>
 
-        <ul role="list">
-            {
-                categoryList.map((category) => (
-                    <li>
-                        <Card href={`/notes/categories/${category.id}/`}>
-                            <Image
-                                class="cover"
-                                slot="header"
-                                src={category.image}
-                                alt={category.blurb}
-                                layout="full-width"
-                            />
-                            <div slot="content" class="content-container">
-                                <Heading level={3} size={4}>
-                                    {category.title}
-                                </Heading>
-                                <Paragraph size="sm">
-                                    <span class="clamp-text">
-                                        {category.blurb}
-                                    </span>
-                                </Paragraph>
-                            </div>
-                        </Card>
-                    </li>
-                ))
-            }
-        </ul>
-    </MainLayoutGrid>
+    <ul role="list">
+      {
+        categoryList.map((category) => (
+          <li>
+            <Card href={`/notes/categories/${category.id}/`}>
+              <Image
+                class="cover"
+                slot="header"
+                src={category.image}
+                alt={category.blurb}
+                layout="full-width"
+              />
+              <div slot="content" class="content-container">
+                <Heading level={3} size={4}>
+                  {category.title}
+                </Heading>
+                <Paragraph size="sm">
+                  <span class="clamp-text">{category.blurb}</span>
+                </Paragraph>
+              </div>
+            </Card>
+          </li>
+        ))
+      }
+    </ul>
+  </MainLayoutGrid>
 </MainLayout>
 
 <style lang="scss">
-    @use "@/styles/abstracts" as *;
+  @use "@/styles/abstracts" as *;
 
-    .clamp-text {
-        display: -webkit-box;
-        -webkit-line-clamp: 3; /* Adjust based on content */
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
+  .clamp-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Adjust based on content */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  ul {
+    display: grid;
+    gap: $space-md;
+    grid-template-columns: repeat(auto-fill, minmax(px-to-rem(280), 1fr));
+    padding-inline-start: $space-sm;
+    list-style: none;
+
+    // This counters the Card gap
+    .content-container {
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin-block: 0;
+      }
     }
+  }
 
-    ul {
-        display: grid;
-        gap: $space-md;
-        grid-template-columns: repeat(auto-fill, minmax(px-to-rem(280), 1fr));
-        padding-inline-start: $space-sm;
-        list-style: none;
-
-        // This counters the Card gap
-        .content-container {
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6 {
-                margin-block: 0;
-            }
-        }
-    }
-
-    .cover {
-        width: 100%;
-        object-fit: cover;
-        aspect-ratio: 16 / 9;
-    }
+  .cover {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+  }
 </style>

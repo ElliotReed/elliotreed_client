@@ -1,6 +1,6 @@
 ---
 import MainLayout from "@/layouts/MainLayout.astro";
-import MaxWidthContainer from "@/components/elements/MaxWidthContainer.astro";
+import MaxWidthContainer from "@/components/_elements/MaxWidthContainer.astro";
 
 import styles from "./performances.module.scss";
 ---
@@ -21,7 +21,7 @@ import styles from "./performances.module.scss";
     `${import.meta.env.PUBLIC_BASE_URL}/v1/events/feed?status=5&includes=venue,musicians`,
     {
       headers: {
-        "x-api-key": "elliotreed.net",
+        "x-api-key": `${import.meta.env.GIGMANAGER_API_KEY}`,
       },
     },
   );

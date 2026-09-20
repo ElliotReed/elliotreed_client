@@ -56,6 +56,11 @@ jobs:
             ./dist/ \
             ${{ env.VPS_USER }}@${{ env.VPS_HOST }}:${{ env.REMOTE_SITE_PATH }}/
 
+      - name: Restart app
+        run: |
+          ssh ${{ env.VPS_USER }}@${{ env.VPS_HOST }} \
+            "pm2 restart ${{ env.SITE_NAME }} || pm2 start ${{ env.REMOTE_SITE_PATH }}/server/entry.mjs --name ${{ env.SITE_NAME }}"
+
       - name: Deployment summary
         run: |
           echo "🚀 Deployed to ${{ env.VPS_HOST }}"

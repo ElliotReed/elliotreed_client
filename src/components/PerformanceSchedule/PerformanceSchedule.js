@@ -2,7 +2,7 @@ import React from "react"
 import "./PerformanceSchedule.css"
 import API from "../../utility/API"
 // import Moment from "react-moment"
-import Loader from "../elements/Loader"
+import Loader from "../_elements/Loader"
 
 class PerformanceSchedule extends React.Component {
     constructor(props) {

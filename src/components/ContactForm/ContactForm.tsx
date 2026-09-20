@@ -1,8 +1,8 @@
 import React, { useState, type ChangeEvent, type FormEvent } from "react";
 
 import Sending from "./Sending";
-import ButtonGroup from "../elements/ButtonGroup/ButtonGroup";
-import Button from "../elements/Button";
+import ButtonGroup from "../_elements/ButtonGroup/ButtonGroup";
+import Button from "../_elements/Button";
 
 import styles from "./contact-form.module.scss"
 

@@ -1,12 +1,17 @@
+import path from 'node:path';
 // @ts-check
 import { defineConfig } from 'astro/config';
+import node from '@astrojs/node';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
-import path from 'node:path';
 import icon from "astro-icon";
+
 
 // https://astro.build/config
 export default defineConfig({
+    adapter: node({
+        mode: 'standalone',
+    }),
     experimental: {},
     image: {
         // Used for all Markdown images; not configurable per-image
@@ -19,6 +24,7 @@ export default defineConfig({
         mdx(),
         react(),
     ],
+    output: "server",
     server: {
         port: 4300,
         // @ts-ignore - Astro's types don't cover this valid Vite/chokidar option

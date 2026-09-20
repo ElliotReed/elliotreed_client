@@ -3,110 +3,109 @@
 // imported styles
 @use "../abstracts" as *;
 @use "../components";
-@use '../layouts';
-@use './typography';
+@use "../layouts";
+@use "./typography";
 
 // Default tag level styles
 @use "./elements/table";
 
 @layer base {
+  /* #region Variables */
+  :root {
+    color-scheme: dark;
+    @include typography.fonts();
 
-    /* #region Variables */
-    :root {
-        color-scheme: dark;
-        @include typography.fonts();
-
-        & {
-            // Used in detail for transition 
-            interpolate-size: allow-keywords;
-        }
-
-        /* animations */
-        & {
-            --softIn: softIn 0.33s ease-in;
-        }
+    & {
+      // Used in detail for transition
+      interpolate-size: allow-keywords;
     }
 
-    /* #endregion Variables */
+    /* animations */
+    & {
+      --softIn: softIn 0.33s ease-in;
+    }
+  }
 
-    html {
-        box-sizing: border-box;
-        font-family: config.$body-font-family;
-        line-height: config.$line-height;
-        // scrollbar-gutter: stable;
-        scroll-behavior: smooth;
+  /* #endregion Variables */
+
+  html {
+    box-sizing: border-box;
+    font-family: config.$body-font-family;
+    line-height: config.$line-height;
+    // scrollbar-gutter: stable;
+    scroll-behavior: smooth;
+  }
+
+  // added in normalize
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+
+  body {
+    position: relative;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    min-height: 100svh;
+    color: get-color("darkShades");
+    font-size: calc(15px + 0.390625vw);
+    background-color: get-color("lightShades");
+    @include scrollbar($radius: false);
+  }
+
+  .body-no-scroll {
+    overflow: hidden;
+  }
+
+  a {
+    color: inherit;
+
+    &:visited {
+      color: inherit;
+    }
+  }
+
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    line-height: config.$line-height;
+  }
+
+  a:focus,
+  button:focus,
+  input:focus,
+  optgroup:focus,
+  select:focus,
+  textarea:focus {
+    @include focus();
+    // outline-offset: 3px;
+  }
+
+  *::selection {
+    background-color: get-color("darkShades");
+    color: get-color("lightShades");
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  cite {
+    font-size: 0.618rem;
+  }
+
+  @keyframes softIn {
+    from {
+      opacity: 0;
     }
 
-    // added in normalize
-    *,
-    *:before,
-    *:after {
-        box-sizing: inherit;
+    to {
+      opacity: 1;
     }
-
-    body {
-        position: relative;
-        display: grid;
-        grid-template-rows: auto 1fr auto;
-        min-height: 100vh;
-        min-height: 100svh;
-        color: get-color("darkShades");
-        font-size: calc(15px + 0.390625vw);
-        background-color: get-color("lightShades");
-        @include scrollbar($radius: false);
-    }
-
-    .body-no-scroll {
-        overflow: hidden;
-    }
-
-    a {
-        color: inherit;
-
-        &:visited {
-            color: inherit;
-        }
-    }
-
-    button,
-    input,
-    optgroup,
-    select,
-    textarea {
-        line-height: config.$line-height;
-    }
-
-    a:focus,
-    button:focus,
-    input:focus,
-    optgroup:focus,
-    select:focus,
-    textarea:focus {
-        @include focus();
-        // outline-offset: 3px;
-    }
-
-    *::selection {
-        background-color: get-color("darkShades");
-        color: get-color("lightShades");
-    }
-
-    img {
-        display: block;
-        max-width: 100%;
-    }
-
-    cite {
-        font-size: 0.618rem;
-    }
-
-    @keyframes softIn {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
-    }
+  }
 }
