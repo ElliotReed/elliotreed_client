@@ -45,7 +45,6 @@ jobs:
 
       - name: Build project
         run: npm run build
-
       - name: Deploy via rsync
         run: |
           rsync -avz --delete \
@@ -53,8 +52,18 @@ jobs:
             --exclude '.git' \
             --exclude '.github' \
             --exclude 'src' \
+            --exclude '.env.production' \
             ./dist/ \
             ${{ env.VPS_USER }}@${{ env.VPS_HOST }}:${{ env.REMOTE_SITE_PATH }}/
+
+          rsync -avz \
+            ./package.json ./package-lock.json \
+            ${{ env.VPS_USER }}@${{ env.VPS_HOST }}:${{ env.REMOTE_SITE_PATH }}/
+
+      - name: Install production dependencies on VPS
+        run: |
+          ssh ${{ env.VPS_USER }}@${{ env.VPS_HOST }} \
+            "cd ${{ env.REMOTE_SITE_PATH }} && npm ci --omit=dev"VPS_USER }}@${{ env.VPS_HOST }}:${{ env.REMOTE_SITE_PATH }}/
 
       - name: Restart app
         run: |
