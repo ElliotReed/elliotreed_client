@@ -1,6 +1,6 @@
 import path from 'node:path';
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 import node from '@astrojs/node';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
@@ -12,6 +12,12 @@ export default defineConfig({
     adapter: node({
         mode: 'standalone',
     }),
+    env: {
+        schema: {
+            GIGMANAGER_BASE_URL: envField.string({ context: "server", access: "secret" }),
+            GIGMANAGER_API_KEY: envField.string({ context: "server", access: "secret" }),
+        },
+    },
     experimental: {},
     image: {
         // Used for all Markdown images; not configurable per-image
