@@ -6,7 +6,7 @@ import { formatTime } from "@/utils/formatDate";
 import styles from "./performances.module.scss";
 
 const response = await fetch(
-  `${import.meta.env.PUBLIC_BASE_URL}/v1/events/feed?status=5&includes=venue,musicians,project`,
+  `${import.meta.env.GIGMANAGER_BASE_URL}/v1/events/feed?status=5&includes=venue,musicians,project`,
   {
     headers: {
       "x-api-key": `${import.meta.env.GIGMANAGER_API_KEY}`,
