@@ -1,18 +1,24 @@
 ---
-import MainLayout from "@/layouts/MainLayout.astro";
+import { getSecret } from "astro:env/server";
+
 import MaxWidthContainer from "@/components/_elements/MaxWidthContainer.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
 import { formatTime } from "@/utils/formatDate";
 
 import styles from "./performances.module.scss";
 
+const apiUrl = getSecret("GIGMANAGER_BASE_URL");
+const apiKey = getSecret("GIGMANAGER_API_KEY");
+
 const response = await fetch(
-  `${import.meta.env.GIGMANAGER_BASE_URL}/v1/events/feed?status=5&includes=venue,musicians,project`,
+  `${apiUrl}/v1/events/feed?status=5&includes=venue,musicians,project`,
   {
     headers: {
-      "x-api-key": `${import.meta.env.GIGMANAGER_API_KEY}`,
+      "x-api-key": apiKey!,
     },
   },
 );
+
 const data = await response.json();
 ---
 
