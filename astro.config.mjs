@@ -27,10 +27,6 @@ export default defineConfig({
     output: "server",
     server: {
         port: 4300,
-        // @ts-ignore - Astro's types don't cover this valid Vite/chokidar option
-        // watch: {
-        //     ignored: ['**/Config.Msi/**', '**/System Volume Information/**'],
-        // },
     },
     trailingSlash: 'always',
     vite: {

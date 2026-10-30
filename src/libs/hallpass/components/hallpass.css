@@ -1,0 +1,60 @@
+.hp-auth-form {
+    padding-block: .5rem;
+    padding-inline: 1rem;
+
+    header,
+    footer {
+        padding-block: 1rem;
+    }
+
+    [data-part="content"] {
+        display: grid;
+        place-content: center;
+
+        &>*+* {
+            margin-block-start: .75rem;
+        }
+    }
+
+    [data-part="error"] {
+        padding-block: .25rem;
+        padding-inline: .5rem;
+        color: white;
+        text-align: center;
+        font-size: small;
+        font-weight: bold;
+        background: red;
+    }
+
+    /* Input Styles */
+    [data-part="input-container"] {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        input {
+            padding-inline-end: 2.75rem
+        }
+    }
+
+    [data-part="show-password-button"] {
+        position: absolute;
+        right: 0.5rem;
+        padding: .5rem;
+        background: transparent;
+    }
+
+    [data-part="submit-button"] {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: .75rem
+    }
+
+    /* End Input Styles */
+
+    footer {
+        display: inline-flex;
+        gap: .5rem;
+    }
+}

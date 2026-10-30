@@ -3,7 +3,7 @@
     "type": "module",
     "version": "0.0.1",
     "scripts": {
-        "dev": "astro dev",
+        "dev": "cross-env NODE_EXTRA_CA_CERTS=C:\\Users\\ellio\\AppData\\Local\\mkcert\\rootCA.pem astro dev",
         "build": "astro build",
         "preview": "astro preview",
         "astro": "astro",
@@ -11,10 +11,10 @@
         "generate:filters": "node ./scripts/generateFilters.js"
     },
     "dependencies": {
-        "@astrojs/mdx": "^8.0.0",
-        "@astrojs/node": "^11.1.6",
-        "@astrojs/react": "^6.0.5",
-        "astro": "^7.3.1",
+        "@astrojs/mdx": "^8.1.2",
+        "@astrojs/node": "^11.1.9",
+        "@astrojs/react": "^7.1.2",
+        "astro": "^7.4.4",
         "classnames": "^2.5.1",
         "gsap": "^3.15.0",
         "pigeon-maps": "^0.22.1",
@@ -22,10 +22,11 @@
         "yet-another-react-lightbox": "^3.32.2"
     },
     "devDependencies": {
-        "@iconify-json/tabler": "^1.2.38",
-        "@types/node": "^26.4.1",
+        "@iconify-json/tabler": "^1.2.43",
+        "@types/node": "^26.6.6",
         "astro-icon": "^1.2.0",
-        "sass": "^1.104.0",
+        "cross-env": "^10.1.0",
+        "sass": "^1.107.0",
         "typescript": "^7.0.2"
     }
 }
