@@ -9,15 +9,13 @@ import styles from "./performances.module.scss";
 
 const apiUrl = getSecret("GIGMANAGER_BASE_URL");
 const apiKey = getSecret("GIGMANAGER_API_KEY");
+const endpoint = `v1/events/feed?status=5&includes=venue,musicians,project`;
 
-const response = await fetch(
-  `${apiUrl}/v1/events/feed?status=5&includes=venue,musicians,project`,
-  {
-    headers: {
-      "x-api-key": apiKey!,
-    },
+const response = await fetch(`${apiUrl}/${endpoint}`, {
+  headers: {
+    "x-api-key": apiKey!,
   },
-);
+});
 
 const data = await response.json();
 ---
